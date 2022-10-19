@@ -1,3 +1,3 @@
-# Geternitier.github.io
+# Geternitier
 
 Now you see me
