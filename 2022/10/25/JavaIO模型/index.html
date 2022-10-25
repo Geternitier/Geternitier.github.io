@@ -16,21 +16,21 @@
   <meta name="author" content="Geternitier">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Java的IO模型同步和异步 同步：同步就是发起一个调用后，被调用者未处理完请求之前，调用不返回 异步：异步就是发起一个调用后，立即得到被调用者的回应表示已接收到请求，但是被调用者并没有返回结果，此时我们可以处理其他请求。被调用者通常依靠事件、回调等机制来通知调用者其返回结果。  两者的最大区别在于，异步的情况下，调用者不需要等待处理结果，被调用者会通过回调等机制来通知调用者其返回结果。 阻塞和非">
+    <meta name="description" content="IO模型">
 <meta property="og:type" content="article">
-<meta property="og:title" content="赵客缦胡缨,吴钩霜雪明">
+<meta property="og:title" content="Java的IO模型">
 <meta property="og:url" content="http://example.com/2022/10/25/JavaIO%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Geternitier的博客">
-<meta property="og:description" content="Java的IO模型同步和异步 同步：同步就是发起一个调用后，被调用者未处理完请求之前，调用不返回 异步：异步就是发起一个调用后，立即得到被调用者的回应表示已接收到请求，但是被调用者并没有返回结果，此时我们可以处理其他请求。被调用者通常依靠事件、回调等机制来通知调用者其返回结果。  两者的最大区别在于，异步的情况下，调用者不需要等待处理结果，被调用者会通过回调等机制来通知调用者其返回结果。 阻塞和非">
+<meta property="og:description" content="IO模型">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-25T14:03:20.000Z">
-<meta property="article:modified_time" content="2022-10-25T14:16:37.782Z">
+<meta property="article:modified_time" content="2022-10-25T14:34:09.022Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>赵客缦胡缨,吴钩霜雪明 - Geternitier的博客</title>
+  <title>Java的IO模型 - Geternitier的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -184,7 +184,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="赵客缦胡缨,吴钩霜雪明"></span>
+            <span id="subtitle" data-typed-text="Java的IO模型"></span>
           
         </div>
 
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          294 字
+          289 字
         
       </span>
     
@@ -247,12 +247,14 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">赵客缦胡缨,吴钩霜雪明</h1>
+            <h1 style="display: none">Java的IO模型</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="Java的IO模型"><a href="#Java的IO模型" class="headerlink" title="Java的IO模型"></a>Java的IO模型</h2><h3 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h3><ul>
+                <h2 id="IO模型"><a href="#IO模型" class="headerlink" title="IO模型"></a>IO模型</h2><span id="more"></span>
+
+<h3 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h3><ul>
 <li>同步：同步就是发起一个调用后，被调用者未处理完请求之前，调用不返回</li>
 <li>异步：异步就是发起一个调用后，立即得到被调用者的回应表示已接收到请求，但是被调用者并没有返回结果，此时我们可以处理其他请求。<br>被调用者通常依靠事件、回调等机制来通知调用者其返回结果。</li>
 </ul>
