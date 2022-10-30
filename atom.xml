@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-10-30T08:37:06.783Z</updated>
+  <updated>2022-10-30T09:04:15.071Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MIME</title>
+    <link href="http://example.com/2022/10/30/MIME/"/>
+    <id>http://example.com/2022/10/30/MIME/</id>
+    <published>2022-10-30T08:45:32.000Z</published>
+    <updated>2022-10-30T09:04:15.071Z</updated>
+    
+    <content type="html"><![CDATA[<p>媒体类型(Multipurpose Internet Mail Extensions，MIME)是用来表示文档、文件或字节流的性质和格式的一种标准。</p><span id="more"></span><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="通用结构"><a href="#通用结构" class="headerlink" title="通用结构"></a>通用结构</h3><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada"><span class="hljs-keyword">type</span>/<span class="hljs-keyword">subtype</span><br></code></pre></td></tr></table></figure><p>由类型和子类型两个字符串中间用’/‘分隔组成，不允许空格存在。type为可以被分为多个子类的独立类别，subtype为细分后的每个类型。<br>MIME对大小写不敏感，但一般使用小写。</p><table><thead><tr><th align="center">类型</th><th align="center">描述</th><th align="center">示例</th></tr></thead><tbody><tr><td align="center"><code>text</code></td><td align="center">普通文本</td><td align="center"><code>text/plain</code>,<code>text/html</code>,<code>text/css</code>,<code>text/javascript</code></td></tr><tr><td align="center"><code>image</code></td><td align="center">某种图像，包括动态图但补包括视频</td><td align="center"><code>image/gif</code>,<code>image/png</code>,<code>image/jpeg</code></td></tr><tr><td align="center"><code>audio</code></td><td align="center">某种音频文件</td><td align="center"><code>audio/midi</code>,<code>audio/mpeg</code>,<code>audio/wav</code></td></tr><tr><td align="center"><code>video</code></td><td align="center">某种视频文件</td><td align="center"><code>video/webm</code>,<code>video/ogg</code></td></tr><tr><td align="center"><code>application</code></td><td align="center">某种二进制数据</td><td align="center"><code>application/octet-stream</code></td></tr></tbody></table>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;媒体类型(Multipurpose Internet Mail Extensions，MIME)是用来表示文档、文件或字节流的性质和格式的一种标准。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="networkProject" scheme="http://example.com/categories/networkProject/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Java网络编程</title>
