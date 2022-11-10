@@ -24,7 +24,7 @@
 <meta property="og:description" content="线性代数复习">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-06T07:41:11.229Z">
-<meta property="article:modified_time" content="2022-11-08T14:20:31.372Z">
+<meta property="article:modified_time" content="2022-11-10T10:09:32.878Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          2.5k 字
         
       </span>
     
@@ -298,7 +298,7 @@
 </ul>
 <ol>
 <li>对角矩阵、单位矩阵E、数值矩阵kE</li>
-<li>上/下三角矩阵（右上/左下为0）</li>
+<li>上/下三角矩阵（左下/右上为0）</li>
 <li>对称矩阵、反对称矩阵(对称位置为负)</li>
 </ol>
 <ul>
@@ -321,8 +321,8 @@
 <li>可逆矩阵的基本性质：可逆矩阵的转置、数乘、逆、积均可逆</li>
 <li>求可逆矩阵：<ul>
 <li>根据定义列方程组</li>
-<li>公式（求伴随矩阵的1/|A|，伴随矩阵的每一项为原矩阵对应位置项的代数余子式）</li>
-<li>算法（A变换成E的初等变换可使E变换成A的逆）</li>
+<li>公式（求伴随矩阵的1/|A|，伴随矩阵：原矩阵每一项求代数余子式并转置）</li>
+<li>算法（A变换成E的初等变换可使E变换成A的逆，将(A E)进行初等变换可得(E A逆)）</li>
 </ul>
 </li>
 <li>矩阵可逆的充要条件：|A|不为0（A满秩）。</li>
@@ -351,21 +351,19 @@
 </li>
 </ol>
 <ul>
-<li><p>分块矩阵</p>
-<blockquote>
-<ol>
-<li>定义与运算</li>
-<li>常见的分块方式</li>
-</ol>
-</blockquote>
-</li>
-<li><p>矩阵的秩</p>
-</li>
+<li>分块矩阵</li>
 </ul>
 <ol>
-<li>定义：矩阵A中最大非零子行列式阶数，记为r(A)<blockquote>
-<p>矩阵任取k行k列按原序构成的k阶行列式称为矩阵的k阶子行列式/子式</p>
-</blockquote>
+<li>定义与运算（加法、数乘、乘法、转置）</li>
+<li>常见的分块方式：按行/列分块</li>
+</ol>
+<ul>
+<li>矩阵的秩</li>
+</ul>
+<ol>
+<li>定义：矩阵A中最大非零子行列式阶数，记为r(A)<ul>
+<li>矩阵任取k行k列按原序构成的k阶行列式称为矩阵的k阶子行列式/子式</li>
+</ul>
 </li>
 <li>性质<ol>
 <li>0 &lt;= r(A) &lt;= min(m,n)</li>
@@ -377,7 +375,7 @@
 <li>满秩矩阵可通过初等行/列变换变换为E  </li>
 </ol>
 </li>
-<li>矩阵分解：m*n矩阵A，则存在m阶可逆矩阵P，n阶可逆矩阵Q，标准形矩阵∧，A=P∧Q，其中标准形矩阵的秩等于A的秩。  <ul>
+<li>__矩阵分解__：m*n矩阵A，则存在m阶可逆矩阵P，n阶可逆矩阵Q，标准形矩阵∧，A=P∧Q，其中标准形矩阵的秩等于A的秩。  <ul>
 <li>任一n阶可逆矩阵可表示为有限n个初等矩阵的积</li>
 <li>任一n阶可逆矩阵只经行/列初等变换为单位矩阵</li>
 </ul>
@@ -394,7 +392,11 @@
 <li>若一向量组线性无关，则其部分向量组线性无关</li>
 </ul>
 </li>
-<li>向量组线性相关的充要条件是，其中至少有一个向量可由其他向量线性表示</li>
+<li>向量组线性相关的充要条件是，其中至少有一个向量可由其他向量线性表示<ul>
+<li>存在m个不全为0的系数与m个向量各自积的和为0，则该向量组线性相关</li>
+<li>若仅当系数全为0，上式成立，则该向量组线性无关</li>
+</ul>
+</li>
 <li>向量组A线性无关，向量组B线性相关，B比A多一向量，则该向量可由A线性表示，且表达式唯一</li>
 <li>满秩向量组线性无关<ul>
 <li>向量个数大于维数的向量组必线性相关</li>
@@ -470,6 +472,13 @@
 </ul>
 </li>
 </ol>
+<hr>
+<h3 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h3><ul>
+<li>可逆</li>
+<li>行/列简化梯形矩阵</li>
+<li>秩</li>
+<li>线性相关/无关</li>
+</ul>
 
                 
               </div>
