@@ -4,7 +4,45 @@
   
   
   <entry>
-    <title>树</title>
+    <title>2.0 算法分析</title>
+    <link href="/2022/12/06/Chapter2.0_AlgorithmAnalysis/"/>
+    <url>/2022/12/06/Chapter2.0_AlgorithmAnalysis/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Chapter2-0：算法分析"><a href="#Chapter2-0：算法分析" class="headerlink" title="Chapter2.0：算法分析"></a>Chapter2.0：算法分析</h2><span id="more"></span><p>算法是为解决问题而定义的一系列方法。<br>算法分析主要在于算法占用的时间与空间。<br>算法分析的两个方法：性能分析和性能度量</p><h3 id="1-空间复杂度"><a href="#1-空间复杂度" class="headerlink" title="1. 空间复杂度"></a>1. 空间复杂度</h3><p>运行完成程序需要的内存空间<br>组成：指令、数据、环境栈空间<br>此处讨论的存储器主要指内存。</p><h4 id="1-指令空间"><a href="#1-指令空间" class="headerlink" title="(1) 指令空间"></a>(1) 指令空间</h4><p>程序编译成的二进制码的空间大小<br>又称代码空间<br>本课程中，我们默认忽略指令空间<br>原因：操作系统对代码所占的内存具有一些管理机制，代码所占内存有限</p><h4 id="2-数据空间"><a href="#2-数据空间" class="headerlink" title="(2) 数据空间"></a>(2) 数据空间</h4><p>定长部分：包含指令、简单变量、定长度的成员变量、常量的内存<br>变长部分：随数据变化而变化的部分，如递归栈、动态分配区域<br>一般而言，变长部分更为重要。</p><h4 id="3-环境栈空间"><a href="#3-环境栈空间" class="headerlink" title="(3) 环境栈空间"></a>(3) 环境栈空间</h4><h3 id="2-时间复杂度"><a href="#2-时间复杂度" class="headerlink" title="2. 时间复杂度"></a>2. 时间复杂度</h3><p>运行完成程序需要的时间长度<br>编译时间不被计算进时间复杂度。<br>计算程序的时间复杂度，关键操作个数是核心，循环中操作个数格外重要。</p><h4 id="最好、最差和平均的复杂度分析"><a href="#最好、最差和平均的复杂度分析" class="headerlink" title="最好、最差和平均的复杂度分析"></a>最好、最差和平均的复杂度分析</h4><p>平均复杂度往往难以定义。<br>使用算术平均值作为平均复杂度(假设所有情况等概率)是简化的运算，不能完全代表平均情况。  </p><p>步骤数计算：count++；</p><h4 id="算法的渐进分析"><a href="#算法的渐进分析" class="headerlink" title="算法的渐进分析"></a>算法的渐进分析</h4><p>记号：O、𝛺、o、𝜃</p><h5 id="O表示法"><a href="#O表示法" class="headerlink" title="O表示法"></a>O表示法</h5><p>表示算法复杂度的上限<br>定义：f(n)=O(g(n))，即当n尽量大时，存在c，f(n)&lt;=cg(n)。</p><h5 id="o表示法"><a href="#o表示法" class="headerlink" title="o表示法"></a>o表示法</h5><p>定义：f(n)=o(g(n))，即当n尽量大时，存在c，f(n)&lt;cg(n)。<br>当前算法复杂度小于该量级。</p><h5 id="𝛺表示法"><a href="#𝛺表示法" class="headerlink" title="𝛺表示法"></a>𝛺表示法</h5><p>表示算法复杂度的下界<br>定义：f(n)=𝛺(g(n))，即当n尽量大时，存在c，f(n)&gt;=cg(n)。</p><h5 id="𝜃表示法"><a href="#𝜃表示法" class="headerlink" title="𝜃表示法"></a>𝜃表示法</h5><p>表示和算法复杂度同等的两级<br>f(n)=𝜃(g(n))，即当n尽量大，存在，，使g(n)&lt;=f(n)&lt;=g(n)。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>DataStructures</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>1.0 数据结构绪论</title>
+    <link href="/2022/12/06/Chapter1.0_Intro/"/>
+    <url>/2022/12/06/Chapter1.0_Intro/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Chapter1-0：绪论"><a href="#Chapter1-0：绪论" class="headerlink" title="Chapter1.0：绪论"></a>Chapter1.0：绪论</h2><p>课程主要是学习数据结构而不倾于算法结构</p><span id="more"></span><ol><li><p>关心数据类型和数据处理步骤</p></li><li><p>处理更加复杂、难以计算的部分</p></li><li><p>不依赖于特定编程语言</p></li><li><p>介绍常用算法和数据结构</p></li><li><p>后置课程<br>·编译原理<br>·操作系统<br>·数据库</p></li></ol><h3 id="什么是数据结构"><a href="#什么是数据结构" class="headerlink" title="什么是数据结构"></a>什么是数据结构</h3><ol><li><p>数据<br>数据是信息的载体，是数字、字符和其他符号组成的集合。<br>数据可用于描述客观世界。<br>表示数据的符号可以输入计算机，被计算机识别和处理。<br>数据分类：<br>(1) 数值型(numerical)：int, float, complex<br>(2) 非数值型(non-numerical)：character, string, graph, voice</p></li><li><p>数据结构<br>数据结构是数据对象以及对象各成员间关系的统称。<br>数据结构分类：线性结构(linear structure)与非线性(non-linear)结构</p></li></ol><p>数据结构是分层的<br>数据结构涉及三个方面：<br>数据的逻辑结构——从用户视图看，是面向问题的。<br>数据的物理结构——从具体实现视图看，是面向计算机的。<br>相关的操作及其实现。</p><p>Example：学生表<br>逻辑结构——线性表<br>物理结构——数组、链表<br>操作——插入、删除、查找</p><p>数据类型：具有操作该类值的操作集的值的集合<br>大多编程语言具有Atom Data Types和Structure Data Types两类预定义的数据结构。</p><ol start="3"><li>ADT和OO<br>ADT：Abstract Data Types 抽象数据类型<br>是将类型和与这个类型有关的操作集合封装在一起的数据模型。<br>OO：Object-oriented<br>三个方面（考试）：封装、继承、多态<br>类与继承</li></ol><h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>算法定义：为了解决某个问题的一系列操作<br>特点：</p><ol><li>明确输入</li><li>明确输出</li><li>确定性</li><li>可行性</li><li>有穷性</li></ol><p>Deterministic算法：当给固定输入，会有固定输出<br>程序：用编程语言编写，可以在机器上运行，不满足有穷性。</p><h3 id="数学复习"><a href="#数学复习" class="headerlink" title="数学复习"></a>数学复习</h3><p>log底数默认为2。<br>同余：A≡B(mod N)<br>数学归纳法：  </p><ol><li>Basis</li><li>Inductive hypothesis</li><li>Inductive proof<br>反证法</li></ol><p>算法思想：递归、分治、贪心、线性规划</p><p>递归：Base cases + Making progress  </p><ul><li>直接递归：函数自己调用自己  </li><li>间接递归：多个函数相互调用形成环状调用的递归  </li></ul><p>泛型 Generic<br>将类型设置为变量。<br>应当尽量避免代码克隆。  </p>]]></content>
+    
+    
+    <categories>
+      
+      <category>DataStructures</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>4.0 树</title>
     <link href="/2022/11/30/Chapter4.0_Tree/"/>
     <url>/2022/11/30/Chapter4.0_Tree/</url>
     
@@ -23,7 +61,7 @@
   
   
   <entry>
-    <title>栈与队列</title>
+    <title>3.1 栈与队列</title>
     <link href="/2022/11/30/Chapter3.1_Stack&amp;Queue/"/>
     <url>/2022/11/30/Chapter3.1_Stack&amp;Queue/</url>
     

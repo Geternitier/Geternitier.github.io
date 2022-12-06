@@ -1,3 +1,5 @@
+http://example.com/2022/12/06/Chapter2.0_AlgorithmAnalysis/
+http://example.com/2022/12/06/Chapter1.0_Intro/
 http://example.com/2022/11/30/Chapter4.0_Tree/
 http://example.com/2022/11/30/Chapter3.1_Stack&Queue/
 http://example.com/DataStructures/index.html
