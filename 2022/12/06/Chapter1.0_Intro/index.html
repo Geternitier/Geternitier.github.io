@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          906 字
+          918 字
         
       </span>
     
@@ -252,55 +252,60 @@
             
               <div class="markdown-body">
                 
-                <h2 id="Chapter1-0：绪论"><a href="#Chapter1-0：绪论" class="headerlink" title="Chapter1.0：绪论"></a>Chapter1.0：绪论</h2><span id="more"></span>
-
+                <h2 id="chapter1.0绪论">Chapter1.0：绪论</h2>
+<span id="more"></span>
 <p>课程主要是学习数据结构而不倾于算法结构</p>
-<ol>
-<li><p>关心数据类型和数据处理步骤</p>
-</li>
-<li><p>处理更加复杂、难以计算的部分</p>
-</li>
-<li><p>不依赖于特定编程语言</p>
-</li>
-<li><p>介绍常用算法和数据结构</p>
-</li>
-<li><p>后置课程<br>·编译原理<br>·操作系统<br>·数据库</p>
-</li>
+<ol type="1">
+<li><p>关心数据类型和数据处理步骤</p></li>
+<li><p>处理更加复杂、难以计算的部分</p></li>
+<li><p>不依赖于特定编程语言</p></li>
+<li><p>介绍常用算法和数据结构</p></li>
+<li><p>后置课程 ·编译原理 ·操作系统 ·数据库</p></li>
 </ol>
-<h3 id="什么是数据结构"><a href="#什么是数据结构" class="headerlink" title="什么是数据结构"></a>什么是数据结构</h3><ol>
-<li><p>数据<br>数据是信息的载体，是数字、字符和其他符号组成的集合。<br>数据可用于描述客观世界。<br>表示数据的符号可以输入计算机，被计算机识别和处理。<br>数据分类：<br>(1) 数值型(numerical)：int, float, complex<br>(2) 非数值型(non-numerical)：character, string, graph, voice</p>
-</li>
-<li><p>数据结构<br>数据结构是数据对象以及对象各成员间关系的统称。<br>数据结构分类：线性结构(linear structure)与非线性(non-linear)结构</p>
-</li>
+<h3 id="什么是数据结构">什么是数据结构</h3>
+<ol type="1">
+<li>数据 数据是信息的载体，是数字、字符和其他符号组成的集合。
+数据可用于描述客观世界。
+表示数据的符号可以输入计算机，被计算机识别和处理。 数据分类：</li>
 </ol>
-<p>数据结构是分层的<br>数据结构涉及三个方面：<br>数据的逻辑结构——从用户视图看，是面向问题的。<br>数据的物理结构——从具体实现视图看，是面向计算机的。<br>相关的操作及其实现。</p>
-<p>Example：学生表<br>逻辑结构——线性表<br>物理结构——数组、链表<br>操作——插入、删除、查找</p>
-<p>数据类型：具有操作该类值的操作集的值的集合<br>大多编程语言具有Atom Data Types和Structure Data Types两类预定义的数据结构。</p>
-<ol start="3">
-<li>ADT和OO<br>ADT：Abstract Data Types 抽象数据类型<br>是将类型和与这个类型有关的操作集合封装在一起的数据模型。<br>OO：Object-oriented<br>三个方面（考试）：封装、继承、多态<br>类与继承</li>
+<ol type="1">
+<li>数值型(numerical)：int, float, complex</li>
+<li>非数值型(non-numerical)：character, string, graph, voice</li>
 </ol>
-<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>算法定义：为了解决某个问题的一系列操作<br>特点：</p>
-<ol>
-<li>明确输入</li>
-<li>明确输出</li>
-<li>确定性</li>
-<li>可行性</li>
-<li>有穷性</li>
+<ol start="2" type="1">
+<li>数据结构 数据结构是数据对象以及对象各成员间关系的统称。
+数据结构分类：线性结构(linear structure)与非线性(non-linear)结构</li>
 </ol>
-<p>Deterministic算法：当给固定输入，会有固定输出<br>程序：用编程语言编写，可以在机器上运行，不满足有穷性。</p>
-<h3 id="数学复习"><a href="#数学复习" class="headerlink" title="数学复习"></a>数学复习</h3><p>log底数默认为2。<br>同余：A≡B(mod N)<br>数学归纳法：  </p>
-<ol>
-<li>Basis</li>
-<li>Inductive hypothesis</li>
-<li>Inductive proof<br>反证法</li>
+<p>数据结构是分层的 数据结构涉及三个方面：
+数据的逻辑结构——从用户视图看，是面向问题的。
+数据的物理结构——从具体实现视图看，是面向计算机的。
+相关的操作及其实现。</p>
+<p>Example：学生表 逻辑结构——线性表 物理结构——数组、链表
+操作——插入、删除、查找</p>
+<p>数据类型：具有操作该类值的操作集的值的集合 大多编程语言具有Atom Data
+Types和Structure Data Types两类预定义的数据结构。</p>
+<ol start="3" type="1">
+<li>ADT和OO ADT：Abstract Data Types 抽象数据类型
+是将类型和与这个类型有关的操作集合封装在一起的数据模型。
+OO：Object-oriented 三个方面（考试）：封装、继承、多态 类与继承</li>
 </ol>
+<h3 id="算法">算法</h3>
+<p>算法定义：为了解决某个问题的一系列操作 特点： 1. 明确输入 2. 明确输出
+3. 确定性 4. 可行性 5. 有穷性</p>
+<p>Deterministic算法：当给固定输入，会有固定输出
+程序：用编程语言编写，可以在机器上运行，不满足有穷性。</p>
+<h3 id="数学复习">数学复习</h3>
+<p>log底数默认为2。<br />
+同余：A≡B(mod N)<br />
+数学归纳法：<br />
+1. Basis 2. Inductive hypothesis 3. Inductive proof 反证法</p>
 <p>算法思想：递归、分治、贪心、线性规划</p>
-<p>递归：Base cases + Making progress  </p>
-<ul>
-<li>直接递归：函数自己调用自己  </li>
-<li>间接递归：多个函数相互调用形成环状调用的递归  </li>
-</ul>
-<p>泛型 Generic<br>将类型设置为变量。<br>应当尽量避免代码克隆。  </p>
+<p>递归：Base cases + Making progress<br />
+* 直接递归：函数自己调用自己<br />
+* 间接递归：多个函数相互调用形成环状调用的递归</p>
+<p>泛型 Generic<br />
+将类型设置为变量。<br />
+应当尽量避免代码克隆。</p>
 
                 
               </div>
@@ -351,8 +356,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/06/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0/" title="线性代数复习">
-                        <span class="hidden-mobile">线性代数复习</span>
+                      <a href="/2022/10/30/MIME/" title="MIME">
+                        <span class="hidden-mobile">MIME</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
