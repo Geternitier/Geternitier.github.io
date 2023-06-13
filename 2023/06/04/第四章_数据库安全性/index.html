@@ -24,7 +24,7 @@
 <meta property="og:description" content="我自横刀向天笑，去留肝胆两昆仑。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-06-04T07:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-12T08:15:42.160Z">
+<meta property="article:modified_time" content="2023-06-13T09:25:24.255Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -377,10 +377,11 @@ Control，MAC）。</p>
 <h5 id="grant">GRANT</h5>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">GRANT</span> <span class="hljs-operator">&lt;</span>权限<span class="hljs-operator">&gt;</span> [,<span class="hljs-operator">&lt;</span>权限<span class="hljs-operator">&gt;</span>]...<br><span class="hljs-keyword">ON</span> <span class="hljs-operator">&lt;</span>对象类型<span class="hljs-operator">&gt;</span> <span class="hljs-operator">&lt;</span>对象名<span class="hljs-operator">&gt;</span> [,<span class="hljs-operator">&lt;</span>对象类型<span class="hljs-operator">&gt;</span> <span class="hljs-operator">&lt;</span>对象名<span class="hljs-operator">&gt;</span>]...<br><span class="hljs-keyword">TO</span> <span class="hljs-operator">&lt;</span>用户<span class="hljs-operator">&gt;</span> [,<span class="hljs-operator">&lt;</span>用户<span class="hljs-operator">&gt;</span>]...<br>[<span class="hljs-keyword">WITH</span> <span class="hljs-keyword">GRANT</span> OPTION]<br></code></pre></td></tr></table></figure>
 <ul>
-<li><p>如果制定了WITH GRANT
-OPTION子句，则授权的用户可以把这种权限转授。</p></li>
-<li><p>GRANT ALL PRIVILEGES可以将全部操作权限授予用户</p></li>
-<li><p>对属性列授权时必须明确指出相应的属性列名</p></li>
+<li>如果制定了WITH GRANT
+OPTION子句，则授权的用户可以把这种权限转授。</li>
+<li>GRANT ALL PRIVILEGES可以将全部操作权限授予用户</li>
+<li>授予全部用户：TO PUBLIC</li>
+<li>对属性列授权时必须明确指出相应的属性列名</li>
 </ul>
 <h5 id="revoke">REVOKE</h5>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">REVOKE</span> <span class="hljs-operator">&lt;</span>权限<span class="hljs-operator">&gt;</span> [,<span class="hljs-operator">&lt;</span>权限<span class="hljs-operator">&gt;</span>]...<br><span class="hljs-keyword">ON</span> <span class="hljs-operator">&lt;</span>对象类型<span class="hljs-operator">&gt;</span> <span class="hljs-operator">&lt;</span>对象名<span class="hljs-operator">&gt;</span> [,<span class="hljs-operator">&lt;</span>对象类型<span class="hljs-operator">&gt;</span> <span class="hljs-operator">&lt;</span>对象名<span class="hljs-operator">&gt;</span>]...<br><span class="hljs-keyword">TO</span> <span class="hljs-operator">&lt;</span>用户<span class="hljs-operator">&gt;</span> [,<span class="hljs-operator">&lt;</span>用户<span class="hljs-operator">&gt;</span>]...[CASCADE<span class="hljs-operator">|</span>RESTRICT];<br></code></pre></td></tr></table></figure>
