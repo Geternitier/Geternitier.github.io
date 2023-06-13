@@ -24,7 +24,7 @@
 <meta property="og:description" content="我自横刀向天笑，去留肝胆两昆仑。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-06-01T04:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-13T06:26:21.957Z">
+<meta property="article:modified_time" content="2023-06-13T06:40:29.411Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.4k 字
+          3.5k 字
         
       </span>
     
@@ -285,6 +285,9 @@ System，DBS）</h4>
 <p>数据库系统是由数据库、数据库管理系统（及其应用开发工具）、应用程序和数据库管理员（Database
 Administrator，DBA）组成的存储、管理、处理和维护数据的系统。</p>
 <h3 id="数据库系统的特点">1.1.2 数据库系统的特点</h3>
+<ul>
+<li>文件系统管理数据的缺点：整体无结构，共享性低，冗余度高，独立性差</li>
+</ul>
 <h4 id="数据结构化">数据结构化</h4>
 <p>数据库系统实现整体数据的结构化，这是数据库的主要特征之一，也是数据库系统与文件系统的本质区别。</p>
 <p>整体结构化是指数据库中的数据不再仅仅针对一个应用，而是面向整个组织或企业；不仅数据内部是结构化的，而且整体是结构化的，数据之间是具有联系的。</p>
@@ -399,7 +402,7 @@ diagram）来描述现实世界的概念模型，E-R方法也称E-R模型。</p>
 <ol type="1">
 <li>模式</li>
 </ol>
-<p>模式也称逻辑模式，时数据库中全体数据的逻辑结构和特征的描述，是所有用户的公共数据视图。</p>
+<p>模式也称逻辑模式，是数据库中全体数据的逻辑结构和特征的描述，是所有用户的公共数据视图。</p>
 <ol start="2" type="1">
 <li>外模式</li>
 </ol>
@@ -422,6 +425,9 @@ schema），是数据物理结构和存储方式的描述，是数据库内部�
 </ol>
 <p>数据库存储结构改变时，数据库管理员对模式/内模式映像作相应改变，使模式保持不变，保证数据物理独立性。</p>
 <p>数据与程序之间的独立性使得数据的定义和描述从应用程序中分离。数据的存取由数据库管理系统管理，简化了应用程序的编制，减少了应用程序的维护与修改。</p>
+<ul>
+<li>文件系统数据独立性是文件间相互独立，而数据库系统数据独立性是逻辑、物理独立性</li>
+</ul>
 <h2 id="数据库系统的组成">1.4 数据库系统的组成</h2>
 <ol type="1">
 <li><p>硬件平台及数据库</p>
