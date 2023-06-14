@@ -43,6 +43,25 @@
   
   <entry>
     <title>数据管理基础-第七章_数据库设计</title>
+    <link href="/2023/06/08/%E7%AC%AC%E5%85%AB%E7%AB%A0_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8B/"/>
+    <url>/2023/06/08/%E7%AC%AC%E5%85%AB%E7%AB%A0_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[<p>我自横刀向天笑，去留肝胆两昆仑。</p><span id="more"></span><h1 id="第八章-数据库编程">第八章 数据库编程</h1><p>SQL编程技术可以有效克服SQL语言实现复杂应用方面的不足，提高应用系统和数据库管理系统间的互操作性。</p><p>在应用系统中使用SQL编程来访问和管理数据库中数据的方式主要有：嵌入式SQL、过程化SQL、存储过程和自定义函数、开放数据库互连、OLEDB、JDBC（Java数据库连接）等。</p><h2 id="嵌入式sql">8.1 嵌入式SQL</h2><p>将SQL语句嵌入程序设计语言中，一般采取预编译方法实现。</p><h3 id="嵌入式sql语句和主语言之间的通信">8.1.1嵌入式SQL语句和主语言之间的通信</h3><p>数据库工作单元与源程序工作单元之间的通信主要包括</p><ul><li>向主语言传递SQL语句的执行状态信息，使主语言能够据此信息控制程序流程，主要用SQL通信区（SQLCommunication Area，SQLCA）实现</li><li>主语言向SQL语句提供参数，主要用主变量实现</li><li>将SQL语句查询数据库的结果交由主语言处理，主要用主变量和游标实现</li></ul><h4 id="sql通信区">SQL通信区</h4><p>SQL语句执行后，系统反馈给应用的信息将被送到SQL通信区中。</p><ul><li>SQL通信区中变量SQLCODE用以存储每次执行SQL后返回的代码</li><li>应用每次执行完一条SQL语句后都应该测试SQLCODE的值</li></ul><h4 id="主变量">主变量</h4><p>SQL中使用的主语言程序变量简称为<strong>主变量</strong>。</p><ul><li>分为输入主变量和输出主变量<ul><li>输入主变量由应用程序赋值，SQL语句引用</li><li>输出主变量由SQL语句赋值，返回给应用程序</li></ul></li><li>一个主变量可以附带一个任选的指示变量<ul><li>指示变量是用以指示主变量的值或条件的整型变量</li></ul></li></ul><h4 id="游标">游标</h4><p>SQL面向集合，一条SQL语句可以产生或处理多条记录；主语言面向记录，一次只能处理一条记录，因此只用主变量不能完全满足SQL和主语言的协同。</p><p>游标是系统为用户开设的一个数据缓冲区，存放SQL的执行结果，每个游标区都有其名字。</p><ul><li>用户通过游标逐一获取记录并赋给主变量，交由主语言处理</li></ul><p>不用游标的SQL语句：</p><p>说明性语句、数据定义语句、数据控制语句、查询结果为单记录的选择语句、非CURRENT形式的增删改语句</p><p>使用游标的SQL语句：</p><p>多条记录的选择语句、CURRENT形式的UPDATE和DELETE语句。</p><h3 id="动态sql">8.1.2 动态SQL</h3><p>上述的嵌入式SQL语句中使用的主变量、查询目标列、条件等都是固定的，是静态SQL语句。但有些应用可能要到执行时才能够确定要提交的SQL语句，这就需要动态SQL语句。</p><h4 id="sql语句主变量">SQL语句主变量</h4><p>程序主变量包含SQL语句的内容，这样的变量称为SQL语句主变量。</p><h4 id="动态参数">动态参数</h4><p>动态参数通过PREPARE语句准备主变量和执行语句绑定数据或主变量来完成。</p><h2 id="过程化sql">8.2 过程化SQL</h2><p>过程化SQL是对SQL的扩展，使其增加了过程化语句功能。</p><p>过程化SQL的基本结构是块。所有的过程化SQL程序都是由块组成。这些块之间可以相互嵌套，每个块完成一个逻辑操作。</p><p>基本结构：</p><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">定义部分：<span class="hljs-keyword">DECLARE</span> 变量、常量、游标、异常等<br><br>执行部分：<span class="hljs-keyword">BEGIN</span> <span class="hljs-keyword">SQL</span>语句、过程化<span class="hljs-keyword">SQL</span>的流程控制语句<br><span class="hljs-keyword">EXCEPTION</span> 异常处理<br><span class="hljs-keyword">END</span>;<br></code></pre></td></tr></table></figure><p>流程控制：IF-THEN-END IF、IF-THEN-ELSE-END IF</p><p>循环控制：LOOP-END LOOP、WHILE-LOOP-END LOOP、FOR-LOOP-END LOOP</p><p>错误处理：过程化SQL提供了完善的异常处理机制</p><h4 id="存储过程与函数">存储过程与函数</h4><p>过程化SQL块主要有两种类型：命名块和匿名块，上述均为匿名块，每次执行都要编译，不能存储到数据库中，也不能在其他过程化SQL块中调用。过程和函数是命名块，被编译后保存在数据库中，称为持久性存储模块，可以被反复调用。</p><p>存储过程是由过程化SQL语句编写的过程，经编译和优化后存储在数据库服务器中。</p><p>函数，也称自定义函数，是用户自己使用过程化SQL设计定义的，和存储过程不同的是必须指定返回的类型。</p><h2 id="odbc编程">8.3 ODBC编程</h2><p>提出和产生ODBC的原因是存在不同的数据库系统。</p><p>ODBC是微软公司开放体系的一部分，建立了一组访问数据库的应用程序编程接口规范（ApplicationProgramming Interface，API）。</p><ul><li>ODBC一方面规范应用开发，另一方面规范关系数据库管理系统应用接口</li></ul><p>ODBC由四部分组成：用户应用程序、ODBC驱动程序管理器、数据库驱动程序、数据源</p><h3 id="用户应用程序">用户应用程序</h3><p>使用ODBC来开发应用系统的程序简称为ODBC应用程序，包括内容：</p><ol type="1"><li>请求连接数据库</li><li>向数据源发送SQL语句</li><li>为SQL语句执行分配空间，定义所读取的数据格式</li><li>获取数据库操作结果或处理错误</li><li>进行数据处理并向用户提交处理结果</li><li>请求事务的提交和回滚操作</li><li>断开与数据源的连接</li></ol><h3 id="odbc驱动程序管理器">ODBC驱动程序管理器</h3><p>驱动程序管理器用来管理各种驱动程序。</p><p>ODBC驱动程序管理器管理应用程序和驱动程序之间的通信，主要功能包括：</p><ul><li><p>装载ODBC驱动程序</p></li><li><p>选择和连接正确的驱动程序</p></li><li><p>管理数据源（建立、配置和删除）</p></li><li><p>检查ODBC调用参数的合法性</p></li><li><p>记录ODBC函数的调用</p></li><li><p>当应用层需要时，返回驱动程序的有关信息</p></li></ul><h3 id="数据库驱动程序">数据库驱动程序</h3><p>ODBC通过数据库驱动程序来提供应用系统和数据库平台的独立性。</p><p>ODBC应用程序的操作通过驱动程序管理器提交给某个驱动程序，调用驱动程序支持的函数来存取数据库。</p><p>单束与多束：</p><ul><li>单束：数据源和应用程序在同一台机器上，驱动程序直接完成对数据文件的输入/输出操作，驱动程序相当于数据管理器</li><li>多束：支持网络环境下数据访问，驱动程序完成数据库访问请求的提交和结果集接受</li></ul><h3 id="odbc数据源管理">ODBC数据源管理</h3><p>数据源时最终用户需要访问的数据，包含了数据库位置和数据库类型等信息，是一种数据连接的抽象。</p><p>ODBC给每个被访问的数据源指定唯一的数据源名，映射到所有必要的、用来存取数据的低层软件。</p><p>在连接中，用数据源名来代表用户名、服务器名、所连接的数据库名等。最终用户无须知道数据库管理系统或其他数据管理软件、网络以及有关ODBC驱动程序的细节，数据源对最终用户是透明的。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据管理基础</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>数据管理基础-第七章_数据库设计</title>
     <link href="/2023/06/07/%E7%AC%AC%E4%B8%83%E7%AB%A0_%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/"/>
     <url>/2023/06/07/%E7%AC%AC%E4%B8%83%E7%AB%A0_%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/</url>
     
