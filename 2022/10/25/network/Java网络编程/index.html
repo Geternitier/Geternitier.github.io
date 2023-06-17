@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/yuanshen.jpeg">
-  <link rel="icon" href="/img/icon/yuanshen.jpeg">
+  <link rel="icon" href="/image/icon/yuanshen.jpeg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,12 +23,12 @@
 <meta property="og:site_name" content="Geternitier的博客">
 <meta property="og:description" content="网络编程是指编写运行在多个通过网络连接的主机的程序。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/networkProject/NIO图解.jpeg">
+<meta property="og:image" content="http://example.com/image/networkProject/NIO图解.jpeg">
 <meta property="article:published_time" content="2022-10-25T14:03:20.000Z">
-<meta property="article:modified_time" content="2023-06-17T02:35:31.800Z">
+<meta property="article:modified_time" content="2023-06-17T09:25:36.423Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/networkProject/NIO图解.jpeg">
+<meta name="twitter:image" content="http://example.com/image/networkProject/NIO图解.jpeg">
   
   
   
@@ -180,7 +180,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/background/TheSpirits.webp') no-repeat center center; background-size: cover;">
+     style="background: url('/image/background/TheSpirits.webp') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -321,27 +321,38 @@ Socket：简单的服务端与客户端程序</h3>
 <p>在Server中建立ServerSocket对象，绑定端口，等待连接，若连接成功就新建一个进程去处理连接。</p>
 <p>BIO的缺点：资源的浪费，每个客户端的连接都需要占用一个进程。</p>
 <h4 id="nio">NIO</h4>
-<p>相关类处于java.nio包中。<br />
-<img src="/img/networkProject/NIO图解.jpeg" srcset="/img/loading.gif" lazyload title="NIO 图解"
-alt="NIO 图解" /><br />
-NIO的三大核心部分：Selector(选择器)、Channel(通道)、Buffer(缓冲区)<br />
-* Buffer：数据从Channel读入Buffer，又从Buffer写入Channel<br />
-在Java中，Buffer是一个抽象类，具有ByteBuffer、CharBuffer等子类，采用相似方法管理不同数据类型。<br />
-具有的基本属性：<br />
-- 容量：Buffer作为一个内存块所具有的一定大小，不能为负且创建后不可更改。
--
-限制：Buffer中可以操作数据的大小，不能为负且小于等于其容量。写入模式下，限制等于buffer的容量，读取模式下，限制等于写入的数据量。
-- 位置：下一个要读取或写入的数据的索引，不能为负且不能大于限制。 -
-标记：通过mark方法指定Buffer中一个特定的位置，之后可以调用reset方法恢复到这个位置。</p>
-<p>Java Buffer存取数据的两个基本办法： - put()
-在Buffer的当前位置写入内容 - get() 获取Buffer数据 *
-Channel：IO源与目标打开的连接，不能直接访问数据，只能与Buffer进行交互。<br />
-在Java中，Channel是一个接口，具有FileChannel、DatagramChannel、SocketChannel、ServerSocketChannel等实现</p>
-<p>Java Channel读写数据的基本办法： - read() - write()</p>
+<p>相关类处于java.nio包中。</p>
+<figure>
+<img src="/image/networkProject/NIO图解.jpeg" srcset="/img/loading.gif" lazyload title="NIO 图解"
+alt="NIO 图解" />
+<figcaption aria-hidden="true">NIO 图解</figcaption>
+</figure>
+<p>NIO的三大核心部分：Selector(选择器)、Channel(通道)、Buffer(缓冲区)</p>
 <ul>
-<li>Selector<br />
+<li><p>Buffer：数据从Channel读入Buffer，又从Buffer写入Channel<br />
+在Java中，Buffer是一个抽象类，具有ByteBuffer、CharBuffer等子类，采用相似方法管理不同数据类型。<br />
+具有的基本属性：</p>
+<ul>
+<li>容量：Buffer作为一个内存块所具有的一定大小，不能为负且创建后不可更改。</li>
+<li>限制：Buffer中可以操作数据的大小，不能为负且小于等于其容量。写入模式下，限制等于buffer的容量，读取模式下，限制等于写入的数据量。</li>
+<li>位置：下一个要读取或写入的数据的索引，不能为负且不能大于限制。</li>
+<li>标记：通过mark方法指定Buffer中一个特定的位置，之后可以调用reset方法恢复到这个位置。</li>
+</ul>
+<p>Java Buffer存取数据的两个基本办法：</p>
+<ul>
+<li>put() 在Buffer的当前位置写入内容</li>
+<li>get() 获取Buffer数据</li>
+</ul></li>
+<li><p>Channel：IO源与目标打开的连接，不能直接访问数据，只能与Buffer进行交互。<br />
+在Java中，Channel是一个接口，具有FileChannel、DatagramChannel、SocketChannel、ServerSocketChannel等实现</p>
+<p>Java Channel读写数据的基本办法：</p>
+<ul>
+<li>read()</li>
+<li>write()</li>
+</ul></li>
+<li><p>Selector<br />
 Selector会不断轮询注册在上的所有channel，并发现处于就绪状态的channel。<br />
-使用步骤：</li>
+使用步骤：</p></li>
 </ul>
 <ol type="1">
 <li>使用静态工厂办法open()获取选择器： <figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs oxygene"><span class="hljs-keyword">Selector</span> <span class="hljs-keyword">selector</span> = <span class="hljs-keyword">Selector</span>.open()<span class="hljs-punctuation">;</span><br></code></pre></td></tr></table></figure></li>
