@@ -1,0 +1,677 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/yuanshen.jpeg">
+  <link rel="icon" href="/img/icon/yuanshen.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#5a9367">
+  <meta name="author" content="Geternitier">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="我自横刀向天笑，去留肝胆两昆仑。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据管理基础-第八章_数据库编程">
+<meta property="og:url" content="http://example.com/2023/06/08/%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AB%E7%AB%A0_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Geternitier的博客">
+<meta property="og:description" content="我自横刀向天笑，去留肝胆两昆仑。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-06-08T11:00:00.000Z">
+<meta property="article:modified_time" content="2023-06-14T01:23:06.758Z">
+<meta property="article:author" content="Geternitier">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>数据管理基础-第八章_数据库编程 - Geternitier的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Geternitier的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Geternitier的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/background/TheSpirits.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数据管理基础-第八章_数据库编程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-06-08 19:00" pubdate>
+          2023年6月8日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数据管理基础-第八章_数据库编程</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>我自横刀向天笑，去留肝胆两昆仑。</p>
+<span id="more"></span>
+<h1 id="第八章-数据库编程">第八章 数据库编程</h1>
+<p>SQL编程技术可以有效克服SQL语言实现复杂应用方面的不足，提高应用系统和数据库管理系统间的互操作性。</p>
+<p>在应用系统中使用SQL编程来访问和管理数据库中数据的方式主要有：嵌入式SQL、过程化SQL、存储过程和自定义函数、开放数据库互连、OLE
+DB、JDBC（Java数据库连接）等。</p>
+<h2 id="嵌入式sql">8.1 嵌入式SQL</h2>
+<p>将SQL语句嵌入程序设计语言中，一般采取预编译方法实现。</p>
+<h3 id="嵌入式sql语句和主语言之间的通信">8.1.1
+嵌入式SQL语句和主语言之间的通信</h3>
+<p>数据库工作单元与源程序工作单元之间的通信主要包括</p>
+<ul>
+<li>向主语言传递SQL语句的执行状态信息，使主语言能够据此信息控制程序流程，主要用SQL通信区（SQL
+Communication Area，SQLCA）实现</li>
+<li>主语言向SQL语句提供参数，主要用主变量实现</li>
+<li>将SQL语句查询数据库的结果交由主语言处理，主要用主变量和游标实现</li>
+</ul>
+<h4 id="sql通信区">SQL通信区</h4>
+<p>SQL语句执行后，系统反馈给应用的信息将被送到SQL通信区中。</p>
+<ul>
+<li>SQL通信区中变量SQLCODE用以存储每次执行SQL后返回的代码</li>
+<li>应用每次执行完一条SQL语句后都应该测试SQLCODE的值</li>
+</ul>
+<h4 id="主变量">主变量</h4>
+<p>SQL中使用的主语言程序变量简称为<strong>主变量</strong>。</p>
+<ul>
+<li>分为输入主变量和输出主变量
+<ul>
+<li>输入主变量由应用程序赋值，SQL语句引用</li>
+<li>输出主变量由SQL语句赋值，返回给应用程序</li>
+</ul></li>
+<li>一个主变量可以附带一个任选的指示变量
+<ul>
+<li>指示变量是用以指示主变量的值或条件的整型变量</li>
+</ul></li>
+</ul>
+<h4 id="游标">游标</h4>
+<p>SQL面向集合，一条SQL语句可以产生或处理多条记录；主语言面向记录，一次只能处理一条记录，因此只用主变量不能完全满足SQL和主语言的协同。</p>
+<p>游标是系统为用户开设的一个数据缓冲区，存放SQL的执行结果，每个游标区都有其名字。</p>
+<ul>
+<li>用户通过游标逐一获取记录并赋给主变量，交由主语言处理</li>
+</ul>
+<p>不用游标的SQL语句：</p>
+<p>说明性语句、数据定义语句、数据控制语句、查询结果为单记录的选择语句、非CURRENT形式的增删改语句</p>
+<p>使用游标的SQL语句：</p>
+<p>多条记录的选择语句、CURRENT形式的UPDATE和DELETE语句。</p>
+<h3 id="动态sql">8.1.2 动态SQL</h3>
+<p>上述的嵌入式SQL语句中使用的主变量、查询目标列、条件等都是固定的，是静态SQL语句。但有些应用可能要到执行时才能够确定要提交的SQL语句，这就需要动态SQL语句。</p>
+<h4 id="sql语句主变量">SQL语句主变量</h4>
+<p>程序主变量包含SQL语句的内容，这样的变量称为SQL语句主变量。</p>
+<h4 id="动态参数">动态参数</h4>
+<p>动态参数通过PREPARE语句准备主变量和执行语句绑定数据或主变量来完成。</p>
+<h2 id="过程化sql">8.2 过程化SQL</h2>
+<p>过程化SQL是对SQL的扩展，使其增加了过程化语句功能。</p>
+<p>过程化SQL的基本结构是块。所有的过程化SQL程序都是由块组成。这些块之间可以相互嵌套，每个块完成一个逻辑操作。</p>
+<p>基本结构：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">定义部分：<span class="hljs-keyword">DECLARE</span> 变量、常量、游标、异常等<br><br>执行部分：<span class="hljs-keyword">BEGIN</span> <span class="hljs-keyword">SQL</span>语句、过程化<span class="hljs-keyword">SQL</span>的流程控制语句<br>				<span class="hljs-keyword">EXCEPTION</span> 异常处理<br>				<span class="hljs-keyword">END</span>;<br></code></pre></td></tr></table></figure>
+<p>流程控制：IF-THEN-END IF、IF-THEN-ELSE-END IF</p>
+<p>循环控制：LOOP-END LOOP、WHILE-LOOP-END LOOP、FOR-LOOP-END LOOP</p>
+<p>错误处理：过程化SQL提供了完善的异常处理机制</p>
+<h4 id="存储过程与函数">存储过程与函数</h4>
+<p>过程化SQL块主要有两种类型：命名块和匿名块，上述均为匿名块，每次执行都要编译，不能存储到数据库中，也不能在其他过程化SQL块中调用。过程和函数是命名块，被编译后保存在数据库中，称为持久性存储模块，可以被反复调用。</p>
+<p>存储过程是由过程化SQL语句编写的过程，经编译和优化后存储在数据库服务器中。</p>
+<p>函数，也称自定义函数，是用户自己使用过程化SQL设计定义的，和存储过程不同的是必须指定返回的类型。</p>
+<h2 id="odbc编程">8.3 ODBC编程</h2>
+<p>提出和产生ODBC的原因是存在不同的数据库系统。</p>
+<p>ODBC是微软公司开放体系的一部分，建立了一组访问数据库的应用程序编程接口规范（Application
+Programming Interface，API）。</p>
+<ul>
+<li>ODBC一方面规范应用开发，另一方面规范关系数据库管理系统应用接口</li>
+</ul>
+<p>ODBC由四部分组成：用户应用程序、ODBC驱动程序管理器、数据库驱动程序、数据源</p>
+<h3 id="用户应用程序">用户应用程序</h3>
+<p>使用ODBC来开发应用系统的程序简称为ODBC应用程序，包括内容：</p>
+<ol type="1">
+<li>请求连接数据库</li>
+<li>向数据源发送SQL语句</li>
+<li>为SQL语句执行分配空间，定义所读取的数据格式</li>
+<li>获取数据库操作结果或处理错误</li>
+<li>进行数据处理并向用户提交处理结果</li>
+<li>请求事务的提交和回滚操作</li>
+<li>断开与数据源的连接</li>
+</ol>
+<h3 id="odbc驱动程序管理器">ODBC驱动程序管理器</h3>
+<p>驱动程序管理器用来管理各种驱动程序。</p>
+<p>ODBC驱动程序管理器管理应用程序和驱动程序之间的通信，主要功能包括：</p>
+<ul>
+<li><p>装载ODBC驱动程序</p></li>
+<li><p>选择和连接正确的驱动程序</p></li>
+<li><p>管理数据源（建立、配置和删除）</p></li>
+<li><p>检查ODBC调用参数的合法性</p></li>
+<li><p>记录ODBC函数的调用</p></li>
+<li><p>当应用层需要时，返回驱动程序的有关信息</p></li>
+</ul>
+<h3 id="数据库驱动程序">数据库驱动程序</h3>
+<p>ODBC通过数据库驱动程序来提供应用系统和数据库平台的独立性。</p>
+<p>ODBC应用程序的操作通过驱动程序管理器提交给某个驱动程序，调用驱动程序支持的函数来存取数据库。</p>
+<p>单束与多束：</p>
+<ul>
+<li>单束：数据源和应用程序在同一台机器上，驱动程序直接完成对数据文件的输入/输出操作，驱动程序相当于数据管理器</li>
+<li>多束：支持网络环境下数据访问，驱动程序完成数据库访问请求的提交和结果集接受</li>
+</ul>
+<h3 id="odbc数据源管理">ODBC数据源管理</h3>
+<p>数据源时最终用户需要访问的数据，包含了数据库位置和数据库类型等信息，是一种数据连接的抽象。</p>
+<p>ODBC给每个被访问的数据源指定唯一的数据源名，映射到所有必要的、用来存取数据的低层软件。</p>
+<p>在连接中，用数据源名来代表用户名、服务器名、所连接的数据库名等。最终用户无须知道数据库管理系统或其他数据管理软件、网络以及有关ODBC驱动程序的细节，数据源对最终用户是透明的。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E5%9F%BA%E7%A1%80/" class="category-chain-item">数据管理基础</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/06/10/%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E7%AB%A0_%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E6%8A%80%E6%9C%AF/" title="数据管理基础-第十章_数据库恢复技术">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据管理基础-第十章_数据库恢复技术</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/07/%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B8%83%E7%AB%A0_%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/" title="数据管理基础-第七章_数据库设计">
+                        <span class="hidden-mobile">数据管理基础-第七章_数据库设计</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>长风破浪会有时，直挂云帆济沧海</p> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

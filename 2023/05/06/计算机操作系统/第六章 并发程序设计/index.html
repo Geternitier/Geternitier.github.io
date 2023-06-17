@@ -1,0 +1,832 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/yuanshen.jpeg">
+  <link rel="icon" href="/img/icon/yuanshen.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#5a9367">
+  <meta name="author" content="Geternitier">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="长风破浪会有时，直挂云帆济沧海！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机操作系统-第六章_并发程序设计">
+<meta property="og:url" content="http://example.com/2023/05/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%B9%B6%E5%8F%91%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="Geternitier的博客">
+<meta property="og:description" content="长风破浪会有时，直挂云帆济沧海！">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-06T04:00:00.000Z">
+<meta property="article:modified_time" content="2023-06-10T13:26:50.384Z">
+<meta property="article:author" content="Geternitier">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>计算机操作系统-第六章_并发程序设计 - Geternitier的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Geternitier的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Geternitier的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/background/TheSpirits.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="计算机操作系统-第六章_并发程序设计"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-06 12:00" pubdate>
+          2023年5月6日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.9k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">计算机操作系统-第六章_并发程序设计</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>长风破浪会有时，直挂云帆济沧海！</p>
+<span id="more"></span>
+<h1 id="第六章-并发程序设计">第六章 并发程序设计</h1>
+<h2 id="并发进程">6.1 并发进程</h2>
+<h3 id="顺序程序设计">6.1.1 顺序程序设计</h3>
+<p>进程在处理器上的顺序执行是严格按序的，一个操作结束后，才能开始后续操作。</p>
+<p>顺序程序设计：把一个程序设计成顺序执行的程序模块。</p>
+<ul>
+<li>顺序不仅在一个程序模块内部，也在多个程序模块之间。</li>
+</ul>
+<p>顺序程序设计的特点：</p>
+<ul>
+<li>程序执行的顺序性</li>
+<li>程序环境的封闭性</li>
+<li>执行结果的确定性</li>
+<li>计算过程的可再现性</li>
+</ul>
+<h3 id="进程的并发性">6.1.2 进程的并发性</h3>
+<p>进程的并发性（Concurrency）是指一组进程的执行在时间上是重叠的。</p>
+<ul>
+<li>宏观上，并发性反映一个时间段中几个进程都在同一处理器上，处于运行还未运行结束状态</li>
+<li>微观上，任一时刻仅有一个进程在处理器上运行</li>
+</ul>
+<h4 id="并发程序设计">并发程序设计</h4>
+<p>使一个程序分成若干个可同时执行的程序模块的方法称为并发程序设计（concurrent
+programming），每个程序模块和它执行时所处理的数据就组成一个进程。</p>
+<p>并发进程的分类：无关的、交互的</p>
+<ul>
+<li>无关的并发进程：一个进程的执行与其他并发进程的进展无关
+<ul>
+<li>并发进程的无关性是进程的执行与时间无关的一个充分条件，又称为Bernstein条件</li>
+</ul></li>
+<li>交互的并发进程：一个进程的执行可能影响其他并发进程的结果</li>
+</ul>
+<h4 id="bernstein条件">Bernstein条件</h4>
+<ul>
+<li><p>程序<span
+class="math inline">\(p_i\)</span>在执行期间引用的变量集，记为<span
+class="math inline">\(R(p_i)=\{a_{i1},a_{i2},...,a_{in}\}\)</span>，</p></li>
+<li><p>程序<span
+class="math inline">\(p_i\)</span>在执行期间改变的变量集，记为<span
+class="math inline">\(W(p_i)=\{b_{i1},b_{i2},...,b_{im}\}\)</span></p></li>
+<li><p>若两个进程的程序<span class="math inline">\(p_1\)</span>和<span
+class="math inline">\(p_2\)</span>能满足Beinstein条件，即满足</p>
+<p><span class="math inline">\((R(p_1)\cap W(p_2))\cup (R(p_2)\cap
+W(p_1))\cup (W(p_1)\cap W(p_2))=\varnothing\)</span>，</p>
+<p>则这两个并发进程的执行与时间无关</p></li>
+</ul>
+<p>与时间有关的错误：对于一组交互的并发进程，执行的相对速度无法相互控制，各种与时间有关的错误就有可能出现。</p>
+<ul>
+<li>与时间有关错误的表现形式：结果不唯一、永远等待</li>
+</ul>
+<h3 id="进程的交互竞争和协作">6.1.3 进程的交互：竞争和协作</h3>
+<p>进程之间存在两种基本关系：竞争关系和协作关系</p>
+<ul>
+<li>竞争关系：一个进程的执行可能影响到同其竞争资源的其他进程，如果两个进程要访问同一资源，那么一个进程通过操作系统分配得到该资源，另一个将不得不等待</li>
+<li>协作关系：某些进程为了完成同一任务需要分工协作，由于合作的每一个进程都是独立地以不可预知的速度推进，这就需要相互协作的进程在某些协调点上协调各自的工作。当合作进程中的一个到达协调点后，在尚未得到其伙伴进程发来的信号之前应阻塞自己，直到其他合作进程发来协调信号后方被唤醒并继续执行。</li>
+</ul>
+<h4 id="资源竞争的两个控制问题">资源竞争的两个控制问题</h4>
+<ul>
+<li>死锁：一组进程如果都获得了部分的资源，还想要得到其他进程所占有的资源，最终所有的进程都将陷入死锁</li>
+<li>饥饿：一个进程由于其他进程总是优先于它而被无限期拖延</li>
+<li>操作系统需要保证诸进程能互斥地访问临界资源，既要解决饥饿问题，又要解决死锁问题</li>
+</ul>
+<h4 id="进程的互斥与同步">进程的互斥与同步</h4>
+<p>进程的互斥（mutual exclusion）是解决进程间竞争关系的手段。</p>
+<ul>
+<li>若干个进程要使用同一共享资源时，任何时刻最多允许一个进程去使用，其他要使用该资源的进程必须等待，直到占有资源的进程释放该资源</li>
+</ul>
+<p>进程的同步（Synchronization）是解决进程间协作关系的手段。</p>
+<ul>
+<li>两个以上进程基于某个条件来协调它们的活动。一个进程的执行依赖于另一个协作进程的信号，当一个进程没有得到来自于另一个进程的信号则需等待。</li>
+</ul>
+<p>进程的互斥关系是一种特殊的进程同步关系，即逐次使用互斥共享资源，是对进程使用资源次序上的一种协调。</p>
+<h2 id="临界区管理">6.2 临界区管理</h2>
+<h3 id="互斥与临界区">6.2.1 互斥与临界区</h3>
+<ul>
+<li><p>并发进程中与共享变量有关的程序段称为临界区（critical
+section）</p>
+<p>共享变量代表的资源称为临界资源</p></li>
+<li><p>与同一变量有关的临界区分散在各进程的程序段中，而各进程的执行速度不可预见</p></li>
+<li><p>如果保证进程在临界区执行时，不让另一个进程进入临界区，即各进程对共享变量的访问互斥，就不会造成与时间有关的错误。</p></li>
+</ul>
+<p>临界区调度原则（Dijkstra，1965）</p>
+<ul>
+<li>一次至多一个进程能够进入临界区内执行</li>
+<li>如果已有进程在临界区，其他试图进入的进程应等待</li>
+<li>进入临界区内的进程应在有限时间内退出，以便让等待进程中的一个进入</li>
+</ul>
+<h3 id="临界区管理-1">6.2.2 临界区管理</h3>
+<p>临界区管理的简单方法（忙式等待/反复测试）：</p>
+<ul>
+<li>Peterson算法</li>
+<li>关中断</li>
+<li>对换指令</li>
+<li>测试并建立指令</li>
+</ul>
+<p>存在的问题：</p>
+<ul>
+<li>对不能进入临界区的进程，采用忙式等待测试法，浪费CPU时间</li>
+<li>将测试能否加入临界区的责任推给各个竞争的进程会削弱系统的可靠性，加重编程负担</li>
+</ul>
+<p>通用的解决方案：信号量与PV操作</p>
+<h4 id="peterson算法">Peterson算法</h4>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-type">bool</span> inside[<span class="hljs-number">2</span>];<br>inside[<span class="hljs-number">0</span>] = <span class="hljs-literal">false</span>;<br>inside[<span class="hljs-number">1</span>] = <span class="hljs-literal">false</span>;<br><span class="hljs-keyword">enum</span> &#123;<span class="hljs-number">0</span>,<span class="hljs-number">1</span>&#125; turn;<br><span class="hljs-function">cobegin</span><br><span class="hljs-function">process <span class="hljs-title">P0</span><span class="hljs-params">()</span></span>&#123;<br>	inside[<span class="hljs-number">0</span>] = <span class="hljs-literal">true</span>;<br>	turn = <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">while</span>(inside[<span class="hljs-number">1</span>]&amp;&amp;turn==<span class="hljs-number">1</span>);<br>	&#123;临界区&#125;;<br>	inside[<span class="hljs-number">0</span>] = <span class="hljs-literal">false</span>;<br>&#125;<br><span class="hljs-function">process <span class="hljs-title">P1</span><span class="hljs-params">()</span></span>&#123;<br>	inside[<span class="hljs-number">1</span>] = <span class="hljs-literal">true</span>;<br>	<span class="hljs-keyword">while</span>(inside[<span class="hljs-number">0</span>]&amp;&amp;turn==<span class="hljs-number">0</span>)<br>	&#123;临界区&#125;;<br>	inside[<span class="hljs-number">1</span>] = <span class="hljs-literal">false</span>;<br>&#125;<br>coend<br></code></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-comment">// 1:1交替</span><br><span class="hljs-keyword">enum</span> &#123;<span class="hljs-number">0</span>,<span class="hljs-number">1</span>&#125; turn;<br><span class="hljs-function">cobegin</span><br><span class="hljs-function">process <span class="hljs-title">P0</span><span class="hljs-params">()</span></span>&#123;<br>	turn = <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">while</span>(turn==<span class="hljs-number">1</span>);<br>	&#123;临界区&#125;;<br>	turn = <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function">process <span class="hljs-title">P1</span><span class="hljs-params">()</span></span>&#123;<br>	turn = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span>(turn==<span class="hljs-number">0</span>);<br>	&#123;临界区&#125;;<br>	turn = <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="关中断">关中断</h4>
+<ul>
+<li>实现互斥的最简单方法</li>
+</ul>
+<h4 id="测试并建立指令">测试并建立指令</h4>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-comment">//TS指令实现进程互斥</span><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">TS</span><span class="hljs-params">(<span class="hljs-type">bool</span> &amp;x)</span></span>&#123;<br>  <span class="hljs-keyword">if</span>(x)&#123;<br>    x = <span class="hljs-literal">false</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><br><span class="hljs-type">bool</span> s = <span class="hljs-literal">true</span>;<br><span class="hljs-function">cobegin</span><br><span class="hljs-function">process <span class="hljs-title">Pi</span><span class="hljs-params">()</span></span>&#123;<br>  <span class="hljs-keyword">while</span>(!<span class="hljs-built_in">TS</span>(s)); <span class="hljs-comment">//上锁</span><br>  &#123;临界区&#125;;<br>  s = <span class="hljs-literal">true</span>;      <span class="hljs-comment">//开锁</span><br>&#125;<br>coend<br></code></pre></td></tr></table></figure>
+<h4 id="对换指令">对换指令</h4>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">//对换指令实现进程互斥</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SWAP</span>(<span class="hljs-params"><span class="hljs-built_in">bool</span> &amp;a, <span class="hljs-built_in">bool</span> &amp;b</span>)</span>&#123;<br>	<span class="hljs-built_in">bool</span> temp = a;<br>	a = b;<br>	b = temp;<br>&#125;<br><br><span class="hljs-built_in">bool</span> <span class="hljs-keyword">lock</span> = <span class="hljs-literal">false</span>;<br><span class="hljs-function">cobegin</span><br><span class="hljs-function">Process <span class="hljs-title">Pi</span>()</span>&#123;<br>	<span class="hljs-built_in">bool</span> key = <span class="hljs-literal">true</span>;<br>	<span class="hljs-keyword">do</span>&#123;<br>		SWAP(key, <span class="hljs-keyword">lock</span>);<br>	&#125;<span class="hljs-keyword">while</span>(key);		<span class="hljs-comment">//上锁</span><br>	&#123;临界区&#125;;<br>	SWAP&#123;key, <span class="hljs-keyword">lock</span>&#125;;<span class="hljs-comment">//开锁</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="信号量与pv操作">6.3 信号量与PV操作</h2>
+<h3
+id="信号量与pv操作的数据结构与原语操作">信号量与PV操作的数据结构与原语操作</h3>
+<p>设s为一个记录型数据结构，一个分量为整型量value，另一个为信号量队列queue，P和V操作原语的定义：</p>
+<ul>
+<li>P(s)：将信号量s减去1，若结果小于0，则调用P(s)的进程被设置成等待信号量s的状态</li>
+<li>V(s)：将信号量s加1，若结果不大于0，则释放一个等待信号量s的进程，其转为就绪态</li>
+</ul>
+<p>对于信号量，只允许使用P和V原语操作访问，不能直接对信号量的整型值和队列作操作</p>
+<p>原语：CPU处于内核态，在关中断环境下执行的一段指令序列</p>
+<ul>
+<li>原子性：不被中断，确保安全且完整执行这段指令序列</li>
+</ul>
+<h4 id="几个经典问题">几个经典问题</h4>
+<h5 id="哲学家就餐问题互斥">哲学家就餐问题（互斥）</h5>
+<p>有五个哲学家围坐在一圆桌旁，桌中央有一盘通心面，每人面前有一只空盘子，每两人之间放一把叉子。每个哲学家思考、饥饿、然后吃通心面。为了吃面，每个哲学家必须获得两把叉子，且每人只能直接从自己左边或右边去取叉子。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">semaphore fork<span class="hljs-literal">[<span class="hljs-number">5</span>]</span>;<br><span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">5</span>;i++)<br>	fork<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span>=<span class="hljs-number">1</span>;<br>semaphore room=<span class="hljs-number">4</span>; <span class="hljs-comment">//增加一个侍者，设想有两个房间1号房间是会议室，2号房间是餐厅</span><br>cobegin<br>process philosopher<span class="hljs-constructor">_i()</span>&#123; <span class="hljs-comment">//i=0,1,2,3,4</span><br>	<span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) &#123;<br>		think<span class="hljs-literal">()</span>;<br>		<span class="hljs-constructor">P(<span class="hljs-params">room</span>)</span>; <span class="hljs-comment">//控制最多允许4位哲学家进入2号房间餐厅取叉子</span><br>		<span class="hljs-keyword">if</span>(i%<span class="hljs-number">2</span>==<span class="hljs-number">0</span>)&#123;<br>			<span class="hljs-constructor">P(<span class="hljs-params">fork</span>[<span class="hljs-params">i</span>])</span>; <span class="hljs-comment">//偶数哲学家先右手</span><br>			<span class="hljs-constructor">P(<span class="hljs-params">fork</span>[(<span class="hljs-params">i</span>+1)</span> % <span class="hljs-number">5</span> ]); <span class="hljs-comment">//后左手</span><br>				eat<span class="hljs-literal">()</span>;<br>			<span class="hljs-constructor">V(<span class="hljs-params">fork</span>[<span class="hljs-params">i</span>])</span>;<br>			V (fork<span class="hljs-literal">[(<span class="hljs-identifier">i</span>+<span class="hljs-number">1</span>) % <span class="hljs-number">5</span>]</span>);<br>		&#125; <span class="hljs-keyword">else</span> &#123;<br>			<span class="hljs-constructor">P(<span class="hljs-params">fork</span>[(<span class="hljs-params">i</span>+1)</span> % <span class="hljs-number">5</span> ]); <span class="hljs-comment">//奇数哲学家，先左手</span><br>			<span class="hljs-constructor">P(<span class="hljs-params">fork</span>[<span class="hljs-params">i</span>])</span>; <span class="hljs-comment">//后右手</span><br>				eat<span class="hljs-literal">()</span>;<br>			<span class="hljs-constructor">V(<span class="hljs-params">fork</span>[(<span class="hljs-params">i</span>+1)</span>%<span class="hljs-number">5</span>]);<br>			<span class="hljs-constructor">V(<span class="hljs-params">fork</span>[<span class="hljs-params">i</span>])</span>;<br>		&#125;<br>		<span class="hljs-constructor">V(<span class="hljs-params">room</span>)</span>;<br>	&#125;<br>&#125;<br>coend<br></code></pre></td></tr></table></figure>
+<h5 id="生产者与消费者问题同步">生产者与消费者问题（同步）</h5>
+<p>有n个生产者和m个消费者，连接在一个有k个单位缓冲 区的有界缓冲上。</p>
+<p>其中，生产者进程<span
+class="math inline">\(Producer_i\)</span>和消费者进程<span
+class="math inline">\(Consumer_j\)</span>都是并发进程，只要缓冲区未满，生产者<span
+class="math inline">\(Producer_i\)</span>生产的产品就可投入缓冲区；只要缓冲区不空，消费者进程<span
+class="math inline">\(Consumer_j\)</span>就可从缓冲区取走并消耗产品。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">产品 Buffer<span class="hljs-literal">[<span class="hljs-identifier">k</span>]</span>;<br>semaphore put = k, get = <span class="hljs-number">0</span>;	<span class="hljs-comment">//可以put或get的缓冲区数</span><br><span class="hljs-built_in">int</span> putPos = getPos = <span class="hljs-number">0</span>;		<span class="hljs-comment">//put或get的位置</span><br>semaphore p = g = <span class="hljs-number">1</span>;				<span class="hljs-comment">//互斥使用put或get的位置</span><br><br>process <span class="hljs-constructor">Producer_i()</span>&#123;<br>	&#123;生产产品&#125;;<br>	<span class="hljs-constructor">P(<span class="hljs-params">put</span>)</span>;<br>		<span class="hljs-constructor">P(<span class="hljs-params">p</span>)</span>;<br>			Buffer<span class="hljs-literal">[<span class="hljs-identifier">putPos</span>]</span> = 产品;<br>			putPos = (putPos + <span class="hljs-number">1</span>) % k;<br>		<span class="hljs-constructor">V(<span class="hljs-params">p</span>)</span>;<br>	<span class="hljs-constructor">V(<span class="hljs-params">get</span>)</span>;<br>&#125;<br><br>process <span class="hljs-constructor">Consumer_i()</span>&#123;<br>	<span class="hljs-constructor">P(<span class="hljs-params">get</span>)</span>;<br>		<span class="hljs-constructor">P(<span class="hljs-params">g</span>)</span>;<br>			产品 = Buffer<span class="hljs-literal">[<span class="hljs-identifier">getPos</span>]</span>;<br>			getPos = (getPos + <span class="hljs-number">1</span>) % k;<br>		<span class="hljs-constructor">V(<span class="hljs-params">g</span>)</span>;<br>	<span class="hljs-constructor">V(<span class="hljs-params">put</span>)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="管程">6.4 管程</h2>
+<h3 id="管程和条件变量">6.4.1 管程和条件变量</h3>
+<p>管程的引入：</p>
+<ul>
+<li>把分散在各进程中的临界区集中管理</li>
+<li>防止进程的违法同步操作</li>
+<li>便于用高级语言来编写程序</li>
+</ul>
+<h4 id="管程的定义">管程的定义</h4>
+<p>由局部于自己的若干公共变量及其说明和所有访问这些公共变量的过程所组成的软件模块。</p>
+<p>管程的属性：共享性、安全性、互斥性</p>
+<h4 id="管程的形式">管程的形式</h4>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs abnf">type 管程名<span class="hljs-operator">=</span>monitor &#123;<br>	局部变量说明<span class="hljs-comment">;</span><br>  条件变量说明<span class="hljs-comment">;</span><br>  初始化语句<span class="hljs-comment">;</span><br>define 管程内定义的，管程外可调用的过程或函数名列表<span class="hljs-comment">;</span><br>use 管程外定义的，管程内将调用的过程或函数名列表<span class="hljs-comment">;</span><br>	过程名/函数名(形式参数表) &#123;<br>		&lt;过程/函数体&gt;<span class="hljs-comment">;</span><br>	&#125;<br>	...<br>	过程名/函数名(形式参数表) &#123;<br>		&lt;过程/函数体&gt;<span class="hljs-comment">;</span><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="管程的条件变量">管程的条件变量</h4>
+<p>只有在管程中才能被访问，它对管程内所有过程是全局的，只能通过两个原语操作来控制</p>
+<ul>
+<li><p>wait()：阻塞调用进程并释放管程，直到另一个进程在该条件变量上执行signal()</p></li>
+<li><p>signal()：释放由于对条件变量执行wait()而被阻塞的其他进程，若无，信号不被保存</p></li>
+<li><p>使用signal释放等待进程时，可能出现两个进程同时停留在管程内</p>
+<ul>
+<li><p>执行signal的进程等待，直到被释放进程退出管程或等待另一个条件变量</p></li>
+<li><p>被释放进程等待，直到执行signal的进程退出管程或等待另一个条件</p></li>
+<li><p>Hoare采用前一种方法。</p></li>
+</ul></li>
+</ul>
+<h3 id="管程的实现">6.4.2 管程的实现</h3>
+<p>Hoare管程</p>
+<p>Hoare使用P和V操作原语来实现对管程中过程的互斥调用，以及实现对共享资源互斥使用的管理。</p>
+<ul>
+<li>wait和signal操作可被设计成可以中断的进程</li>
+</ul>
+<h4 id="hoare管程数据结构">Hoare管程数据结构</h4>
+<ol type="1">
+<li>mutex</li>
+</ol>
+<ul>
+<li>对于每个管程，使用用于管程中过程互斥调用的信号量mutex（初值为1）</li>
+<li>进程调用管程中的任何过程时，应执行P(mutex)，进程退出管程时，需要判断是否有进程在next信号量等待，如果有（即next_count&gt;0），则通过V(next)唤醒一个发出signal的进程，否则应执行V(mutex)开放管程，以便让其他调用者进入</li>
+<li>为了使进程在等待资源期间，其他进程能进入管程，在wait操作中也必须执行V(mutex)</li>
+</ul>
+<ol start="2" type="1">
+<li>next和next-count</li>
+</ol>
+<ul>
+<li><p>对每个管程，引入信号量next（初值为0），发出signal操作的进程应该用P(next)阻塞自己，直到被释放进程退出管程或产生其他等待条件</p></li>
+<li><p>next-count（初值为0），记录next上等待的进程个数</p></li>
+</ul>
+<ol start="3" type="1">
+<li>x-sem和x-count</li>
+</ol>
+<ul>
+<li>x-sem（初值为0），申请资源无法满足时，执行P(x-sem)阻塞。由于释放资源时，需知道是否有其他进程在等待资源，用计数器x-count（初值为0）记录等待资源的进程数</li>
+<li>执行signal操作时，应让等待资源的诸进程中的某个进程立即恢复运行，而不让其他进程抢先进入管程，这使用V(x-sem)实现</li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">typedef <span class="hljs-keyword">struct</span> Monitor&#123;<br>	semaphore mutex;<br>	semaphore next;<br>	<span class="hljs-built_in">int</span> next_count;<br>&#125;<br>mutex = <span class="hljs-number">1</span>;<br>next = <span class="hljs-number">0</span>;<br>next_count = <span class="hljs-number">0</span>;<br><br><span class="hljs-comment">//enter()和leave()操作</span><br>void enter(Monitor &amp;m)&#123;<br>	<span class="hljs-constructor">P(<span class="hljs-params">m</span>.<span class="hljs-params">mutex</span>)</span>;<br>&#125;<br>void leave<span class="hljs-literal">()</span>&#123;Monitor &amp;m&#125;&#123;<br>	<span class="hljs-keyword">if</span>(m.next_count&gt;<span class="hljs-number">0</span>)&#123;<br>		<span class="hljs-constructor">V(<span class="hljs-params">m</span>.<span class="hljs-params">next</span>)</span>;<br>	&#125; <span class="hljs-keyword">else</span> <span class="hljs-constructor">V(<span class="hljs-params">m</span>.<span class="hljs-params">mutex</span>)</span>;<br>&#125;<br><br><span class="hljs-comment">//wait()</span><br>void wait(semaphore &amp;x_sem, <span class="hljs-built_in">int</span> x_count, Monitor &amp;m)&#123;<br>	x_count++;						<span class="hljs-comment">//等待资源进程个数加1</span><br>	<span class="hljs-keyword">if</span>(m.next_count&gt;<span class="hljs-number">0</span>)&#123;		<span class="hljs-comment">//判断是否有发出过signal的进程</span><br>		<span class="hljs-constructor">V(<span class="hljs-params">m</span>.<span class="hljs-params">next</span>)</span>;					<span class="hljs-comment">//释放</span><br>	&#125; <span class="hljs-keyword">else</span> <span class="hljs-constructor">V(<span class="hljs-params">m</span>.<span class="hljs-params">mutex</span>)</span>;		<span class="hljs-comment">//开放管程</span><br>	<span class="hljs-constructor">P(<span class="hljs-params">x_sem</span>)</span>;							<span class="hljs-comment">//等待资源进程阻塞自己</span><br>	x_count--;						<span class="hljs-comment">//等待资源进程个数减1</span><br>&#125;<br><br><span class="hljs-comment">//signal()</span><br>void signal(semaphore &amp;x_sem, <span class="hljs-built_in">int</span> x_count, Monitor &amp;m)&#123;<br>	<span class="hljs-keyword">if</span>(x_count&gt;<span class="hljs-number">0</span>)&#123;<br>		m.next_count++;		<span class="hljs-comment">//发出signal进程数加1</span><br>		<span class="hljs-constructor">V(<span class="hljs-params">x_sem</span>)</span>;					<span class="hljs-comment">//释放一个等待资源的进程</span><br>		<span class="hljs-constructor">P(<span class="hljs-params">m</span>.<span class="hljs-params">next</span>)</span>;				<span class="hljs-comment">//发出signal的进程阻塞自己</span><br>		m.next_count--;		<span class="hljs-comment">//发出signal的进程个数减1</span><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="管程求解进程的同步和互斥问题">6.4.3
+管程求解进程的同步和互斥问题</h3>
+<p>互斥问题：读者写者问题、哲学家就餐问题</p>
+<p>同步问题：生产者与消费者问题、苹果桔子问题</p>
+<h4 id="哲学家就餐问题">哲学家就餐问题</h4>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs perl">type philosophers=monitor<br>	enum &#123;thinking,hungry,eating&#125; <span class="hljs-keyword">state</span>[<span class="hljs-number">5</span>];<br>	semaphore self[<span class="hljs-number">5</span>]; <span class="hljs-keyword">int</span> self_count[<span class="hljs-number">5</span>]; Monitor M;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-number">5</span>;i++) <span class="hljs-keyword">state</span>[i] = thinking;<br>	define pickup, putdown;<br>	<span class="hljs-keyword">use</span> enter, leave, <span class="hljs-keyword">wait</span>, signal;<br><br>void pickup(<span class="hljs-keyword">int</span> i)&#123;<br>	enter(M);<br>		<span class="hljs-keyword">state</span>[i] = hungry;<br>		test(i);<br>		<span class="hljs-keyword">if</span>(<span class="hljs-keyword">state</span>[i] != eating)<br>			<span class="hljs-keyword">wait</span>(self[i], self_count[i], M);<br>	leave(M);<br>&#125;<br><br>void putdown(<span class="hljs-keyword">int</span> i)&#123; <span class="hljs-regexp">//i</span>=<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,..,<span class="hljs-number">4</span><br>	enter(M);<br>  	<span class="hljs-keyword">state</span>[i] = thinking;<br>    test((i-<span class="hljs-number">1</span>)%5);<br>    test((i+<span class="hljs-number">1</span>)%5);<br>	leave(M);<br>&#125;<br><br>void test(<span class="hljs-keyword">int</span> k)&#123; <span class="hljs-regexp">//</span>k=<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,...,<span class="hljs-number">4</span> <br>	<span class="hljs-keyword">if</span>((<span class="hljs-keyword">state</span>[(k-<span class="hljs-number">1</span>)%5] != eating) &amp;&amp; (<span class="hljs-keyword">state</span>[k] == hungry) <br>		&amp;&amp;(<span class="hljs-keyword">state</span>[(k+<span class="hljs-number">1</span>)%5] != eating)) <br>		<span class="hljs-keyword">state</span>[k]=eating;<br>		signal(self[k], self_count[k], IM);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="生产者与消费者问题">生产者与消费者问题</h4>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs fortran"><span class="hljs-keyword">type</span> <span class="hljs-built_in">product</span>=monitor<br>	item Buffer[k];		//缓冲区<br>	<span class="hljs-built_in">int</span> <span class="hljs-keyword">in</span>, <span class="hljs-keyword">out</span>;			//存取位置<br>	<span class="hljs-built_in">int</span> <span class="hljs-built_in">count</span>;<br>	semaphore full, empty;<br>	<span class="hljs-built_in">int</span> full_count, empty_count;<br>	Monitor m;<br>	define append, take;<br>	<span class="hljs-keyword">use</span> enter, leave, <span class="hljs-keyword">wait</span>, signal;<br><br>void append(item x)&#123;<br>	enter(m);<br>	<span class="hljs-keyword">if</span>(<span class="hljs-built_in">count</span> == k) <span class="hljs-keyword">wait</span>(full, full_count, m);<br>	Buffer[<span class="hljs-keyword">in</span>] = x;<br>	<span class="hljs-keyword">in</span> = (<span class="hljs-keyword">in</span> + <span class="hljs-number">1</span>) % k;<br>	<span class="hljs-built_in">count</span>++;<br>	signal(empty, empty_count, m);<br>	leave(m);<br>&#125;<br><br>void take(item x)&#123;<br>	enter(m);<br>	<span class="hljs-keyword">if</span>(<span class="hljs-built_in">count</span> == <span class="hljs-number">0</span>) <span class="hljs-keyword">wait</span>(empty, empty_count, m);<br>	x = Buffer[<span class="hljs-keyword">out</span>];<br>	<span class="hljs-keyword">out</span> = (<span class="hljs-keyword">out</span> + <span class="hljs-number">1</span>) % k;<br>	<span class="hljs-built_in">count</span>--;<br>	signal(full, full_count, m);<br>	leave(m);<br>&#125;<br><br>cobegin<br>process producer_i()&#123;<br>	<span class="hljs-built_in">product</span>.append(x);<br>&#125;<br>process consumer_i()&#123;<br>	<span class="hljs-built_in">product</span>.take(x);<br>&#125;<br>coend<br></code></pre></td></tr></table></figure>
+<h2 id="进程通信">6.5 进程通信</h2>
+<h3 id="进程通信-1">6.5.1 进程通信</h3>
+<p>当进程互相交互时，必须满足两个基本要求：同步和通信</p>
+<ul>
+<li>为实施互斥，进程间需要同步</li>
+<li>为了协作，进程间需要交换信息</li>
+</ul>
+<p>消息传递提供了最典型的消息传递原语：send和receive</p>
+<h4 id="进程直接通信">进程直接通信</h4>
+<ul>
+<li>对称直接寻址，发送进程和接收进程必须命名对方以便通信，原语定义如下：
+<ul>
+<li><code>send(P, message)</code>发送消息到进程P</li>
+<li><code>receive(Q, message)</code>接收来自进程Q的消息</li>
+</ul></li>
+<li>非对称直接寻址，只要发送者命名接收者，而接收者不需命名发送者
+<ul>
+<li><code>send(P, message)</code>发送消息到进程P</li>
+<li><code>receive(id, message)</code>接收来自任何进程的消息，id置为与其通信的进程名称</li>
+</ul></li>
+</ul>
+<p>进程P向Q发送消息：</p>
+<pre><code class=" mermaid">graph LR
+进程P--&gt;内核--&gt;进程Q
+</code></pre>
+<p>消息格式：消息头与消息体（即消息内容），</p>
+<ul>
+<li>消息头包括：消息类型、目标ID、源ID、消息长度、控制信息</li>
+</ul>
+<h4 id="进程间接通信">进程间接通信</h4>
+<ul>
+<li><p>消息不是直接从发送者发送到接收者，而是发送到由临时保存这些信息的队列组成的一个共享数据结构，这些队列通常称为信箱。</p></li>
+<li><p>一个进程给合适的信箱发送消息，另一进程从信箱中获得消息。</p></li>
+<li><p>间接通信的通信原语定义：</p>
+<ul>
+<li><p><code>send(A, message)</code>把消息传送到信箱A</p></li>
+<li><p><code>receive(A, message)</code>从信箱A接收消息</p></li>
+</ul></li>
+</ul>
+<p>信箱可以分成信箱头和信箱体两部分，信箱头指出信箱容量、信件格式、存放信件位置的指针等；信箱体用来存放信件。信箱体分成若干个可容纳一封信的区。</p>
+<ul>
+<li>send：若指定信箱未满，将信件送入信箱中指针指示的位置，并释放该信箱中信件的等待者，否则，发送信件者被置为等待信箱状态</li>
+<li>receive：如果指定信箱中有信，则取出一封信件，并释放等待信箱的等待者，否则，接收信件者被置成等待信箱中信件的状态</li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">type</span> box = record<br>	<span class="hljs-built_in">int</span> size;					<span class="hljs-comment">//信箱大小</span><br>	<span class="hljs-built_in">int</span> count;				<span class="hljs-comment">//现有信件数</span><br>	message<span class="hljs-literal">[<span class="hljs-identifier">n</span>]</span> letter;<br>	semaphore s1, s2;	<span class="hljs-comment">//等信箱和等信件信号量</span><br><br>procedure send(box B, message M)&#123;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">B</span>.</span></span>count<span class="hljs-operator"> == </span><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">B</span>.</span></span>size) <span class="hljs-constructor">W(B.<span class="hljs-params">s1</span>)</span>;	<span class="hljs-comment">//R和W时让进程入队和出队的两个过程</span><br>	<span class="hljs-built_in">int</span> i = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">B</span>.</span></span>count + <span class="hljs-number">1</span>;<br>	<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">B</span>.</span></span>letter<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span> = M;<br>	<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">B</span>.</span></span>count = i;<br>	<span class="hljs-constructor">R(B.<span class="hljs-params">s2</span>)</span>;<br>&#125;<br><br>procedure receive(box B, message M)&#123;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">B</span>.</span></span>count<span class="hljs-operator"> == </span><span class="hljs-number">0</span>) <span class="hljs-constructor">W(B.<span class="hljs-params">s2</span>)</span>;<br>	<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">B</span>.</span></span>count = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">B</span>.</span></span>count - <span class="hljs-number">1</span>;<br>	x = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">B</span>.</span></span>letter<span class="hljs-literal">[<span class="hljs-number">1</span>]</span>;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">B</span>.</span></span>count != <span class="hljs-number">0</span>)&#123;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">1</span>;i &lt; <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">B</span>.</span></span>count;i++)&#123;<br>			<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">B</span>.</span></span>letter<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span> = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">B</span>.</span></span>letter<span class="hljs-literal">[<span class="hljs-identifier">i</span> + <span class="hljs-number">1</span>]</span>;<br>		&#125;<br>	&#125;<br>	<span class="hljs-constructor">R(B.<span class="hljs-params">s1</span>)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="消息传递的若干问题">消息传递的若干问题</h4>
+<ul>
+<li>信箱容量问题</li>
+<li>多进程与信箱相连的信箱接收问题</li>
+<li>信箱的所有权问题
+<ul>
+<li>信箱为操作系统所有，是指操作系统统一设置信箱，归系统所有，供相互通信的进程共享，例：消息缓冲机制</li>
+</ul></li>
+<li>信件的格式问题和其他有关问题</li>
+<li>通信进程的同步问题</li>
+</ul>
+<h4 id="消息缓冲通信">消息缓冲通信</h4>
+<h3 id="高级进程通信机制">6.5.2 高级进程通信机制</h3>
+<h2 id="死锁">6.6 死锁</h2>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="category-chain-item">计算机操作系统</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/06/01/%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E7%BB%AA%E8%AE%BA/" title="数据管理基础-第一章_绪论">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据管理基础-第一章_绪论</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/05/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/" title="计算机操作系统-第五章_文件管理">
+                        <span class="hidden-mobile">计算机操作系统-第五章_文件管理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>长风破浪会有时，直挂云帆济沧海</p> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
