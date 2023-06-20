@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-06-19T05:22:39.263Z</updated>
+  <updated>2023-06-20T01:04:30.784Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://example.com/2023/06/19/SEII%E5%A4%8D%E4%B9%A0/"/>
+    <id>http://example.com/2023/06/19/SEII%E5%A4%8D%E4%B9%A0/</id>
+    <published>2023-06-19T12:08:57.095Z</published>
+    <updated>2023-06-20T01:04:30.784Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">title</span>: SEII-期末复习<br><span class="hljs-attribute">date</span>: <span class="hljs-number">2023</span>-<span class="hljs-number">6</span>-<span class="hljs-number">19</span> <span class="hljs-number">12</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span><br></code></pre></td></tr></table></figure><h1 id="seii复习">SEII复习</h1><span id="more"></span><ul><li>软件需求工程</li><li>软件设计</li><li>软件构造</li><li>软件测试</li><li>软件交付</li><li>软件维护</li></ul><h2 id="包的原则">包的原则</h2><ul><li>重用发布等价原则（REP）</li><li>共同封闭原则（CCP）</li><li>共同重用原则（CRP）</li><li>无环依赖原则（ARP）</li><li>稳定依赖原则（SDP）</li><li>稳定抽象原则（SAP）</li></ul><h2 id="人机交互">人机交互</h2><h3 id="人机交互设计原则">人机交互设计原则</h3><ul><li><p>简洁设计</p></li><li><p>一致性设计</p></li><li><p>低出错率设计</p></li><li><p>易记性设计</p></li><li><p>可视化设计</p></li><li><p>导航</p></li><li><p>反馈</p></li><li><p>差异性</p></li></ul><h2 id="耦合和内聚">耦合和内聚</h2><h3 id="耦合">耦合</h3><p>从高到低，越低越好，1、2、3不可接受</p><ol type="1"><li>内容耦合：一个模块直接修改另一个模块的内容</li><li>公共耦合：全局变量、文件、设备</li><li>重复耦合：重复代码</li><li>控制耦合：一个模块给其他模块传递控制信息</li><li>印记耦合：共享数据结构却只使用一部分</li><li>数据耦合：模块间传参只传需要的数据，最理想</li></ol><h3 id="内聚">内聚</h3><p>从高到低，越低越差，6、7不能接受</p><ol type="1"><li>信息内聚：模块进行许多操作，各自有各自的入又点，每个操作代码相对独立，而且所有操作都在相同的数据结构上进行</li><li>功能内聚：只执行一个操作或达到一个目的</li><li>通信内聚：对相同数据执行不同操作</li><li>过程内聚：含有不同步骤操作</li><li>时间内聚：具有时间相关性的相关操作</li><li>逻辑内聚：逻辑上相似但没有直接关联操作</li><li>偶然内聚：多个毫不相干的操作</li></ol><h2 id="设计原则">设计原则</h2><ol type="1"><li>全局变量有害</li><li>代码清晰可修改</li><li>避免重复</li><li>面向接口编程</li><li>迪米特法则：不能出现a.b.method()</li><li>接口隔离原则（接口最小化原则）</li><li>里氏替换原则：所有派生类都须可以替代其基类</li><li>组合代替继承</li><li>单一职责原则</li><li>最小化类和成员的可访问性</li><li>开放/封闭原则（OCP）：模块可扩展，不应修改（无switch、if/else）</li><li>依赖倒置原则（DIP）：高级模块不应依赖于低级，两者均应依赖抽象</li></ol><h2 id="设计模式">设计模式</h2><ul><li>策略模式</li><li>迭代器模式</li><li>抽象工厂模式</li><li>单件模式</li></ul><h2 id="代码设计">代码设计</h2><ul><li>单元测试用例的设计</li><li>契约式设计</li><li>防御式编程</li><li>表驱动</li></ul><h2 id="软件开发过程模型">软件开发过程模型</h2><ul><li>生命周期模型</li><li>构建-修复模型</li><li>瀑布模型</li><li>增量迭代模型</li><li>演化模型</li><li>原型模型</li><li>螺旋模型</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;figure class=&quot;highlight apache&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs apache&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;title&lt;/span&gt;: SEII-期末复习&lt;br&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;date&lt;/span&gt;: &lt;span class=&quot;hljs-number&quot;&gt;2023&lt;/span&gt;-&lt;span class=&quot;hljs-number&quot;&gt;6&lt;/span&gt;-&lt;span class=&quot;hljs-number&quot;&gt;19&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;12&lt;/span&gt;:&lt;span class=&quot;hljs-number&quot;&gt;00&lt;/span&gt;:&lt;span class=&quot;hljs-number&quot;&gt;00&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h1 id=&quot;seii复习&quot;&gt;SEII复习&lt;/h1&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>毛概-期末复习</title>
@@ -373,25 +391,6 @@ id=&quot;毛泽东思想和中国特色社会主义理论体系概论-期末复�
     
     
     <category term="软件工程与计算2" scheme="http://example.com/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E4%B8%8E%E8%AE%A1%E7%AE%972/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>数据结构与算法-4.0_树</title>
-    <link href="http://example.com/2022/12/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Chapter4.0_Tree/"/>
-    <id>http://example.com/2022/12/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Chapter4.0_Tree/</id>
-    <published>2022-12-04T04:00:00.000Z</published>
-    <updated>2023-06-17T02:37:41.950Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="chapter4.0tree-树">Chapter4.0：Tree 树</h1><span id="more"></span><h4 id="两类数据结构">两类数据结构</h4><ul><li>线性：列表、栈、队列、字符串</li><li>非线性：树、图</li></ul><h2 id="一树">一、树</h2><h3 id="定义">定义</h3><p>一棵树是一些结点的集合。<br />集合可以为空，否则，这棵树具有一个特殊的称为根的结点，以及零棵或更多非空子树。</p><h3 id="术语">术语</h3><p>结点的度数为其所具有的后代数。<br />树的度数是其结点度数的最大值。<br />度数为0的结点称为叶，度数非0的结点称为枝。<br />层级：根的层级为0(1)，其余结点的层级为其父结点加1。<br />树高：结点的最高层级。</p><h2 id="二二叉树">二、二叉树</h2><h3 id="定义-1">定义</h3><p>一棵二叉树是一些有限个结点的(可以为空)集合。</p><p>当二叉树非空： * 它有一个根结点。 *其余的结点被分为两个二叉树，称为根的左子树和右子树。</p><p>二叉树与树的区别 1.二叉树的每个结点都有且仅有两个子树(可以为空)，而树的每个结点可以有任意个子树。2. 二叉树的结点的左右子树是有顺序区别的，而树的结点的子树是无序的。</p><h3 id="二叉树的性质">二叉树的性质</h3><ol type="1"><li>有n个结点的二叉树有n-1条边。</li><li>在第i层的结点树最多为2^i。</li><li>高度为h的二叉树最少有h+1个结点，最多有2^(h+1)-1个结点</li><li>如果叶的数量为x，度数为2的结点树为y，那么x=y+1</li><li>包含n个结点的二叉树的树高最多为n-1，虽少为[log(n+1)]-1。(底为2)</li></ol><h4 id="满二叉树">满二叉树</h4><p>树高h，包含2^(h+1)-1个结点的二叉树为满二叉树。</p><h4 id="完全二叉树">完全二叉树</h4><p>一棵树高为k的有n个结点的二叉树，如果对树中的结点按从上到下、从左到右的顺序进行编号，编号为i的结点与满二叉树中编号为i的结点位置相同，则这棵二叉树为完全二叉树。</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;chapter4.0tree-树&quot;&gt;Chapter4.0：Tree 树&lt;/h1&gt;</summary>
-    
-    
-    
-    <category term="数据结构与算法" scheme="http://example.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
   </entry>
