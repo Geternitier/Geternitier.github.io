@@ -16,15 +16,15 @@
   <meta name="author" content="Geternitier">
   <meta name="keywords" content="">
   
-    <meta name="description" content="长风破浪会有时，直挂云帆济沧海！">
+    <meta name="description" content="不畏浮云遮望眼，自缘身在最高层">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机操作系统-第六章_并发程序设计">
 <meta property="og:url" content="http://example.com/2023/05/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%B9%B6%E5%8F%91%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/index.html">
 <meta property="og:site_name" content="Geternitier的博客">
-<meta property="og:description" content="长风破浪会有时，直挂云帆济沧海！">
+<meta property="og:description" content="不畏浮云遮望眼，自缘身在最高层">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-05-06T04:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-10T13:26:50.384Z">
+<meta property="article:modified_time" content="2023-06-20T10:09:11.064Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -252,7 +252,7 @@
             
               <div class="markdown-body">
                 
-                <p>长风破浪会有时，直挂云帆济沧海！</p>
+                <p>不畏浮云遮望眼，自缘身在最高层</p>
 <span id="more"></span>
 <h1 id="第六章-并发程序设计">第六章 并发程序设计</h1>
 <h2 id="并发进程">6.1 并发进程</h2>
@@ -335,7 +335,8 @@ section）</p>
 <li><p>与同一变量有关的临界区分散在各进程的程序段中，而各进程的执行速度不可预见</p></li>
 <li><p>如果保证进程在临界区执行时，不让另一个进程进入临界区，即各进程对共享变量的访问互斥，就不会造成与时间有关的错误。</p></li>
 </ul>
-<p>临界区调度原则（Dijkstra，1965）</p>
+<h4
+id="临界区调度原则dijkstra1965">临界区调度原则（Dijkstra，1965）</h4>
 <ul>
 <li>一次至多一个进程能够进入临界区内执行</li>
 <li>如果已有进程在临界区，其他试图进入的进程应等待</li>
@@ -417,7 +418,7 @@ class="math inline">\(Consumer_j\)</span>就可从缓冲区取走并消耗产品
 </ul></li>
 </ul>
 <h3 id="管程的实现">6.4.2 管程的实现</h3>
-<p>Hoare管程</p>
+<h4 id="hoare管程">Hoare管程</h4>
 <p>Hoare使用P和V操作原语来实现对管程中过程的互斥调用，以及实现对共享资源互斥使用的管理。</p>
 <ul>
 <li>wait和signal操作可被设计成可以中断的进程</li>
@@ -512,6 +513,8 @@ class="math inline">\(Consumer_j\)</span>就可从缓冲区取走并消耗产品
 </ul>
 <h4 id="消息缓冲通信">消息缓冲通信</h4>
 <h3 id="高级进程通信机制">6.5.2 高级进程通信机制</h3>
+<h4 id="基于流的进程通信">基于流的进程通信</h4>
+<h4 id="基于rpc的高级通信规约">基于RPC的高级通信规约</h4>
 <h2 id="死锁">6.6 死锁</h2>
 
                 
@@ -619,6 +622,25 @@ class="math inline">\(Consumer_j\)</span>就可从缓冲区取走并消耗产品
 
   
 
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('mermaid' in window) {
+        mermaid.init();
+      }
+    });
+  });
+</script>
 
 
 
@@ -811,6 +833,49 @@ class="math inline">\(Consumer_j\)</span>就可从缓冲区取走并消耗产品
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
