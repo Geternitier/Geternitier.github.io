@@ -16,21 +16,21 @@
   <meta name="author" content="Geternitier">
   <meta name="keywords" content="">
   
-    <meta name="description" content="原神，启动！">
+    <meta name="description" content="我自横刀向天笑，去留肝胆两昆仑。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="软工2-二-项目启动">
-<meta property="og:url" content="http://example.com/2023/04/02/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E4%B8%8E%E8%AE%A1%E7%AE%972/%E4%BA%8C-%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8/index.html">
+<meta property="og:title" content="数据管理基础-第五章_数据库完整性">
+<meta property="og:url" content="http://example.com/2023/03/05/%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%94%E7%AB%A0_%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E6%80%A7/index.html">
 <meta property="og:site_name" content="Geternitier的博客">
-<meta property="og:description" content="原神，启动！">
+<meta property="og:description" content="我自横刀向天笑，去留肝胆两昆仑。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-02T06:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-17T06:59:13.785Z">
+<meta property="article:published_time" content="2023-03-05T08:00:00.000Z">
+<meta property="article:modified_time" content="2023-06-20T08:44:44.407Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>软工2-二-项目启动 - Geternitier的博客</title>
+  <title>数据管理基础-第五章_数据库完整性 - Geternitier的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -184,7 +184,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="软工2-二-项目启动"></span>
+            <span id="subtitle" data-typed-text="数据管理基础-第五章_数据库完整性"></span>
           
         </div>
 
@@ -195,8 +195,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-02 14:00" pubdate>
-          2023年4月2日 下午
+        <time datetime="2023-03-05 16:00" pubdate>
+          2023年3月5日 下午
         </time>
       </span>
     
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          1.9k 字
         
       </span>
     
@@ -247,146 +247,131 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">软工2-二-项目启动</h1>
+            <h1 style="display: none">数据管理基础-第五章_数据库完整性</h1>
             
             
               <div class="markdown-body">
                 
-                <p>原神，启动！</p>
+                <p>我自横刀向天笑，去留肝胆两昆仑。</p>
 <span id="more"></span>
-<h1 id="第二部分-项目启动">第二部分-项目启动</h1>
-<h2 id="项目和项目管理">1. 项目和项目管理</h2>
-<h3 id="项目的概念">项目的概念</h3>
-<p>项目是具有下列特征的一系列活动和任务：</p>
+<h1 id="第五章-数据库完整性">第五章 数据库完整性</h1>
+<p>数据库的完整性是指数据的正确性和相容性。</p>
 <ul>
-<li>具有一个明确的目标</li>
-<li>有限定的开始和结束日期</li>
-<li>有成本限制</li>
-<li>消耗人力和非人力资源</li>
-<li>多工种合作</li>
+<li>数据的正确性是指数据是复合现实世界语义，反映当前实际情况的</li>
+<li>数据的相容性是指数据库同一对象在不同关系表中的数据是符合逻辑的</li>
 </ul>
-<h3 id="项目管理的目标">项目管理的目标</h3>
-<p>在限定时间内、一定成本内、要求的质量水平上，高效使用资源，获得用户认可。</p>
-<h3 id="过程组与活动">过程组与活动</h3>
-<p>过程组：</p>
-<ol type="1">
-<li>项目启动</li>
-<li>项目计划</li>
-<li>项目执行</li>
-<li>项目跟踪</li>
-<li>项目收尾</li>
-</ol>
-<p>活动：计划制定、团队管理、成本控制、质量保障、度量、过程管理、进度跟踪与控制、风险管理、配置管理</p>
-<h2 id="团队组织与管理">2. 团队组织与管理</h2>
+<p>数据库管理系统为维护数据库完整性而实现的功能：</p>
 <ul>
-<li>一个协作良好的团队是任何项目成功的基础</li>
-<li>软件项目尤其依赖于有效的团队组织和管理</li>
-<li>软件开发是一个以人为主的活动，人力资源是软件项目最大的资产</li>
+<li>提供定义完整性约束条件的机制</li>
+<li>提供完整性检查的方法</li>
+<li>进行违约处理</li>
 </ul>
-<h3 id="团队的概念">团队的概念</h3>
-<p>为了一致的目的、绩效标准、方法而共担责任并且技能互补的少数人。</p>
+<p>关系数据库管理系统使得完整性控制成为其核心支持的功能，从而能够为所有用户和应用提供一致的数据库完整性。</p>
+<h2 id="实体完整性">5.1 实体完整性</h2>
+<p>关系模型的实体完整性在CREATE TABLE中用PRIMARY KEY定义。</p>
 <ul>
-<li>团队内部要有一个明确的结构</li>
-</ul>
-<h3 id="团队的结构">团队的结构</h3>
+<li>对单属性构成的码，可以在列级定义，也可以在表级定义
 <ul>
-<li>主程序员团队</li>
-<li>民主团队</li>
-<li>开放团队</li>
-</ul>
-<h3 id="团队建设">团队建设</h3>
-<ol type="1">
-<li><p>建立团队章程</p></li>
-<li><p>持续成功</p>
-<p>项目阶段性成功/团队活动成功</p></li>
-<li><p>和谐沟通</p></li>
-<li><p>避免团队杀手</p></li>
-</ol>
+<li>Sno CHAR(9) PRIMARY KEY</li>
+<li>PRIMARY KEY (Sno)</li>
+</ul></li>
+<li>对多属性构成的码，只能在表级定义
 <ul>
-<li>防范式管理</li>
-<li>官僚主义</li>
-<li>地理分散</li>
-<li>时间分割</li>
-<li>产品质量的降低</li>
-<li>虚假的最后期限</li>
-<li>小圈子控制</li>
+<li>PRIMARY KEY(Sno, Cno)</li>
+</ul></li>
 </ul>
-<h2 id="软件质量保障">3. 软件质量保障</h2>
-<p>软件工程师需要对软件产品的质量负责。</p>
-<p>人们通常会选用系统的某些质量要素进行量化处理，建立质量特征，这些特征被称为质量属性。</p>
-<p>为了根据质量属性描述和评价系统的整体质量，人们从很多质量属性的定义中选择了一些能够相互配合、相互联系的特征集，它们被称为质量模型。</p>
-<p>质量模型的因素</p>
+<p>实体完整性检查和违约处理</p>
 <ul>
-<li>功能性、可靠性、易用性、效率、可维护性、可移植性</li>
+<li>检查主码的各个属性是否为空，有一个为空就拒绝插入或修改</li>
+<li>检查主码值是否唯一，如果不唯一就拒绝插入或修改
+<ul>
+<li>方法：全表扫描、B+树索引</li>
+</ul></li>
 </ul>
-<h3 id="质量保障">质量保障</h3>
+<h2 id="参照完整性">5.2 参照完整性</h2>
+<p>关系模型的参照完整性在CREATE TABLE中用FOREIGN
+KEY来定义哪些列尾外码，用REFERENCES短语指明这些外码参照哪些表的主码。</p>
+<p>参照完整性检查和违约处理</p>
 <table>
 <thead>
 <tr class="header">
-<th>里程碑</th>
-<th>质量保障活动</th>
+<th>被参照表</th>
+<th>参照表</th>
+<th>违约处理</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>需求开发</td>
-<td>需求评审、需求度量</td>
+<td>可能破坏参照完整性</td>
+<td>插入元组</td>
+<td>拒绝</td>
 </tr>
 <tr class="even">
-<td>体系结构</td>
-<td>体系结构评审、集成测试</td>
+<td>可能破坏参照完整性</td>
+<td>修改外码值</td>
+<td>拒绝</td>
 </tr>
 <tr class="odd">
-<td>详细设计</td>
-<td>详细设计评审、设计度量、集成测试</td>
+<td>删除元组</td>
+<td>可能破坏参照完整性</td>
+<td>拒绝/级联删除/设置为空值</td>
 </tr>
 <tr class="even">
-<td>实现</td>
-<td>代码评审、代码度量、测试</td>
-</tr>
-<tr class="odd">
-<td>测试</td>
-<td>测试、测试度量</td>
+<td>修改主码值</td>
+<td>可能破坏参照完整性</td>
+<td>拒绝/级联删除/设置为空值</td>
 </tr>
 </tbody>
 </table>
-<h3 id="评审">评审</h3>
-<ol type="1">
-<li><p>在规划阶段(Planning)，制定审查计划，决定审查会议的次数，安排每次审查会议的时间、地点、参与人员、审查内容等等。</p></li>
-<li><p>在总体部署阶段(Overview)，向所有参与审查会议的人员描述待审查材料的内容、审查的目标以及一些假设，并分发文档。</p></li>
-<li><p>在准备阶段(Preparation)，审查人员各自独立执行检查任务。在检查的过程当中，他们可能会被要求使用检查清单、场景等检查方法。检查中发现的问题会被记录下来，以准备开会讨论或者提交给收集人员。</p></li>
-<li><p>在审查会议阶段(Inspection
-Meeting)，通过会议讨论，识别、确认、分类发现的错误。</p></li>
-<li><p>在返工阶段(Rework)，修改发现的缺陷。</p></li>
-<li><p>在跟踪阶段(Follow-up)，要确认所有发现的问题都得到了解决，所有的错误都得到了修正。</p></li>
-</ol>
-<h3 id="质量度量">质量度量</h3>
-<p>度量是软件产品在特点属性的量化测试程度。</p>
-<h2 id="软件配置管理">4. 软件配置管理</h2>
-<h3 id="配置管理的概念">配置管理的概念</h3>
-<p>用技术的和管理的指导和监督方法，来标识和说明配置项的功能和物理特征，控制对这些特征的变更，记录和报告变更处理及其实现状态，并验证与规格需求的一致性。</p>
-<p>配置项：</p>
-<p>置于软件配置管理之下的软件配置的各种有关项目，包括各类文档、评审记录与文档、软件文档、源码及其可执行码、运行所需的系统软件和支持软件以及有关数据等。</p>
-<h3 id="配置管理活动">配置管理活动</h3>
 <ul>
-<li>标识配置项</li>
-<li>版本管理</li>
-<li>变更控制</li>
-<li>配置审计</li>
-<li>状态报告</li>
-<li>软件发布管理</li>
+<li>拒绝（NO ACTION），一般为默认策略</li>
 </ul>
-<h3 id="分支管理常见策略">分支管理常见策略</h3>
+<h2 id="用户定义的完整性">5.3 用户定义的完整性</h2>
+<p>用户定义的完整性就是针对某一具体应用的数据必须满足的语义条件。</p>
 <ul>
-<li>主分支</li>
-<li>开发分支</li>
-<li>临时分支
+<li><p>属性上的约束条件</p>
 <ul>
-<li>功能</li>
-<li>预发布</li>
-<li>修补bug</li>
+<li><p>非空（NOT NULL）</p></li>
+<li><p>唯一（UNIQUE）</p></li>
+<li><p>用CHECK语句指定列值条件</p>
+<p><code>Sex CHAR(2) CHECK (Sex IN('男','女'))</code></p></li>
+<li><p>修改或插入时检查；违约处理：拒绝执行</p></li>
+</ul></li>
+<li><p>元组上的约束条件</p>
+<ul>
+<li>用CHECK指定元组约束条件</li>
+<li>修改或插入时检查；违约处理：拒绝执行</li>
 </ul></li>
 </ul>
+<h2 id="完整性约束命名子句">5.4 完整性约束命名子句</h2>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CONSTRAINT</span> <span class="hljs-operator">&lt;</span>完整性约束条件名<span class="hljs-operator">&gt;</span> <span class="hljs-operator">&lt;</span>完整性约束条件<span class="hljs-operator">&gt;</span>;<br></code></pre></td></tr></table></figure>
+<p>例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Student <br>(Sno <span class="hljs-type">NUMERIC</span>(<span class="hljs-number">6</span>)<br><span class="hljs-keyword">CONSTRAINT</span> C1 <span class="hljs-keyword">CHECK</span> (Sno <span class="hljs-keyword">BETWEEN</span> <span class="hljs-number">90000</span> <span class="hljs-keyword">AND</span> <span class="hljs-number">99999</span>), <br> Sname <span class="hljs-type">CHAR</span>(<span class="hljs-number">20</span>)<br><span class="hljs-keyword">CONSTRAINT</span> C2 <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>, <br> Sage <span class="hljs-type">NUMERIC</span>(<span class="hljs-number">3</span>)<br><span class="hljs-keyword">CONSTRAINT</span> C3 <span class="hljs-keyword">CHECK</span> (Sage <span class="hljs-operator">&lt;</span> <span class="hljs-number">30</span>), <br> Ssex <span class="hljs-type">CHAR</span>(<span class="hljs-number">2</span>)<br><span class="hljs-keyword">CONSTRAINT</span> C4 <span class="hljs-keyword">CHECK</span>(SSex <span class="hljs-keyword">IN</span>(<span class="hljs-string">&#x27;男&#x27;</span>,<span class="hljs-string">&#x27;女&#x27;</span>)), <br><span class="hljs-keyword">CONSTRAINT</span> StudentKey <span class="hljs-keyword">PRIMARY</span> KEY(Sno)<br>;)<br></code></pre></td></tr></table></figure>
+<p>修改例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Student<br>	<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">CONSTRAINT</span> C3;<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Student<br>	<span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> C3 <span class="hljs-keyword">CHECK</span> (Sage <span class="hljs-operator">&lt;</span> <span class="hljs-number">40</span>);<br></code></pre></td></tr></table></figure>
+<h2 id="域中的完整性限制">5.5 域中的完整性限制</h2>
+<p>域是一组具有相同数据类型的值的集合。</p>
+<p>SQL中，可以用CREATE
+DOMAIN来创建一个域以及其应该满足的完整性约束条件以定义属性。</p>
+<p>例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> DOMAIN GenderDomain <span class="hljs-type">CHAR</span>(<span class="hljs-number">2</span>)<br>	<span class="hljs-keyword">CONSTRAINT</span> GD <span class="hljs-keyword">CHECK</span>(<span class="hljs-keyword">VALUE</span> <span class="hljs-keyword">IN</span>(<span class="hljs-string">&#x27;男&#x27;</span>，<span class="hljs-string">&#x27;女&#x27;</span>));<br></code></pre></td></tr></table></figure>
+<h2 id="断言">5.6 断言</h2>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> ASSERTION <span class="hljs-operator">&lt;</span>断言名<span class="hljs-operator">&gt;</span> <span class="hljs-operator">&lt;</span><span class="hljs-keyword">CHECK</span>子句<span class="hljs-operator">&gt;</span>;<br></code></pre></td></tr></table></figure>
+<h2 id="触发器">5.7 触发器</h2>
+<p>触发器（trigger）是用户定义在关系表上的一类由事件驱动的特殊过程。</p>
+<ul>
+<li>触发器又叫事件-条件-动作规则。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TRIGGER</span> <span class="hljs-operator">&lt;</span>触发器名<span class="hljs-operator">&gt;</span><br>&#123;BEFORE<span class="hljs-operator">|</span>AFTER&#125; <span class="hljs-operator">&lt;</span>触发事件<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">ON</span> <span class="hljs-operator">&lt;</span>表名<span class="hljs-operator">&gt;</span> <span class="hljs-comment">/* 指明触发器激活时间在事件前后 */</span><br><span class="hljs-keyword">REFERENCING</span> <span class="hljs-keyword">NEW</span><span class="hljs-operator">|</span><span class="hljs-keyword">OLD</span> <span class="hljs-type">ROW</span> <span class="hljs-keyword">AS</span> <span class="hljs-operator">&lt;</span>变量<span class="hljs-operator">&gt;</span>  <span class="hljs-comment">/* 指明引用的变量 */</span><br><span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> &#123;<span class="hljs-type">ROW</span><span class="hljs-operator">|</span>STATEMENT&#125;<br>[<span class="hljs-keyword">WHEN</span> <span class="hljs-operator">&lt;</span>触发条件<span class="hljs-operator">&gt;</span>] <span class="hljs-operator">&lt;</span>触发动作体<span class="hljs-operator">&gt;</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>只有表的拥有者才能在表上创建触发器，且触发器数量有限</li>
+<li>同一模式下，触发器名必须是唯一的，且触发器名和表名必须在同一模式下</li>
+<li>触发器只能定义在基本表上，不能定义在视图上</li>
+<li>触发事件可以是INSERT、DELETE或UPDATE，也可以是其组合</li>
+<li>行级触发器每行都执行，语句级触发器只触发一次</li>
+</ul>
+<p>删除触发器：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TRIGGER</span> <span class="hljs-operator">&lt;</span>触发器名<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">ON</span> <span class="hljs-operator">&lt;</span>表名<span class="hljs-operator">&gt;</span>;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -405,7 +390,7 @@ Meeting)，通过会议讨论，识别、确认、分类发现的错误。</p></
     
       <span class="category-chain">
         
-  <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E4%B8%8E%E8%AE%A1%E7%AE%972/" class="category-chain-item">软件工程与计算2</a>
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E5%9F%BA%E7%A1%80/" class="category-chain-item">数据管理基础</a>
   
   
 
@@ -427,9 +412,9 @@ Meeting)，通过会议讨论，识别、确认、分类发现的错误。</p></
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/03/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E4%B8%8E%E8%AE%A1%E7%AE%972/%E4%B8%89-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82/" title="软工2-三-软件需求">
+                      <a href="/2023/03/06/%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AD%E7%AB%A0_%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%90%86%E8%AE%BA/" title="数据管理基础-第六章_关系数据理论">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">软工2-三-软件需求</span>
+                        <span class="hidden-mobile">数据管理基础-第六章_关系数据理论</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -437,8 +422,8 @@ Meeting)，通过会议讨论，识别、确认、分类发现的错误。</p></
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/11/%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0_%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/" title="数据管理基础-第十一章_并发控制">
-                        <span class="hidden-mobile">数据管理基础-第十一章_并发控制</span>
+                      <a href="/2023/03/04/%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%9B%9B%E7%AB%A0_%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/" title="数据管理基础-第四章_数据库安全性">
+                        <span class="hidden-mobile">数据管理基础-第四章_数据库安全性</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
