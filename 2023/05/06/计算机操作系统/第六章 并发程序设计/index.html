@@ -23,10 +23,12 @@
 <meta property="og:site_name" content="Geternitier的博客">
 <meta property="og:description" content="不畏浮云遮望眼，自缘身在最高层">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/计算机操作系统/远程过程调用RPC.png">
 <meta property="article:published_time" content="2023-05-06T04:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-20T10:09:11.064Z">
+<meta property="article:modified_time" content="2023-06-20T13:50:28.083Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/image/计算机操作系统/远程过程调用RPC.png">
   
   
   
@@ -207,7 +209,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.9k 字
+          12k 字
         
       </span>
     
@@ -512,10 +514,223 @@ class="math inline">\(Consumer_j\)</span>就可从缓冲区取走并消耗产品
 <li>通信进程的同步问题</li>
 </ul>
 <h4 id="消息缓冲通信">消息缓冲通信</h4>
+<h5 id="基本思想">基本思想</h5>
+<p>由操作系统统一管理一组用于通信的消息缓冲存储区，每个消息缓冲存储区可以存放一个消息。</p>
+<p>当一个进程需要发送消息：</p>
+<ol type="1">
+<li>先在自己的消息发送区内生成待发送的消息，包括接收进程名、消息长度、消息正文等。</li>
+<li>向系统申请一个消息缓冲区，把消息从发送区复制到消息缓冲区中。复制过程中，系统会将接收进程名换为发送进程名，以便接收者识别。</li>
+<li>该消息缓冲区被挂在接收消息的进程的消息队列上，供接收者在需要时从消息队列中摘下并复制到消息接收区使用，同时释放消息缓冲区。</li>
+</ol>
+<p>消息缓冲通信涉及的数据结构：</p>
+<ul>
+<li>sender：发送消息的进程名或标识符</li>
+<li>size：发送的消息长度</li>
+<li>text：发送的消息正文</li>
+<li>next-ptr：指向下一个消息缓冲区的指针</li>
+</ul>
+<p>在进程的PCB中涉及通信的数据结构：</p>
+<ul>
+<li>mptr：消息队列首指针</li>
+<li>mutex：消息队列互斥信号量，初始为1</li>
+<li>sm：表示接收进程信号队列上消息的个数，初值为0，是控制收发进程同步的信号量</li>
+</ul>
+<h5 id="发送和接收原语的实现">发送和接收原语的实现</h5>
+<ul>
+<li>发送原语Send：
+<ul>
+<li>申请一个消息缓冲区，把发送区内容复制到这个缓冲区中</li>
+<li>找到接收进程的PCB，执行P(mutex)</li>
+<li>把缓冲区挂在接收进程消息队列尾部</li>
+<li>执行V(sm)</li>
+<li>执行V(mutex)</li>
+</ul></li>
+<li>接收原语Receive：
+<ul>
+<li>执行P(sm)查看是否有信件</li>
+<li>执行P(mutex)，取消息</li>
+<li>执行V(mutex)</li>
+<li>把消息缓冲区内容复制到接收区，释放消息缓冲区</li>
+</ul></li>
+</ul>
+<h4 id="管道和套接字">管道和套接字</h4>
+<p>基于信箱的消息传递方式的一种变体，与传统的信箱方式等价，但没有设定消息的边界。</p>
+<ul>
+<li>即，若一个进程发送10条100字节的消息，另一个进程接收1000个字节，接收者将获得10条消息。</li>
+</ul>
 <h3 id="高级进程通信机制">6.5.2 高级进程通信机制</h3>
 <h4 id="基于流的进程通信">基于流的进程通信</h4>
+<ul>
+<li><p>多个进程使用一个共享的消息缓冲区（可称为管道、多路转接器、套接字）。</p></li>
+<li><p>一些进程向消息缓冲区中写入字符流</p></li>
+<li><p>一些进程从消息缓冲区中读出字符流</p></li>
+<li><p>信息以任意长度的字符流交换。</p></li>
+</ul>
 <h4 id="基于rpc的高级通信规约">基于RPC的高级通信规约</h4>
+<p>采用客户/服务器计算模式，服务器进程提供一系列过程/服务，供客户进程调用；客户进程通过调用服务器进程提供的过程/服务获得服务。</p>
+<ul>
+<li>考虑到客户计算机和服务器计算机的硬件异构性，外部数据表示XDR被引入来转换每台计算机的特殊数据格式为标准数据格式。</li>
+</ul>
+<h5 id="rpc执行步骤">RPC执行步骤</h5>
+<ol type="1">
+<li>客户进程以普通方式调用客户存根</li>
+<li>客户存根组织RPC消息并执行Send，激活内核程序</li>
+<li>内核把消息通过网络发送到远地内核</li>
+<li>远地内核把消息送到服务器存根</li>
+<li>服务器存根取出消息中参数后调用服务器过程</li>
+<li>服务器过程执行完后把结果返回至服务器存根</li>
+<li>服务器存根进程将它打包并激活内核程序</li>
+<li>服务器内核把消息通过网络发送至客户机内核</li>
+<li>客户内核把消息交给客户存根</li>
+<li>客户存根从消息中取出结果并返回给客户进程</li>
+<li>客户进程获得控制权并得到了过程调用的结果</li>
+</ol>
+<figure>
+<img src="/image/计算机操作系统/远程过程调用RPC.png" srcset="/img/loading.gif" lazyload
+alt="远程过程调用RPC" />
+<figcaption aria-hidden="true">远程过程调用RPC</figcaption>
+</figure>
 <h2 id="死锁">6.6 死锁</h2>
+<h3 id="死锁的产生">6.6.1 死锁的产生</h3>
+<ul>
+<li>进程推进顺序不当</li>
+<li>PV操作使用不当</li>
+<li>资源分配不当</li>
+<li>对临时性资源使用不加限制</li>
+</ul>
+<h4 id="死锁的定义">死锁的定义</h4>
+<p>一个进程集合中的每一个进程都在等待只能由该集合中的其他进程才能引发的事件。</p>
+<h4 id="系统形成死锁的四个必要条件">系统形成死锁的四个必要条件</h4>
+<ul>
+<li>互斥条件：系统中存在进程应互斥使用的临界资源</li>
+<li>占有和等待条件：进程请求资源不得到满足而等待时，不释放已占有的资源</li>
+<li>不剥夺条件：已被占有的资源只能被属主释放，不允许被其他进程剥夺</li>
+<li>循环等待条件：存在循环等待链，每个进程都在链中等待下一个进程所持有的资源</li>
+</ul>
+<h3 id="死锁的防止">6.6.2 死锁的防止</h3>
+<ul>
+<li>破坏互斥条件：使资源可同时访问而不是互斥使用</li>
+<li>破坏占有和等待条件：静态分配</li>
+<li>破坏不剥夺条件：剥夺式调度</li>
+<li>上述方法均导致资源利用率和吞吐率低</li>
+</ul>
+<h4 id="层次分配策略">层次分配策略</h4>
+<p>破坏占有和等待条件、循环等待条件。</p>
+<ul>
+<li>资源被分为多个层次</li>
+<li>当进程得到某一层的一个资源后，它只能再申请较高层次的资源</li>
+<li>当进程要释放某层的一个资源时，必须先释放占有的较高层次的资源</li>
+<li>当进程得到某一层的一个资源，并想申请该层的另一个资源，必须先释放该层中的已占资源</li>
+</ul>
+<p>变种：按序分配，资源排序，不得申请序数比占有资源序数小的资源。</p>
+<h3 id="死锁的避免">6.6.3 死锁的避免</h3>
+<h4 id="银行家算法">银行家算法</h4>
+<ul>
+<li>银行家拥有一笔周转资金</li>
+<li>客户要求分期贷款，如果客户能够得到各期贷款，就一定能够归还贷款，否则就一定不能归还贷款</li>
+<li>银行家应谨慎地贷款，防止出现坏账
+<ul>
+<li>操作系统——银行家</li>
+<li>资源——周转资金</li>
+<li>进程——客户</li>
+</ul></li>
+</ul>
+<p>银行家算法的数据结构：</p>
+<p>一个系统有n个进程和m种不同的资源，定义包含以下向量和矩阵的数据结构：</p>
+<ul>
+<li>系统每类资源总数：该m个元素的向量为系统中每类资源的数量
+<ul>
+<li><span
+class="math display">\[Resource=(R_1,R_2,...,R_m)\]</span></li>
+</ul></li>
+<li>每类资源未分配数量：该m个元素的向量为系统中每类资源尚可供分配数量
+<ul>
+<li><span
+class="math display">\[Available=(V_1,V_2,...,V_m)\]</span></li>
+</ul></li>
+<li>最大需求矩阵：每个进程对每类资源最大需求量，<span
+class="math display">\[C_{ij}\]</span>表示进程<span
+class="math display">\[P_i\]</span>需<span
+class="math display">\[R_j\]</span>类资源最大数
+<ul>
+<li><span class="math display">\[Claim=\begin{pmatrix}C_{11} &amp;
+C_{12} &amp; ... &amp; C_{1m} \\ C_{21} &amp; C_{22} &amp; ... &amp;
+C_{2m} \\ ... \\ C_{n1} &amp; C_{n2} &amp; ... &amp; C_{nm}
+\end{pmatrix}\]</span></li>
+</ul></li>
+<li>分配矩阵：进程当前分得资源数，<span
+class="math display">\[A_{ij}\]</span>表示进程<span
+class="math display">\[P_{i}\]</span>已分得<span
+class="math display">\[R_j\]</span>类资源个数
+<ul>
+<li><span class="math display">\[Allocation=\begin{pmatrix}A_{11} &amp;
+A_{12} &amp; ... &amp; A_{1m} \\ A_{21} &amp; A_{22} &amp; ... &amp;
+A_{2m} \\ ... \\ A_{n1} &amp; A_{n2} &amp; ... &amp; A_{nm}
+\end{pmatrix}\]</span></li>
+</ul></li>
+</ul>
+<p>确定成立的关系式：</p>
+<ul>
+<li><span class="math display">\[R_i=V_i+\sum A_{ki}\]</span>，对<span
+class="math display">\[i=1,...,m,k=i,...,n\]</span>
+<ul>
+<li>表示所有资源要么已被分配，要么尚可分配</li>
+</ul></li>
+<li><span class="math display">\[C_{ki} \leq R_i\]</span>，对<span
+class="math display">\[i=1,...,m,k=1,...,n\]</span>
+<ul>
+<li>表示进程申请资源数不能超过系统拥有的资源总数</li>
+</ul></li>
+<li><span class="math display">\[A_{ki} \leq C_{ki}\]</span>，对<span
+class="math display">\[i=1,...,m,k=1,...n\]</span>
+<ul>
+<li>表示进程申请任何类资源数不能超过声明的最大资源需求数</li>
+</ul></li>
+</ul>
+<p>一种死锁的避免策略：</p>
+<p>系统中若要启动一个新进程工作，其对资源<span
+class="math display">\[R_i\]</span>的需求仅当满足以下不等式：</p>
+<p><span class="math display">\[R_i \geq C_{(n+1)i} + \sum
+C_{ki}\]</span>，对<span
+class="math display">\[i=1,...,m,k=1,...n\]</span></p>
+<p>即应满足当前系统中所有进程对资源<span
+class="math display">\[R_i\]</span>的最大资源需求数加上启动的新进程的最大资源需求数不超过系统拥有的最大数。</p>
+<h5 id="系统安全性">系统安全性</h5>
+<p>系统在时刻<span
+class="math display">\[T_0\]</span>是安全的，仅当存在一个进程序列<span
+class="math display">\[P_1,...,P_n\]</span>，对进程<span
+class="math display">\[P_k\]</span>满足公式：</p>
+<p><span class="math display">\[C_{ki} - A_{ki} \leq V_i+\sum
+A_{ji}\]</span>，对<span
+class="math display">\[i=1,...,m,k=1,...n\]</span></p>
+<h5 id="银行家算法基本思想">银行家算法基本思想</h5>
+<ol type="1">
+<li>系统中的所有进程进入进程集合。</li>
+<li>在安全状态下系统收到进程的资源请求后，先把资源试探性分配给它。</li>
+<li>系统用剩下的可用资源和进程集合中其他进程还要的资源数作比较，在进程集合中找到剩余资源能满足最大需求量的进程，从而保证这个进程运行完毕并归还全部资源。</li>
+<li>把这个进程从集合中去掉, 系统的剩余资源更多了。反复执行上述步骤。
+<ul>
+<li>进程退出系统，资源回收</li>
+</ul></li>
+<li>最后，检查进程集合，若为空表明本次申请可行，系统处于安全状态,可实施本次分配；否则，有进程执行不完，系统处于不安全状态，本次资源分配暂不实施，让申请进程等待。</li>
+</ol>
+<h3 id="死锁的检测和解除">6.6.4 死锁的检测和解除</h3>
+<p>系统定时进行死锁的检测，如检测到，则解除它。</p>
+<h4 id="进程-资源分配图">进程-资源分配图</h4>
+<ul>
+<li><p>约定<span class="math display">\[P_i\rightarrow
+R_j\]</span>为请求边，表示进程<span
+class="math display">\[P_i\]</span>申请资源类<span
+class="math display">\[R_j\]</span>中的一个资源得不到满足而处于等待<span
+class="math display">\[R_j\]</span>类资源的状态，该有向边从进程开始指到方框的边缘，表示进程<span
+class="math display">\[P_i\]</span>申请<span
+class="math display">\[R_j\]</span>中的一个资源。</p></li>
+<li><p>约定<span class="math display">\[R_j \rightarrow
+P_i\]</span>为分配边，表示<span
+class="math display">\[R_j\]</span>类中的一个资源已被进程<span
+class="math display">\[P_i\]</span>占用。由于已把一个具体的资源分配给了进程<span
+class="math display">\[P_i\]</span>，故该有向边从方框内的某个黑圆点出发指向进程。</p></li>
+</ul>
 
                 
               </div>
