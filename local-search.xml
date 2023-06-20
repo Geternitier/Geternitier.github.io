@@ -4,19 +4,6 @@
   
   
   <entry>
-    <title></title>
-    <link href="/2023/06/19/SEII%E5%A4%8D%E4%B9%A0/"/>
-    <url>/2023/06/19/SEII%E5%A4%8D%E4%B9%A0/</url>
-    
-    <content type="html"><![CDATA[<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">title</span>: 软件工程与计算II-期末复习<br><span class="hljs-attribute">date</span>: <span class="hljs-number">2023</span>-<span class="hljs-number">6</span>-<span class="hljs-number">16</span> <span class="hljs-number">12</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span><br><span class="hljs-attribute">categories</span>: 复习<br></code></pre></td></tr></table></figure><h1 id="seii复习">SEII复习</h1><span id="more"></span><ul><li>软件需求工程</li><li>软件设计</li><li>软件构造</li><li>软件测试</li><li>软件交付</li><li>软件维护</li></ul><h2 id="包的原则">包的原则</h2><ul><li>重用发布等价原则（REP）</li><li>共同封闭原则（CCP）</li><li>共同重用原则（CRP）</li><li>无环依赖原则（ARP）</li><li>稳定依赖原则（SDP）</li><li>稳定抽象原则（SAP）</li></ul><h2 id="人机交互">人机交互</h2><h3 id="人机交互设计原则">人机交互设计原则</h3><ul><li><p>简洁</p></li><li><p>一致性</p></li><li><p>低出错</p></li><li><p>易记性</p></li><li><p>可视化</p></li><li><p>导航</p></li><li><p>反馈</p></li><li><p>差异性</p></li></ul><h2 id="耦合和内聚">耦合和内聚</h2><h3 id="耦合">耦合</h3><p>从高到低，越低越好，1、2、3不可接受</p><ol type="1"><li>内容耦合：一个模块直接修改另一个模块的内容</li><li>公共耦合：全局变量、文件、设备</li><li>重复耦合：重复代码</li><li>控制耦合：一个模块给其他模块传递控制信息</li><li>印记耦合：共享数据结构却只使用一部分</li><li>数据耦合：模块间传参只传需要的数据，最理想</li></ol><h3 id="内聚">内聚</h3><p>从高到低，越低越差，6、7不能接受</p><ol type="1"><li>信息内聚：模块进行许多操作，各自有各自的入又点，每个操作代码相对独立，而且所有操作都在相同的数据结构上进行</li><li>功能内聚：只执行一个操作或达到一个目的</li><li>通信内聚：对相同数据执行不同操作</li><li>过程内聚：含有不同步骤操作</li><li>时间内聚：具有时间相关性的相关操作</li><li>逻辑内聚：逻辑上相似但没有直接关联操作</li><li>偶然内聚：多个毫不相干的操作</li></ol><h2 id="设计原则">设计原则</h2><ol type="1"><li>全局变量有害</li><li>代码清晰可修改</li><li>避免重复</li><li>面向接口编程</li><li>迪米特法则：不能出现a.b.method()</li><li>接口隔离原则（接口最小化原则）</li><li>里氏替换原则：所有派生类都须可以替代其基类</li><li>组合代替继承</li><li>单一职责原则</li><li>最小化类和成员的可访问性</li><li>开放/封闭原则（OCP）：模块可扩展，不应修改（无switch、if/else）</li><li>依赖倒置原则（DIP）：高级模块不应依赖于低级，两者均应依赖抽象</li></ol><h2 id="设计模式">设计模式</h2><ul><li>策略模式</li><li>迭代器模式</li><li>抽象工厂模式</li><li>单件模式</li></ul><h2 id="代码设计">代码设计</h2><ul><li>单元测试用例的设计</li><li>契约式设计</li><li>防御式编程</li><li>表驱动</li></ul><h2 id="软件开发过程模型">软件开发过程模型</h2><ul><li>生命周期模型</li><li>构建-修复模型</li><li>瀑布模型</li><li>增量迭代模型</li><li>演化模型</li><li>原型模型</li><li>螺旋模型</li></ul>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>毛概-期末复习</title>
     <link href="/2023/06/15/%E6%AF%9B%E6%A6%82%20%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/"/>
     <url>/2023/06/15/%E6%AF%9B%E6%A6%82%20%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/</url>
@@ -141,6 +128,25 @@
     <categories>
       
       <category>计算机操作系统</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>软件工程与计算II复习</title>
+    <link href="/2023/04/30/SEII%E5%A4%8D%E4%B9%A0/"/>
+    <url>/2023/04/30/SEII%E5%A4%8D%E4%B9%A0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="seii复习">SEII复习</h1><span id="more"></span><ul><li>软件需求工程</li><li>软件设计</li><li>软件构造</li><li>软件测试</li><li>软件交付</li><li>软件维护</li></ul><h2 id="包的原则">包的原则</h2><ul><li>重用发布等价原则（REP）</li><li>共同封闭原则（CCP）</li><li>共同重用原则（CRP）</li><li>无环依赖原则（ARP）</li><li>稳定依赖原则（SDP）</li><li>稳定抽象原则（SAP）</li></ul><h2 id="人机交互">人机交互</h2><h3 id="人机交互设计原则">人机交互设计原则</h3><ul><li><p>简洁</p></li><li><p>一致性</p></li><li><p>低出错</p></li><li><p>易记性</p></li><li><p>可视化</p></li><li><p>导航</p></li><li><p>反馈</p></li><li><p>差异性</p></li></ul><h2 id="耦合和内聚">耦合和内聚</h2><h3 id="耦合">耦合</h3><p>从高到低，越低越好，1、2、3不可接受</p><ol type="1"><li>内容耦合：一个模块直接修改另一个模块的内容</li><li>公共耦合：全局变量、文件、设备</li><li>重复耦合：重复代码</li><li>控制耦合：一个模块给其他模块传递控制信息</li><li>印记耦合：共享数据结构却只使用一部分</li><li>数据耦合：模块间传参只传需要的数据，最理想</li></ol><h3 id="内聚">内聚</h3><p>从高到低，越低越差，6、7不能接受</p><ol type="1"><li>信息内聚：模块进行许多操作，各自有各自的入又点，每个操作代码相对独立，而且所有操作都在相同的数据结构上进行</li><li>功能内聚：只执行一个操作或达到一个目的</li><li>通信内聚：对相同数据执行不同操作</li><li>过程内聚：含有不同步骤操作</li><li>时间内聚：具有时间相关性的相关操作</li><li>逻辑内聚：逻辑上相似但没有直接关联操作</li><li>偶然内聚：多个毫不相干的操作</li></ol><h2 id="设计原则">设计原则</h2><ol type="1"><li>全局变量有害</li><li>代码清晰可修改</li><li>避免重复</li><li>面向接口编程</li><li>迪米特法则：不能出现a.b.method()</li><li>接口隔离原则（接口最小化原则）</li><li>里氏替换原则：所有派生类都须可以替代其基类</li><li>组合代替继承</li><li>单一职责原则</li><li>最小化类和成员的可访问性</li><li>开放/封闭原则（OCP）：模块可扩展，不应修改（无switch、if/else）</li><li>依赖倒置原则（DIP）：高级模块不应依赖于低级，两者均应依赖抽象</li></ol><h2 id="设计模式">设计模式</h2><ul><li>策略模式</li><li>迭代器模式</li><li>抽象工厂模式</li><li>单件模式</li></ul><h2 id="代码设计">代码设计</h2><ul><li>单元测试用例的设计</li><li>契约式设计</li><li>防御式编程</li><li>表驱动</li></ul><h2 id="软件开发过程模型">软件开发过程模型</h2><ul><li>生命周期模型</li><li>构建-修复模型</li><li>瀑布模型</li><li>增量迭代模型</li><li>演化模型</li><li>原型模型</li><li>螺旋模型</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>软件工程与计算2</category>
       
     </categories>
     
