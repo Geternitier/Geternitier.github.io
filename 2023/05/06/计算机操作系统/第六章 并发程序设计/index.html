@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://example.com/image/计算机操作系统/远程过程调用RPC.png">
 <meta property="og:image" content="http://example.com/image/计算机操作系统/死锁资源分配图示例.png">
 <meta property="article:published_time" content="2023-05-06T04:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-20T14:08:47.998Z">
+<meta property="article:modified_time" content="2023-06-20T14:19:50.511Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/image/计算机操作系统/远程过程调用RPC.png">
@@ -641,69 +641,67 @@ alt="远程过程调用RPC" />
 <ul>
 <li>系统每类资源总数：该m个元素的向量为系统中每类资源的数量
 <ul>
-<li><span
-class="math display">\[Resource=(R_1,R_2,...,R_m)\]</span></li>
+<li><span class="math inline">\(Resource=(R_1,R_2,...,R_m)\)</span></li>
 </ul></li>
 <li>每类资源未分配数量：该m个元素的向量为系统中每类资源尚可供分配数量
 <ul>
 <li><span
-class="math display">\[Available=(V_1,V_2,...,V_m)\]</span></li>
+class="math inline">\(Available=(V_1,V_2,...,V_m)\)</span></li>
 </ul></li>
 <li>最大需求矩阵：每个进程对每类资源最大需求量，<span
-class="math display">\[C_{ij}\]</span>表示进程<span
-class="math display">\[P_i\]</span>需<span
-class="math display">\[R_j\]</span>类资源最大数
+class="math inline">\(C_{ij}\)</span>表示进程<span
+class="math inline">\(P_i\)</span>需<span
+class="math inline">\(R_j\)</span>类资源最大数
 <ul>
-<li><span class="math display">\[Claim=\begin{pmatrix}C_{11} &amp;
-C_{12} &amp; ... &amp; C_{1m} \\ C_{21} &amp; C_{22} &amp; ... &amp;
-C_{2m} \\ ... \\ C_{n1} &amp; C_{n2} &amp; ... &amp; C_{nm}
-\end{pmatrix}\]</span></li>
+<li><span class="math inline">\(Claim=\begin{pmatrix}C_{11} &amp; C_{12}
+&amp; ... &amp; C_{1m} \\ C_{21} &amp; C_{22} &amp; ... &amp; C_{2m} \\
+... \\ C_{n1} &amp; C_{n2} &amp; ... &amp; C_{nm}
+\end{pmatrix}\)</span></li>
 </ul></li>
 <li>分配矩阵：进程当前分得资源数，<span
-class="math display">\[A_{ij}\]</span>表示进程<span
-class="math display">\[P_{i}\]</span>已分得<span
-class="math display">\[R_j\]</span>类资源个数
+class="math inline">\(A_{ij}\)</span>表示进程<span
+class="math inline">\(P_{i}\)</span>已分得<span
+class="math inline">\(R_j\)</span>类资源个数
 <ul>
-<li><span class="math display">\[Allocation=\begin{pmatrix}A_{11} &amp;
+<li><span class="math inline">\(Allocation=\begin{pmatrix}A_{11} &amp;
 A_{12} &amp; ... &amp; A_{1m} \\ A_{21} &amp; A_{22} &amp; ... &amp;
 A_{2m} \\ ... \\ A_{n1} &amp; A_{n2} &amp; ... &amp; A_{nm}
-\end{pmatrix}\]</span></li>
+\end{pmatrix}\)</span></li>
 </ul></li>
 </ul>
 <p>确定成立的关系式：</p>
 <ul>
-<li><span class="math display">\[R_i=V_i+\sum A_{ki}\]</span>，对<span
-class="math display">\[i=1,...,m,k=i,...,n\]</span>
+<li><span class="math inline">\(R_i=V_i+\sum A_{ki}\)</span>，对<span
+class="math inline">\(i=1,...,m,k=i,...,n\)</span>
 <ul>
 <li>表示所有资源要么已被分配，要么尚可分配</li>
 </ul></li>
-<li><span class="math display">\[C_{ki} \leq R_i\]</span>，对<span
-class="math display">\[i=1,...,m,k=1,...,n\]</span>
+<li><span class="math inline">\(C_{ki} \leq R_i\)</span>，对<span
+class="math inline">\(i=1,...,m,k=1,...,n\)</span>
 <ul>
 <li>表示进程申请资源数不能超过系统拥有的资源总数</li>
 </ul></li>
-<li><span class="math display">\[A_{ki} \leq C_{ki}\]</span>，对<span
-class="math display">\[i=1,...,m,k=1,...n\]</span>
+<li><span class="math inline">\(A_{ki} \leq C_{ki}\)</span>，对<span
+class="math inline">\(i=1,...,m,k=1,...n\)</span>
 <ul>
 <li>表示进程申请任何类资源数不能超过声明的最大资源需求数</li>
 </ul></li>
 </ul>
 <p>一种死锁的避免策略：</p>
 <p>系统中若要启动一个新进程工作，其对资源<span
-class="math display">\[R_i\]</span>的需求仅当满足以下不等式：</p>
-<p><span class="math display">\[R_i \geq C_{(n+1)i} + \sum
-C_{ki}\]</span>，对<span
-class="math display">\[i=1,...,m,k=1,...n\]</span></p>
+class="math inline">\(R_i\)</span>的需求仅当满足以下不等式：</p>
+<p><span class="math inline">\(R_i \geq C_{(n+1)i} + \sum
+C_{ki}\)</span>，对<span
+class="math inline">\(i=1,...,m,k=1,...n\)</span></p>
 <p>即应满足当前系统中所有进程对资源<span
-class="math display">\[R_i\]</span>的最大资源需求数加上启动的新进程的最大资源需求数不超过系统拥有的最大数。</p>
+class="math inline">\(R_i\)</span>的最大资源需求数加上启动的新进程的最大资源需求数不超过系统拥有的最大数。</p>
 <h5 id="系统安全性">系统安全性</h5>
 <p>系统在时刻<span
-class="math display">\[T_0\]</span>是安全的，仅当存在一个进程序列<span
-class="math display">\[P_1,...,P_n\]</span>，对进程<span
-class="math display">\[P_k\]</span>满足公式：</p>
-<p><span class="math display">\[C_{ki} - A_{ki} \leq V_i+\sum
-A_{ji}\]</span>，对<span
-class="math display">\[i=1,...,m,k=1,...n\]</span></p>
+class="math inline">\(T_0\)</span>是安全的，仅当存在一个进程序列<span
+class="math inline">\(P_1,...,P_n\)</span>，对进程<span
+class="math inline">\(P_k\)</span>满足公式：</p>
+<p><span class="math inline">\(C_{ki} - A_{ki} \leq V_i+\sum
+A_{ji}\)</span>，对i=1,...,m,k=1,...n$</p>
 <h5 id="银行家算法基本思想">银行家算法基本思想</h5>
 <ol type="1">
 <li>系统中的所有进程进入进程集合。</li>
@@ -719,18 +717,18 @@ class="math display">\[i=1,...,m,k=1,...n\]</span></p>
 <p>系统定时进行死锁的检测，如检测到，则解除它。</p>
 <h4 id="进程-资源分配图">进程-资源分配图</h4>
 <ul>
-<li><p>约定<span class="math display">\[P_i\rightarrow
-R_j\]</span>为请求边，表示进程<span
-class="math display">\[P_i\]</span>申请资源类<span
-class="math display">\[R_j\]</span>中的一个资源得不到满足而处于等待<span
-class="math display">\[R_j\]</span>类资源的状态，该有向边从进程开始指到方框的边缘，表示进程<span
-class="math display">\[P_i\]</span>申请<span
-class="math display">\[R_j\]</span>中的一个资源。</p></li>
-<li><p>约定<span class="math display">\[R_j \rightarrow
-P_i\]</span>为分配边，表示<span
-class="math display">\[R_j\]</span>类中的一个资源已被进程<span
-class="math display">\[P_i\]</span>占用。由于已把一个具体的资源分配给了进程<span
-class="math display">\[P_i\]</span>，故该有向边从方框内的某个黑圆点出发指向进程。</p></li>
+<li><p>约定<span class="math inline">\(P_i\rightarrow
+R_j\)</span>为请求边，表示进程<span
+class="math inline">\(P_i\)</span>申请资源类<span
+class="math inline">\(R_j\)</span>中的一个资源得不到满足而处于等待<span
+class="math inline">\(R_j\)</span>类资源的状态，该有向边从进程开始指到方框的边缘，表示进程<span
+class="math inline">\(P_i\)</span>申请<span
+class="math inline">\(R_j\)</span>中的一个资源。</p></li>
+<li><p>约定<span class="math inline">\(R_j \rightarrow
+P_i\)</span>为分配边，表示<span
+class="math inline">\(R_j\)</span>类中的一个资源已被进程<span
+class="math inline">\(P_i\)</span>占用。由于已把一个具体的资源分配给了进程<span
+class="math inline">\(P_i\)</span>，故该有向边从方框内的某个黑圆点出发指向进程。</p></li>
 </ul>
 <p>死锁资源分配图示例：</p>
 <figure>
