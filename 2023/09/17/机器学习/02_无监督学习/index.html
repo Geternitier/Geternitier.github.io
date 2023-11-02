@@ -18,19 +18,19 @@
   
     <meta name="description" content="两岸猿声啼不住，轻舟已过万重山。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习_01_概率与学习-KNN">
-<meta property="og:url" content="http://example.com/2023/09/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/01_%E6%A6%82%E7%8E%87%E4%B8%8E%E5%AD%A6%E4%B9%A0-KNN/index.html">
+<meta property="og:title" content="机器学习_02_无监督学习">
+<meta property="og:url" content="http://example.com/2023/09/17/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/02_%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Geternitier的博客">
 <meta property="og:description" content="两岸猿声啼不住，轻舟已过万重山。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-12T13:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-19T06:13:57.608Z">
+<meta property="article:published_time" content="2023-09-17T14:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-02T12:02:56.540Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>机器学习_01_概率与学习-KNN - Geternitier的博客</title>
+  <title>机器学习_02_无监督学习 - Geternitier的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -184,7 +184,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="机器学习_01_概率与学习-KNN"></span>
+            <span id="subtitle" data-typed-text="机器学习_02_无监督学习"></span>
           
         </div>
 
@@ -195,8 +195,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-12 21:00" pubdate>
-          2023年9月12日 晚上
+        <time datetime="2023-09-17 22:00" pubdate>
+          2023年9月17日 晚上
         </time>
       </span>
     
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          3.9k 字
         
       </span>
     
@@ -247,237 +247,283 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">机器学习_01_概率与学习-KNN</h1>
+            <h1 style="display: none">机器学习_02_无监督学习</h1>
             
             
               <div class="markdown-body">
                 
                 <p>两岸猿声啼不住，轻舟已过万重山。</p>
 <span id="more"></span>
-<h1 id="概率与学习-knn">概率与学习-KNN</h1>
+<h1 id="无监督学习">无监督学习</h1>
 <p>20230912</p>
-<p>18:30-20:10</p>
+<p>20:10-21:10</p>
+<p>20230917</p>
+<p>18:30-21:10</p>
+<p>聚类算法 Clustering Algorithm</p>
+<p>聚类的“好坏”不存在绝对标准。</p>
 <h2 id="大纲">大纲</h2>
+<ul>
+<li>相关概念</li>
+<li>距离度量</li>
+<li>聚类准则</li>
+<li>聚类方法</li>
+<li>聚类评价</li>
+</ul>
+<h2 id="相关概念">相关概念</h2>
+<p>聚类：数据对象的集合</p>
+<ul>
+<li>在同一个类里，数据对象是相似的</li>
+<li>不同类的数据对象是不相似的</li>
+</ul>
+<p>聚类算法：根据给定的相似性评判标准，将一个数据集合划分为几个聚类。</p>
+<ul>
+<li><p>数学形式化：</p>
+<p>样本集合：<span class="math inline">\(D=\{x_1,x_2,...,x_m\},x_i\in
+R^d\)</span></p>
+<p>聚类成k个簇：<span class="math inline">\(\{C_l|l=1,2,...,k
+\}\)</span></p></li>
+<li><p>好的聚类算法：聚类内部高相似，聚类之间低相似。</p></li>
+</ul>
+<p>聚类的依据：将整个数据集中每个样本的特征向量看成是分布在特征空间中的一些点，点与点之间的距离即可作为相似性度量依据。</p>
+<p>聚类方法目的：寻找数据中潜在的自然分组结构、感兴趣的关系。</p>
+<p>聚类方法的有效性和数据分布形式有很大关系。</p>
+<h2 id="距离度量">距离度量</h2>
+<p>目的：度量同类样本间的相似性或不同样本间的差异性</p>
+<h3 id="度量函数和度量空间">度量函数和度量空间</h3>
+<h3 id="常用度量函数">常用度量函数</h3>
+<p>闵可夫斯基距离</p>
+<h2 id="聚类准则">聚类准则</h2>
+<h3 id="类的定义">类的定义</h3>
+<h3 id="试探方法">试探方法</h3>
+<p>凭直观感觉或方法，针对实际问题定义一种距离度量的阈值，然后按最近邻规则制定某些样本属于一个聚类类别。</p>
+<h3 id="聚类准则函数方法">聚类准则函数方法</h3>
+<h2 id="聚类方法">聚类方法</h2>
+<ul>
+<li>基于试探的聚类搜索算法</li>
+<li>系统聚类法</li>
+<li>动态聚类法</li>
+</ul>
+<h3 id="基于试探的聚类搜索算法">基于试探的聚类搜索算法</h3>
+<h4 id="按最近邻规则的简单试探法">按最近邻规则的简单试探法</h4>
+<p>选用不同的阈值和起始点来试探。</p>
+<p>依赖于以下因素：</p>
+<ul>
+<li>第一个聚类中心的位置</li>
+<li>待分类样本的排序次序</li>
+<li>距离阈值T的大小</li>
+<li>样本分布的几何性质</li>
+</ul>
+<h4 id="最大最小距离算法">最大最小距离算法</h4>
+<p>基本思想：以试探类间欧式距离为最大作为预选出聚类中心的条件。</p>
 <ol type="1">
-<li>回顾</li>
-<li>k-近邻分类器</li>
-<li>最近邻分类器</li>
-<li>k-近邻回归</li>
-<li>降低近邻计算</li>
-<li>扩展阅读</li>
+<li>任选一个样本作为第一个聚类中心</li>
+<li>选距离其最远的样本为第二个聚类中心</li>
+<li>逐个计算各样本与两个聚类中心间距离，并选取其中较小值</li>
+<li>在所有较小值中选出最大距离，若该最大值达到一定阈值，则选取相应样本点为迪桑聚类中心</li>
+<li>重复3、4步，若无新聚类中心，进入下一步</li>
+<li>不同样本按最近距离分到最近的聚类中心</li>
+<li>最后，在每一类中计算各样本均值以得到更具代表性的聚类中心。</li>
 </ol>
-<h2 id="回顾">回顾</h2>
-<p>统计学角度：机器学习的目的是得到映射 <span
-class="math display">\[x\rightarrow y\]</span></p>
-<p>对不同类型的数据用手工/自动的方式进行特征工程，得到特征向量。</p>
-<p>分类问题</p>
+<h3 id="系统聚类法">系统聚类法</h3>
+<p>基本思想：</p>
+<p>将数据样本按距离准则逐步分类，类别有多到少，直到获得合适的分类要求为止。</p>
+<h4 id="距离准则函数">距离准则函数</h4>
 <ul>
-<li>训练集：<span
-class="math display">\[D_{train}=\{(x_1,y_1),(x_2,y_2),...,(x_n,y_n)
-\}\]</span></li>
-<li>训练样本：<span class="math display">\[x_i\in X\in R^d\]</span></li>
-<li>样本标签：<span class="math display">\[y_i\in
-Y=\{1,2,...,C\}\]</span></li>
-<li>测试集：<span
-class="math display">\[D_test=\{\bar{x}_1,\bar{x}_2...\bar{x}_m\}\]</span></li>
+<li>最短距离（两个集合所有距离最小值）</li>
+<li>最长距离（两个集合所有距离最大值）</li>
+<li>类平均距离（两个集合所有距离平均值）</li>
 </ul>
-<p>回归问题</p>
-<ul>
-<li>训练集：<span
-class="math display">\[D_{train}=\{(x_1,y_1),(x_2,y_2),...,(x_n,y_n)
-\}\]</span></li>
-<li>训练样本：<span class="math display">\[x_i\in X\in R^d\]</span></li>
-<li>样本标签：<span class="math display">\[y_i\in R\]</span></li>
-<li>测试集：<span
-class="math display">\[D_test=\{\bar{x}_1,\bar{x}_2...\bar{x}_m\}\]</span></li>
-</ul>
-<p>距离度量</p>
-<ul>
-<li>欧式距离</li>
-<li>余弦相似性</li>
-<li>曼哈顿距离</li>
-<li>切比雪夫距离</li>
-<li>马氏距离</li>
-</ul>
-<h2 id="k-近邻分类器">k-近邻分类器</h2>
-<p>k-Nearest Neighbor Classfier, k-NN</p>
-<ul>
-<li>计算测试样本<span class="math inline">\(\bar{x}\)</span>和<span
-class="math inline">\(D_{train}\)</span>中所有训练样本<span
-class="math inline">\(x_i\)</span>的距离<span
-class="math inline">\(d(\bar{x},x_i)\)</span></li>
-<li>对所有距离值（相似度值）进行升序/降序排列</li>
-<li>选择k个最近（距离最小/相似度最大）的训练样本</li>
-<li>采用投票法，将近邻中样本数最多的类别标签分配给<span
-class="math inline">\(\bar{x}\)</span></li>
-</ul>
-<p>k的取值的影响</p>
-<ul>
-<li>k一般取奇数值，避免平局</li>
-<li>k取不同的值，分类结果可能不同</li>
-<li>k值较小时，对噪声敏感，整体模型变得复杂，容易过拟合</li>
-<li>k值较大时，对噪声不敏感，整体模型变得简单，容易欠拟合</li>
-</ul>
-<h2 id="最近邻分类器">最近邻分类器</h2>
-<p>1-Nearest Neighbor Classfier, 1-NN</p>
-<ul>
-<li>计算测试样本<span class="math inline">\(\bar{x}\)</span>和<span
-class="math inline">\(D_{train}\)</span>中所有训练样本<span
-class="math inline">\(x_i\)</span>的距离<span
-class="math inline">\(d(\bar{x},x_i)\)</span></li>
-<li>对所有距离值（相似度值）进行升序/降序排列</li>
-<li>选择最近（距离最小/相似度最大）的训练样本<span
-class="math inline">\(i^*=argmax d(\bar{x},x_i)\)</span></li>
-<li>采用投票法，将<span
-class="math inline">\(x_{i^*}\)</span>的类别标签分配给<span
-class="math inline">\(\bar{x}\)</span></li>
-</ul>
-<p>泛化错误率</p>
-<ul>
-<li>最近邻分类器的泛化错误率（测试样本x，其最近邻为z）
-<ul>
-<li><span class="math inline">\(P(error)=1-\Sigma_{c\in
-y}P(c|x)P(c|z)\)</span></li>
-</ul></li>
-<li>贝叶斯最优分类器的结果：<span
-class="math inline">\(2\times(1-P(c^*|x))\)</span></li>
-</ul>
-<p>最近邻分类器虽然简单，但泛化错误率不超过贝叶斯分类器的两倍。</p>
-<h2 id="k-近邻回归">k-近邻回归</h2>
-<p>k-Nearest Neighbor Regression</p>
-<ul>
-<li>计算测试样本<span class="math inline">\(\bar{x}\)</span>和<span
-class="math inline">\(D_{train}\)</span>中所有训练样本<span
-class="math inline">\(x_i\)</span>的距离<span
-class="math inline">\(d(\bar{x},x_i)\)</span></li>
-<li>对所有距离值（相似度值）进行升序/降序排列</li>
-<li>选择k个最近（距离最小/相似度最大）的训练样本</li>
-<li>将距离值的倒数作为权重，将k个近邻的标签值加权平均，作为<span
-class="math inline">\(\bar{x}\)</span>的预测值</li>
-</ul>
-<p>近邻平滑：核平滑法（kernel smoother）</p>
-<ul>
-<li>二次核</li>
-<li>次方核</li>
-<li>高斯核</li>
-</ul>
-<h2 id="讨论">讨论</h2>
-<ul>
-<li><p>k-NN是典型的“懒惰学习”。</p>
-<p>训练阶段仅仅是把样本保存起来，训练时间开销为零，待收到测试样本后再进行处理。</p></li>
-<li><p>SVM、CNN等是“急切学习”。</p>
-<p>在训练阶段就对样本进行学习处理的方法，这类方法尝试在训练期间构造一个通用的与输入无关的目标函数。</p></li>
-</ul>
-<p>k-近邻分类器的优缺点</p>
-<ul>
-<li>优点
-<ul>
-<li>精度高</li>
-<li>对异常值不敏感</li>
-<li>无数据输入假定</li>
-</ul></li>
-<li>缺点
-<ul>
-<li>计算复杂度高</li>
-<li>空间复杂度高</li>
-</ul></li>
-</ul>
-<p>时间复杂度</p>
-<ul>
-<li>假设<span
-class="math inline">\(d(x_i,x_j)\)</span>是欧式距离，时间复杂度为<span
-class="math inline">\(O(d)\)</span></li>
-<li>训练阶段：0</li>
-<li>测试阶段：<span class="math inline">\(O(nd+nlogk)\)</span>
-<ul>
-<li>从n个数中选择k个最小的，时间复杂度为<span
-class="math inline">\(nlogk\)</span></li>
-</ul></li>
-<li>空间复杂度是？</li>
-</ul>
-<h2 id="降低计算">降低计算</h2>
-<ul>
-<li>特征维度2-5：维诺图</li>
-<li>特征维度6-30：KD-Tree</li>
-<li>特征高维：
-<ul>
-<li>降维算法，如主成分分析（Principle Component Analysis）PCA</li>
-<li>近似最近邻（approximate nearest neighbor, ANN）</li>
-<li>哈希（hashing）</li>
-</ul></li>
-</ul>
-<h3 id="维诺图">维诺图</h3>
-<p>根据一组给定的目标，将一个平面划分成靠近每一个目标的多个区块。</p>
-<ul>
-<li><p>维诺图由一系列维诺单元组成，每个维诺单元是一个凸多面体</p>
-<ul>
-<li><p>假设X是一个点集，包含K个基点<span
-class="math inline">\((P_k)_{k\in K}\)</span>，那么维诺单元<span
-class="math inline">\(R_k\)</span>定义为：</p>
-<p><span class="math inline">\(R_k=\{x\in X|d(x,P_k)\le d(x,P_j),\forall
-j\neq k\}\)</span></p></li>
-</ul></li>
-<li><p>查询或测试：给定一个查询<span class="math inline">\(q\in
-R^d\)</span>，找到<span class="math inline">\(P_k\in
-X\)</span>，使得<span class="math inline">\(q\in R_k\)</span></p></li>
-<li><p>时间复杂度：</p>
-<ul>
-<li>2维数据：<span
-class="math inline">\(O(nlogn)\)</span>用来计算维诺图；</li>
-<li>d维数据：使用二叉空间分割树进行点的定位，但是时间估计困难，难以量化</li>
-</ul></li>
-<li><p>适用范围：1-NN</p></li>
-<li><p>适合特征维度：2～3维，可能4～5维</p></li>
-</ul>
-<h3 id="kd树">KD树</h3>
-<p>KD树是一种对K维空间中的实例点进行存储以便对其进行快速检索的树形数据结构。</p>
-<p>KD树是二叉树，表示对K维空间的一个划分，构造KD树相当于不断用垂直于坐标轴的超平面将K维空间切分，构成一系列K维超矩形区域。KD树的每个结点对应于一个K维超矩形区域。</p>
-<p>构造流程：</p>
+<h3 id="动态聚类法">动态聚类法</h3>
+<p>基本思想：</p>
+<p>首先选择若干个样本点作为聚类中心，再按某种聚类准则使样本点向各中心聚集，从而得到初始聚类；然后判断初始分类是否合理，若不合理，则修改聚类，如此反复，直至合理。</p>
+<p>代表算法：K-means算法和ISODATA算法（迭代自组织数据分析算法）</p>
+<h4 id="k-means算法">K-means算法</h4>
 <ol type="1">
-<li>确定split域。计算每个特征维度的方差，选定方差最大维度为split域。</li>
-<li>确定Node-data域。</li>
-<li>对剩下的数据点进行划分，确定左右子空间。</li>
-<li>递归。在每个子空间继续进行空间划分，直到空间中只包含一个数据点。</li>
+<li>选择一个聚类数量k</li>
+<li>初始化聚类中心
+<ul>
+<li>随机选择k个样本点，设置这些样本点为中心</li>
+</ul></li>
+<li>对每个样本点，计算样本点到k个聚类中心的距离，将样本点分距离它最近的聚类中心所属的聚类</li>
+<li>重新计算聚类中心，聚类中心为属于这一聚类的所有样本的均值</li>
+<li>如果没有发生样本所属的聚类改变的情况则退出，否则，返回第三步重复</li>
 </ol>
-<p>KD树搜索</p>
+<p>K-means算法的结果影响因素：</p>
+<ul>
+<li>所选聚类数目</li>
+<li>聚类中心的初始分布</li>
+<li>样本分布的几何性质</li>
+</ul>
+<p>在实际应用中，需要试探不同的K值和选择不同的聚类中心的起始值。</p>
+<p>如果数据样本可以形成若干个相距较远的孤立区域分布，一般都能得到较好的收敛效果。</p>
+<ul>
+<li>K-means算法比较适合于分类数目已知的情况。</li>
+</ul>
+<h5 id="k-means">K-means++</h5>
+<p>基本思想：K个初始聚类中心相互之间应该分得越开越好</p>
 <ol type="1">
-<li>二叉搜索</li>
-<li>回溯分析</li>
-<li>返回最近邻</li>
+<li>从数据集中随机选取一个样本作为初始聚类中心</li>
+<li>首先计算每个样本与当前已有聚类中心之间的最短距离（即与最近的一个聚类中心的距离），用D(x)表示；接着计算每个样本被选为下一个聚类中心的概率<span
+class="math inline">\(\frac{D(x)^2}{\Sigma_{x\in
+X}D(x)^2}\)</span>，最后，按轮盘法选择下一个聚类中心</li>
+<li>重复第2步选择出共K个聚类中心</li>
+<li>K-means中第3步至第5步</li>
 </ol>
-<p>时间复杂度</p>
+<h4 id="迭代自组织数据分析算法-isodata">迭代自组织数据分析算法
+ISODATA</h4>
+<p>基本步骤与思路：</p>
+<ol type="1">
+<li>选择某些初始值，可选不同的参数，也可在迭代过程中人为修改，以将N个样本按指标分配到各个聚类中心去</li>
+<li>计算各类中诸样本的距离指标函数</li>
+<li>按给定的要求，将前一次获得的聚类集合进行分裂和合并处理，从而获得新的聚类中心</li>
+<li>重新进行迭代运算，计算各项指标，判断聚类结果是否符合要求。经过多次迭代后，若结果收敛，则运算结束。</li>
+</ol>
+<p>具体过程（运行中能够根据各个类别的实际情况进行分裂和合并来调整聚类中心数）：</p>
+<ol type="1">
+<li>从数据集中随机选取<span
+class="math inline">\(K_0\)</span>个样本作为聚类中心<span
+class="math inline">\(C=\{c_1,...,c_{K_0}\}\)</span></li>
+<li>针对数据集中每个样本<span
+class="math inline">\(x_i\)</span>，计算它到<span
+class="math inline">\(K_0\)</span>个聚类中心的距离并将其分到距离最小的聚类中心所对应的类中</li>
+<li>判断上述每个类中的元素数目是否小于<span
+class="math inline">\(N_{min}\)</span>。如果小于<span
+class="math inline">\(N_{min}\)</span>则需要丢弃该类，令<span
+class="math inline">\(K=K-1\)</span>，并将该类中的样本重新分配给剩下类中距离最小的类</li>
+<li>针对每个类别<span
+class="math inline">\(c_i\)</span>，重新计算它的聚类中心$c_i=_{xc_i}x</li>
+<li>如果当前<span
+class="math inline">\(K\le\frac{K_0}{2}\)</span>，说明当前类别太少，前往分裂</li>
+<li>如果当前<span class="math inline">\(K\ge
+2K_0\)</span>，说明当前类别太多，前往合并</li>
+<li>如果达到最大迭代次数则终止，否则返回第2步继续执行</li>
+</ol>
+<p>合并</p>
+<ol type="1">
+<li><p>计算当前所有类别聚类中心两两之间的距离，用矩阵D表示，其中<span
+class="math inline">\(D(i,i)=0\)</span></p></li>
+<li><p>对于<span class="math inline">\(D(i,j)\lt d_{min}(i\neq
+j)\)</span>的两个类别需要进行合并操作，变成一个新的类，该类的聚类中心位置为<span
+class="math inline">\(m_{new}=\frac{1}{n_i+n_j}(n_im_i+n_jm_j)\)</span></p>
+<p>上述<span class="math inline">\(n_i\)</span>和<span
+class="math inline">\(n_j\)</span>表示这两个类别中样本的个数，新的聚类中心可以看作对这两个类别进行加权求和。如果其中一个类所包含的样本个数较多，所合成的新类就会更加偏向它。</p></li>
+</ol>
 <ul>
-<li><p>寻找最近邻的时间复杂度为<span
-class="math inline">\(O(logn)\)</span></p></li>
-<li><p>找到中位数的算法时间复杂度为<span
-class="math inline">\(O(n)\)</span></p></li>
-<li><p>KD树搜索时间复杂度为<span
-class="math inline">\(O(nlogn)\)</span></p></li>
+<li><span
+class="math inline">\(d_{min}\)</span>：两个类别对应聚类中心之间所允许最小距<span
+class="math inline">\(d_{min}\)</span>，是否进行合并的阈值</li>
 </ul>
-<h3 id="降维">降维</h3>
-<p>核心思想：通过某种数学变换将原始高维属性空间转变为一个低维子空间，来缓解维数灾难问题。</p>
+<p>分裂</p>
+<ol type="1">
+<li><p>计算每个类别下所有样本在每个维度下的方差</p></li>
+<li><p>针对每个类别的所有方差挑选出最大的方差<span
+class="math inline">\(\sigma_{max}\)</span></p></li>
+<li><p>如果某个类别的<span class="math inline">\(\sigma_{max}\gt
+Sigma\)</span>并且该类别所包含的样本数量<span
+class="math inline">\(n_i\ge
+2n_{min}\)</span>，则可以进行分裂操作4，否则退出</p></li>
+<li><p>将满足步骤3中的类分裂成两个子类别并令<span
+class="math inline">\(K=K+1\)</span></p>
+<p><span
+class="math inline">\(m_i^{(+)}=m_i+\sigma_{max},m_i^{-}=m_i-\sigma_{max}\)</span></p></li>
+</ol>
 <ul>
-<li>多维缩放</li>
-<li>主成分分析</li>
-<li>局部线性潜入</li>
-<li>ISOMAP</li>
+<li>最大方差Sigma</li>
 </ul>
-<h3 id="近似最近邻">近似最近邻</h3>
-<p>核心思想：搜索可能是最近邻的数据项而不再只限于返回最可能的数据项，在牺牲可接受范围内的精度的情况下提高检索效率。</p>
+<h4 id="两个算法的比较">两个算法的比较</h4>
 <ul>
-<li>不要求一定是距离最短的k个</li>
-<li>如第k个最近邻，其距离为<span
-class="math inline">\(d_k\)</span>，则ANN要求其选取的所有k个样例的距离<span
-class="math inline">\(\hat{d}\le(1+\varepsilon)d_k\)</span></li>
-<li>可以将k-NN搜索速度提高几个数量级</li>
+<li>K-means算法通常适合于类别数目已知的聚类，而ISODATA算法则更加灵活</li>
+<li>从算法角度看，两者相似，聚类中心都是通过样本均值的迭代计算决定</li>
+<li>ISODATA算法加入了一些试探步骤，并且可以结合人机交互的结构，使其能利用中间结果所取得的经验更好地进行分类</li>
+<li>ISODATA原理直观，但需要更多参数，并且某些参数很难确定，因此ISODATA算法实际过程中并没有很受欢迎</li>
 </ul>
-<p>FLANN：https://github.com/mariusmuja/flann</p>
-<h3 id="哈希">哈希</h3>
-<p>核心思想：利用哈希函数把任意长度的输入映射为固定长度的输出</p>
-<h2 id="扩展阅读">扩展阅读</h2>
-<h3 id="概率化k-nn">概率化k-NN</h3>
-<p>通过定义似然函数来构造概率化的k-NN。</p>
-<p>https://www.cc.gatech.edu/~afb/classes/CS7616-Spring2014/slides/CS7616-13a-PKNN.pdf</p>
+<h2 id="聚类评价">聚类评价</h2>
+<p>几个评价指标：</p>
+<ul>
+<li>聚类中心之间的距离</li>
+<li>聚类域中的样本数目</li>
+<li>聚类域内样本的距离方差</li>
+</ul>
+<p>聚类目前还没有一种通用的准则，往往需要根据实际应用来选择合适的方法。</p>
+<h3 id="常用评价指标标签未知">常用评价指标（标签未知）</h3>
+<h4 id="紧密度compactnesscp">紧密度（Compactness，CP）</h4>
+<p><span
+class="math inline">\(\overline{CP}=\frac{1}{K}\Sigma_{k=1}^K\overline{CP_k}\)</span></p>
+<p>缺点：没有考虑类间聚类效果。</p>
+<h4 id="间隔度separationsp">间隔度（Separation，SP）</h4>
+<p><span
+class="math inline">\(\overline{SP}=\frac{2}{k^2-k}\Sigma_{i=1}^k\Sigma_{j=i+1}^k||w_i-w_j||_2\)</span></p>
+<p><span class="math inline">\(w_i\)</span>表示第i簇的中心，<span
+class="math inline">\(w_j\)</span>表示第j簇的中心，<span
+class="math inline">\(\overline{SP}\)</span>值越大类间越分散。</p>
+<p>缺点：没有考虑类内聚类效果</p>
+<h4 id="davies-bouldin-indexdbi分类适确性指标">Davies-Bouldin
+Index(DBI)，分类适确性指标</h4>
+<p><span class="math inline">\(DB=\frac{1}{k}\Sigma_{i=1}^kmax_{j\neq
+i}(\frac{\overline{C_i}+\overline{C_j}}{||w_i-w_j||_2})\)</span></p>
+<p><span
+class="math inline">\(\overline{C_i}\)</span>表示第i簇的紧密度，<span
+class="math inline">\(w_i\)</span>表示第i簇的中心。</p>
+<p>DB越小，表示类内越紧凑，类间越分散，</p>
+<p>缺点：使用欧式距离，对于环状分布聚类评价很差</p>
+<h4 id="dunn-validity-indexdvi邓恩指数">Dunn Validity
+Index(DVI)，邓恩指数</h4>
+<p>缺点：对离散点的聚类评价高，对环状分布评价效果差</p>
+<h3 id="常用评价指标标签已知">常用评价指标（标签已知）</h3>
+<ul>
+<li>Cluster Accuracy，CA，聚类准确率</li>
+<li>Rand Index，RI，兰德指数</li>
+<li>Adjusted Rand Index，ARI，调整兰德指数</li>
+<li>Mutual Information，MI，互信息</li>
+<li>Normalized Mutual Information，NMI，归一化互信息</li>
+</ul>
+<h2 id="前沿进展">前沿进展</h2>
+<p>监督深度学习：</p>
+<ol type="1">
+<li>收集大量具有差异性的样本</li>
+<li>对数据进行清洗和精细标注</li>
+<li>采用多块显卡长时间训练</li>
+</ol>
+<p>监督深度学习的困境：</p>
+<ul>
+<li>数据体量大</li>
+<li>数据标注时间长</li>
+<li>数据标注代价高</li>
+</ul>
+<p>现实中，获取原始未标注数据较容易，而典型的监督学习技术不能利用这些数据；</p>
+<p>监督信号有时候会使得深度模型有偏。</p>
+<h3 id="自监督学习">自监督学习</h3>
+<p>无监督学习的一种形式，其中数据没有提供（人类标注的）监督信息。</p>
+<ul>
+<li>通常需要定义一个前置任务让网络学习我们关心的事情。</li>
+<li>对于大部分前置任务，我们需要保留一部分数据，让网络学会预测。</li>
+<li>从前置任务学习到的特征会被用到不同的下游任务（通常包含标注）</li>
+</ul>
+<p>自监督预训练：</p>
+<ul>
+<li>无标注数据</li>
+<li>前置任务预训练</li>
+</ul>
+<p>下游任务迁移：</p>
+<ul>
+<li>有标签数据</li>
+<li>训练测试数据集可不同</li>
+<li>多种下游任务测试</li>
+</ul>
+<h4 id="自监督学习分类">自监督学习分类</h4>
+<ul>
+<li>前置任务学习</li>
+<li>对比学习</li>
+<li>非对比学习</li>
+</ul>
+<h4 id="前置任务学习">前置任务学习</h4>
+<ul>
+<li><p>生成式方法——图像着色</p></li>
+<li><p>生成式方法——图像修复</p></li>
+<li><p>判别式方法——图像拼图</p></li>
+</ul>
+<h4 id="对比学习">对比学习</h4>
+<h4 id="非对比学习">非对比学习</h4>
 
                 
               </div>
@@ -518,9 +564,9 @@ class="math inline">\(\hat{d}\le(1+\varepsilon)d_k\)</span></li>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/17/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/02_%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" title="机器学习_02_无监督学习">
+                      <a href="/2023/10/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/03_%E6%A0%91%E5%AD%A6%E4%B9%A0/" title="机器学习_03_树学习">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">机器学习_02_无监督学习</span>
+                        <span class="hidden-mobile">机器学习_03_树学习</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -528,8 +574,8 @@ class="math inline">\(\hat{d}\le(1+\varepsilon)d_k\)</span></li>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/06/15/%E5%A4%8D%E4%B9%A0/%E6%AF%9B%E6%A6%82%20%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="毛概-期末复习">
-                        <span class="hidden-mobile">毛概-期末复习</span>
+                      <a href="/2023/09/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/01_%E6%A6%82%E7%8E%87%E4%B8%8E%E5%AD%A6%E4%B9%A0-KNN/" title="机器学习_01_概率与学习-KNN">
+                        <span class="hidden-mobile">机器学习_01_概率与学习-KNN</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
