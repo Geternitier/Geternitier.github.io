@@ -18,19 +18,23 @@
   
     <meta name="description" content="眼花耳热后，意气素霓生。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="嵌入式_1_引言">
-<meta property="og:url" content="http://example.com/2023/09/01/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/1_%E5%BC%95%E8%A8%80/index.html">
+<meta property="og:title" content="嵌入式_2_设计方法">
+<meta property="og:url" content="http://example.com/2023/09/02/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/2_%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Geternitier的博客">
 <meta property="og:description" content="眼花耳热后，意气素霓生。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-01T04:00:00.000Z">
-<meta property="article:modified_time" content="2023-11-09T12:27:15.525Z">
+<meta property="og:image" content="http://example.com/image/嵌入式系统概论/简化的设计流.png">
+<meta property="og:image" content="http://example.com/image/嵌入式系统概论/基本流程.png">
+<meta property="og:image" content="http://example.com/image/嵌入式系统概论/V模型.png">
+<meta property="article:published_time" content="2023-09-02T04:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-09T12:32:03.085Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/image/嵌入式系统概论/简化的设计流.png">
   
   
   
-  <title>嵌入式_1_引言 - Geternitier的博客</title>
+  <title>嵌入式_2_设计方法 - Geternitier的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -184,7 +188,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="嵌入式_1_引言"></span>
+            <span id="subtitle" data-typed-text="嵌入式_2_设计方法"></span>
           
         </div>
 
@@ -195,8 +199,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-01 12:00" pubdate>
-          2023年9月1日 中午
+        <time datetime="2023-09-02 12:00" pubdate>
+          2023年9月2日 中午
         </time>
       </span>
     
@@ -207,7 +211,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          1k 字
         
       </span>
     
@@ -247,91 +251,163 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">嵌入式_1_引言</h1>
+            <h1 style="display: none">嵌入式_2_设计方法</h1>
             
             
               <div class="markdown-body">
                 
                 <p>眼花耳热后，意气素霓生。</p>
 <span id="more"></span>
-<h1 id="第一章-引言">第一章 引言</h1>
-<h3 id="几个术语">几个术语</h3>
+<h1 id="第二章-嵌入式系统设计方法">第二章 嵌入式系统设计方法</h1>
+<h2 id="嵌入式系统设计面临的挑战">1. 嵌入式系统设计面临的挑战</h2>
 <ul>
-<li><p>泛在计算：任何时间、任何地点的计算</p></li>
-<li><p>不可见计算机：计算机被集成到物件中</p></li>
-<li><p>普适计算：计算设备对日常生活的渗透</p></li>
-<li><p>环境智能：生活环境中的计算机技术</p></li>
+<li>硬件需求</li>
+<li>多项功能在时间上的协调一致性、时限要求</li>
+<li>系统功耗</li>
+<li>系统可升级性</li>
+<li>系统可靠性</li>
 </ul>
-<h2 id="嵌入式系统的定义">1. 嵌入式系统的定义</h2>
-<h3 id="嵌入式系统">嵌入式系统</h3>
-<p>以应用为中心，以计算机技术为基础，软硬件可裁减，适用于应用系统对功能、可靠性、成本、体积、功耗有严格要求的专用计算机系统。</p>
+<h3 id="设计者要求">设计者要求</h3>
 <ul>
-<li><p>嵌入式系统（Emedded System）实际上是嵌入式计算机系统。</p></li>
-<li><p>嵌入式系统就是一个具有特定功能或用途的隐藏在设备中的计算机软硬件集合体。</p></li>
-<li><p>嵌入式系统三要素</p>
+<li>懂得系统架构</li>
+<li>了解硬件细节</li>
+<li>软件设计满足
 <ul>
-<li>嵌入性：嵌入到对象体系中，有对象环境要求</li>
-<li>专用性：软硬件按对象要求设计、裁减</li>
-<li>计算机：实现对象的智能化功能</li>
+<li>实时要求</li>
+<li>低功耗</li>
+<li>代码量小</li>
+</ul></li>
+<li>了解领域知识</li>
+</ul>
+<h3 id="设计目标">设计目标</h3>
+<ul>
+<li>成本</li>
+<li>性能</li>
+<li>功耗</li>
+<li>尺寸</li>
+<li>可伸缩性和可重用性</li>
+<li>容错</li>
+<li>……</li>
+</ul>
+<h2 id="嵌入式系统的设计过程">2. 嵌入式系统的设计过程</h2>
+<ul>
+<li><p>问题：功能、性能要求、价格、开发周期等约束</p></li>
+<li><p>设计：选择、折衷、分析比较、计算、评价</p></li>
+</ul>
+<h3 id="简化的设计流">简化的设计流</h3>
+<figure>
+<img src="/image/嵌入式系统概论/简化的设计流.png" srcset="/img/loading.gif" lazyload alt="简化的设计流" />
+<figcaption aria-hidden="true">简化的设计流</figcaption>
+</figure>
+<h3
+id="嵌入式系统的设计过程的基本流程">嵌入式系统的设计过程的基本流程</h3>
+<figure>
+<img src="/image/嵌入式系统概论/基本流程.png" srcset="/img/loading.gif" lazyload alt="基本流程" />
+<figcaption aria-hidden="true">基本流程</figcaption>
+</figure>
+<h3 id="v模型的设计流">V模型的设计流</h3>
+<figure>
+<img src="/image/嵌入式系统概论/V模型.png" srcset="/img/loading.gif" lazyload alt="V模型" />
+<figcaption aria-hidden="true">V模型</figcaption>
+</figure>
+<h2 id="嵌入式系统设计方法学">3. 嵌入式系统设计方法学</h2>
+<h3 id="体系结构设计">体系结构设计</h3>
+<ul>
+<li>满足规格说明的主要组件
+<ul>
+<li>硬件：中央处理器、外围设备等</li>
+<li>软件：必要的程序及其运行</li>
+</ul></li>
+<li>功能性和非功能性需求</li>
+</ul>
+<h4 id="硬件和软件组件设计">硬件和软件组件设计</h4>
+<ul>
+<li>开始编码前，必须花时间构建系统</li>
+<li>有些组件是现成的，可以根据现有设计进行修改，还有一些必须从头开始设计</li>
+</ul>
+<h4 id="软硬件的划分">软硬件的划分</h4>
+<p>嵌入式系统的设计涉及硬件与软件部件，设计中必须决定什么功能由硬件实现，什么功能由软件实现。</p>
+<ul>
+<li>硬件和软件具有双重性，这是划分决策的前提</li>
+<li>软硬件变动对系统决策有影响</li>
+<li>划分选择需考虑多种因素</li>
+</ul>
+<h5 id="通常由软件实现的部分">通常由软件实现的部分</h5>
+<ul>
+<li>操作系统功能
+<ul>
+<li>任务调度</li>
+<li>资源管理</li>
+<li>设备驱动</li>
+</ul></li>
+<li>协议栈
+<ul>
+<li>TCP/IP</li>
+</ul></li>
+<li>应用软件框架</li>
+<li>除了基本系统、物理接口、基本逻辑电路，许多由硬件实现的功能都可以由软件实现</li>
+</ul>
+<h5 id="双重性部分">双重性部分</h5>
+<ul>
+<li>算法
+<ul>
+<li>加密/解密</li>
+<li>编码/解码</li>
+<li>压缩/解压</li>
+<li>等等</li>
+</ul></li>
+<li>数学运算
+<ul>
+<li>浮点运算、FFT、等等</li>
 </ul></li>
 </ul>
-<h3 id="信息物理系统">信息物理系统</h3>
-<p>Cyber-Physical System（CPS），是计算进程和物理进程的集成。</p>
+<h4 id="软硬件技术对系统结构影响">软硬件技术对系统结构影响</h4>
 <ul>
-<li><p>强调嵌入式系统和物理学的深度融合</p></li>
-<li><p>深度融合了各类信息技术：传感器、嵌入式计算、云计算、网络通信</p>
-<p>使各种信息化能力高度协同和自治</p></li>
-<li><p>信息化能力：</p>
-<p>3C：计算-Computer、通信-Communication、控制-Control</p></li>
-</ul>
-<h3 id="无线感知网络">无线感知网络</h3>
-<p>Wireless sensor
-network/WSN，是由许多在空间中分布的自动装置组成的一种无线通信计算机网络，这些装置使用传感器协作地监控不同位置的物理或环境状况。</p>
-<h3 id="物联网">物联网</h3>
-<p>Internet of
-Things（IoT），通过射频识别（RFID），红外感应器，全球定位系统、激光扫描器等信息传感设备，按约定的协议，把任何物品与互联网相连接，进行信息交换和通信，以实现智能化识别、定位、跟踪、监控和管理的一种网络概念。</p>
+<li>硬软件设计的趋势——融合、渗透
 <ul>
-<li>面向生产的物联网技术开发被称为“工业4.0”。</li>
-</ul>
-<h3 id="发展历程">发展历程</h3>
-<p>1960-1970：出现和兴起</p>
-<p>1971-1989：走向繁荣，软硬件日益完善</p>
-<p>1990-现在：走向纵深</p>
-<h2 id="嵌入式系统的组成">2. 嵌入式系统的组成</h2>
-<p>嵌入式系统一般由嵌入式硬件和软件组成：应用软件+中间件+运行内核+驱动+系统硬件</p>
+<li>硬件设计的软件化：VHDL、Verilog、HANDEL-C</li>
+<li>软件实现的硬件化：各种算法的ASIC</li>
+</ul></li>
+<li>对系统设计的影响——协同设计
 <ul>
-<li>硬件以微处理器为核心，集成存储器和系统专用的输入/输出设备</li>
-<li>软件包括初始化代码及驱动、嵌入式操作系统和应用程序等</li>
+<li>增加灵活性</li>
+<li>增加了风险</li>
+</ul></li>
 </ul>
-<h2 id="嵌入式系统的特点">3. 嵌入式系统的特点</h2>
-<p>形式多样、面向特定应用</p>
-<p>得到多种类型的处理器和处理器体系结构的支持</p>
-<p>通常及其关注成本</p>
-<p>实时性、可靠性</p>
-<p>一般使用适应多种处理器、可剪裁、轻量型、实时可靠、可固化的嵌入式操作系统</p>
-<p>需要专门工具和特殊方法进行开发</p>
-<h2 id="嵌入式系统的分类">4. 嵌入式系统的分类</h2>
-<p>处理器位数：8位、16位、32位、64位</p>
-<p>应用：移动互联网、工业控制、可穿戴设备等</p>
-<p>速度：</p>
+<h3 id="嵌入式系统设计方法的演变">嵌入式系统设计方法的演变</h3>
+<ol type="1">
+<li>以PCB、CAD和在线仿真器为主要工具</li>
+<li>EDA和EOS为开发平台</li>
+<li>以IP内核库为设计基础，用软硬件协同设计技术的系统级设计方法</li>
+</ol>
+<h4 id="传统嵌入式系统设计过程">传统嵌入式系统设计过程</h4>
 <ul>
-<li>强实时系统：响应时间毫秒或微秒级</li>
-<li>一般实时系统：几秒级</li>
-<li>弱实时系统：数十秒或更长</li>
+<li>系统在一开始就被划分为软件和硬件两大部分</li>
+<li>软件和硬件独立进行开发设计</li>
+<li>硬件优先</li>
 </ul>
-<p>确定性：</p>
+<p>问题：</p>
 <ul>
-<li>硬实时系统：对系统响应时间有严格要求</li>
-<li>软实时系统：系统响应时间不满足，不会导致系统出现致命错误或崩溃</li>
+<li>软硬件间交互受很大限制
+<ul>
+<li>凭经验划分软硬件</li>
+<li>软硬件之间的相互性能影响很难评估</li>
+</ul></li>
+<li>系统集成相对滞后，NRE较大</li>
 </ul>
-<p>软件复杂程度：循环轮询、有限状态机、前后台、单/多处理器多任务系统</p>
-<h2 id="嵌入式系统的发展趋势">5. 嵌入式系统的发展趋势</h2>
-<p>嵌入式人工智能</p>
-<p>嵌入式安全性</p>
-<p>高计算需求和复杂性</p>
-<p>软硬件协同设计</p>
-<p>更高集成度</p>
-<p>云计算</p>
+<p>导致：</p>
+<ul>
+<li>设计质量差</li>
+<li>设计修改难</li>
+<li>研制周期不能有效保障</li>
+</ul>
+<h4 id="软硬件协同设计hwsw-co-design">软硬件协同设计HW/SW Co-design</h4>
+<p>协同设计是指通过并行设计利用硬件和软件的协同作用来实现系统级目标。</p>
+<p>协同设计试图通过提供分析方法来增加嵌入式系统设计的可预测性，
+这些分析方法告诉设计师一个系统是否满足其性能、功率和尺寸目标，并提供综合方法让设计师快速评估许多潜在的设计方法。</p>
+<ul>
+<li>它从90年代早期的一个新兴的学科变成了如今的主流技术。</li>
+</ul>
 
                 
               </div>
@@ -372,9 +448,9 @@ Things（IoT），通过射频识别（RFID），红外感应器，全球定位�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/02/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/2_%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/" title="嵌入式_2_设计方法">
+                      <a href="/2023/09/03/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/3_%E5%BE%AE%E5%A4%84%E7%90%86%E5%99%A8/" title="嵌入式_3_微处理器">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">嵌入式_2_设计方法</span>
+                        <span class="hidden-mobile">嵌入式_3_微处理器</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -382,8 +458,8 @@ Things（IoT），通过射频识别（RFID），红外感应器，全球定位�
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/06/15/%E5%A4%8D%E4%B9%A0/%E6%AF%9B%E6%A6%82%20%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="毛概-期末复习">
-                        <span class="hidden-mobile">毛概-期末复习</span>
+                      <a href="/2023/09/01/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/1_%E5%BC%95%E8%A8%80/" title="嵌入式_1_引言">
+                        <span class="hidden-mobile">嵌入式_1_引言</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

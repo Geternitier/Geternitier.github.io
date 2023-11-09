@@ -18,19 +18,21 @@
   
     <meta name="description" content="眼花耳热后，意气素霓生。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="嵌入式_1_引言">
-<meta property="og:url" content="http://example.com/2023/09/01/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/1_%E5%BC%95%E8%A8%80/index.html">
+<meta property="og:title" content="嵌入式_4_存储器架构">
+<meta property="og:url" content="http://example.com/2023/09/04/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/4_%E5%AD%98%E5%82%A8%E5%99%A8%E6%9E%B6%E6%9E%84/index.html">
 <meta property="og:site_name" content="Geternitier的博客">
 <meta property="og:description" content="眼花耳热后，意气素霓生。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-01T04:00:00.000Z">
-<meta property="article:modified_time" content="2023-11-09T12:27:15.525Z">
+<meta property="og:image" content="http://example.com/image/嵌入式系统概论/Flash.png">
+<meta property="article:published_time" content="2023-09-04T04:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-09T12:48:10.006Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/image/嵌入式系统概论/Flash.png">
   
   
   
-  <title>嵌入式_1_引言 - Geternitier的博客</title>
+  <title>嵌入式_4_存储器架构 - Geternitier的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -184,7 +186,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="嵌入式_1_引言"></span>
+            <span id="subtitle" data-typed-text="嵌入式_4_存储器架构"></span>
           
         </div>
 
@@ -195,8 +197,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-01 12:00" pubdate>
-          2023年9月1日 中午
+        <time datetime="2023-09-04 12:00" pubdate>
+          2023年9月4日 中午
         </time>
       </span>
     
@@ -207,7 +209,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          1.4k 字
         
       </span>
     
@@ -247,91 +249,103 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">嵌入式_1_引言</h1>
+            <h1 style="display: none">嵌入式_4_存储器架构</h1>
             
             
               <div class="markdown-body">
                 
                 <p>眼花耳热后，意气素霓生。</p>
 <span id="more"></span>
-<h1 id="第一章-引言">第一章 引言</h1>
-<h3 id="几个术语">几个术语</h3>
+<h1 id="第四章-存储器架构">第四章 存储器架构</h1>
+<h2 id="存储系统">1. 存储系统</h2>
+<h3 id="存储系统-1">存储系统</h3>
+<p>对许多应用来说，存储系统对整个系统性能的影响比对数据流水线的影响更大。</p>
+<p>复杂性：在同一个嵌入式系统中，通常需要组合各种存储技术</p>
 <ul>
-<li><p>泛在计算：任何时间、任何地点的计算</p></li>
-<li><p>不可见计算机：计算机被集成到物件中</p></li>
-<li><p>普适计算：计算设备对日常生活的渗透</p></li>
-<li><p>环境智能：生活环境中的计算机技术</p></li>
+<li>至少需要一些非易失性存储和一些易失性存储</li>
 </ul>
-<h2 id="嵌入式系统的定义">1. 嵌入式系统的定义</h2>
-<h3 id="嵌入式系统">嵌入式系统</h3>
-<p>以应用为中心，以计算机技术为基础，软硬件可裁减，适用于应用系统对功能、可靠性、成本、体积、功耗有严格要求的专用计算机系统。</p>
+<p>层次结构往往是必须的。</p>
+<p>处理器架构的地址空间被分解成若干子空间来提供不同类型的存储器访问。</p>
+<h3 id="易失性存储器">易失性存储器</h3>
+<p>断电时内容消失的存储器。</p>
+<p>随机存取存储器，RAM</p>
 <ul>
-<li><p>嵌入式系统（Emedded System）实际上是嵌入式计算机系统。</p></li>
-<li><p>嵌入式系统就是一个具有特定功能或用途的隐藏在设备中的计算机软硬件集合体。</p></li>
-<li><p>嵌入式系统三要素</p>
-<ul>
-<li>嵌入性：嵌入到对象体系中，有对象环境要求</li>
-<li>专用性：软硬件按对象要求设计、裁减</li>
-<li>计算机：实现对象的智能化功能</li>
-</ul></li>
+<li>静态RAM，SRAM：速度快，面积大</li>
+<li>动态RAM，DRAM：保持数据的时间很短，需要定期刷新；比SRAM更不稳定</li>
 </ul>
-<h3 id="信息物理系统">信息物理系统</h3>
-<p>Cyber-Physical System（CPS），是计算进程和物理进程的集成。</p>
+<p>大多数嵌入式系统都包括一个SRAM，许多ES也会包括DRAM。</p>
 <ul>
-<li><p>强调嵌入式系统和物理学的深度融合</p></li>
-<li><p>深度融合了各类信息技术：传感器、嵌入式计算、云计算、网络通信</p>
-<p>使各种信息化能力高度协同和自治</p></li>
-<li><p>信息化能力：</p>
-<p>3C：计算-Computer、通信-Communication、控制-Control</p></li>
+<li>只利用SRAM不能提供足够大的存储容量</li>
 </ul>
-<h3 id="无线感知网络">无线感知网络</h3>
-<p>Wireless sensor
-network/WSN，是由许多在空间中分布的自动装置组成的一种无线通信计算机网络，这些装置使用传感器协作地监控不同位置的物理或环境状况。</p>
-<h3 id="物联网">物联网</h3>
-<p>Internet of
-Things（IoT），通过射频识别（RFID），红外感应器，全球定位系统、激光扫描器等信息传感设备，按约定的协议，把任何物品与互联网相连接，进行信息交换和通信，以实现智能化识别、定位、跟踪、监控和管理的一种网络概念。</p>
+<p>影响程序执行时间的因素</p>
 <ul>
-<li>面向生产的物联网技术开发被称为“工业4.0”。</li>
+<li><p>被访问的存储器地址是映射到SRAM还是DRAM</p></li>
+<li><p>DRAM可能在忙于刷新时被请求访问，因此DRAM刷新周期会引起访问时间的变化</p></li>
+<li><p>访问历史也会影响存取时间</p></li>
 </ul>
-<h3 id="发展历程">发展历程</h3>
-<p>1960-1970：出现和兴起</p>
-<p>1971-1989：走向繁荣，软硬件日益完善</p>
-<p>1990-现在：走向纵深</p>
-<h2 id="嵌入式系统的组成">2. 嵌入式系统的组成</h2>
-<p>嵌入式系统一般由嵌入式硬件和软件组成：应用软件+中间件+运行内核+驱动+系统硬件</p>
+<h3 id="非易失性存储器">非易失性存储器</h3>
+<p>不需要持续供电来保留存储在计算设备中的数据或程序代码。</p>
 <ul>
-<li>硬件以微处理器为核心，集成存储器和系统专用的输入/输出设备</li>
-<li>软件包括初始化代码及驱动、嵌入式操作系统和应用程序等</li>
+<li><p>只读存储器ROM，或掩模ROM（Mash
+ROM）：内容在芯片工厂就已经固定</p></li>
+<li><p>电可擦除可编程ROM，EEPROM</p></li>
+<li><p>快闪存储器（Flash）</p></li>
+<li><p>磁盘存储器</p></li>
 </ul>
-<h2 id="嵌入式系统的特点">3. 嵌入式系统的特点</h2>
-<p>形式多样、面向特定应用</p>
-<p>得到多种类型的处理器和处理器体系结构的支持</p>
-<p>通常及其关注成本</p>
-<p>实时性、可靠性</p>
-<p>一般使用适应多种处理器、可剪裁、轻量型、实时可靠、可固化的嵌入式操作系统</p>
-<p>需要专门工具和特殊方法进行开发</p>
-<h2 id="嵌入式系统的分类">4. 嵌入式系统的分类</h2>
-<p>处理器位数：8位、16位、32位、64位</p>
-<p>应用：移动互联网、工业控制、可穿戴设备等</p>
-<p>速度：</p>
+<h3 id="固件">固件</h3>
+<p>固件（firmware）一般存储于设备中的电可擦除只读存储器或FLASH芯片中，一般可由用户通过特定的刷新程序进行升级。</p>
+<p>可固化（ROMable）：可被编程到ROM芯片中的机器语言。作为“只读”芯片不能更新，可固化程序必须使用RAM或磁盘来保存变化的数据。</p>
 <ul>
-<li>强实时系统：响应时间毫秒或微秒级</li>
-<li>一般实时系统：几秒级</li>
-<li>弱实时系统：数十秒或更长</li>
+<li><p>代码将从ROM正确执行：不需要复制到RAM，但是RAM可能更快</p></li>
+<li><p>代码和数据不能混用，除了常量数据</p></li>
 </ul>
-<p>确定性：</p>
+<h3 id="flash">Flash</h3>
+<p>读取快于一般ROM，慢于RAM。</p>
+<p>写入时间大大超过读取时间，且写入次数有限。</p>
 <ul>
-<li>硬实时系统：对系统响应时间有严格要求</li>
-<li>软实时系统：系统响应时间不满足，不会导致系统出现致命错误或崩溃</li>
+<li><p>SLC：速度快，存储密度低，稳定性好，成本高，约10万次擦写寿命，多用于高端企业级产品</p></li>
+<li><p>MLC：速度一般，成本一般，约3000—10000次擦写寿命，应用于中高端SSD</p></li>
+<li><p>TLC：速度慢，成本最低，约1000次擦写寿命</p></li>
 </ul>
-<p>软件复杂程度：循环轮询、有限状态机、前后台、单/多处理器多任务系统</p>
-<h2 id="嵌入式系统的发展趋势">5. 嵌入式系统的发展趋势</h2>
-<p>嵌入式人工智能</p>
-<p>嵌入式安全性</p>
-<p>高计算需求和复杂性</p>
-<p>软硬件协同设计</p>
-<p>更高集成度</p>
-<p>云计算</p>
+<p>类型：</p>
+<ul>
+<li><p>NOR：块擦除；擦除和写入时间较长，但能够像RAM那样访问</p></li>
+<li><p>NAND：以块为单位；擦除和写入速度比较快；按页读取</p></li>
+</ul>
+<figure>
+<img src="/image/嵌入式系统概论/Flash.png" srcset="/img/loading.gif" lazyload alt="Flash" />
+<figcaption aria-hidden="true">Flash</figcaption>
+</figure>
+<h2 id="存储器层次结构">2. 存储器层次结构</h2>
+<p>精确的分层机构取决于技术参数，也取决于应用领域</p>
+<ul>
+<li><p>处理器寄存器</p></li>
+<li><p>工作存储器（或主存储器、主存）：实现了处理器存储地址所涵盖的存储器。通常，其容量在几MB到几GB之间，并且是易失的</p></li>
+<li><p>缓冲存储器:高速缓存、地址转换高速缓存（TLB）以及暂存存储器（SPM）。</p></li>
+<li><p>flash、磁盘等非易失性存储，也可基于互联网的存储器解决方案（如云）。</p></li>
+</ul>
+<h3 id="cache">Cache</h3>
+<p>高速缓存的架构对应用程序的执行时间具有很大影响。</p>
+<ul>
+<li>潜在地提高了存储系统的能效。</li>
+<li>设计时预测缓存是否命中很困难，这对实时性能的精确预测也是负担。</li>
+<li>多级Cache</li>
+</ul>
+<h3 id="暂存存储器">暂存存储器</h3>
+<p>SPM，也叫紧耦合内存TCM。</p>
+<ul>
+<li>SPM和主存统一编址，每当某个简单的地址解码器给出一个SPM地址范围内的地址时，SPM就被访问。</li>
+<li>SPM通常和处理器集成在一个芯片上。</li>
+<li>功耗低、速度快。</li>
+</ul>
+<h3 id="存储器访问时间难以预测">存储器访问时间难以预测</h3>
+<p>虚拟存储器：使各种存储技术看起来是一个连续的地址空间</p>
+<p>地址转换：把地址空间的逻辑地址转换成一种存储技术上的物理地址</p>
+<ul>
+<li>转换通常是由转换后备缓冲器（Translation Lookaside
+Buffer，TLB）协助完成</li>
+</ul>
+<p>很难预测或理解访问存储器的时间需要多久，因而嵌入式系统设计人员通常比一般程序员需要更深入地理解存储器系统</p>
 
                 
               </div>
@@ -372,9 +386,9 @@ Things（IoT），通过射频识别（RFID），红外感应器，全球定位�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/02/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/2_%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/" title="嵌入式_2_设计方法">
+                      <a href="/2023/09/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/01_%E6%A6%82%E7%8E%87%E4%B8%8E%E5%AD%A6%E4%B9%A0-KNN/" title="机器学习_01_概率与学习-KNN">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">嵌入式_2_设计方法</span>
+                        <span class="hidden-mobile">机器学习_01_概率与学习-KNN</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -382,8 +396,8 @@ Things（IoT），通过射频识别（RFID），红外感应器，全球定位�
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/06/15/%E5%A4%8D%E4%B9%A0/%E6%AF%9B%E6%A6%82%20%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="毛概-期末复习">
-                        <span class="hidden-mobile">毛概-期末复习</span>
+                      <a href="/2023/09/03/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/3_%E5%BE%AE%E5%A4%84%E7%90%86%E5%99%A8/" title="嵌入式_3_微处理器">
+                        <span class="hidden-mobile">嵌入式_3_微处理器</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
