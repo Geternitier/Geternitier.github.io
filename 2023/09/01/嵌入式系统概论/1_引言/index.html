@@ -16,21 +16,21 @@
   <meta name="author" content="Geternitier">
   <meta name="keywords" content="">
   
-    <meta name="description" content="两岸猿声啼不住，轻舟已过万重山。">
+    <meta name="description" content="眼花耳热后，意气素霓生。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习_01_概率与学习-KNN">
-<meta property="og:url" content="http://example.com/2023/09/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/01_%E6%A6%82%E7%8E%87%E4%B8%8E%E5%AD%A6%E4%B9%A0-KNN/index.html">
+<meta property="og:title" content="嵌入式_1_引言">
+<meta property="og:url" content="http://example.com/2023/09/01/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/1_%E5%BC%95%E8%A8%80/index.html">
 <meta property="og:site_name" content="Geternitier的博客">
-<meta property="og:description" content="两岸猿声啼不住，轻舟已过万重山。">
+<meta property="og:description" content="眼花耳热后，意气素霓生。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-12T13:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-19T06:13:57.608Z">
+<meta property="article:published_time" content="2023-09-01T04:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-09T12:25:08.527Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>机器学习_01_概率与学习-KNN - Geternitier的博客</title>
+  <title>嵌入式_1_引言 - Geternitier的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -184,7 +184,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="机器学习_01_概率与学习-KNN"></span>
+            <span id="subtitle" data-typed-text="嵌入式_1_引言"></span>
           
         </div>
 
@@ -195,8 +195,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-12 21:00" pubdate>
-          2023年9月12日 晚上
+        <time datetime="2023-09-01 12:00" pubdate>
+          2023年9月1日 中午
         </time>
       </span>
     
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          1.2k 字
         
       </span>
     
@@ -247,237 +247,99 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">机器学习_01_概率与学习-KNN</h1>
+            <h1 style="display: none">嵌入式_1_引言</h1>
             
             
               <div class="markdown-body">
                 
-                <p>两岸猿声啼不住，轻舟已过万重山。</p>
+                <p>眼花耳热后，意气素霓生。</p>
 <span id="more"></span>
-<h1 id="概率与学习-knn">概率与学习-KNN</h1>
-<p>20230912</p>
-<p>18:30-20:10</p>
-<h2 id="大纲">大纲</h2>
-<ol type="1">
-<li>回顾</li>
-<li>k-近邻分类器</li>
-<li>最近邻分类器</li>
-<li>k-近邻回归</li>
-<li>降低近邻计算</li>
-<li>扩展阅读</li>
-</ol>
-<h2 id="回顾">回顾</h2>
-<p>统计学角度：机器学习的目的是得到映射 <span
-class="math display">\[x\rightarrow y\]</span></p>
-<p>对不同类型的数据用手工/自动的方式进行特征工程，得到特征向量。</p>
-<p>分类问题</p>
+<h1 id="第一章-引言">第一章 引言</h1>
+<h3 id="几个术语">几个术语</h3>
 <ul>
-<li>训练集：<span
-class="math display">\[D_{train}=\{(x_1,y_1),(x_2,y_2),...,(x_n,y_n)
-\}\]</span></li>
-<li>训练样本：<span class="math display">\[x_i\in X\in R^d\]</span></li>
-<li>样本标签：<span class="math display">\[y_i\in
-Y=\{1,2,...,C\}\]</span></li>
-<li>测试集：<span
-class="math display">\[D_test=\{\bar{x}_1,\bar{x}_2...\bar{x}_m\}\]</span></li>
+<li><p>泛在计算：任何时间、任何地点的计算</p></li>
+<li><p>不可见计算机：计算机被集成到物件中</p></li>
+<li><p>普适计算：计算设备对日常生活的渗透</p></li>
+<li><p>环境智能：生活环境中的计算机技术</p></li>
 </ul>
-<p>回归问题</p>
+<h2 id="嵌入式系统的定义">1. 嵌入式系统的定义</h2>
+<h3 id="嵌入式系统">嵌入式系统</h3>
+<p>以应用为中心，以计算机技术为基础，软硬件可裁减，适用于应用系统对功能、可靠性、成本、体积、功耗有严格要求的专用计算机系统。</p>
 <ul>
-<li>训练集：<span
-class="math display">\[D_{train}=\{(x_1,y_1),(x_2,y_2),...,(x_n,y_n)
-\}\]</span></li>
-<li>训练样本：<span class="math display">\[x_i\in X\in R^d\]</span></li>
-<li>样本标签：<span class="math display">\[y_i\in R\]</span></li>
-<li>测试集：<span
-class="math display">\[D_test=\{\bar{x}_1,\bar{x}_2...\bar{x}_m\}\]</span></li>
-</ul>
-<p>距离度量</p>
+<li><p>嵌入式系统（Emedded System）实际上是嵌入式计算机系统。</p></li>
+<li><p>嵌入式系统就是一个具有特定功能或用途的隐藏在设备中的计算机软硬件集合体。</p></li>
+<li><p>嵌入式系统三要素</p>
 <ul>
-<li>欧式距离</li>
-<li>余弦相似性</li>
-<li>曼哈顿距离</li>
-<li>切比雪夫距离</li>
-<li>马氏距离</li>
-</ul>
-<h2 id="k-近邻分类器">k-近邻分类器</h2>
-<p>k-Nearest Neighbor Classfier, k-NN</p>
-<ul>
-<li>计算测试样本<span class="math inline">\(\bar{x}\)</span>和<span
-class="math inline">\(D_{train}\)</span>中所有训练样本<span
-class="math inline">\(x_i\)</span>的距离<span
-class="math inline">\(d(\bar{x},x_i)\)</span></li>
-<li>对所有距离值（相似度值）进行升序/降序排列</li>
-<li>选择k个最近（距离最小/相似度最大）的训练样本</li>
-<li>采用投票法，将近邻中样本数最多的类别标签分配给<span
-class="math inline">\(\bar{x}\)</span></li>
-</ul>
-<p>k的取值的影响</p>
-<ul>
-<li>k一般取奇数值，避免平局</li>
-<li>k取不同的值，分类结果可能不同</li>
-<li>k值较小时，对噪声敏感，整体模型变得复杂，容易过拟合</li>
-<li>k值较大时，对噪声不敏感，整体模型变得简单，容易欠拟合</li>
-</ul>
-<h2 id="最近邻分类器">最近邻分类器</h2>
-<p>1-Nearest Neighbor Classfier, 1-NN</p>
-<ul>
-<li>计算测试样本<span class="math inline">\(\bar{x}\)</span>和<span
-class="math inline">\(D_{train}\)</span>中所有训练样本<span
-class="math inline">\(x_i\)</span>的距离<span
-class="math inline">\(d(\bar{x},x_i)\)</span></li>
-<li>对所有距离值（相似度值）进行升序/降序排列</li>
-<li>选择最近（距离最小/相似度最大）的训练样本<span
-class="math inline">\(i^*=argmax d(\bar{x},x_i)\)</span></li>
-<li>采用投票法，将<span
-class="math inline">\(x_{i^*}\)</span>的类别标签分配给<span
-class="math inline">\(\bar{x}\)</span></li>
-</ul>
-<p>泛化错误率</p>
-<ul>
-<li>最近邻分类器的泛化错误率（测试样本x，其最近邻为z）
-<ul>
-<li><span class="math inline">\(P(error)=1-\Sigma_{c\in
-y}P(c|x)P(c|z)\)</span></li>
-</ul></li>
-<li>贝叶斯最优分类器的结果：<span
-class="math inline">\(2\times(1-P(c^*|x))\)</span></li>
-</ul>
-<p>最近邻分类器虽然简单，但泛化错误率不超过贝叶斯分类器的两倍。</p>
-<h2 id="k-近邻回归">k-近邻回归</h2>
-<p>k-Nearest Neighbor Regression</p>
-<ul>
-<li>计算测试样本<span class="math inline">\(\bar{x}\)</span>和<span
-class="math inline">\(D_{train}\)</span>中所有训练样本<span
-class="math inline">\(x_i\)</span>的距离<span
-class="math inline">\(d(\bar{x},x_i)\)</span></li>
-<li>对所有距离值（相似度值）进行升序/降序排列</li>
-<li>选择k个最近（距离最小/相似度最大）的训练样本</li>
-<li>将距离值的倒数作为权重，将k个近邻的标签值加权平均，作为<span
-class="math inline">\(\bar{x}\)</span>的预测值</li>
-</ul>
-<p>近邻平滑：核平滑法（kernel smoother）</p>
-<ul>
-<li>二次核</li>
-<li>次方核</li>
-<li>高斯核</li>
-</ul>
-<h2 id="讨论">讨论</h2>
-<ul>
-<li><p>k-NN是典型的“懒惰学习”。</p>
-<p>训练阶段仅仅是把样本保存起来，训练时间开销为零，待收到测试样本后再进行处理。</p></li>
-<li><p>SVM、CNN等是“急切学习”。</p>
-<p>在训练阶段就对样本进行学习处理的方法，这类方法尝试在训练期间构造一个通用的与输入无关的目标函数。</p></li>
-</ul>
-<p>k-近邻分类器的优缺点</p>
-<ul>
-<li>优点
-<ul>
-<li>精度高</li>
-<li>对异常值不敏感</li>
-<li>无数据输入假定</li>
-</ul></li>
-<li>缺点
-<ul>
-<li>计算复杂度高</li>
-<li>空间复杂度高</li>
+<li>嵌入性：嵌入到对象体系中，有对象环境要求</li>
+<li>专用性：软硬件按对象要求设计、裁减</li>
+<li>计算机：实现对象的智能化功能</li>
 </ul></li>
 </ul>
-<p>时间复杂度</p>
+<h3 id="信息物理系统">信息物理系统</h3>
+<p>Cyber-Physical System（CPS），是计算进程和物理进程的集成。</p>
 <ul>
-<li>假设<span
-class="math inline">\(d(x_i,x_j)\)</span>是欧式距离，时间复杂度为<span
-class="math inline">\(O(d)\)</span></li>
-<li>训练阶段：0</li>
-<li>测试阶段：<span class="math inline">\(O(nd+nlogk)\)</span>
+<li><p>强调嵌入式系统和物理学的深度融合</p></li>
+<li><p>深度融合了各类信息技术：传感器、嵌入式计算、云计算、网络通信</p>
+<p>使各种信息化能力高度协同和自治</p></li>
+<li><p>信息化能力：</p>
+<p>3C：计算-Computer、通信-Communication、控制-Control</p></li>
+</ul>
+<h3 id="无线感知网络">无线感知网络</h3>
+<p>Wireless sensor
+network/WSN，是由许多在空间中分布的自动装置组成的一种无线通信计算机网络，这些装置使用传感器协作地监控不同位置的物理或环境状况。</p>
+<h3 id="物联网">物联网</h3>
+<p>Internet of
+Things（IoT），通过射频识别（RFID），红外感应器，全球定位系统、激光扫描器等信息传感设备，按约定的协议，把任何物品与互联网相连接，进行信息交换和通信，以实现智能化识别、定位、跟踪、监控和管理的一种网络概念。</p>
 <ul>
-<li>从n个数中选择k个最小的，时间复杂度为<span
-class="math inline">\(nlogk\)</span></li>
+<li>面向生产的物联网技术开发被称为“工业4.0”。</li>
+</ul>
+<h3 id="发展历程">发展历程</h3>
+<ul>
+<li><p>1960-1970：出现和兴起</p></li>
+<li><p>1971-1989：走向繁荣，软硬件日益完善</p></li>
+<li><p>1990-现在：走向纵深</p></li>
+</ul>
+<h2 id="嵌入式系统的组成">2. 嵌入式系统的组成</h2>
+<p>嵌入式系统一般由嵌入式硬件和软件组成：应用软件+中间件+运行内核+驱动+系统硬件</p>
+<ul>
+<li>硬件以微处理器为核心，集成存储器和系统专用的输入/输出设备</li>
+<li>软件包括初始化代码及驱动、嵌入式操作系统和应用程序等</li>
+</ul>
+<h2 id="嵌入式系统的特点">3. 嵌入式系统的特点</h2>
+<ul>
+<li><p>形式多样、面向特定应用</p></li>
+<li><p>得到多种类型的处理器和处理器体系结构的支持</p></li>
+<li><p>通常及其关注成本</p></li>
+<li><p>实时性、可靠性</p></li>
+<li><p>一般使用适应多种处理器、可剪裁、轻量型、实时可靠、可固化的嵌入式操作系统</p></li>
+<li><p>需要专门工具和特殊方法进行开发</p></li>
+</ul>
+<h2 id="嵌入式系统的分类">4. 嵌入式系统的分类</h2>
+<ul>
+<li>处理器位数：8位、16位、32位、64位</li>
+<li>应用：移动互联网、工业控制、可穿戴设备等</li>
+<li>速度：
+<ul>
+<li>强实时系统：响应时间毫秒或微秒级</li>
+<li>一般实时系统：几秒级</li>
+<li>弱实时系统：数十秒或更长</li>
 </ul></li>
-<li>空间复杂度是？</li>
-</ul>
-<h2 id="降低计算">降低计算</h2>
+<li>确定性：
 <ul>
-<li>特征维度2-5：维诺图</li>
-<li>特征维度6-30：KD-Tree</li>
-<li>特征高维：
-<ul>
-<li>降维算法，如主成分分析（Principle Component Analysis）PCA</li>
-<li>近似最近邻（approximate nearest neighbor, ANN）</li>
-<li>哈希（hashing）</li>
+<li>硬实时系统：对系统响应时间有严格要求</li>
+<li>软实时系统：系统响应时间不满足，不会导致系统出现致命错误或崩溃</li>
 </ul></li>
+<li>软件复杂程度：循环轮询、有限状态机、前后台、单/多处理器多任务系统</li>
 </ul>
-<h3 id="维诺图">维诺图</h3>
-<p>根据一组给定的目标，将一个平面划分成靠近每一个目标的多个区块。</p>
+<h2 id="嵌入式系统的发展趋势">5. 嵌入式系统的发展趋势</h2>
 <ul>
-<li><p>维诺图由一系列维诺单元组成，每个维诺单元是一个凸多面体</p>
-<ul>
-<li><p>假设X是一个点集，包含K个基点<span
-class="math inline">\((P_k)_{k\in K}\)</span>，那么维诺单元<span
-class="math inline">\(R_k\)</span>定义为：</p>
-<p><span class="math inline">\(R_k=\{x\in X|d(x,P_k)\le d(x,P_j),\forall
-j\neq k\}\)</span></p></li>
-</ul></li>
-<li><p>查询或测试：给定一个查询<span class="math inline">\(q\in
-R^d\)</span>，找到<span class="math inline">\(P_k\in
-X\)</span>，使得<span class="math inline">\(q\in R_k\)</span></p></li>
-<li><p>时间复杂度：</p>
-<ul>
-<li>2维数据：<span
-class="math inline">\(O(nlogn)\)</span>用来计算维诺图；</li>
-<li>d维数据：使用二叉空间分割树进行点的定位，但是时间估计困难，难以量化</li>
-</ul></li>
-<li><p>适用范围：1-NN</p></li>
-<li><p>适合特征维度：2～3维，可能4～5维</p></li>
+<li>嵌入式人工智能</li>
+<li>嵌入式安全性</li>
+<li>高计算需求和复杂性</li>
+<li>软硬件协同设计</li>
+<li>更高集成度</li>
+<li>云计算</li>
 </ul>
-<h3 id="kd树">KD树</h3>
-<p>KD树是一种对K维空间中的实例点进行存储以便对其进行快速检索的树形数据结构。</p>
-<p>KD树是二叉树，表示对K维空间的一个划分，构造KD树相当于不断用垂直于坐标轴的超平面将K维空间切分，构成一系列K维超矩形区域。KD树的每个结点对应于一个K维超矩形区域。</p>
-<p>构造流程：</p>
-<ol type="1">
-<li>确定split域。计算每个特征维度的方差，选定方差最大维度为split域。</li>
-<li>确定Node-data域。</li>
-<li>对剩下的数据点进行划分，确定左右子空间。</li>
-<li>递归。在每个子空间继续进行空间划分，直到空间中只包含一个数据点。</li>
-</ol>
-<p>KD树搜索</p>
-<ol type="1">
-<li>二叉搜索</li>
-<li>回溯分析</li>
-<li>返回最近邻</li>
-</ol>
-<p>时间复杂度</p>
-<ul>
-<li><p>寻找最近邻的时间复杂度为<span
-class="math inline">\(O(logn)\)</span></p></li>
-<li><p>找到中位数的算法时间复杂度为<span
-class="math inline">\(O(n)\)</span></p></li>
-<li><p>KD树搜索时间复杂度为<span
-class="math inline">\(O(nlogn)\)</span></p></li>
-</ul>
-<h3 id="降维">降维</h3>
-<p>核心思想：通过某种数学变换将原始高维属性空间转变为一个低维子空间，来缓解维数灾难问题。</p>
-<ul>
-<li>多维缩放</li>
-<li>主成分分析</li>
-<li>局部线性潜入</li>
-<li>ISOMAP</li>
-</ul>
-<h3 id="近似最近邻">近似最近邻</h3>
-<p>核心思想：搜索可能是最近邻的数据项而不再只限于返回最可能的数据项，在牺牲可接受范围内的精度的情况下提高检索效率。</p>
-<ul>
-<li>不要求一定是距离最短的k个</li>
-<li>如第k个最近邻，其距离为<span
-class="math inline">\(d_k\)</span>，则ANN要求其选取的所有k个样例的距离<span
-class="math inline">\(\hat{d}\le(1+\varepsilon)d_k\)</span></li>
-<li>可以将k-NN搜索速度提高几个数量级</li>
-</ul>
-<p>FLANN：https://github.com/mariusmuja/flann</p>
-<h3 id="哈希">哈希</h3>
-<p>核心思想：利用哈希函数把任意长度的输入映射为固定长度的输出</p>
-<h2 id="扩展阅读">扩展阅读</h2>
-<h3 id="概率化k-nn">概率化k-NN</h3>
-<p>通过定义似然函数来构造概率化的k-NN。</p>
-<p>https://www.cc.gatech.edu/~afb/classes/CS7616-Spring2014/slides/CS7616-13a-PKNN.pdf</p>
 
                 
               </div>
@@ -496,7 +358,7 @@ class="math inline">\(\hat{d}\le(1+\varepsilon)d_k\)</span></li>
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="category-chain-item">机器学习</a>
+  <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/" class="category-chain-item">嵌入式系统概论</a>
   
   
 
@@ -518,9 +380,9 @@ class="math inline">\(\hat{d}\le(1+\varepsilon)d_k\)</span></li>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/17/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/02_%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" title="机器学习_02_无监督学习">
+                      <a href="/2023/09/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/01_%E6%A6%82%E7%8E%87%E4%B8%8E%E5%AD%A6%E4%B9%A0-KNN/" title="机器学习_01_概率与学习-KNN">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">机器学习_02_无监督学习</span>
+                        <span class="hidden-mobile">机器学习_01_概率与学习-KNN</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -528,8 +390,8 @@ class="math inline">\(\hat{d}\le(1+\varepsilon)d_k\)</span></li>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/01/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/1_%E5%BC%95%E8%A8%80/" title="嵌入式_1_引言">
-                        <span class="hidden-mobile">嵌入式_1_引言</span>
+                      <a href="/2023/06/15/%E5%A4%8D%E4%B9%A0/%E6%AF%9B%E6%A6%82%20%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="毛概-期末复习">
+                        <span class="hidden-mobile">毛概-期末复习</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
