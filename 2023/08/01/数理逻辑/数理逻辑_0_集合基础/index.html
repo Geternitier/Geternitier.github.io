@@ -1,0 +1,1169 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/yuanshen.jpeg">
+  <link rel="icon" href="/image/icon/yuanshen.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#5a9367">
+  <meta name="author" content="Geternitier">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="飞流直下三千尺，疑是银河落九天。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数理逻辑_0_集合基础">
+<meta property="og:url" content="http://example.com/2023/08/01/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91_0_%E9%9B%86%E5%90%88%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Geternitier的博客">
+<meta property="og:description" content="飞流直下三千尺，疑是银河落九天。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-01T04:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-13T08:04:10.852Z">
+<meta property="article:author" content="Geternitier">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>数理逻辑_0_集合基础 - Geternitier的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Geternitier的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Geternitier的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/background/TheSpirits.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数理逻辑_0_集合基础"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-01 12:00" pubdate>
+          2023年8月1日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.8k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数理逻辑_0_集合基础</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>飞流直下三千尺，疑是银河落九天。</p>
+<span id="more"></span>
+<h1 id="第零章-集合基础">第零章 集合基础</h1>
+<h2 id="集合论符号">集合论符号</h2>
+<ul>
+<li>“$$”用于表示一个证明的结束。</li>
+<li>“如果···那么···”，即“蕴含”，缩写为“<span
+class="math inline">\(···\Longrightarrow···\)</span>”；“逆蕴含”则为"<span
+class="math inline">\(···\Longleftarrow···\)</span>"。</li>
+<li>“当且仅当”缩写为“<span
+class="math inline">\(iff\)</span>”或符号“<span
+class="math inline">\(\Longleftrightarrow\)</span>”</li>
+<li>“因为”缩写为“<span
+class="math inline">\(\because\)</span>”，因此缩写为“<span
+class="math inline">\(\therefore\)</span>”</li>
+<li>“<span class="math inline">\(x\neq y\)</span>”是“<span
+class="math inline">\(x=y\)</span>”的否定，“<span
+class="math inline">\(x\notin y\)</span>”是“<span
+class="math inline">\(x\in y\)</span>”的否定，类似符号可推广</li>
+</ul>
+<p>集合是指一些对象的全体，这些对象称为集合的元素或成员。</p>
+<ul>
+<li><p><span class="math inline">\(t\in A\)</span>表示t是A的元素，<span
+class="math inline">\(x=y\)</span>表示x和y是同一个元素</p></li>
+<li><p>如果A和B是两个集合，且对于任意元素t都有</p>
+<p><span class="math inline">\(t\in A\quad iff\quad t\in B\)</span></p>
+<p>那么<span class="math inline">\(A=B\)</span>。</p></li>
+</ul>
+<p>集合论的基本思想：集合是由其元素所确定的。</p>
+<p>对于集合A，<span
+class="math inline">\(A;t\)</span>表示一个新的集合，其元素包括A的元素和元素t（可能是新的），即：</p>
+<p><span class="math inline">\(A;t=A\cup \{t\}\)</span></p>
+<p>集合的表示方法：</p>
+<ul>
+<li>列举法，也称为外延表示方法。</li>
+<li>内涵表示方法，即这个集合由具有某些性质P的对象构成</li>
+</ul>
+<p>如果集合A的所有元素都是集合B的元素，我们称A是B的子集，记作<span
+class="math inline">\(A\subseteq B\)</span>。</p>
+<ul>
+<li>任何集合都是其自身的子集，空集是每个集合的子集</li>
+</ul>
+<h2 id="集合">集合</h2>
+<p>对象是人们感觉和思维中确定的某些事物。我们总是使用对象的名来谈论它。</p>
+<ul>
+<li>对象的名称也可以作为对象，这时候我们通常加引号用以区别</li>
+</ul>
+<h3 id="集合的定义">集合的定义</h3>
+<p>康托尔的集合定义：具有某种性质的、确定的、互异的对象所组成的整体。</p>
+<ul>
+<li>确定性：对于任意集合A和任意元素a，a是否是A的元素是客观确定的</li>
+<li>互异性：一个集合中任意两个对象是不相等的</li>
+</ul>
+<p>罗素悖论集合论：不能用更简单的数学概念来给集合下一个确定的定义</p>
+<ul>
+<li>集合的概念是不能定义的</li>
+<li>康托尔的集合定义只是对集合的一个描述</li>
+</ul>
+<p>罗素悖论：<span class="math inline">\(A=\{A:A\notin
+A\}\)</span>，可以推导出<span class="math inline">\(A\in
+A\)</span>当且仅当<span class="math inline">\(A\notin A\)</span>。</p>
+<p>这说明弗雷格根据康托尔的表述引入的概括原则（对任意确定的性质P，所有基于性质P的对象组成的群体就是集合）是有问题的。</p>
+<h3 id="公理化">公理化</h3>
+<h4 id="外延公理-extensionality">外延公理 Extensionality</h4>
+<p>如果X和Y有相同元素，则<span
+class="math inline">\(X=Y\)</span>。即</p>
+<p><span class="math inline">\(A=B\quad iff\quad \forall x(x\in A\quad
+iff\quad x\in B)\)</span></p>
+<h4 id="空集公理">空集公理</h4>
+<p>存在一个集合，它不含任何元素，除此之外的其他集合都称为非空的。</p>
+<p>空集是每个集合的子集。</p>
+<h4 id="分离公理-separation">分离公理 Separation</h4>
+<p>如果<span
+class="math inline">\(\varphi\)</span>是一性质，则对于任意集合A和参数p，存在一个集合<span
+class="math inline">\(B=\{u\in X:\varphi (u,p)
+\}\)</span>，它包含所有具有这个性质的A中的元素u。</p>
+<ul>
+<li>由外延公理，分离公理中的集合B是唯一确定的。</li>
+</ul>
+<p>Paring无序对公理：对任意a，b，存在一个集合<span
+class="math inline">\(\{a,b\}\)</span>，恰好含有元素a，b。</p>
+<h3 id="关系">关系</h3>
+<h4 id="幂集交集并集">幂集、交集、并集</h4>
+<ul>
+<li><p>集合A的幂集<span class="math inline">\(\Rho
+A\)</span>的元素是A的所有子集，即：</p>
+<p><span class="math inline">\(\Rho A=\{x|x\subseteq A
+\}\)</span></p></li>
+<li><p>集合A与B的并集<span class="math inline">\(A\cup
+B\)</span>是属于A或属于B的元素的集合</p></li>
+<li><p>集合A与B的交集是所有A与B共有的元素的集合</p>
+<ul>
+<li>A与B不相交，当且仅当二者的交集为空集</li>
+</ul></li>
+</ul>
+<p>对于非空集合A，其元素也是集合，有</p>
+<ul>
+<li><span class="math inline">\(\bigcup
+A=\{x|x属于A的某个元素\}\)</span></li>
+<li><span class="math inline">\(\bigcap
+A=\{x|x属于A的每个元素\}\)</span></li>
+</ul>
+<h4 id="有序对">有序对</h4>
+<h5 id="有序对的定义">有序对的定义</h5>
+<p>元素x和y的有序对<span
+class="math inline">\(&lt;x,y&gt;\)</span>定义如下：</p>
+<p><span class="math inline">\(&lt;x,y&gt;=&lt;u,v&gt;\quad iff\quad
+x=u且y=v\)</span></p>
+<p>所有具有上述性质的定义都可以作为有序对的定义。</p>
+<p>其中，一个标准的定义是<span
+class="math inline">\(&lt;x,y&gt;=\{\{x\},\{x,y\} \}\)</span></p>
+<p>有序三元组可以定义为<span
+class="math inline">\(&lt;x,y,z&gt;=&lt;&lt;x,y&gt;,z&gt;\)</span></p>
+<p>更一般地，对于<span
+class="math inline">\(n&gt;1\)</span>可以如下递归地定义n元组：</p>
+<p><span
+class="math inline">\(&lt;x_1,x_2,...,x_{n+1}&gt;=&lt;&lt;x_1,x_2,...,x_n&gt;,x_{n+1}&gt;\)</span></p>
+<p>为方便起见，对于<span
+class="math inline">\(n=1\)</span>，我们定义<span
+class="math inline">\(&lt;x&gt;=x\)</span>；这样上式对于<span
+class="math inline">\(n=1\)</span>也是成立的。</p>
+<h5 id="有限序列">有限序列</h5>
+<p>称S是A中元素的有限序列（有限串）当且仅当对某个正整数n，<span
+class="math inline">\(S=&lt;x_1,...,x_n&gt;\)</span>，其中每个<span
+class="math inline">\(x_i\in A\)</span>。</p>
+<p>S的子段指一个有限序列<span
+class="math inline">\(&lt;x_k,x_{k+1},...,x_{m-1},x_m&gt;,1\leq k\leq
+m\leq n\)</span></p>
+<ul>
+<li>这个子段是初始段当且仅当<span
+class="math inline">\(k=1\)</span></li>
+<li>这个子段是真子段当且仅当该子段与S不同</li>
+</ul>
+<p>如果<span
+class="math inline">\(&lt;x_1,...,x_n&gt;=&lt;y_1,...,y_n&gt;\)</span>，易证<span
+class="math inline">\(x_i=y_i,1\leq i\leq n\)</span></p>
+<p>如果<span
+class="math inline">\(&lt;x_1,...,x_m&gt;=&lt;y_1,...y_n&gt;\)</span>，未必有<span
+class="math inline">\(m=n\)</span>，因为每个有序三元组也是一个有序对。</p>
+<ul>
+<li>只有当某个<span class="math inline">\(x_i\)</span>本身是<span
+class="math inline">\(y_i\)</span>的一个有限序列，或某个<span
+class="math inline">\(y_i\)</span>本身是<span
+class="math inline">\(x_i\)</span>的一个有限序列时，m和n才不相等。</li>
+</ul>
+<p>引理：如果<span
+class="math inline">\(&lt;x_1,...,x_m&gt;=&lt;y_1,...,y_m,...,y_{m+k}&gt;\)</span>，那么<span
+class="math inline">\(x_1=&lt;y_1,...,y_{k+1}&gt;\)</span></p>
+<h5 id="笛卡尔积">笛卡尔积</h5>
+<p>笛卡尔积<span class="math inline">\(A\times B\)</span>是所有序对<span
+class="math inline">\(&lt;x,y&gt;\)</span>的集合，其中<span
+class="math inline">\(x\in A,y\in B\)</span>，即<span
+class="math inline">\(A\times B=\{&lt;x,y&gt;|x\in A,y\in B
+\}\)</span></p>
+<p><span
+class="math inline">\(A^n\)</span>表示A中元素构成的所有的n元组组成的集合，比如<span
+class="math inline">\(A^3=(A\times A)\times A\)</span></p>
+<h4 id="关系-1">关系</h4>
+<p>关系是有序对的集合。</p>
+<ul>
+<li>关系R的定义域记为dom R，是所有满足<span
+class="math inline">\(&lt;x,y&gt;\in R\)</span>的元素x的集合</li>
+<li>关系R的值域记作ran R，是所有满足<span
+class="math inline">\(&lt;x,y&gt;\in R\)</span>的元素y的集合</li>
+<li>dom R和ran R并称为R的域，记作fld R</li>
+</ul>
+<p>A上的n元关系是<span class="math inline">\(A_n\)</span>的子集，若<span
+class="math inline">\(n&gt;1\)</span>，它就是一个关系；<span
+class="math inline">\(n=1\)</span>，A上的一元关系只是A的一个子集。</p>
+<ul>
+<li><p>A上的一个特殊的二元关系是恒等关系<span
+class="math inline">\(\{&lt;x,x&gt;|x\in A \}\)</span></p></li>
+<li><p>对于A上的二元关系R和A的一个子集B，R对B的限制指交集<span
+class="math inline">\(R\cap B^n\)</span></p></li>
+</ul>
+<p>对于关系R，定义：</p>
+<ul>
+<li><p>R在A上是自反的，当且仅当对A中每个x都有<span
+class="math inline">\(&lt;x,x&gt;\in R\)</span></p></li>
+<li><p>R是对称的，当且仅当如果<span class="math inline">\(&lt;x,y&gt;\in
+R\)</span>，则<span class="math inline">\(&lt;y,x&gt;\in
+R\)</span></p></li>
+<li><p>R是传递的，当且仅当如果<span class="math inline">\(&lt;x,y&gt;\in
+R,&lt;y,z&gt;\in R\)</span>，则<span
+class="math inline">\(&lt;x,z&gt;\in R\)</span></p></li>
+</ul>
+<p>R在A上满足三分律，当且仅当对A中任意的x和y，如下三种可能有且仅有一种成立：</p>
+<ul>
+<li><span class="math inline">\(&lt;x,y&gt;\in R\)</span></li>
+<li><span class="math inline">\(x=y\)</span></li>
+<li><span class="math inline">\(&lt;y,z&gt;\in R\)</span></li>
+</ul>
+<p>关系R是A上的一个等价关系当且仅当R是A上自反、对称和传递的一个二元关系；</p>
+<p>关系R是A上的一个序关系当且仅当R是传递的且在A上满足三分律。</p>
+<ul>
+<li><p>对于A上的等价关系R盒<span class="math inline">\(x\in
+A\)</span>，定义x的等价类为<span
+class="math inline">\(\{y|&lt;x,y&gt;\in R\}\)</span></p>
+<p>等价类划分了A，每个等价类都是A的子集，A的每个元素恰好只属于一个等价类。</p></li>
+</ul>
+<p>关系R的逆关系记为<span
+class="math inline">\(R^{-1}\)</span>，定义为<span
+class="math inline">\(R^{-1}=\{&lt;x,y&gt;|&lt;y,x&gt;\in
+R\}\)</span></p>
+<h4 id="函数">函数</h4>
+<p>一个具有单值性质的关系F，对于定义域dom
+F中的每一个x，都有唯一的y满足<span class="math inline">\(&lt;x,y&gt;\in
+F\)</span>。通常，这个唯一的y称F在x上的值F(x)。</p>
+<p>我们称F将定义域A映射到值域B，F是一个函数。</p>
+<ul>
+<li><p>F是一个一一映射当且仅当对于B中的每个y，存在唯一的x使得<span
+class="math inline">\(&lt;x,y&gt;\in F\)</span></p></li>
+<li><p>如果<span class="math inline">\(&lt;x,y&gt;\)</span>在定义域dom
+F中，则记<span
+class="math inline">\(F(x,y)=F(&lt;x,y&gt;)\)</span></p></li>
+<li><p>这个记法可以推广到n元</p></li>
+</ul>
+<p>A上的n元运算是一个将<span
+class="math inline">\(A^n\)</span>映射到A中的函数。</p>
+<h4 id="偏序关系">偏序关系</h4>
+<p>序的一般理论：</p>
+<p>设A为一个集合，R是A上的二元关系，称R为A上的偏序关系，如果满足如下条件：</p>
+<ul>
+<li><p>R具有自反性</p></li>
+<li><p>R具有反对称性，且对任意<span class="math inline">\(x,y\in
+R\)</span>，如果<span class="math inline">\(xRy\)</span>且<span
+class="math inline">\(yRx\)</span>，则<span
+class="math inline">\(x=y\)</span></p></li>
+<li><p>R具有传递性</p></li>
+</ul>
+<p>设A为一个集合，R是A上的二元关系，称R为A上的严格偏序关系，如果满足如下条件：</p>
+<ul>
+<li><p>R具有禁自反性，即任意x属于A都有非<span
+class="math inline">\(R(x,x)\)</span></p></li>
+<li><p>R具有禁对称性，且对任意<span class="math inline">\(x,y\in
+A\)</span>，如果<span class="math inline">\(R(x,y)\)</span>，则非<span
+class="math inline">\(R(y,x)\)</span></p></li>
+<li><p>R具有传递性</p></li>
+</ul>
+<p>自然数集N上面的小于关系就是严格的偏序关系。</p>
+<p>极小元的定义：</p>
+<p>如果<span
+class="math inline">\((A,\leq)\)</span>是偏序集，B包含于A，b属于B，称b为B的关于<span
+class="math inline">\(\leq\)</span>关系的极小元，如果不存在x属于B，使得<span
+class="math inline">\(x\neq b\)</span>且<span
+class="math inline">\(x\leq b\)</span>。</p>
+<h4 id="良序关系">良序关系</h4>
+<p>线序的定义：</p>
+<p>如果<span
+class="math inline">\((A,\leq)\)</span>是偏序集，A中任意两个元素x，y都在偏序关系<span
+class="math inline">\(\leq\)</span>下可以比较，即要么<span
+class="math inline">\(x\leq y\)</span>，要么<span
+class="math inline">\(y\leq x\)</span>，则称<span
+class="math inline">\(\leq\)</span>关系是线序关系或全序关系。相应地称<span
+class="math inline">\((A,\leq)\)</span>为线序集或全序集。</p>
+<p>如果<span class="math inline">\(\leq\)</span>为A上的线序，则称<span
+class="math inline">\(&lt;\)</span>为A上的严格线序。</p>
+<p>良序的定义：</p>
+<p>设<span
+class="math inline">\((A,\le)\)</span>是线序集，如果A的任意非空子集都有<span
+class="math inline">\(\le-\)</span>极小元，则称<span
+class="math inline">\((A,\le)\)</span>为良序集，且称<span
+class="math inline">\(\le\)</span>为A上的良序，或称A被<span
+class="math inline">\(\le\)</span>良序。</p>
+<p>如果<span
+class="math inline">\(\le\)</span>是R上的良序，有时也称<span
+class="math inline">\(&lt;\)</span>是A上的良序。</p>
+<ul>
+<li>有穷的线序集都是良序集。</li>
+<li>在定义中如果只要求偏序而不是线序，就称为良基偏序。</li>
+</ul>
+<h5 id="良序问题">良序问题</h5>
+<p>是否对任意的集合A，都存在A上的良序关系？</p>
+<p>良序原则：任意的集合都可以被良序</p>
+<ul>
+<li>良序原则和Zorn引理等价</li>
+</ul>
+<h4 id="乘积公理">乘积公理</h4>
+<p>对任意集族<span class="math inline">\((X_i)_{i\in
+I}\)</span>，如果I为非空集合，且对任意<span class="math inline">\(i\in
+I\)</span>，集合<span class="math inline">\(X_i\)</span>非空，则<span
+class="math inline">\(\prod_{i\in I}X_i\)</span>非空。</p>
+<h4 id="选择公理">选择公理</h4>
+<p>对任意非空集合X，如果X中的元素均为非空集合，则存在映射f使得<span
+class="math inline">\(dom(f)=X\)</span>，且<span
+class="math inline">\(\forall x\in X\)</span>都有<span
+class="math inline">\(f(x)\in x\)</span>（称f为X上的选择函数）。</p>
+<h4 id="可数">可数</h4>
+<p>集合A是可数的，当且仅当存在某个函数将A一对一映射到自然数N中。</p>
+<ul>
+<li>设A是一个可数集，则所有由A的元素构成的有限序列的集合也可数</li>
+</ul>
+<h3 id="有穷与无穷集合">有穷与无穷集合</h3>
+<h4 id="自然数的定义">自然数的定义</h4>
+<p>集合的后继：</p>
+<p>设A为任意的集合，我们称集合<span class="math inline">\(A\cup
+\{A\}\)</span>为A的后继集合，简称A的后继，记作<span
+class="math inline">\(A^+\)</span>，而A为<span
+class="math inline">\(A^+\)</span>的前趋。</p>
+<p>自然数的定义：</p>
+<ol type="1">
+<li><span class="math inline">\(0=\empty\)</span></li>
+<li><span class="math inline">\(1=0^+=\{0\}\)</span></li>
+<li><span class="math inline">\(2=1^+=\{0,1\}\)</span></li>
+<li>假设我们已经定义了<span
+class="math inline">\(n=\{0,1,...,n-1\}\)</span>，则定义<span
+class="math inline">\(n+1=n^+=n\cup
+\{n\}=\{0,1,...,n-1,n\}\)</span></li>
+<li>每个自然数都是从0开始经过有穷步后继运算的结果</li>
+</ol>
+<h4 id="无穷公理">无穷公理</h4>
+<p>所有自然数组成的集合的整体是集合，记为<span
+class="math inline">\(\omega\)</span>。</p>
+<h4 id="佐恩引理或极大原则">佐恩引理或极大原则</h4>
+<p>设A是一个集合，且满足对于任意的链<span
+class="math inline">\(C\subseteq A\)</span>，有集合<span
+class="math inline">\(\bigcup
+C\)</span>在A中，那么A中存在极大元m，即m不是A中其他任意元素的子集。</p>
+<ul>
+<li>我们说一组集合C是一个链，当且仅当对于C中任意元素x和y，要么<span
+class="math inline">\(x\subseteq y\)</span>要么<span
+class="math inline">\(y\subseteq x\)</span></li>
+</ul>
+<h4 id="数学归纳法">数学归纳法</h4>
+<p>集合形式的数学归纳法：</p>
+<p>设S为一个集合，如果S满足如下两个条件：</p>
+<ul>
+<li><span class="math inline">\(0\in S\)</span></li>
+<li>对任何自然数n，如果<span class="math inline">\(n\in
+S\)</span>，则<span class="math inline">\(n+1\in S\)</span></li>
+</ul>
+<p>则<span class="math inline">\(\omega \subseteq
+S\)</span>，即每个自然数对属于S。</p>
+<h5 id="正则公理">正则公理</h5>
+<p>每个非空集合A中总存在元素x使得<span class="math inline">\(x\cap
+A=\empty\)</span>（此时称x为A的<span class="math inline">\(\in
+-\)</span>极小元）。</p>
+<p>正则公理的蕴含：</p>
+<ul>
+<li><p>不存在集合<span class="math inline">\(x\in x\)</span></p></li>
+<li><p>不存在集合x,y使得<span class="math inline">\(x\in
+y\)</span>且<span class="math inline">\(y\in
+x\)</span>。一般地，不存在集合<span
+class="math inline">\(x_1,...,x_n\)</span>使得<span
+class="math inline">\(x_1\in x_2,...,x_{n-1}\in x_n,x_n\in
+x_1\)</span>。</p>
+<p>不存在集合<span class="math inline">\(\{x_n|n\in \omega
+使得每个n\in\omega 都有x_{n+1}\in x_n\}\)</span></p></li>
+</ul>
+<p>集合形式的数学归纳法证明：暂略，20230912，P30</p>
+<p>性质形式的数学归纳原理：</p>
+<p>设R是性质，如果有</p>
+<ol type="1">
+<li>R(0)成立，且</li>
+<li>对任意自然数n，若R(n)成立，R(n+1)也成立</li>
+</ol>
+<p>则对任意自然数n都有R(n)成立。</p>
+<h5 id="传递集合">传递集合</h5>
+<p>设A是一个集合，如果A的任意元素都是A的子集，则称A是传递集合。</p>
+<ul>
+<li><p>A为传递集合，则<span class="math inline">\(\forall x\in A,y\in
+x,y\in A\)</span>。</p></li>
+<li><p>每个自然数都是传递集合</p></li>
+<li><p><span
+class="math inline">\(\omega\)</span>是传递集合，即对任意自然数n都有n是<span
+class="math inline">\(\omega\)</span>的传递集合</p></li>
+<li><p>引理：<span class="math inline">\(\forall n,m\in N,如果n\subseteq
+m,有n=m或者n\in m\)</span></p></li>
+</ul>
+<p>$<span class="math inline">\(-三歧性：\)</span>x,yA有xy或x=y或yx$</p>
+<ul>
+<li><span class="math inline">\(\omega\)</span>具有三歧性</li>
+</ul>
+<p>任意自然数n、m，定义</p>
+<ul>
+<li><span class="math inline">\(m&lt;n当且仅当m\in n\)</span></li>
+<li><span class="math inline">\(m\le n当且仅当m&lt;n或m=n\)</span></li>
+</ul>
+<h4 id="有穷集合和无穷集合">有穷集合和无穷集合</h4>
+<h5 id="等势集合">等势集合</h5>
+<p>设A、B为两个集合，如果存在A到B上的双射，则称A与B等势，或称A与B对等，记为<span
+class="math inline">\(A～B\)</span></p>
+<ul>
+<li>直观上，A与B等势，则A和B有同样多的元素。</li>
+</ul>
+<p>等势关系是等价关系，即</p>
+<ul>
+<li><span class="math inline">\(\forall A,A～A\)</span></li>
+<li><span class="math inline">\(\forall
+A,B,如果A～B,则B～A\)</span></li>
+<li><span class="math inline">\(\forall
+A,B,C,如果A～B,B～C,则A～C\)</span></li>
+</ul>
+<h5 id="康托尔伯恩斯坦定理">康托尔伯恩斯坦定理</h5>
+<p>设A、B为两个集合，假设<span class="math inline">\(A\preceq B,B\preceq
+A\)</span>，则<span class="math inline">\(A～B\)</span></p>
+<h5 id="有穷集合">有穷集合</h5>
+<p>和某个自然数等势的集合为有穷集合，否则为无穷集合。</p>
+<ul>
+<li><p>每个自然数都是有穷集合</p></li>
+<li><p>引理：假设A是有穷集合，x不属于A，则<span
+class="math inline">\(A\cup \{x\}\)</span>是有穷集合</p></li>
+<li><p>引理：集合A是有穷集合，当且仅当存在自然数n，使得<span
+class="math inline">\(A\preceq n\)</span></p></li>
+<li><p>对任意的自然数n，n的每个真子集都不与n等势</p>
+<ul>
+<li>抽屉原理：集合A为有穷集合，当且仅当它不与它的任何真子集等势</li>
+</ul></li>
+</ul>
+<h5 id="可数集合">可数集合</h5>
+<p>若集合<span class="math inline">\(A\preceq
+\omega\)</span>，即存在A到<span
+class="math inline">\(\omega\)</span>的单射，则称A可数</p>
+<ul>
+<li>若<span
+class="math inline">\(A～\omega\)</span>，则称A为可数的无穷集合</li>
+<li>定理：可数多个可数集合的并集可数</li>
+</ul>
+<h5 id="无穷集合">无穷集合</h5>
+<p>每一个无穷集合都有无数无穷子集。</p>
+<ul>
+<li>如果A是无穷集合，则<span class="math inline">\(\omega\preceq
+A\)</span></li>
+<li>A是无穷集合当且仅当它与自身的一个真子集等势</li>
+<li>引理：假设A是非空集合且<span class="math inline">\(\bigcup
+A=A\)</span>，则A是无穷集合</li>
+</ul>
+<h5 id="不可数集合">不可数集合</h5>
+<p>不是可数集合的无穷集合为不可数元集合。</p>
+<ul>
+<li><p>康托尔定理：<span class="math inline">\(\forall A,A\prec
+\Rho(A)\)</span></p></li>
+<li><p>区间(0,1)不可数</p></li>
+<li><p>连通性假设：<span class="math inline">\(\forall A,\omega\preceq
+A且A\preceq R，则要么A～\omega，要么A～R。\)</span></p>
+<p><span class="math inline">\(换言之，不存在集合A使得\omega\preceq
+A且A\preceq R。\)</span></p></li>
+</ul>
+<h5 id="序数">序数</h5>
+<p>每一个良序集合都与一个自然数序同构。</p>
+<ul>
+<li>设<span
+class="math inline">\((A,\le_A)\)</span>为一个良序集，A有穷，则存在一个自然数n，使得<span
+class="math inline">\((A,\le_A)\)</span>与<span
+class="math inline">\((n,\le)\)</span>序同构</li>
+</ul>
+<p>具有三歧性的传递集合叫做序数</p>
+<ul>
+<li>0是序数</li>
+<li>每个自然数都是序数</li>
+<li><span class="math inline">\(\omega\)</span>是序数</li>
+</ul>
+<p>引理：如果<span class="math inline">\(\alpha\)</span>是序数，<span
+class="math inline">\(\alpha^+\)</span>也是序数；序数的每个元素也是序数。</p>
+<p>对于自然数n，归纳定义<span
+class="math inline">\(\omega+n\)</span>：</p>
+<ol type="1">
+<li><span class="math inline">\(\omega+0=\omega\)</span></li>
+<li><span class="math inline">\(\omega+(n+1)=(\omega+n)^+\)</span></li>
+</ol>
+<p>对任意自然数有<span
+class="math inline">\(\omega+n\)</span>为序数。</p>
+<p>定理：对任意两个序数<span
+class="math inline">\(\alpha、\beta\)</span>都有<span
+class="math inline">\(\alpha\in\beta\)</span>，或者<span
+class="math inline">\(\alpha=\beta\)</span>，或者<span
+class="math inline">\(\beta\in\alpha\)</span>。</p>
+<ul>
+<li>证明：0912 P42</li>
+</ul>
+<p>用<span class="math inline">\(O_n\)</span>表示所有序数的类。</p>
+<ul>
+<li><p><span class="math inline">\(O_n\)</span>不是集合，否则<span
+class="math inline">\(O_n是序数，O_N\subseteq
+O_n\)</span>，与正则公理矛盾。</p></li>
+<li><p>任何序数在属于关系上是良序集，我们用&lt;表示序数的属于关系</p></li>
+</ul>
+<p>定理：假设S中每个元素都是序数，那么<span
+class="math inline">\(\bigcup S\)</span>也是序数。</p>
+<ul>
+<li><span class="math inline">\(\omega\)</span>是序数</li>
+<li>设<span
+class="math inline">\(S_0=\{\omega,\omega+1,...,\omega+n,...\}\)</span>，则<span
+class="math inline">\(\bigcup S_0\)</span>是序数，记为<span
+class="math inline">\(\omega+\omega\)</span>或<span
+class="math inline">\(\omega·2\)</span>
+<ul>
+<li>类似地，可以定义<span
+class="math inline">\(\omega·3,...,\omega·n,...\)</span></li>
+</ul></li>
+<li>设<span
+class="math inline">\(S_1=\{\omega,\omega·2,...,\omega·n,...\}\)</span>，则<span
+class="math inline">\(\bigcup S_0\)</span>是序数，记为<span
+class="math inline">\(\omega·\omega\)</span>或<span
+class="math inline">\(\omega^2\)</span>
+<ul>
+<li>类似地，可以定义<span
+class="math inline">\(\omega^3,...,\omega^n,...\)</span></li>
+</ul></li>
+<li>设<span
+class="math inline">\(S_2=\{\omega,\omega^2,...,\omega^n,...\}\)</span>，则<span
+class="math inline">\(\bigcup S_0\)</span>是序数，记为<span
+class="math inline">\(\omega^\omega\)</span></li>
+</ul>
+<p>上述<span class="math inline">\(\omega^n\)</span>和<span
+class="math inline">\(\omega^\omega\)</span>为序数算数，不是笛卡尔积。</p>
+<p>替换公理：设<span
+class="math inline">\(P(x,y)\)</span>为类关系，A是一个集合，如果<span
+class="math inline">\(\forall x\in A\)</span>，有唯一<span
+class="math inline">\(y_x\)</span>，使得<span
+class="math inline">\(P(x,y_x)\)</span>成立，则<span
+class="math inline">\(\{y_x|x\in A\}\)</span>是集合。</p>
+<h5 id="超穷归纳法">超穷归纳法</h5>
+<p>设<span class="math inline">\(\alpha\)</span>为序数</p>
+<ul>
+<li>如果存在序数<span class="math inline">\(\beta\)</span>使得<span
+class="math inline">\(\alpha=\beta^+\)</span>，则称<span
+class="math inline">\(\alpha\)</span>为后继序数</li>
+<li>不是后继序数的非零序数称为极限序数</li>
+</ul>
+<p>设<span class="math inline">\(\alpha\neq 0\)</span>为序数，则</p>
+<ul>
+<li><span
+class="math inline">\(\alpha\)</span>为极限序数当且仅当对任意的<span
+class="math inline">\(\beta\lt\alpha\)</span>，都有<span
+class="math inline">\(\beta^+\lt\alpha\)</span></li>
+<li><span class="math inline">\(\alpha\)</span>是极限序数当且仅当<span
+class="math inline">\(\alpha\)</span>中无最大元，即对任意的<span
+class="math inline">\(\beta\lt\alpha\)</span>，都存在<span
+class="math inline">\(\gamma\lt\alpha\)</span>，使得<span
+class="math inline">\(\beta\lt\gamma\)</span></li>
+</ul>
+<p>超穷归纳法原理：</p>
+<p>设<span class="math inline">\(R(x)\)</span>为一个性质</p>
+<ol type="1">
+<li><p>假设<span class="math inline">\(R(0)\)</span>成立</p></li>
+<li><p>对任意的序数<span
+class="math inline">\(\alpha\)</span>，如果<span
+class="math inline">\(R(\alpha)\)</span>成立，则<span
+class="math inline">\(R(\alpha+1)\)</span>也成立</p></li>
+<li><p>对于任意的极限序数<span
+class="math inline">\(\lambda\)</span>，如果对每一<span
+class="math inline">\(\alpha\lt\lambda\)</span>都有<span
+class="math inline">\(R(\alpha)\)</span>成立，则<span
+class="math inline">\(R(\lambda)\)</span>成立</p>
+<p>那么对于任意的序数<span
+class="math inline">\(\alpha\)</span>都有<span
+class="math inline">\(R(\alpha)\)</span>成立</p></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/" class="category-chain-item">数理逻辑</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/09/01/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/1_%E5%BC%95%E8%A8%80/" title="嵌入式_1_引言">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">嵌入式_1_引言</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/15/%E5%A4%8D%E4%B9%A0/%E6%AF%9B%E6%A6%82%20%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="毛概-期末复习">
+                        <span class="hidden-mobile">毛概-期末复习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>长风破浪会有时，直挂云帆济沧海</p> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
