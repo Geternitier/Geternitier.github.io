@@ -999,6 +999,25 @@
   
   
   <entry>
+    <title>数据科学基础_8_信息熵</title>
+    <link href="/2022/03/08/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%9F%BA%E7%A1%80/DataScience_8%20%E4%BF%A1%E6%81%AF%E7%86%B5/"/>
+    <url>/2022/03/08/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%9F%BA%E7%A1%80/DataScience_8%20%E4%BF%A1%E6%81%AF%E7%86%B5/</url>
+    
+    <content type="html"><![CDATA[<p>八月秋高风怒号，卷我屋上三重茅。</p><span id="more"></span><h1 id="datascience_8-信息熵">DataScience_8 信息熵</h1><h2 id="信息熵">8.1 信息熵</h2><p>信息度量的三个性质：单调性、非负性、可加性</p><ol type="1"><li>单调性：确定性越高的事件的信息量越低</li><li>非负性：非负性是从随机性引入信息度量的必然</li><li>可加性：事件总不确定性可表示为各事件不确定性和</li></ol><h3 id="信息熵-1">信息熵</h3><p><span class="math inline">\(H(X)=-\Sigma_{x\in\mathcalX}p(x)logp(x)\)</span></p><ul><li>非负性</li><li>期望性：<spanclass="math inline">\(H(X)=E(log(1/p(X)))\)</span></li><li>对数底可换：<spanclass="math inline">\(H_b(X)=log_baH_a(X)\)</span></li></ul><h3 id="联合熵">联合熵</h3><p>两个离散随机变量<spanclass="math inline">\(X,Y\)</span>，其联合熵<spanclass="math inline">\(H(X,Y)=-\Sigma_x\Sigma_yp(x,y)log[p(x,y)]\)</span></p><ul><li>联合熵不小于每个独立的熵。</li><li>联合熵不大于每个独立熵的和。</li></ul><h3 id="条件熵">条件熵</h3><p>在已知随机变量<spanclass="math inline">\(X\)</span>的条件下，描述随机变量<spanclass="math inline">\(Y\)</span>所需的信息量。</p><p><spanclass="math inline">\(H(Y|X)=\Sigma_xp(x)H(Y|X=x)=-\Sigma_{x,y}p(x,y)logp(y|x)\)</span>。</p><ul><li>当Y的值完全取决于X的值，条件熵为0。</li><li>独立的随机变量的条件熵等于自身的熵。<spanclass="math inline">\(H(Y|X)=H(X)\)</span>。</li><li>链式法则：<spanclass="math inline">\(H(X,Y)=H(X)+H(Y|X)\)</span>。</li><li>贝叶斯公式：<spanclass="math inline">\(H(Y|X)=H(X|Y)-H(X)+H(Y)\)</span>。</li></ul><h3 id="相对熵">相对熵</h3><p>又称KL散度，两个概率分布P和Q差别的非对称性的度量。P为真实分布，Q为假设分布。</p><p><span class="math inline">\(D_{KL}(P||Q)=-\SigmaP(x)log\frac{Q(x)}{P(x)}\)</span></p><ul><li>非负性：<spanclass="math inline">\(D_{KL}(P||Q)\ge0,D_{KL}(P||Q)=0\)</span>当且仅当<spanclass="math inline">\(P=Q\)</span></li><li>不对称性：<span class="math inline">\(D_{KL}(P||Q)\neD_{KL}(Q||P)\)</span></li></ul><h3 id="交叉熵">交叉熵</h3><p>基于相同事件测度的两个概率分布<spanclass="math inline">\(p\)</span>和<spanclass="math inline">\(q\)</span>的交叉熵是指当基于一个非真实的概率分布<spanclass="math inline">\(q\)</span>进行编码时，在事件集合中唯一标识一个事件所需要的信息量。</p><p><span class="math inline">\(H(p,q)=-\Sigma p(x)logq(x)\)</span></p><ul><li>交叉熵和相对熵：<spanclass="math inline">\(H(p,q)=H(p)+D_{KL}(P||Q)\)</span></li></ul><h2 id="信息变化">8.2 信息变化</h2><h3 id="互信息">互信息</h3><p>两个随机变量的互信息是变量间相互依赖性的量度。</p><p><span class="math inline">\(I(X;Y)=\Sigma_{y\in Y}\Sigma_{x\inX}p(x,y)log(\frac{p(x,y)}{p(x)p(y)})\)</span></p><p>其中<span class="math inline">\(p(x,y)\)</span>是<spanclass="math inline">\(X\)</span>和<spanclass="math inline">\(Y\)</span>的联合概率分布函数，而<spanclass="math inline">\(p(x),p(y)\)</span>分别是<spanclass="math inline">\(X,Y\)</span>的边缘概率分布函数。</p><h3 id="信息增益">信息增益</h3><p>即相对熵。</p><p>对于离散型随机变量：<span class="math inline">\(Gain(P,Q)=-\SigmaP(x)ln\frac{Q(x)}{P(x)}\)</span></p><p>对于连续型随机变量：<spanclass="math inline">\(Gain(P,Q)=\int_{-\infin}^{\infin}p(x)ln\frac{p(x)}{q(x)}dx\)</span></p><h4 id="信息增益率">信息增益率</h4><p>属性的信息增益和该属性熵的比值：对于数据集合<spanclass="math inline">\(T\)</span>中的属性<spanclass="math inline">\(P\)</span>，</p><p><spanclass="math inline">\(GainRatio(T,P)=\frac{Gain(T,P)}{Entropy(T,P)}\)</span>。</p><p>当<span class="math inline">\(Entropy(T,P)=0\)</span>，<spanclass="math inline">\(P\)</span>的信息增益率无意义。</p><ul><li>属性值为连续数值型，可以用信息增益率来代替信息增益。</li></ul><h3 id="基尼系数">基尼系数</h3><p><spanclass="math inline">\(Gini(D)=1-\Sigma_{i=1}^mp_i^2\)</span></p><p>其中m表示数据集D中类别C的个数，<spanclass="math inline">\(p_i\)</span>表示<spanclass="math inline">\(D\)</span>中一个记录属于<spanclass="math inline">\(C\)</span>的概率。</p><h2 id="最大熵">8.3 最大熵</h2><h3 id="最大熵原理">最大熵原理</h3><p>一个正确的概率分布应该满足下述条件：</p><ol type="1"><li>服从样本数据中的已知的统计证据</li><li>使熵最大化</li></ol><h3 id="最大熵模型">最大熵模型</h3><p>设满足所有约束条件的模型集合为<spanclass="math inline">\(E_{\overlineP}(f_i)=EP(f_i),i=1,2,...,M\)</span></p><p>定义在条件概率分布<spanclass="math inline">\(P(Y|X)\)</span>上的条件熵为<spanclass="math inline">\(H(P)=-\Sigma_{x,y}\overlineP(x)P(y|x)logP(y|x)\)</span>。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据科学基础</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>数据科学基础_7_线性模型</title>
     <link href="/2022/03/07/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%9F%BA%E7%A1%80/DataScience_7%20%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/"/>
     <url>/2022/03/07/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%9F%BA%E7%A1%80/DataScience_7%20%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/</url>
