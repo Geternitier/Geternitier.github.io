@@ -1,0 +1,964 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/yuanshen.jpeg">
+  <link rel="icon" href="/image/icon/yuanshen.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#5a9367">
+  <meta name="author" content="Geternitier">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="八月秋高风怒号，卷我屋上三重茅。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据科学基础_2_数据抽象">
+<meta property="og:url" content="http://example.com/2022/03/02/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%9F%BA%E7%A1%80/DataScience_2%20%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1/index.html">
+<meta property="og:site_name" content="Geternitier的博客">
+<meta property="og:description" content="八月秋高风怒号，卷我屋上三重茅。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-21T07:44:23.146Z">
+<meta property="article:author" content="Geternitier">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>数据科学基础_2_数据抽象 - Geternitier的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Geternitier的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Geternitier的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/background/TheSpirits.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数据科学基础_2_数据抽象"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-02 12:00" pubdate>
+          2022年3月2日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.5k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数据科学基础_2_数据抽象</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>八月秋高风怒号，卷我屋上三重茅。</p>
+<span id="more"></span>
+<h1 id="datascience_2-数据抽象">DataScience_2 数据抽象</h1>
+<h2 id="概率">2.1 概率</h2>
+<h3 id="随机试验">2.1.1 随机试验</h3>
+<p>如果一个试验满足以下3个条件：</p>
+<ol type="1">
+<li>试验可以在相同的条件下重复进行</li>
+<li>试验的所有可能结果明确可知，且不止一个</li>
+<li>每一次试验会出现哪一个结果，事先并不能确定</li>
+</ol>
+<p>则称此试验为随机试验，简称试验。</p>
+<p>大量重复试验中具有某种规律性的事件称为<strong>随机事件</strong>，简称事件。</p>
+<h3 id="样本空间">2.1.2 样本空间</h3>
+<p>随机试验中的每一个可能出现的试验结果称为该试验的一个样本点，全体样本点组成的集合称为该试验的样本空间。</p>
+<ul>
+<li><p>样本空间的任意一个子集是一个随机事件。</p></li>
+<li><p>样本空间<span
+class="math inline">\(\Omega\)</span>包含所有样本点，称为必然事件，<span
+class="math inline">\(\varnothing\)</span>为不可能事件。</p></li>
+<li><p>包含一个样本点的随机事件成为基本事件，包含多个样本点的随机事件称为复合事件。</p></li>
+</ul>
+<p>事件的关系和计算</p>
+<ol type="1">
+<li><span class="math inline">\(A\subseteq
+B\)</span>，事件B包含事件A，即事件A发生必然导致事件B发生。</li>
+<li><span class="math inline">\(A=B\)</span>，事件A与B相等。</li>
+<li><span class="math inline">\(A\cap B\)</span>或<span
+class="math inline">\(AB\)</span>，事件A和B同时发生，称为A与B的交/积事件。
+<ul>
+<li><span
+class="math inline">\(AB\neq\varnothing\)</span>，称A和B相容</li>
+<li><span class="math inline">\(AB=\varnothing\)</span>，称A和B互斥</li>
+</ul></li>
+<li><span class="math inline">\(A\cup
+B\)</span>，事件A和B至少有一个发生，称为A与B的交/积事件。</li>
+<li><span
+class="math inline">\(A-B\)</span>，事件A发生而B不发生，称为A与B的差事件。</li>
+<li><span class="math inline">\(\overline
+A\)</span>，事件A不发生，称为事件A的逆事件或对立事件。</li>
+<li>如果<span
+class="math inline">\(\bigcup_{i=1}^nA_i=\Omega\)</span>，称这有限个事件<span
+class="math inline">\(A_i\)</span>构成一个完备事件组。</li>
+</ol>
+<h3 id="概率-1">2.1.3 概率</h3>
+<p>公理化定义：</p>
+<p>设随机试验的样本空间为<span
+class="math inline">\(\Omega\)</span>，如果对每一个事件A都有一个确定的实数<span
+class="math inline">\(P(A)\)</span>，且满足：</p>
+<ol type="1">
+<li><p>非负性：<span class="math inline">\(P(A)\ge 0\)</span></p></li>
+<li><p>规范性：<span class="math inline">\(P(\Omega) =
+1\)</span></p></li>
+<li><p>可列可加性：<span class="math inline">\(P(\bigcup_{i=1}^\infin
+A_i)=\Sigma_{i=1}^\infin P(A_i)\)</span></p></li>
+</ol>
+<p>则称<span class="math inline">\(P(A)\)</span>为事件A的概率。</p>
+<h4 id="古典概型">古典概型</h4>
+<p>样本空间有穷且每个样本点等可能，这种概率模型称为古典概型。</p>
+<h4 id="几何概型">几何概型</h4>
+<p>样本空间是个可度量的有界区域，每个样本点等可能，这种概率模型称为几何概型。</p>
+<h4 id="概率的性质">概率的性质</h4>
+<ol type="1">
+<li><p>有界性：任意事件A，<span class="math inline">\(0\le
+P(A)\le1\)</span>，<span class="math inline">\(P(\varnothing) =
+0\)</span>，<span class="math inline">\(P(\Omega)=1\)</span>。</p></li>
+<li><p>单调性：<span class="math inline">\(A\subseteq
+B\)</span>，则<span
+class="math inline">\(P(B-A)=P(B)-P(A)\)</span>，<span
+class="math inline">\(P(B)\ge P(A)\)</span>。</p></li>
+</ol>
+<h4 id="概率公式">概率公式</h4>
+<ol type="1">
+<li><p><span class="math inline">\(P(\overline
+A)=1-P(A)\)</span></p></li>
+<li><p>加法公式：<span class="math inline">\(P(A\cup
+B)=P(A)+P(B)-P(AB)\)</span></p></li>
+<li><p>减法公式：<span
+class="math inline">\(P(A-B)=P(A)-P(AB)=P(A\overline
+B)\)</span></p></li>
+<li><p>条件概率公式：<span
+class="math inline">\(P(B|A)=\frac{P(AB)}{P(A)}\)</span></p>
+<p>若<span
+class="math inline">\(P(A)\gt0\)</span>，称已知A发生的条件下，B发生的概率为条件概率，记为<span
+class="math inline">\(P(B|A)\)</span>。</p></li>
+<li><p>乘法公式：如果<span
+class="math inline">\(P(A)\gt0\)</span>，<span
+class="math inline">\(P(AB)=P(A)P(B|A)\)</span></p></li>
+<li><p>全概率公式：若<span class="math inline">\(\bigcup_{i=1}^n
+A_i=\Omega\)</span>且<span
+class="math inline">\(A_iA_j=\varnothing\)</span>，<span
+class="math inline">\(P(A_i)\gt0\)</span>，则对任意事件B，</p>
+<p><span
+class="math inline">\(B=\bigcup_{i=1}^nA_iB,P(B)=\Sigma_{i=1}^nP(A_i)P(B|A_i)\)</span></p></li>
+<li><p>贝叶斯公式：若<span class="math inline">\(\bigcup_{i=1}^n
+A_i=\Omega\)</span>且<span
+class="math inline">\(A_iA_j=\varnothing\)</span>，<span
+class="math inline">\(P(A_i)\gt0\)</span>，则对任意事件B，只要<span
+class="math inline">\(P(B)\gt0\)</span>，就有<span
+class="math inline">\(P(A_j|B)=\frac{P(A_j)P(B|A_j)}{\Sigma_{i=1}^nP(A_i)P(B|A_i)}\)</span></p></li>
+</ol>
+<h3 id="独立性">2.1.4 独立性</h3>
+<p>事件是否发生对另一个事件的概率没有影响，这样的两个事件为相互独立事件。</p>
+<p>事件A和事件B相互独立时，<span
+class="math inline">\(P(AB)=P(A)P(B)\)</span>。</p>
+<ul>
+<li>事件A和事件B相互独立时，<span class="math inline">\(\overline
+A\)</span>与<span class="math inline">\(B\)</span>、<span
+class="math inline">\(A\)</span>与<span class="math inline">\(\overline
+B\)</span>、<span class="math inline">\(\overline A\)</span>与<span
+class="math inline">\(\overline B\)</span>也相互独立。</li>
+<li>事件A和事件B相互独立时，<span
+class="math inline">\(P(A)\gt0\)</span>，则有<span
+class="math inline">\(P(B|A)=P(B)\)</span>。</li>
+</ul>
+<h2 id="随机变量">2.2 随机变量</h2>
+<p>给定样本空间，若对于每一个样本点都有唯一确定的实数X与之对应，则称X是一个随机变量。</p>
+<p>随机变量X的概率分布函数：<span class="math inline">\(F(x)=P(X\le
+x)\)</span></p>
+<ul>
+<li>分布函数性质：非负性；单调不减；右连续；左极限为0，右极限为1</li>
+</ul>
+<h3 id="离散随机变量">离散随机变量</h3>
+<p>随机变量的取值为可列个，则称其为离散随机变量。</p>
+<h3 id="连续随机变量">连续随机变量</h3>
+<p>对于随机变量<span class="math inline">\(X\)</span>及其分布函数<span
+class="math inline">\(F(x)\)</span>，如果存在非负可积函数<span
+class="math inline">\(f(x)\)</span>满足<span
+class="math inline">\(\forall x:
+F(x)=\int_{-\infin}^xf(t)dt\)</span>，则称<span
+class="math inline">\(X\)</span>为连续随机变量，<span
+class="math inline">\(f(x)\)</span>为<span
+class="math inline">\(X\)</span>的概率密度函数。</p>
+<p>连续随机变量的性质：</p>
+<ol type="1">
+<li>如果<span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x\)</span>处连续，那么<span
+class="math inline">\(F&#39;(x)=f(x)\)</span>。</li>
+<li>连续随机变量<span
+class="math inline">\(X\)</span>的任意一点概率为0，即<span
+class="math inline">\(P(X=x)=0\)</span>。</li>
+</ol>
+<h2 id="数据动力学">2.3 数据动力学</h2>
+<p>数据科学借鉴了物理学的矩的概念，用数据分布代替物理量分布，用概率密度代替物理密度函数。矩是对变量分布和形态特点的一组度量。</p>
+<p>原点矩：给定一批数据<span
+class="math inline">\(x_1,x_2,...,x_n\)</span>，其<span
+class="math inline">\(k\)</span>阶原点矩<span
+class="math inline">\(A_k=\frac{1}{n}\Sigma_{i=1}^nx_i^k\)</span>。</p>
+<ul>
+<li>我们称1阶原点矩为算术平均值，2阶原点矩为数据集的转动惯量。</li>
+</ul>
+<h3 id="数学期望">数学期望</h3>
+<p>离散随机变量的数学期望：<span
+class="math inline">\(E(X)=\Sigma_{i=1}^\infin x_ip_i\)</span>。</p>
+<p>连续随机变量的数学期望：<span
+class="math inline">\(E(X)=\int_{-\infin}^{+\infin}xf(x)dx\)</span></p>
+<ul>
+<li>要求<span class="math inline">\(\Sigma_{i=1}^\infin
+x_ip_i\)</span>和<span
+class="math inline">\(\int_{-\infin}^{+\infin}xf(x)dx\)</span>绝对收敛。</li>
+</ul>
+<p>数学期望的性质：</p>
+<ol type="1">
+<li>常数<span class="math inline">\(C\)</span>，<span
+class="math inline">\(E(C)=C\)</span></li>
+<li>常数<span class="math inline">\(C\)</span>及随机变量<span
+class="math inline">\(X\)</span>，<span
+class="math inline">\(E(CX)=CE(X)\)</span></li>
+<li>设随机变量<span class="math inline">\(X\)</span>和<span
+class="math inline">\(Y\)</span>，<span
+class="math inline">\(E(X+Y)=E(X)+E(Y)\)</span></li>
+<li>设随机变量<span class="math inline">\(X\)</span>和<span
+class="math inline">\(Y\)</span>独立，<span
+class="math inline">\(E(XY)=E(X)E(Y)\)</span></li>
+</ol>
+<p>中心矩：</p>
+<p>给定随机变量X，若<span
+class="math inline">\(E((X-EX)^k)\)</span>存在，则其k阶中心矩的定义为<span
+class="math inline">\(E((X-EX)^k)\)</span>。</p>
+<ul>
+<li>2阶中心矩即方差，记为<span
+class="math inline">\(\sigma^2(X)\)</span>或<span
+class="math inline">\(D(X)\)</span>或<span
+class="math inline">\(Var(X)\)</span>。</li>
+<li><span
+class="math inline">\((\sigma^2(X))^{\frac{1}{2}}\)</span>即标准差，记为<span
+class="math inline">\(\sigma(X)\)</span>。</li>
+<li><span class="math inline">\(D(X)=E(X^2)-E(X)^2\)</span></li>
+</ul>
+<p>方差的性质：</p>
+<ol type="1">
+<li><span class="math inline">\(C\)</span>为常数，<span
+class="math inline">\(D(C)=0\)</span>。</li>
+<li>设<span class="math inline">\(X\)</span>为随机变量，<span
+class="math inline">\(C\)</span>为常数，则<span
+class="math inline">\(D(C+X)=D(X),D(CX)=C^2D(X)\)</span>。</li>
+<li>随机变量<span class="math inline">\(X\)</span>与<span
+class="math inline">\(Y\)</span>相互独立，<span
+class="math inline">\(D(X+Y)=D(X)+D(Y),D(X-Y)=D(X)-D(Y)\)</span>。</li>
+</ol>
+<h2 id="概率分布">2.4 概率分布</h2>
+<h3 id="数学工具">2.4.0 数学工具</h3>
+<p>#### 泰勒展开</p>
+<p>若<span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x=a\)</span>处无穷可微，则当<span
+class="math inline">\(x\rightarrow a\)</span>时，有<span
+class="math inline">\(f(x)=\Sigma_{n=0}^\infin
+\frac{f^{(n)}(a)}{n!}(x-a)^n\)</span>。</p>
+<p><span class="math inline">\(\Sigma_{n=0}^\infin
+\frac{f^{(n)}(a)}{n!}(x-a)^n\)</span>称为<span
+class="math inline">\(f(x)\)</span>的泰勒级数。若<span
+class="math inline">\(a=0\)</span>则称为麦克劳林级数。</p>
+<h4 id="矩生成函数">矩生成函数</h4>
+<p>随机变量X的矩生成函数<span
+class="math inline">\(M_X(s)\)</span>定义为：<span
+class="math inline">\(M_X(s)=E[e^{sX}]\)</span>。</p>
+<p>如果存在常数<span class="math inline">\(\delta\)</span>使得<span
+class="math inline">\(M_X(s)\)</span>对于任意<span
+class="math inline">\(s\in[-\delta,\delta]\)</span>有穷，则称<span
+class="math inline">\(M_X(s)\)</span>存在。</p>
+<p>矩生成定理：</p>
+<p>假设随机变量X的矩生成函数<span
+class="math inline">\(M_X(s)\)</span>存在，则<span
+class="math inline">\(E[X^k]=\frac{d^k}{ds^k}M_X(s)|_{s=0}\)</span>。</p>
+<p>矩生成函数的唯一性定理：</p>
+<p>对于两个随机变量X和Y，假设存在常数<span
+class="math inline">\(\delta\)</span>使得<span
+class="math inline">\(M_X(s)\)</span>和<span
+class="math inline">\(M_Y(s)\)</span>对于任意<span
+class="math inline">\(s\in[-\delta,\delta]\)</span>存在且相等，则X和Y的分布函数相等。</p>
+<p>矩生成函数可加性定理：</p>
+<p><span
+class="math inline">\(X_1,X_2,...,X_n\)</span>为独立随机变量，则<span
+class="math inline">\(M_{X_1+X_2+...+X_n}(s)=M_{X_1}(s)M_{X_2}(s)...M_{X_n}(s)\)</span>。</p>
+<h3 id="离散概率分布">2.4.1 离散概率分布</h3>
+<h4 id="伯努利分布">伯努利分布</h4>
+<p>随机变量<span class="math inline">\(X\)</span>，<span
+class="math inline">\(P(X=k)=p^kq^{1-k}\)</span>，且满足<span
+class="math inline">\(k=0,1,p\in(0,1),q=1-p\)</span>，</p>
+<p>则称<span class="math inline">\(X\)</span>服从参数为<span
+class="math inline">\(p\)</span>的伯努利分布，记为<span
+class="math inline">\(X\sim Bern(p)\)</span>。</p>
+<p>数学期望：<span class="math inline">\(p\)</span></p>
+<p>方差：<span class="math inline">\(p(1-p)\)</span></p>
+<p>矩生成函数：<span class="math inline">\(M_X(s)=q+pe^s\)</span></p>
+<h4 id="二项分布">二项分布</h4>
+<p>随机变量<span class="math inline">\(X\)</span>，<span
+class="math inline">\(P(X=k)=(_k^n)p^k(1-p)^{n-k},k=0,1,...,n\)</span>，</p>
+<p>称<span class="math inline">\(X\)</span>服从参数<span
+class="math inline">\(n\)</span>，<span
+class="math inline">\(p\)</span>的二项分布，记为<span
+class="math inline">\(X\sim \mathbb B(n,p)\)</span>。</p>
+<p>数学期望：<span class="math inline">\(np\)</span></p>
+<p>方差：<span class="math inline">\(np(1-p)\)</span></p>
+<p>矩生成函数：<span
+class="math inline">\(M_X(s)=(q+pe^s)^n\)</span></p>
+<p>二项分布可加性：</p>
+<p>二项分布随机变量<span class="math inline">\(X\sim \mathbb
+B(m,p)\)</span>和<span class="math inline">\(Y\sim \mathbb
+B(n,p)\)</span>相互独立，则有<span class="math inline">\(X+Y\sim\mathbb
+B(m+n,p)\)</span>。</p>
+<h4 id="泊松分布">泊松分布</h4>
+<p>随机变量<span class="math inline">\(X\)</span>，<span
+class="math inline">\(P(X=k)=\frac{\lambda^k}{k!}e^{-\lambda},k=0,1,...,n,\lambda\gt0\)</span>，</p>
+<p>称<span class="math inline">\(X\)</span>服从参数为<span
+class="math inline">\(\lambda\)</span>的泊松分布，记作<span
+class="math inline">\(X\sim\pi(\lambda)\)</span>。</p>
+<p>数学期望：<span class="math inline">\(\lambda\)</span></p>
+<p>方差：<span class="math inline">\(\lambda\)</span></p>
+<p>矩生成函数：<span
+class="math inline">\(M_X(s)=e^{\lambda(e^s-1)}\)</span></p>
+<p>泊松逼近定理：</p>
+<p>设<span class="math inline">\(\lambda\gt 0\)</span>是一个常数，<span
+class="math inline">\(n\)</span>为正整数，若<span
+class="math inline">\(np\)</span>近似<span
+class="math inline">\(\lambda\)</span>，则对于任一固定的非负整数k，有</p>
+<p><span
+class="math inline">\(\lim_{n\rightarrow\infin}(_k^n)p_n^k(1-p_n)^{n-k}=\frac{\lambda^k}{k!}e^{-\lambda}\)</span>。</p>
+<h4 id="几何分布">几何分布</h4>
+<p>随机变量X，<span
+class="math inline">\(P(X=k)=q^{k-1}p,k=1,2,...,q=1-p\)</span>，</p>
+<p>称X服从参数为p的几何分布，记作<span
+class="math inline">\(X\sim\mathbb G(p)\)</span>。</p>
+<ul>
+<li>几何分布的无记忆性：<span class="math inline">\(P(X\gt m+n|X\gt
+m)=P(X\gt n)\)</span></li>
+</ul>
+<p>数学期望：<span class="math inline">\(\frac 1 p\)</span></p>
+<p>方差：<span class="math inline">\(\frac{1-p}{p^2}\)</span></p>
+<p>矩生成函数：<span
+class="math inline">\(M_X(s)=\frac{pe^s}{1-(1-p)e^s}\)</span></p>
+<h4 id="超几何分布">超几何分布</h4>
+<p>随机变量<span class="math inline">\(X\)</span>，<span
+class="math inline">\(P(X=k)=\frac{C_M^kC_{N-M}^{n-k}}{C_N^n},k=1,2,...,n,N,M,n\in
+\mathbb Z,M\ge N,n\ge N\)</span>，</p>
+<p>称<span class="math inline">\(X\)</span>服从参数为<span
+class="math inline">\(N,M,n\)</span>的超几何分布，记为<span
+class="math inline">\(X\sim\mathbb H(N,M,n)\)</span>。</p>
+<ul>
+<li>形象描述：<span class="math inline">\(N\)</span>件产品中有<span
+class="math inline">\(M\)</span>件次品，随机抽取<span
+class="math inline">\(n\)</span>件产品，恰有<span
+class="math inline">\(k\)</span>件次品的概率。</li>
+</ul>
+<p>数学期望：<span class="math inline">\(n\frac M N\)</span></p>
+<p>方差：<span class="math inline">\(n\frac M N\frac {N-M} N\frac
+{N-n}{N-1}\)</span></p>
+<h3 id="连续概率分布">2.4.2 连续概率分布</h3>
+<h4 id="均匀分布">均匀分布</h4>
+<p><span class="math inline">\(X\sim\mathbb
+U(a,b)\)</span>，概率密度函数<span class="math inline">\(f(x)=\frac
+1{b-a},a\lt x\lt b\)</span>。</p>
+<p>数学期望：<span class="math inline">\(\frac {a+b} 2\)</span></p>
+<p>方差：<span class="math inline">\(\frac {(b-a)^2} {12}\)</span></p>
+<h4 id="指数分布">指数分布</h4>
+<p><span class="math inline">\(X\sim\mathbb
+E(\lambda)\)</span>，概率密度函数<span
+class="math inline">\(f(x)=\lambda e^{-\lambda x},x\gt 0,\lambda\gt
+0\)</span>。</p>
+<ul>
+<li>指数分布的无记忆性：<span class="math inline">\(P(X\gt s+t|X\gt
+s)=P(X\gt t),\forall s,t\gt 0\)</span></li>
+</ul>
+<p>数学期望：<span class="math inline">\(\frac 1 {\lambda}\)</span></p>
+<p>方差：<span class="math inline">\(\frac 1 {\lambda^2}\)</span></p>
+<h4 id="正态分布">正态分布</h4>
+<p><span class="math inline">\(X\sim\mathbb
+N(\mu,\sigma^2)\)</span>，概率密度函数<span
+class="math inline">\(f(x)=\frac{1}{\sqrt{2\pi\sigma}}e^{-\frac{(x-\mu)^2}{2\sigma^2}},-\infin\lt
+x\lt+\infin,\sigma\gt 0\)</span>。</p>
+<p>数学期望：<span class="math inline">\(\mu\)</span></p>
+<p>方差：<span class="math inline">\(\sigma^2\)</span></p>
+<ul>
+<li>正态分布的对称性</li>
+<li>正态分布的标准化：<span class="math inline">\(Z=\frac{X-\mu}
+\sigma\)</span>，则<span class="math inline">\(Z\sim\mathbb
+N(0,1)\)</span>。</li>
+</ul>
+<p>二项分布正态逼近定理：<span
+class="math inline">\(\lim_{n\rightarrow\infin}\mathbb B(n,p)=\mathbb
+N(\mu,\sigma^2)\)</span></p>
+<p>泊松分布正态逼近定理：<span
+class="math inline">\(\lim_{n\rightarrow\infin}\pi(\lambda)=\mathbb
+N(\mu,\sigma^2)\)</span></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%9F%BA%E7%A1%80/" class="category-chain-item">数据科学基础</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/03/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%9F%BA%E7%A1%80/DataScience_3%20%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83/" title="数据科学基础_3_抽样分布">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据科学基础_3_抽样分布</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/01/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%9F%BA%E7%A1%80/DataScience_1%20%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="数据科学基础_1_基础知识">
+                        <span class="hidden-mobile">数据科学基础_1_基础知识</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>长风破浪会有时，直挂云帆济沧海</p> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -16,21 +16,21 @@
   <meta name="author" content="Geternitier">
   <meta name="keywords" content="">
   
-    <meta name="description" content="飞萤扑火，向死而生。">
+    <meta name="description" content="两岸猿声啼不住，轻舟已过万重山。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="云计算_2_架构">
-<meta property="og:url" content="http://example.com/2023/04/02/%E4%BA%91%E8%AE%A1%E7%AE%97/2-%E4%BA%91%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/index.html">
+<meta property="og:title" content="机器学习_05_支持向量机">
+<meta property="og:url" content="http://example.com/2023/11/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/05_%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/index.html">
 <meta property="og:site_name" content="Geternitier的博客">
-<meta property="og:description" content="飞萤扑火，向死而生。">
+<meta property="og:description" content="两岸猿声啼不住，轻舟已过万重山。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-02T04:00:00.000Z">
-<meta property="article:modified_time" content="2024-06-21T07:10:10.160Z">
+<meta property="article:published_time" content="2023-11-07T13:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-21T07:31:17.212Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>云计算_2_架构 - Geternitier的博客</title>
+  <title>机器学习_05_支持向量机 - Geternitier的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -184,7 +184,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="云计算_2_架构"></span>
+            <span id="subtitle" data-typed-text="机器学习_05_支持向量机"></span>
           
         </div>
 
@@ -195,8 +195,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-02 12:00" pubdate>
-          2023年4月2日 中午
+        <time datetime="2023-11-07 21:00" pubdate>
+          2023年11月7日 晚上
         </time>
       </span>
     
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          841 字
         
       </span>
     
@@ -247,165 +247,71 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">云计算_2_架构</h1>
+            <h1 style="display: none">机器学习_05_支持向量机</h1>
             
             
               <div class="markdown-body">
                 
-                <p>飞萤扑火，向死而生。</p>
+                <p>两岸猿声啼不住，轻舟已过万重山。</p>
 <span id="more"></span>
-<h1 id="云计算架构">2-云计算架构</h1>
-<h2 id="计算架构的演化">1. 计算架构的演化</h2>
-<h3 id="发展历程">1.1 发展历程</h3>
-<ol type="1">
-<li>中央集权架构：所有计算、计算资源、业务逻辑都集中于一台主机</li>
-<li>客户机/服务机架构（C/S架构）
+<h1 id="支持向量机">支持向量机</h1>
+<p>20231031</p>
+<p>18:30-21:20</p>
+<p>20231107</p>
+<p>18:30-21:20</p>
+<p>从统计学的观点来看，机器学习的目的是得到映射：<span
+class="math inline">\(X\rightarrow Y\)</span></p>
 <ul>
-<li>客户端：承载少量计算任务和所有IO任务</li>
-<li>服务器：承载主要计算任务</li>
-<li>优点：充分利用客户端计算能力；关注点分离，简化软件复杂度、编程模式</li>
-<li>缺点：持久链接，系统伸缩能力受限；客户端开发维护成本高；平台相关，升级换代麻烦</li>
-</ul></li>
-<li>中间层架构：将业务逻辑和数据服务分别放在两个服务器上（还是C/S架构）
-<ul>
-<li>客户机到中间件为无状态的非持久链接：提升架构弹性</li>
-</ul></li>
-<li>浏览器/服务器架构（B/S架构）
-<ul>
-<li>对客户机、中间层架构的扩展——客户端开发、维护成本降低，升级改动小</li>
-<li>客户端：负载进一步缩减，仅显示和运行基于浏览器的脚本程序</li>
-<li>服务器：Web服务器层屏蔽各中间件的差异，提供通用的用户访问界面</li>
-<li>扩展性高：对客户机性能无要求</li>
-<li>对网络性能要求高</li>
-</ul></li>
-<li>C/S和B/S混合架构
-<ul>
-<li>没有一种架构能够适用于所有场景</li>
-<li>有些服务需要持久的链接（内部用户）</li>
-<li>有些仅通过非持久链接即可（外部用户）</li>
-</ul></li>
-<li>面向服务的架构（SOA）</li>
-<li>微服务架构：在SOA思想上对系统业务做彻底的组件化、服务化。</li>
-</ol>
-<h3 id="面向服务的架构soa">1.2 面向服务的架构（SOA）</h3>
-<p>通过定义良好的接口，联系应用程序的不同服务的组件模型。</p>
-<p>接口：中立定义，独立于硬件平台、操作系统和编程语言。</p>
-<ul>
-<li><p>服务交互方式统一、通用。</p></li>
-<li><p>服务只做本职工作，暴露接口。</p></li>
-<li><p>通过统一的界面协调多个服务：控制复杂性，更容易管理。</p></li>
+<li>类的先验概率：<span class="math inline">\(p(y=i)\)</span></li>
+<li>样本的先验概率：<span class="math inline">\(p(x)\)</span></li>
+<li>类的条件概率：<span class="math inline">\(p(x|y=i)\)</span></li>
+<li>后验概率：<span class="math inline">\(p(y=i|x)\)</span></li>
 </ul>
-<p>SOA的目标：系统更有弹性，更灵活、更快地响应不断改变的企业业务需求，解决软件重用问题。</p>
-<p>具体通过：</p>
+<p>统计机器学习方法从概率框架的角度粗略分类：</p>
 <ul>
-<li>简单的服务间接口</li>
-<li>粗粒度：调用者和服务层只需一次交互</li>
-<li>松耦合：服务间相对独立无依赖</li>
-<li>位置透明</li>
-<li>协议无关</li>
-</ul>
-<p>SOA架构角色：</p>
+<li>生成式模型：估计<span class="math inline">\(p(x|y=i)\)</span>和<span
+class="math inline">\(p(y=i)\)</span>，用贝叶斯定理求<span
+class="math inline">\(p(y=i|x)\)</span></li>
+<li>判别式模型：直接估计<span class="math inline">\(p(y=i|x)\)</span>
 <ul>
-<li>服务请求者</li>
-<li>服务提供者</li>
-<li>服务注册中心</li>
-</ul>
-<p>操作：</p>
-<ul>
-<li>发布</li>
-<li>查询</li>
-<li>绑定和调用</li>
-</ul>
-<h2 id="云计算架构二维视角">2. 云计算架构二维视角</h2>
-<p>基础架构 + 应用程序（后端+前端）</p>
-<h3 id="基础架构">2.1 基础架构</h3>
-<p>虚拟化层</p>
-<ul>
-<li><p>将硬件转换为统一的IT资源（可灵活拆分、统一计量、统一管理、软件定义的）</p></li>
-<li><p>可以在不同的抽象层实现：应用层、操作系统层、体系结构层、硬件层等</p></li>
-</ul>
-<p>Web服务层</p>
-<ul>
-<li><p>将云资源提供给客户的一种最方便的方式，解决大部分客户无法直接使用虚拟机的问题；</p></li>
-<li><p>支持面广、对客户端要求低，只需要浏览器就可以访问。</p></li>
-</ul>
-<p>服务总线层</p>
-<ul>
-<li>中间件层，封装计算服务、数据存储、消息传递</li>
-<li>分离用户与虚拟化层、连接用户与Web服务层。</li>
-</ul>
-<p>客户机用户界面</p>
-<ul>
-<li><p>Web门户，将各种服务混搭集成在一个页面。</p></li>
-<li><p>基于Ajax，Javascript，趋势是使用功能完善的组件</p>
-<ul>
-<li>如JavaBeans/Applets，Silvedight/.NET等</li>
-<li>可下载和安装在客户机上</li>
+<li>判别函数：不假设概率模型，直接求一个把各类分开的边界</li>
 </ul></li>
 </ul>
-<p>###　2.2 云应用程序结构</p>
-<p>传统操作系统上的应用程序：进程、线程、服务、shell（应用程序的控制接口）</p>
+<h2 id="感知机">感知机</h2>
+<h3 id="二分类">二分类</h3>
+<p>二分类问题可以看作是在特征空间上对类别进行划分的任务。</p>
+<p>线性超平面、线性可分</p>
 <ul>
-<li>进程就是最终产品，每一个进程可运行多个指令序列（线程），一个线程对应一种服务。</li>
+<li><p><span
+class="math inline">\(w^Tx+b=0\)</span>：划分超平面的线性方程</p>
+<p><span
+class="math inline">\(w\)</span>为法向量，决定了超平面的方向；<span
+class="math inline">\(b\)</span>为位移量，决定了超平面和原点之间的距离</p>
+<p><span class="math inline">\(f(x)=sign(w^Tx+b)\)</span></p></li>
 </ul>
-<p>云环境中的应用程序：应用程序、应用实例、服务、云命令行界面（控制端）</p>
+<h2 id="线性支持向量机">线性支持向量机</h2>
+<h3 id="间隔与支持向量">间隔与支持向量</h3>
+<p>一个点到分界超平面的垂直距离称为这个点对应的间隔（margin）：<span
+class="math inline">\(\frac{|f(x)|}{||w||}=\frac{|w^Tx+b|}{||w||}\)</span>。</p>
+<p>具有最小间隔的点称为支持向量（supported vectors）。</p>
+<p>支持向量机（supported vector
+machine，SVM）最大化（所有训练样本的）最小间隔。</p>
+<h3 id="分类与评价">分类与评价</h3>
+<p><span class="math inline">\(f(\vec x)\gt0\)</span>则为正类，<span
+class="math inline">\(f(\vec x)\lt0\)</span>则为负类。</p>
+<p><span class="math inline">\(y_i=\{-1,1\}\)</span>，<span
+class="math inline">\(y_if(\vec x_i)\gt0\)</span>为正确，<span
+class="math inline">\(y_if(\vec x_i)\lt0\)</span>为错误。</p>
 <ul>
-<li><p>应用程序由多个同时运行的实例支撑</p></li>
-<li><p>不同的应用实例运行在不同的服务器上，每一个应用实例提供一种或多种服务</p></li>
-<li><p>服务间相互独立</p></li>
+<li>假设能完全分开，且<span
+class="math inline">\(|y_i|=1\)</span>，那么<span
+class="math inline">\(y_if(\vec x_i)=|f(x_i)|\)</span></li>
 </ul>
-<h2 id="云计算逻辑架构">3. 云计算逻辑架构</h2>
-<h3 id="云体">3.1 云体</h3>
-<p>云计算的物质基础，使用的资源集合，构成云计算的软硬件环境。</p>
-<ul>
-<li><p>例如网络、服务器、存储器、交换机等。</p>
-<p>广义的云体包括数据中心机器辅助设施如电力、空调、机架、冷却等系统。</p></li>
-</ul>
-<p>目前，云体就是数据中心。</p>
-<p>云计算的横向架构。</p>
-<p>传统系统环境：进程/线程/内存管理 + 文件系统 + 进程间通信/网络。</p>
-<p>云运行时环境：计算资源+持久存储+通信</p>
-<h4 id="云数据中心">云数据中心</h4>
-<p>数据集中存储、计算、交换的中心。</p>
-<p>传统数据中心的问题</p>
-<ul>
-<li>机器过多、利用率过低</li>
-<li>应用迁移太困难</li>
-<li>存储需求增长太快</li>
-</ul>
-<p>云数据中心：重视虚拟化，以提高资源利用率</p>
-<p>软件定义数据中心：</p>
-<ul>
-<li>软件定义计算：计算节点虚拟化。</li>
-<li>软件定义存储：分离管理接口与数据读写。管理接口统一，数据读写可以兼容各种方式。</li>
-<li>软件定义网络：数据平面（数据转发）和控制平面（转发表的设置等）分离；集中控制，分布式转发。</li>
-</ul>
-<h3 id="云栈">3.2 云栈</h3>
-<p>又称云平台，是在云上建造的运行环境。</p>
-<ul>
-<li><p>支持应用程序的发布、运行、监控、调度、伸缩，</p>
-<p>并为应用程序提供辅助服务机制，如访问控制、权限管理等。</p></li>
-</ul>
-<h4 id="云栈的三层模式">云栈的三层模式</h4>
-<ol type="1">
-<li>基础设施即服务层：硬件+虚拟化</li>
-<li>平台即服务层：应用程序的运行环境</li>
-<li>软件即服务层：Web应用服务</li>
-</ol>
-<h4 id="云计算技术架构">云计算技术架构</h4>
-<p>SOA构建层+管理中间件层+资源池层+物理资源层</p>
-<p>管理中间件层和资源池层是云计算技术的最关键部分。</p>
-<h4 id="iaas实现机制">IaaS实现机制</h4>
-<ol type="1">
-<li>配置工具：在分配的节点上准备任务运行环境。</li>
-<li>系统管理模块：管理和分配所有可用的资源，其核心是负载均衡。</li>
-<li>服务目录：用户可以访问的服务清单。</li>
-<li>用户交互接口：Web用户访问接口。</li>
-<li>监视统计模块：监视节点运行状态，统计节点使用情况。</li>
-</ol>
-<h3 id="云计算">3.3 云计算</h3>
-<p>利用云体和云平台所进行的计算或处理。</p>
-<p>无论在哪个层面开展，只要符合“按量计费、资源可伸缩”就是云计算。</p>
+<h2 id="非线性支持向量机">非线性支持向量机</h2>
+<p>将样本从原始空间映射到一个更高维的特征空间，使样本在这个特征空间内线性可分。</p>
+<p>非线性核：RBF/高斯核、多项式核</p>
+<h2 id="多类支持向量机">多类支持向量机</h2>
+<p>1vs rest/1v1</p>
 
                 
               </div>
@@ -424,7 +330,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/" class="category-chain-item">云计算</a>
+  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="category-chain-item">机器学习</a>
   
   
 
@@ -446,9 +352,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/02/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E4%B8%8E%E8%AE%A1%E7%AE%972/%E4%BA%8C-%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8/" title="软工2-二-项目启动">
+                      <a href="/2023/11/14/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/06_%E7%A5%9E%E7%BB%8F%E5%85%83/" title="机器学习_06_神经元">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">软工2-二-项目启动</span>
+                        <span class="hidden-mobile">机器学习_06_神经元</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -456,8 +362,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/01/%E4%BA%91%E8%AE%A1%E7%AE%97/1-%E4%BA%91%E8%AE%A1%E7%AE%97%E6%A6%82%E5%BF%B5/" title="云计算_1_概念">
-                        <span class="hidden-mobile">云计算_1_概念</span>
+                      <a href="/2023/10/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/04_%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" title="机器学习_04_集成学习">
+                        <span class="hidden-mobile">机器学习_04_集成学习</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

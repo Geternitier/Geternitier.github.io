@@ -1,0 +1,1232 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/yuanshen.jpeg">
+  <link rel="icon" href="/image/icon/yuanshen.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#5a9367">
+  <meta name="author" content="Geternitier">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="飞流直下三千尺，疑是银河落九天。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数理逻辑_2_一阶逻辑">
+<meta property="og:url" content="http://example.com/2023/08/03/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/2_%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91/index.html">
+<meta property="og:site_name" content="Geternitier的博客">
+<meta property="og:description" content="飞流直下三千尺，疑是银河落九天。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-03T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-21T07:37:02.077Z">
+<meta property="article:author" content="Geternitier">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>数理逻辑_2_一阶逻辑 - Geternitier的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Geternitier的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Geternitier的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/background/TheSpirits.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数理逻辑_2_一阶逻辑"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-03 12:00" pubdate>
+          2023年8月3日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数理逻辑_2_一阶逻辑</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>飞流直下三千尺，疑是银河落九天。</p>
+<span id="more"></span>
+<h1 id="第二章-一阶逻辑">第二章 一阶逻辑</h1>
+<h2 id="一阶语言">2.1 一阶语言</h2>
+<h3 id="公式">公式</h3>
+<p>表达式是符号的任意有限序列。</p>
+<ul>
+<li>大多数表达式是没有意义的，但是项和合式公式是具有特定意义的表达式。</li>
+</ul>
+<p>项是语言中的名词和代词，是可以翻译成对象名称的表达式。</p>
+<ul>
+<li>项定义为在常数符号和变量之前加上函数符号构成的表达式。
+<ul>
+<li>如果没有函数符号，那么项就是常数符号和变量。</li>
+</ul></li>
+<li>项的集合是由常数符号和变量通过使用0次和多次运算<span
+class="math inline">\(F_f\)</span>得到的表达式的集合。</li>
+</ul>
+<p>原子公式是指那些没有使用联结符号和量词符号的合式公式。</p>
+<ul>
+<li>原子公式由n元谓词符号和n个项组成。</li>
+</ul>
+<p>合式公式的集合是由原子公式通过0次或多次使用<span
+class="math inline">\(\varepsilon_\neg,\varepsilon_\rightarrow\)</span>和<span
+class="math inline">\(Q_i(i=1,2,...)\)</span>运算构成的表达式的集合。</p>
+<h3 id="自由变量">自由变量</h3>
+<p>考虑任意变量x，对每一个合式公式<span
+class="math inline">\(\alpha\)</span>，x在<span
+class="math inline">\(\alpha\)</span>中自由出现的递归定义：</p>
+<ol type="1">
+<li>对原子公式<span class="math inline">\(\alpha\)</span>，x在<span
+class="math inline">\(\alpha\)</span>中自由出现当且仅当x出现在<span
+class="math inline">\(\alpha\)</span>中</li>
+<li>x在<span
+class="math inline">\((\neg\alpha)\)</span>中自由出现当且仅当x在<span
+class="math inline">\(\alpha\)</span>中自由出现</li>
+<li>x在<span
+class="math inline">\((\alpha\rightarrow\beta)\)</span>中自由出现当且仅当x在<span
+class="math inline">\(\alpha\)</span>或<span
+class="math inline">\(\beta\)</span>中自由出现</li>
+<li>x在<span class="math inline">\(\forall
+v_i\alpha\)</span>中自由出现当且仅当x在<span
+class="math inline">\(\alpha\)</span>中自由出现且<span
+class="math inline">\(x\neq v_i\)</span></li>
+</ol>
+<p>如果合式公式<span
+class="math inline">\(\alpha\)</span>中没有自由变量出现，那么<span
+class="math inline">\(\alpha\)</span>就是一个句子。</p>
+<h3 id="符号">符号</h3>
+<p>可以用显式书写每一个符号的方式来指定一个合式公式。</p>
+<p>惯用的缩写和记法：</p>
+<ul>
+<li><p><span class="math inline">\((\alpha\or\beta)\)</span>简化<span
+class="math inline">\(((\neg\alpha)\rightarrow\beta)\)</span></p></li>
+<li><p><span class="math inline">\((\alpha\and\beta)\)</span>简化<span
+class="math inline">\((\neg(\alpha\rightarrow(\neg\beta)))\)</span></p></li>
+<li><p><span
+class="math inline">\((\alpha\leftrightarrow\beta)\)</span>简化<span
+class="math inline">\(((\alpha\rightarrow\beta)\and(\beta\rightarrow\alpha))\)</span></p></li>
+<li><p><span class="math inline">\(\exist x\alpha\)</span>简化<span
+class="math inline">\((\neg\forall x(\neg\alpha))\)</span></p></li>
+<li><p>最外层的括号可以省略</p></li>
+<li><p>尽量少使用<span
+class="math inline">\(\neg，\rightarrow\)</span>和<span
+class="math inline">\(\exist，\or，\and\)</span></p></li>
+<li><p>当联结符号重复出现，表达式从右边开始分组</p></li>
+</ul>
+<h2 id="真值与模型">2.2 真值与模型</h2>
+<p>一阶语言的结构指明：</p>
+<ul>
+<li><p>全称量词所指的事物集合</p></li>
+<li><p>其他参数（谓词和函数符号）的含义</p></li>
+</ul>
+<p>形式上，一阶语言的一个<strong>结构</strong><span
+class="math inline">\(\mathfrak{A}\)</span>是一个函数，其定义域为参数的集合，且满足</p>
+<ol type="1">
+<li><span class="math inline">\(\mathfrak{A}\)</span>为全称量词<span
+class="math inline">\(\forall\)</span>指派一个非空集合<span
+class="math inline">\(|\mathfrak{A}|\)</span>，称为<span
+class="math inline">\(\mathfrak{A}\)</span>的论域或者定义域</li>
+<li><span
+class="math inline">\(\mathfrak{A}\)</span>为每一个n元谓词符号P指派一个n元关系，<span
+class="math inline">\(P^\mathfrak{A}\subseteq|\mathfrak{A}|^n\)</span>，即<span
+class="math inline">\(P^\mathfrak{A}\)</span>是P上一个n元组的集合</li>
+<li><span
+class="math inline">\(\mathfrak{A}\)</span>给每个常数符号c指派一个论域<span
+class="math inline">\(|\mathfrak{A}|\)</span>中的元素<span
+class="math inline">\(c^\mathfrak{A}\)</span></li>
+<li><span
+class="math inline">\(\mathfrak{A}\)</span>给每个n元函数符号f指派一个<span
+class="math inline">\(|\mathfrak{A}|\)</span>上的n元运算<span
+class="math inline">\(f^\mathfrak{A}:|\mathfrak{A}|^n\rightarrow|\mathfrak{A}|\)</span></li>
+</ol>
+<p>称一个结构是这个句子的<strong>模型</strong>，当使用该结构可以将形式语言的句子翻译为真的自然语言。</p>
+<p><span
+class="math inline">\(\models_\mathfrak{A}\sigma\)</span>（句子<span
+class="math inline">\(\sigma\)</span>在结构<span
+class="math inline">\(\mathfrak{A}\)</span>中是真的）的定义：</p>
+<p>令<span
+class="math inline">\(\varphi\)</span>是语言中的合式公式，<span
+class="math inline">\(\mathfrak{A}\)</span>是语言的结构，<span
+class="math inline">\(s:V\rightarrow|\mathfrak{A}|\)</span>是从集合V的所有变量到A的论域<span
+class="math inline">\(|\mathfrak{A}|\)</span>的函数。那么定义对于<span
+class="math inline">\(\mathfrak{A}\)</span>，s满足<span
+class="math inline">\(\varphi\)</span>的含义为<span
+class="math inline">\(\models_\mathfrak{A} \varphi[s]\)</span>。</p>
+<ul>
+<li><p>假定<span class="math inline">\(s_1\)</span>和<span
+class="math inline">\(s_2\)</span>是从<span
+class="math inline">\(V\)</span>到<span
+class="math inline">\(|\mathfrak{A}|\)</span>的函数，它们在合式公式<span
+class="math inline">\(\varphi\)</span>中自由出现的所有变量上取值相同，那么<span
+class="math inline">\(\models_\mathfrak{A} \varphi[s_1]\quad iff
+\quad\models_\mathfrak{A}\varphi[s_2]\)</span></p></li>
+<li><p>对每个句子<span
+class="math inline">\(\sigma\)</span>，以下必有一条被满足：</p>
+<ul>
+<li><span class="math inline">\(\mathfrak{A}\)</span>以每个从V到<span
+class="math inline">\(|\mathfrak{A}|\)</span>的函数S满足<span
+class="math inline">\(\sigma\)</span></li>
+<li><span
+class="math inline">\(\mathfrak{A}\)</span>无法以任何一个从V到<span
+class="math inline">\(|\mathfrak{A}|\)</span>的函数满足<span
+class="math inline">\(\sigma\)</span></li>
+</ul>
+<p>如果前者成立，称<span class="math inline">\(\sigma\)</span>在<span
+class="math inline">\(\mathfrak{A}\)</span>中是真的，即<span
+class="math inline">\(\mathfrak{A}\)</span>是<span
+class="math inline">\(\sigma\)</span>的模型，反之则是假的。</p></li>
+<li><p><span
+class="math inline">\(\mathfrak{A}\)</span>是句子集合的模型当且仅当<span
+class="math inline">\(\mathfrak{A}\)</span>是句子集合中每个句子的模型。</p></li>
+</ul>
+<h3 id="逻辑蕴涵">逻辑蕴涵</h3>
+<p>设<span class="math inline">\(\Gamma\)</span>是合式公式的集合，<span
+class="math inline">\(\varphi\)</span>是一个合式公式，那么<span
+class="math inline">\(\Gamma\)</span>逻辑蕴涵<span
+class="math inline">\(\varphi\)</span>，记作<span
+class="math inline">\(\Gamma\models\varphi\)</span>，当且仅当对语言的每个结构<span
+class="math inline">\(\mathfrak{A}\)</span>和每个函数<span
+class="math inline">\(s:V\rightarrow|\mathfrak{A}|\)</span>，使得<span
+class="math inline">\(\mathfrak{A}\)</span>以s满足<span
+class="math inline">\(\Gamma\)</span>的每个元素，<span
+class="math inline">\(\mathfrak{A}\)</span>也以s满足<span
+class="math inline">\(\varphi\)</span>。</p>
+<ul>
+<li>对句子集合<span
+class="math inline">\(\Sigma;\tau,\Sigma\models\tau\)</span>当且仅当<span
+class="math inline">\(\Sigma\)</span>的每个模型也是<span
+class="math inline">\(\tau\)</span>中的模型。句子<span
+class="math inline">\(\tau\)</span>是恒真的当且仅当其在每个结构下都是真的。</li>
+</ul>
+<h3 id="结构的可定义性">结构的可定义性</h3>
+<p>论域上子集的可定义性：</p>
+<p>结构<span class="math inline">\(\mathfrak{A}\)</span>和合式公式<span
+class="math inline">\(\varphi\)</span>，其自由变元在<span
+class="math inline">\(v_1,...,v_k\)</span>之中，那么可以构建<span
+class="math inline">\(|\mathfrak{A}|\)</span>上的k元关系<span
+class="math inline">\(\{|&lt;a_1,...,a_k&gt;|\models_\mathfrak{A}\varphi[a_1,...,a_k]\}\)</span>，称此k元关系是在<span
+class="math inline">\(\mathfrak{A}\)</span>中由<span
+class="math inline">\(\varphi\)</span>定义的。</p>
+<ul>
+<li>一般地，<span
+class="math inline">\(|\mathfrak{A}|\)</span>上的k元关系在<span
+class="math inline">\(\mathfrak{A}\)</span>中是可定义的当且仅当存在能够定义它的一个公式。</li>
+</ul>
+<p>对句子集<span class="math inline">\(\Sigma\)</span>，用<span
+class="math inline">\(Mod\;\Sigma\)</span>表示<span
+class="math inline">\(\Sigma\)</span>的所有模型组成的类，即某种语言的所有结构的类，在这种语言中<span
+class="math inline">\(\Sigma\)</span>的每个元素都是真的。对单个句子<span
+class="math inline">\(\tau\)</span>，我们简单记作<span
+class="math inline">\(Mod\;\tau\)</span>，而不用<span
+class="math inline">\(Mod\{\tau\}\)</span>。</p>
+<p>语言的结构类K是<strong>初等类</strong>(elementary class，<span
+class="math inline">\(EC\)</span>)，当且仅当对某个句子<span
+class="math inline">\(\tau\)</span>，<span
+class="math inline">\(K=Mod\;\tau\)</span>。K是广义初等类(elementary
+class in wider sense，<span
+class="math inline">\(EC_\Delta\)</span>)当且仅当对某个句子集合<span
+class="math inline">\(\Sigma\)</span>，<span
+class="math inline">\(K=Mod\;\Sigma\)</span>。</p>
+<h3 id="同态">同态</h3>
+<p>从<span class="math inline">\(\mathfrak{A}\)</span>到<span
+class="math inline">\(\mathfrak{B}\)</span>的一个<strong>同态</strong>是一个函数<span
+class="math inline">\(h:|\mathfrak{A}|\rightarrow|\mathfrak{B}|\)</span>，具有下列性质：</p>
+<ul>
+<li><p>对每个n元谓词参数<span class="math inline">\(P\)</span>和<span
+class="math inline">\(|\mathfrak{A}|\)</span>中元素的任意n元组<span
+class="math inline">\(&lt;a_1,...,a_n&gt;\)</span></p>
+<p><span class="math inline">\(&lt;a_1,...,a_n&gt;\in P^\mathfrak{A}\;
+iff\;&lt;h(a_1),...,h(a_n)&gt;\in P^\mathfrak{B}\)</span></p></li>
+<li><p>对每个n元函数符号f和任意n元组</p>
+<p><span
+class="math inline">\(h(f^\mathfrak{A}(a_1,...,a_n))=f^\mathfrak{B}(h(a_1),...,h(a_n))\)</span></p></li>
+<li><p>对于常数符号c，<span
+class="math inline">\(h(c^A)=c^\mathfrak{B}\)</span></p></li>
+</ul>
+<p>如果h是一对一的，那么这种同态称为<span
+class="math inline">\(\mathfrak{A}\)</span>到<span
+class="math inline">\(\mathfrak{B}\)</span>中的<strong>同构</strong>。</p>
+<p>如果存在<span class="math inline">\(\mathfrak{A}\)</span>到<span
+class="math inline">\(\mathfrak{B}\)</span>上的同构，那么<span
+class="math inline">\(\mathfrak{A}\)</span>和<span
+class="math inline">\(\mathfrak{B}\)</span>称作是同构的，记作<span
+class="math inline">\(A\cong \mathfrak{B}\)</span>。</p>
+<h4 id="同态定理">同态定理</h4>
+<p>同态定理：设h是从<span
+class="math inline">\(\mathfrak{A}\)</span>到<span
+class="math inline">\(\mathfrak{B}\)</span>中的同态，s将变量的集合映射到<span
+class="math inline">\(|\mathfrak{B}|\)</span>中。</p>
+<ul>
+<li><p>对每个项t，我们有<span
+class="math inline">\(h(\overline{s}(t))=h\overline{\circ}s(t)\)</span>，其中<span
+class="math inline">\(\overline{s}(t)\)</span>是在<span
+class="math inline">\(\mathfrak{B}\)</span>中计算的，而<span
+class="math inline">\(h\overline{\circ}s(t)\)</span>是在<span
+class="math inline">\(\mathfrak{B}\)</span>中计算的。</p></li>
+<li><p>对每个不包含等于符号的无量词的公式<span
+class="math inline">\(\alpha\)</span>，<span
+class="math inline">\(\models_\mathfrak{A}\alpha[s]\;iff\;\models_\mathfrak{B}\alpha[h\circ
+s]\)</span></p></li>
+<li><p>如果h是一对一的，那么对每个无量词的公式<span
+class="math inline">\(\alpha\)</span>，<span
+class="math inline">\(\models_\mathfrak{A}\alpha[s]\;iff\;\models_\mathfrak{B}\alpha[h\circ
+s]\)</span></p></li>
+<li><p>第二、三条可以删去无量词</p></li>
+</ul>
+<p>称两个结构<span class="math inline">\(\mathfrak{A}\)</span>和<span
+class="math inline">\(\mathfrak{B}\)</span>是初等等价的，记作<span
+class="math inline">\(\mathfrak{A}\equiv
+\mathfrak{B}\)</span>，当且仅当对任意的句子<span
+class="math inline">\(\sigma\)</span>，<span
+class="math inline">\(\models_\mathfrak{A}\sigma\Leftrightarrow\models_\mathfrak{B}\sigma\)</span>。</p>
+<ul>
+<li>同构的结构是初等等价的。</li>
+</ul>
+<p>设h是A的自同构，R是|A|上的n元关系，那么对|A|中任意的<span
+class="math inline">\(a_1,...,a_n\)</span>，<span
+class="math inline">\(&lt;a_1,...,a_n&gt;\in
+R\Leftrightarrow&lt;h(a_1),...,h(a_n)&gt;\in R\)</span>。</p>
+<h2 id="解析算法">2.3 解析算法</h2>
+<h3 id="项的解析">项的解析</h3>
+<p>定义符号函数K，使得对符号s，<span
+class="math inline">\(K(s)=1-n\)</span>，其中n是项的个数。</p>
+<p><span class="math inline">\(K(x)=1-0=1\)</span>，对变量x；</p>
+<p><span class="math inline">\(K(c)=1-0=1\)</span>，对常数符号c；</p>
+<p><span class="math inline">\(K(f)=1-n\)</span>，对n元函数符号f；</p>
+<p>通过如下方式将K扩充到表达式的集合：<span
+class="math inline">\(K(s_1s_2...s_n)=K(s_1)+...+K(s_n)\)</span></p>
+<ul>
+<li><p>对于任意项t，<span class="math inline">\(K(t)=1\)</span></p></li>
+<li><p>项的任意终段是一个或者多个项的连接</p></li>
+<li><p>一个项的任意真的初始段都不是项，如果<span
+class="math inline">\(t_1\)</span>是<span
+class="math inline">\(t\)</span>的真的初始段，那么<span
+class="math inline">\(K(t_1)\lt 1\)</span></p></li>
+</ul>
+<p>项的唯一可解释性定理：项集是由变量集和常数符号通过<span
+class="math inline">\(F_f\)</span>运算自由生成的。</p>
+<h3 id="公式解析">公式解析</h3>
+<p><span class="math inline">\(K(()=-1\)</span>；</p>
+<p><span class="math inline">\(K())=1\)</span>；</p>
+<p><span class="math inline">\(K(\forall)=-1\)</span>；</p>
+<p><span class="math inline">\(K(\neg)=0\)</span>；</p>
+<p><span class="math inline">\(K(\rightarrow)=-1\)</span>；</p>
+<p><span class="math inline">\(K(=)=-1\)</span>；</p>
+<p><span class="math inline">\(K(P)=1-n\)</span>，对n元谓词符号P。</p>
+<p>对于任意合式公式<span class="math inline">\(\alpha\)</span>，<span
+class="math inline">\(K(\alpha)=1\)</span></p>
+<ul>
+<li><p>对于合式公式<span
+class="math inline">\(\alpha\)</span>的任意真的初始段<span
+class="math inline">\(\alpha&#39;\)</span>，<span
+class="math inline">\(K(\alpha&#39;)\lt 1\)</span></p></li>
+<li><p>公式的任何真的初始段都不是公式</p></li>
+</ul>
+<p>公式的唯一可解释性定理：合式公式的结合是由原子公式通过<span
+class="math inline">\(\varepsilon_\neg,\varepsilon_\rightarrow,Q_i\)</span>运算自由生成的</p>
+<h2 id="演绎计算">2.4 演绎计算</h2>
+<p>证明应该是：</p>
+<ul>
+<li><p>有限长的；</p></li>
+<li><p>能够进行验证的；</p></li>
+</ul>
+<p>无假设条件的可证明的公式集合必须是能行可枚举的。</p>
+<h3 id="形式演绎">2.4.1 形式演绎</h3>
+<p>选择一个有限的公式集合<span
+class="math inline">\(\Lambda\)</span>，称之为逻辑公理；</p>
+<p>制定推理规则，这些规则可以使我们从某些公式获得新的公式。</p>
+<p>对于公式集合<span class="math inline">\(\Gamma\)</span>，<span
+class="math inline">\(\Gamma\)</span>的<strong>定理</strong>是指由<span
+class="math inline">\(\Gamma\cup\Lambda\)</span>中的公式通过有限次使用推理规则得到的公式。</p>
+<ul>
+<li><p>公式<span class="math inline">\(\varphi\)</span>是<span
+class="math inline">\(\Gamma\)</span>的定理，记作<span
+class="math inline">\(\Gamma\vdash\varphi\)</span>。</p>
+<p>为了得到公式<span class="math inline">\(\varphi\)</span>，由<span
+class="math inline">\(\Gamma\cup\Lambda\)</span>使用推理规则的公式序列称为从<span
+class="math inline">\(\Gamma\)</span>到<span
+class="math inline">\(\varphi\)</span>的一个演绎。</p></li>
+</ul>
+<p>我们选择的推理规则是假言推理。</p>
+<h4 id="假言推理">假言推理</h4>
+<p>从公式<span class="math inline">\(\alpha\)</span>和<span
+class="math inline">\(\alpha\rightarrow\beta\)</span>，可以得到<span
+class="math inline">\(\beta\)</span>：<span
+class="math inline">\(\frac{\alpha,\alpha\rightarrow\beta}{\beta}\)</span>。</p>
+<h4 id="演绎">演绎</h4>
+<p>从<span class="math inline">\(\Gamma\)</span>到<span
+class="math inline">\(\varphi\)</span>的一个演绎是一个有限的公式序列<span
+class="math inline">\(&lt;\alpha_0,...,\alpha_n&gt;\)</span>，使得<span
+class="math inline">\(\alpha_n=\varphi\)</span>，且对每个<span
+class="math inline">\(k\le n\)</span>，或者</p>
+<ul>
+<li><p><span class="math inline">\(\alpha_k\)</span>在<span
+class="math inline">\(\Gamma\cup\Lambda\)</span>中</p></li>
+<li><p><span
+class="math inline">\(\alpha_k\)</span>可以由序列中出现在该公式之前的两个公式通过假言推理得到，即：</p>
+<p>对于小于k的i和j，<span class="math inline">\(\alpha_j\)</span>是<span
+class="math inline">\(\alpha_i\rightarrow\alpha_k\)</span>。</p></li>
+</ul>
+<p>如果存在这样的演绎，则称<span
+class="math inline">\(\varphi\)</span>是由<span
+class="math inline">\(\Gamma\)</span>可演绎推出的，或者<span
+class="math inline">\(\varphi\)</span>是<span
+class="math inline">\(\Gamma\)</span>的定理，记作<span
+class="math inline">\(\Gamma\vdash\varphi\)</span>。</p>
+<ul>
+<li><p>从<span class="math inline">\(\Gamma\)</span>到<span
+class="math inline">\(\varphi\)</span>的一个演绎可以看作是一个构造序列。</p></li>
+<li><p>一个定理不只有一个唯一的演绎。</p></li>
+</ul>
+<h4 id="归纳原理">归纳原理</h4>
+<p>设S是包含<span
+class="math inline">\(\Gamma\cup\Lambda\)</span>的合式公式的集合，并且在假言推理下封闭，那么S包含<span
+class="math inline">\(\Gamma\)</span>的所有定理。</p>
+<h4 id="逻辑公理">逻辑公理</h4>
+<p>任意合式公式都是其自身的一个概化，逻辑公理都是如下形式合式公式的概化，其中x和y都是变量，<span
+class="math inline">\(\alpha\)</span>和<span
+class="math inline">\(\beta\)</span>都是合式公式。</p>
+<ol type="1">
+<li>重言式</li>
+<li><span class="math inline">\(\forall
+x\alpha\rightarrow\alpha_t^x\)</span>，其中t为x在<span
+class="math inline">\(\alpha\)</span>中的替换</li>
+<li><span class="math inline">\(\forall
+x(\alpha\rightarrow\beta)\rightarrow(\forall x\alpha\rightarrow\forall
+x\beta)\)</span></li>
+<li><span class="math inline">\(\alpha\rightarrow\forall
+x\alpha\)</span>，其中x在<span
+class="math inline">\(\alpha\)</span>中不是自由出现的</li>
+</ol>
+<p>如果语言包含相等符号则还要加上两组：</p>
+<ol start="5" type="1">
+<li><span class="math inline">\(x=x\)</span></li>
+<li><span
+class="math inline">\(x=y\rightarrow(\alpha\rightarrow\alpha&#39;)\)</span>，其中<span
+class="math inline">\(\alpha\)</span>是原子的且<span
+class="math inline">\(\alpha&#39;\)</span>是有限次的将<span
+class="math inline">\(\alpha\)</span>中的x替换为y的到的。</li>
+</ol>
+<p>合式公式<span class="math inline">\(\varphi\)</span>是<span
+class="math inline">\(\psi\)</span>的<strong>概化</strong>当且仅当对某个<span
+class="math inline">\(n\ge0\)</span>和某些变量<span
+class="math inline">\(x_1,...,x_n\)</span>，<span
+class="math inline">\(\varphi=\forall x_1...\forall
+x_n\psi\)</span>。</p>
+<h4 id="替换">替换</h4>
+<p>替换的递归定义：</p>
+<ol type="1">
+<li>对原子公式<span class="math inline">\(\alpha\)</span>，<span
+class="math inline">\(\alpha_t^x\)</span>是将公式<span
+class="math inline">\(\alpha\)</span>中自由出现的变量x都替换为t所得到的表达式。</li>
+<li><span
+class="math inline">\((\neg\alpha)_t^x=(\neg\alpha_t^x)\)</span></li>
+<li><span
+class="math inline">\((\alpha\rightarrow\beta)_t^x=(\alpha_t^x\rightarrow\beta_t^x)\)</span></li>
+<li><span class="math inline">\((\forall y\alpha)_t^x=\begin{cases}
+\forall y\alpha\quad 如果x=y\\ \forall y(\alpha_t^x)\quad 如果x\neq y
+\end{cases}\)</span></li>
+</ol>
+<p>可替换的递归定义</p>
+<ol type="1">
+<li><p>对原子公式<span class="math inline">\(\alpha\)</span>，在<span
+class="math inline">\(\alpha\)</span>中t可以替换x。</p></li>
+<li><p>在<span
+class="math inline">\((\neg\alpha)\)</span>中t可以替换x当且仅当在<span
+class="math inline">\(\alpha\)</span>中t可以替换x。在<span
+class="math inline">\((\alpha\rightarrow\beta)\)</span>中t可以替换x当且仅当在<span
+class="math inline">\(\alpha\)</span>和<span
+class="math inline">\(\beta\)</span>中t都可以替换x。</p></li>
+<li><p>在<span class="math inline">\(\forall
+y\alpha\)</span>中t可以替换x当且仅当</p>
+<ul>
+<li>x在<span class="math inline">\(\forall
+y\alpha\)</span>中不是自由出现的；或</li>
+<li>y在t中不出现且在<span
+class="math inline">\(\alpha\)</span>中t可以替换x。</li>
+</ul></li>
+</ol>
+<h4 id="重言式">重言式</h4>
+<p>基本公式：原子公式和形式为<span class="math inline">\(\forall
+x\alpha\)</span>的公式。</p>
+<ul>
+<li>任何公式都可以由基本公式通过<span
+class="math inline">\(\epsilon_\neg\)</span>和<span
+class="math inline">\(\epsilon_\rightarrow\)</span>的运算构造。</li>
+<li>第一组公理都是命题逻辑重言式的概化。</li>
+</ul>
+<p>定理：<span
+class="math inline">\(\Gamma\vdash\varphi\)</span>当且仅当<span
+class="math inline">\(\Gamma\cup\Lambda\)</span>重言蕴涵<span
+class="math inline">\(\varphi\)</span>。</p>
+<h3 id="演绎与元定理">2.4.2 演绎与元定理</h3>
+<p>自然语言中的定理称为<strong>元定理</strong>。</p>
+<h4 id="概化定理">概化定理</h4>
+<p>如果<span
+class="math inline">\(\Gamma\vdash\varphi\)</span>且x不在<span
+class="math inline">\(\Gamma\)</span>的任何公式中自由出现，那么<span
+class="math inline">\(\Gamma\vdash\forall x\varphi\)</span>。</p>
+<p>引理（规则T）：如果<span
+class="math inline">\(\Gamma\vdash\alpha_1,...,\Gamma\vdash\alpha_n\)</span>，且<span
+class="math inline">\(\{\alpha_1,...,\alpha_n\}\)</span>重言蕴涵<span
+class="math inline">\(\beta\)</span>，那么<span
+class="math inline">\(\Gamma\vdash\beta\)</span>。</p>
+<h4 id="演绎定理">演绎定理</h4>
+<p>如果<span
+class="math inline">\(\Gamma;\gamma\vdash\varphi\)</span>，那么<span
+class="math inline">\(\Gamma\vdash(\gamma\rightarrow\varphi)\)</span>。</p>
+<ul>
+<li>逆定理也成立，实际上逆定理就是假言推理。</li>
+</ul>
+<h5 id="逆否律">逆否律</h5>
+<p><span
+class="math inline">\(\Gamma;\varphi\vdash\neg\psi\)</span>当且仅当<span
+class="math inline">\(\Gamma;\psi\vdash\neg\varphi\)</span>。</p>
+<ul>
+<li>证明：
+<ul>
+<li>由演绎定理，<span
+class="math inline">\(\Gamma;\varphi\vdash\neg\psi\Rightarrow\Gamma\vdash\varphi\rightarrow\neg\psi\)</span></li>
+<li>由规则T，又<span
+class="math inline">\(\varphi\rightarrow\neg\psi\)</span>重言蕴涵<span
+class="math inline">\(\psi\rightarrow\neg\varphi\)</span>，上式<span
+class="math inline">\(\Rightarrow\Gamma\vdash\psi\rightarrow\neg\varphi\)</span></li>
+<li>由假言推理，上式<span
+class="math inline">\(\Rightarrow\Gamma;\psi\vdash\neg\varphi\)</span></li>
+</ul></li>
+</ul>
+<h5 id="不和谐">不和谐</h5>
+<p>称一个公式集合是不和谐的当且仅当对某个<span
+class="math inline">\(\beta\)</span>，<span
+class="math inline">\(\beta\)</span>与<span
+class="math inline">\(\neg\beta\)</span>都是这个集合的定理。</p>
+<ul>
+<li>此时任意公式都是该集合的定理，<span
+class="math inline">\(\beta\rightarrow\neg\beta\rightarrow\alpha\)</span>是重言式。</li>
+</ul>
+<h5 id="归谬法">归谬法</h5>
+<p><span
+class="math inline">\(\Gamma;\varphi\)</span>是不和谐的，那么<span
+class="math inline">\(\Gamma\vdash\neg\varphi\)</span>。</p>
+<h3 id="策略">2.4.3 策略</h3>
+<p>对于给定的<span class="math inline">\(\Gamma\)</span>和<span
+class="math inline">\(\varphi\)</span>，证明<span
+class="math inline">\(\Gamma\vdash\varphi\)</span>的策略：</p>
+<ul>
+<li>穷举合式公式的有限序列直到发现一个<span
+class="math inline">\(\Gamma\)</span>到<span
+class="math inline">\(\varphi\)</span>的演绎</li>
+<li>在自然语言中给出<span
+class="math inline">\(\Gamma\)</span>的真值蕴涵<span
+class="math inline">\(\varphi\)</span>的真值的证明，再形式化为形式语言</li>
+<li>仅基于<span class="math inline">\(\varphi\)</span>的语法形式：
+<ul>
+<li>设<span class="math inline">\(\varphi\)</span>是<span
+class="math inline">\((\psi\rightarrow\theta)\)</span>，那么可以证明<span
+class="math inline">\(\Gamma;\psi\vdash\theta\)</span>。</li>
+<li>设<span class="math inline">\(\varphi\)</span>是<span
+class="math inline">\(\forall x\psi\)</span>，如果x在<span
+class="math inline">\(\Gamma\)</span>中不是自由出现的，那么可以证明<span
+class="math inline">\(\Gamma\vdash\psi\)</span>。</li>
+<li>设<span class="math inline">\(\varphi\)</span>是某个公式的否定：
+<ul>
+<li>如果<span class="math inline">\(\varphi\)</span>是<span
+class="math inline">\(\neg(\psi\rightarrow\theta)\)</span>，那么可以证明<span
+class="math inline">\(\Gamma\vdash\psi\)</span>和<span
+class="math inline">\(\Gamma\vdash\neg\theta\)</span></li>
+<li>如果<span class="math inline">\(\varphi\)</span>是<span
+class="math inline">\(\neg\neg\psi\)</span>，那么可以证明<span
+class="math inline">\(\Gamma\vdash\psi\)</span></li>
+<li>如果<span class="math inline">\(\varphi\)</span>是<span
+class="math inline">\(\neg\forall x\psi\)</span>，可以证明<span
+class="math inline">\(\Gamma\vdash\neg\psi_t^x\)</span>，其中t是在<span
+class="math inline">\(\psi\)</span>中可替换x的某个项。
+<ul>
+<li>这并非总是可行的，有可能会出现<span
+class="math inline">\(\Gamma\vdash\neg\forall
+x\psi\)</span>但对每个项t，<span
+class="math inline">\(\neg(\Gamma\vdash\neg\psi_{t}^x)\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="常数的概化">常数的概化</h4>
+<p>设<span
+class="math inline">\(\Gamma\vdash\varphi\)</span>，且c是不在<span
+class="math inline">\(\Gamma\)</span>中出现的常数符号，那么存在变量y(不出现在<span
+class="math inline">\(\varphi\)</span>)使得<span
+class="math inline">\(\Gamma\vdash\forall
+y\varphi_y^c\)</span>。另外，存在从<span
+class="math inline">\(\Gamma\)</span>到<span
+class="math inline">\(\forall
+y\varphi_y^c\)</span>的演绎，在此演绎中不出现c。</p>
+<ul>
+<li><p>推论：设<span
+class="math inline">\(\Gamma\vdash\varphi_c^x\)</span>，其中常数符号c不在<span
+class="math inline">\(\Gamma\)</span>或<span
+class="math inline">\(\varphi\)</span>中出现，那么<span
+class="math inline">\(\Gamma\vdash\forall
+x\varphi\)</span>，并且存在从<span
+class="math inline">\(\Gamma\)</span>到<span
+class="math inline">\(\forall x\varphi\)</span>的演绎，<span
+class="math inline">\(\Gamma\)</span>中不出现c。</p></li>
+<li><p><span class="math inline">\(EI\)</span>规则：设常数符号c不在<span
+class="math inline">\(\varphi、\psi\)</span>或者<span
+class="math inline">\(\Gamma\)</span>中出现，且<span
+class="math inline">\(\Gamma;\varphi_c^x\vdash\psi\)</span>，那么<span
+class="math inline">\(\Gamma;\exist
+x\varphi\vdash\psi\)</span>，即存在从<span
+class="math inline">\(\Gamma;\exist x\varphi\)</span>到<span
+class="math inline">\(\psi\)</span>的演绎，其中不出现c。</p></li>
+</ul>
+<h4 id="字母变换式的存在性">字母变换式的存在性</h4>
+<p>设<span
+class="math inline">\(\varphi\)</span>是公式，t是项，x是变量，那么可以找到一个公式<span
+class="math inline">\(\varphi&#39;\)</span>(与<span
+class="math inline">\(\varphi\)</span>的不同之处仅在于约束变量的选择)使得：</p>
+<ol type="1">
+<li><span
+class="math inline">\(\varphi\vdash\varphi&#39;\)</span>且<span
+class="math inline">\(\varphi&#39;\vdash\varphi\)</span></li>
+<li>在<span
+class="math inline">\(\varphi&#39;\)</span>中用t可以替换x</li>
+</ol>
+<p>该公式<span class="math inline">\(\varphi&#39;\)</span>称为<span
+class="math inline">\(\varphi\)</span>的字母变换式。</p>
+<h4 id="相等">相等</h4>
+<p>由<span
+class="math inline">\(v_1=v_2\)</span>给出的关系是自反的、对称的和传递的（也就是等价关系）。</p>
+<h2 id="可靠性与完备性理论">2.5 可靠性与完备性理论</h2>
+<h3 id="演绎计算的可靠性与完备性">演绎计算的可靠性与完备性</h3>
+<p>可靠性定理：<span
+class="math inline">\(\Gamma\vdash\varphi\Rightarrow\Gamma\models\varphi\)</span>。</p>
+<ul>
+<li>引理：逻辑公理都是恒真的。</li>
+</ul>
+<p>完备性定理：<span class="math inline">\(\Gamma\models
+\varphi\Rightarrow\Gamma\vdash\varphi\)</span>。</p>
+<h4 id="替换引理">替换引理</h4>
+<p>替换<span
+class="math inline">\(\varphi\)</span>和s中的执行结果是等价的。</p>
+<h3 id="完备性定理哥德尔1930">完备性定理（哥德尔，1930）</h3>
+<ol type="a">
+<li><p>如果<span
+class="math inline">\(\Gamma\models\varphi\)</span>，那么<span
+class="math inline">\(\Gamma\vdash\varphi\)</span></p></li>
+<li><p>任意和谐的公式集都是可满足的</p></li>
+</ol>
+<h3 id="紧致性定理">紧致性定理</h3>
+<ol type="1">
+<li>如果<span
+class="math inline">\(\Gamma\models\varphi\)</span>，那么存在某个有限的<span
+class="math inline">\(\Gamma_0\subseteq\Gamma\)</span>，有<span
+class="math inline">\(\Gamma_0\models\varphi\)</span>。</li>
+<li>如果<span class="math inline">\(\Gamma\)</span>的每个有限子集<span
+class="math inline">\(\Gamma_0\)</span>都是有限可满足的，那么<span
+class="math inline">\(\Gamma\)</span>是可满足的。</li>
+</ol>
+<p>特别地，句子集<span
+class="math inline">\(\Sigma\)</span>有模型当且仅当其每个有限子集有模型。</p>
+<h3 id="可枚举定理">可枚举定理</h3>
+<p>对合理的语言，恒真合式公式集合是能行可枚举的。</p>
+<p>推论：设<span
+class="math inline">\(\Gamma\)</span>是合理语言的合式公式的可判定集。</p>
+<ol type="1">
+<li><p><span
+class="math inline">\(\Gamma\)</span>的定理集是能行可枚举的；</p></li>
+<li><p>由<span
+class="math inline">\(\Gamma\)</span>逻辑蕴涵的公式集<span
+class="math inline">\(\{\varphi|\Gamma\models\varphi\}\)</span>是能行可枚举的。</p></li>
+</ol>
+<h2 id="理论的模型">2.6 理论的模型</h2>
+<p>理论是逻辑蕴涵意义下封闭的句子集合。</p>
+<p>结构<span class="math inline">\(\mathfrak A\)</span>的理论，记作<span
+class="math inline">\(Th\;\mathfrak A\)</span>，是<span
+class="math inline">\(\mathfrak A\)</span>中为真的所有句子的集合。</p>
+<p><span
+class="math inline">\(\Sigma\)</span>逻辑蕴涵的所有句子的集合称为它的推论集，记作<span
+class="math inline">\(Cn\Sigma=\{\sigma|\Sigma\models\sigma\}=Th\;Mod\;\Sigma\)</span>。</p>
+<p>理论T称为是完备的，当且仅当对每个句子<span
+class="math inline">\(\sigma\)</span>，<span
+class="math inline">\(\sigma\in T\)</span>或者<span
+class="math inline">\(\neg\sigma\in T\)</span>。</p>
+<p>理论T是可公理化的，当且仅当存在可判定的句子集合<span
+class="math inline">\(\Sigma\)</span>，使得<span
+class="math inline">\(T=Cn\Sigma\)</span>。</p>
+<p>理论T是有限可公理化的，当且仅当存在可判定的有限句子集合<span
+class="math inline">\(\Sigma\)</span>，使得<span
+class="math inline">\(T=Cn\Sigma\)</span>。</p>
+<p>一个可公理化的理论是能行可枚举的。</p>
+<p>完备的可公理化理论是可判定的。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/" class="category-chain-item">数理逻辑</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/08/05/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/%E6%8F%90%E7%BA%B2/" title="数理逻辑_提纲">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数理逻辑_提纲</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/01/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/0_%E9%9B%86%E5%90%88%E5%9F%BA%E7%A1%80/" title="数理逻辑_0_集合基础">
+                        <span class="hidden-mobile">数理逻辑_0_集合基础</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>长风破浪会有时，直挂云帆济沧海</p> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
