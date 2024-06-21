@@ -1,0 +1,785 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/yuanshen.jpeg">
+  <link rel="icon" href="/image/icon/yuanshen.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#5a9367">
+  <meta name="author" content="Geternitier">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="飞萤扑火，向死而生。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="云计算_3_虚拟化">
+<meta property="og:url" content="http://example.com/2024/04/03/%E4%BA%91%E8%AE%A1%E7%AE%97/3-%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:site_name" content="Geternitier的博客">
+<meta property="og:description" content="飞萤扑火，向死而生。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-03T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-21T07:10:30.083Z">
+<meta property="article:author" content="Geternitier">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>云计算_3_虚拟化 - Geternitier的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Geternitier的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Geternitier的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/background/TheSpirits.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="云计算_3_虚拟化"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-03 12:00" pubdate>
+          2024年4月3日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">云计算_3_虚拟化</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>飞萤扑火，向死而生。</p>
+<span id="more"></span>
+<h1 id="虚拟化技术">3-虚拟化技术</h1>
+<p>问题：云计算涉及到哪些虚拟化技术？需要对哪些资源做虚拟化？对应的虚拟化技术和产品是什么？</p>
+<h2 id="什么是虚拟化">0. 什么是虚拟化</h2>
+<p>虚拟化是云计算的核心技术。</p>
+<p>本质：通过虚拟化层逻辑化原先的物理设备，实现软硬件解耦。</p>
+<p>核心思想：</p>
+<ul>
+<li><p>利用软件或固件管理程序构成虚拟化层，把物理资源映射为虚拟资源。</p></li>
+<li><p>在虚拟资源上可以安装和部署多个虚拟机，实现多用户共享物理资源。</p></li>
+</ul>
+<h2 id="服务器虚拟化">1. 服务器虚拟化</h2>
+<p>硬件级、操作系统级、程序库API、应用程序</p>
+<p>代表产品：</p>
+<p>裸机虚拟化（VMware vSphere）、操作系统级虚拟化（VMware
+Workstation、Docker）</p>
+<h3 id="硬件级虚拟化">1.1 硬件级虚拟化</h3>
+<p>使用作为虚拟化层的软件管理客户操作系统，使其独立于主机操作系统，同时运行在同硬件上。</p>
+<ul>
+<li>Hypervisor、Virtual Machine Monitor（VMM）</li>
+</ul>
+<p>要求：高效、隔离、复制</p>
+<p>类别：裸机虚拟化、寄居虚拟化</p>
+<h4 id="优势">优势</h4>
+<ol type="1">
+<li>封装性：虚拟机快照、克隆、挂起和恢复非常便捷</li>
+<li>多实例：降低计算机资源损耗</li>
+<li>隔离</li>
+<li>硬件无关性</li>
+<li>特权功能</li>
+</ol>
+<h4 id="可虚拟化架构">可虚拟化架构</h4>
+<p>使用特权级分隔应用软件和系统软件的架构。</p>
+<p>原因：提高虚拟机控制软件直接访问硬件的效率、低特权级的虚拟机之间更易实现资源隔离。</p>
+<h4 id="虚拟化硬件对象">虚拟化硬件对象</h4>
+<p>CPU、内存、I/O设备</p>
+<h5 id="cpu虚拟化">CPU虚拟化</h5>
+<ul>
+<li>任意时刻一个物理CPU只能运行一个虚拟CPU</li>
+<li>每个客户操作系统可以使用一个或多个虚拟CPU</li>
+<li>各个操作系统之间虚拟CPU运行相互隔离，互不影响</li>
+</ul>
+<p>调度：VMM决定哪个虚拟CPU在哪个物理CPU上运行，保证隔离、公平和性能</p>
+<p>执行：虚拟CPU保证虚拟机的指令正确运行。</p>
+<ul>
+<li>实现技术：模拟执行、监控执行</li>
+</ul>
+<p>实现方式：</p>
+<ol type="1">
+<li>基于软件的完全虚拟化：解释、扫描、翻译</li>
+<li>基于硬件辅助的虚拟化：硬件针对虚拟化作出支持</li>
+<li>修改操作系统的类虚拟化：修改客户机操作系统，配合VMM进行虚拟化</li>
+</ol>
+<h5 id="内存虚拟化">内存虚拟化</h5>
+<p>把物理内存统一管理，包装成多个虚拟的物理内存提供给虚拟机使用。</p>
+<p>每个虚拟机拥有各自独立的内存空间。</p>
+<p>VMM的工作：</p>
+<ol type="1">
+<li>维护客户机物理地址和宿主机器的机器地址之间的映射</li>
+<li>截获虚拟机对客户机物理地址的访问，并根据所记录的映射关系，转换成机器地址</li>
+</ol>
+<p>实现方式：</p>
+<ol type="1">
+<li>基于软件的完全虚拟化：影子页表，直接把客户机虚拟地址翻译为物理地址</li>
+<li>基于硬件辅助的虚拟化：硬件辅助地址转换</li>
+<li>修改操作系统的类虚拟化：客户机直接使用VMM的机器地址到物理地址的翻译表</li>
+</ol>
+<h5 id="io虚拟化">I/O虚拟化</h5>
+<p>实现方式：</p>
+<ol type="1">
+<li>基于软件的完全虚拟化：VMM进行设备模拟并处理所有设备请求与响应</li>
+<li>基于硬件辅助的虚拟化：DMA地址重映射</li>
+<li>修改操作系统的类虚拟化：修改客户机操作系统，客户机直接与物理设备交互</li>
+</ol>
+<h3 id="操作系统级虚拟化">1.2 操作系统级虚拟化</h3>
+<p>在主机操作系统中插入一个虚拟化层。</p>
+<p>在同一个操作系统内核内，运行多个虚拟机；虚拟机可以访问内核。</p>
+<p>虚拟机/容器</p>
+<p>容器的优缺点：</p>
+<ul>
+<li>启动/停止开销最小，资源需求低，可扩展性强</li>
+<li>可同步虚拟机与宿主操作系统环境状态的变化</li>
+<li>允许虚拟机中进程访问尽可能多的主机资源</li>
+<li>同一个容器中的操作系统级虚拟机必须使用相同的客户操作系统</li>
+<li>资源隔离性较差</li>
+</ul>
+<h2 id="云数据中心虚拟化">2. 云数据中心虚拟化</h2>
+<p>为什么要虚拟化？</p>
+<ul>
+<li>一台物理设备一个用户 vs.
+一台物理设备多个用户：提升资源共享与复用的效率，降低成本</li>
+<li>固定大小与位置的存储空间 vs.
+灵活扩展和空间分布的空间：提升可扩展性，提升存储资源使用效率</li>
+<li>为了实现服务器、存储虚拟化，要求网络也要能够方便、灵活地调整：随着虚拟机的迁移一起迁移</li>
+</ul>
+<h3 id="服务器虚拟化-1">服务器虚拟化</h3>
+<p>将一个或多个物理服务器虚拟成多个逻辑上的服务器。</p>
+<p>虚拟机、容器。</p>
+<h3 id="存储虚拟化">存储虚拟化</h3>
+<p>把分布的异构存储设备统一为一个或几个大的存储池。</p>
+<p>存储虚拟化将系统中分散且异构的存储资源整合起来，形成一个统一连续编址的逻辑存储空间。</p>
+<h3 id="网络虚拟化">网络虚拟化</h3>
+<p>在底层物理网络和网络用户之间增加一个抽象层。</p>
+<p>云数据中心对网络的需求</p>
+<ul>
+<li>提高数据传输效率：应对数据同步、备份、虚拟机迁移等的大流量</li>
+<li>提高管理效率：采用统一的交换网络减少布线、维护和扩容的成本</li>
+</ul>
+<p>网络虚拟化技术：</p>
+<ul>
+<li><p>核心层网络虚拟化</p></li>
+<li><p>虚拟机网络虚拟化</p></li>
+<li><p>接入层网络虚拟化</p></li>
+</ul>
+<h2 id="虚拟机迁移">3. 虚拟机迁移</h2>
+<h3 id="需求">需求</h3>
+<ol type="1">
+<li><p>负载平衡需要</p></li>
+<li><p>物理服务器定期升级的需要</p></li>
+</ol>
+<p>关注重点：实时迁移</p>
+<ul>
+<li>保持虚拟机运行的同时，将其从一个计算机迁移到另一个计算机，并在目的计算机恢复运行</li>
+</ul>
+<h3 id="迁移内容">迁移内容</h3>
+<ul>
+<li>内存迁移：最困难</li>
+<li>网络迁移：迁移网络设备、协议状态和配置</li>
+<li>存储设备迁移：使用NAS作为存储设备共享数据</li>
+</ul>
+<p>分类：</p>
+<ul>
+<li>物理机到虚拟机 P2V</li>
+<li>虚拟机到虚拟机 V2V</li>
+<li>虚拟机到物理机 V2P</li>
+</ul>
+<h3 id="内存迁移方案">内存迁移方案</h3>
+<table>
+
+<thead>
+<tr class="header">
+<th>迁移方案</th>
+<th>具体描述</th>
+<th>优势与劣势</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Stop and Copy</td>
+<td>A停机，将对应内存全部复制到B，启动B</td>
+<td>方法简单，总迁移时间最短，但停机时间无法接受</td>
+</tr>
+<tr class="even">
+<td>Stop and Copy和Pull阶段结合</td>
+<td>A停机，将部分内存复制到B，启动B，B运行中遇到缺失内存，再到A内存中复制</td>
+<td>停机时间很短，总迁移时间很长。Pull阶段复制造成的性能下降，用户体验差</td>
+</tr>
+<tr class="odd">
+<td>Push和Stop and Copy阶段结合</td>
+<td>A不停机，保持对外服务，将变化的内存迭代地复制到B，直到最后剩余很少要复制的再停止A，复制最后变动到B，启动B</td>
+<td>平衡了停机时间和总迁移时间之间的矛盾。需要有一种算法能够测定工作集，以避免反复重传。可能会占用大量的网络带宽，对其他服务造成影响</td>
+</tr>
+</tbody>
+</table>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/" class="category-chain-item">云计算</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/04/04/%E4%BA%91%E8%AE%A1%E7%AE%97/4-%E4%BA%91%E8%AE%A1%E7%AE%97%E7%BD%91%E7%BB%9C/" title="云计算_4_网络">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">云计算_4_网络</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/03_%E6%A0%91%E5%AD%A6%E4%B9%A0/" title="机器学习_03_树学习">
+                        <span class="hidden-mobile">机器学习_03_树学习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>长风破浪会有时，直挂云帆济沧海</p> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

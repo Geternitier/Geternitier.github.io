@@ -1,0 +1,712 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/yuanshen.jpeg">
+  <link rel="icon" href="/image/icon/yuanshen.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#5a9367">
+  <meta name="author" content="Geternitier">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="飞萤扑火，向死而生。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="云计算_4_网络">
+<meta property="og:url" content="http://example.com/2024/04/04/%E4%BA%91%E8%AE%A1%E7%AE%97/4-%E4%BA%91%E8%AE%A1%E7%AE%97%E7%BD%91%E7%BB%9C/index.html">
+<meta property="og:site_name" content="Geternitier的博客">
+<meta property="og:description" content="飞萤扑火，向死而生。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-04T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-21T07:10:51.728Z">
+<meta property="article:author" content="Geternitier">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>云计算_4_网络 - Geternitier的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Geternitier的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Geternitier的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/background/TheSpirits.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="云计算_4_网络"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-04 12:00" pubdate>
+          2024年4月4日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">云计算_4_网络</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>飞萤扑火，向死而生。</p>
+<span id="more"></span>
+<h1 id="云计算网络">4-云计算网络</h1>
+<h2 id="基本架构">1. 基本架构</h2>
+<p>云数据中心需要基础网络将所有设备组织在本地网络里面——基础网络架构。</p>
+<p>传统树结构：建造方便简单，但不便于拓展与升级</p>
+<ul>
+<li>任意一个核心交换机故障导致上千台服务器失效</li>
+</ul>
+<p>架构需求：低成本、高可扩展性、低配置开销、健壮性、节能</p>
+<h3 id="改进树结构">1.1 改进树结构</h3>
+<h4 id="fattree">FatTree</h4>
+<ol type="1">
+<li>K叉树，K个Pod(集装器)，每个Pod有K个交换机，其中K/2个为接入交换机，K/2个为汇聚交换机。</li>
+<li>Pod中每个交换机有K个接口。
+<ul>
+<li>接入交换机的K/2个接口接主机，K/2个接口接汇聚交换机；</li>
+<li>汇聚交换机的K/2个接口接接入交换机，K/2个接核心交换机。</li>
+</ul></li>
+<li>有<span
+class="math inline">\((K/2)^2\)</span>个核心交换机，每个交换机K个端口接K个汇聚交换机。</li>
+<li>一个Pod内的所有交换机相互连接：完全二分图。</li>
+<li>一个Pod内的每个汇聚交换机与一部分核心交换机连接，但是一个Pod和每一个核心交换机都有连接。</li>
+</ol>
+<p>两级路由表，允许两级前缀查询：Pod间流量尽可能均匀分布于核心交换机</p>
+<p>任意两个不同Pod主机之间存在K条路径</p>
+<ul>
+<li>将流量在这些路径间分散</li>
+<li>任意给定Pod的低层和高层交换机对位于本Pod的任意子网都有终结性表项</li>
+<li>在全负载最坏的情况下实现约87%的聚合带宽</li>
+</ul>
+<p>与传统层次结构相比，FatTree有如下特点：</p>
+<ul>
+<li>消除了树形结构上层链路对吞吐量的限制</li>
+<li>为内部节点间通信提供多条并行链路</li>
+<li>与现有数据中心网络使用的以太网结构和IP 配置的服务器兼容</li>
+<li>但是布线复杂了；扩展时需要重构；受到端口数限制等。</li>
+</ul>
+<p>FatTree的扩展性受限于核心交换机端口数量，目前比较常用的是48端口10G核心交换机，在3层树结构中能够支持27648台主机。</p>
+<h4 id="vl2">VL2</h4>
+<p>若干服务器连接到机架(接入)交换机；</p>
+<p>每台接入交换机与两台汇聚交换机连接；</p>
+<p>每台汇聚交换机与所有核心交换机连接。</p>
+<p>特点：</p>
+<ul>
+<li>扁平寻址，允许服务实例被放置到网络覆盖的任何地方</li>
+<li>负载均衡将流量统一分配到网络路径</li>
+<li>终端系统的地址解析拓展到巨大的服务器池</li>
+</ul>
+<p>核心思想：使用FatTree同样的拓扑结构建立扁平的第二层网络。</p>
+<p>机制：</p>
+<ul>
+<li>IP地址仅仅作为名字使用，没有拓扑含义；将服务器的名字与其位置分开。</li>
+<li>使用可扩展、可靠的目录系统来维持名字和位置间的映射。</li>
+<li>当服务器发送分组时，服务器上的VL2代理开启目录系统以得到实际的目的位置，然后将分组发送到目的地。</li>
+</ul>
+<p>优势：VL2是目前最易用于对现有数据中心网络改造的结构；应用程序使用服务地址通信而底层网络使用位置信息地址进行转发，使得虚拟机能够在网络中任意迁移而不影响服务质量。</p>
+<p>缺点：VL2依赖于中心化的基础设施来实现2层语义和资源整合，面临单点失效和扩展性问题。</p>
+<h3 id="递归层次结构">1.2 递归层次结构</h3>
+<p>每一个高层的网络拓扑，由多个低层的递归单元按照递归规律相互连接构成，同时也是更高层级网络的一个递归单元。</p>
+<ul>
+<li>增加服务器数量<span
+class="math inline">\(\rightarrow\)</span>提高总的递归层次
+<ul>
+<li>添加服务器更加灵活，可增加的数量增大</li>
+<li>对交换机性能要求低</li>
+</ul></li>
+</ul>
+<p>递归层次结构：DCell、Ficonn、BCube、MDCube</p>
+<h4 id="ficonn">FiConn</h4>
+<p>服务器使用两个网卡端口：主用端口连接低层网络，备用端口连接高层网络</p>
+<p>递归定义的结构</p>
+<ul>
+<li>第0层为基本构建单元，n个服务器连接一个具有n个端口的交换机</li>
+<li>每个低层<strong>FiConn</strong>中备用端口空闲的一半服务器与其他相同层次的FiConn网络中备用端口空闲的服务器连接</li>
+<li>k层服务器、k层端口、k层链路</li>
+</ul>
+<h4 id="bcube">BCube</h4>
+<p>主要使用交换机构建层次化网络</p>
+<p>第0层：n服务器连接1交换机</p>
+<p>第1层：n个0层连接n个交换机</p>
+<p>……</p>
+<p>第k层：n个k-1层连接nk交换机</p>
+<p>交换机n个端口，服务器k+1个端口。</p>
+<h3 id="光交换网络">1.3 光交换网络</h3>
+<p>使用光纤交换机调整网络拓扑。</p>
+<h2 id="软件定义网络">2. 软件定义网络</h2>
+<h3 id="openflow">2.1 OpenFlow</h3>
+<p>使用集中控制器控制OpenFlow Switch的Flow Table。</p>
+<p>Controller 会为特定的工作负载计算最佳路径，从而对 Switch
+的数据转发定义路径。</p>
+<p>核心理论：控制转发分离架构、可编程性</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/" class="category-chain-item">云计算</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/04/05/%E4%BA%91%E8%AE%A1%E7%AE%97/5-%E4%BA%91%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/" title="云计算_5_云数据中心">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">云计算_5_云数据中心</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/04/03/%E4%BA%91%E8%AE%A1%E7%AE%97/3-%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF/" title="云计算_3_虚拟化">
+                        <span class="hidden-mobile">云计算_3_虚拟化</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>长风破浪会有时，直挂云帆济沧海</p> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
