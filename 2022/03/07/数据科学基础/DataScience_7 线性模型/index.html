@@ -16,21 +16,21 @@
   <meta name="author" content="Geternitier">
   <meta name="keywords" content="">
   
-    <meta name="description" content="天马歌">
+    <meta name="description" content="八月秋高风怒号，卷我屋上三重茅。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Geternitier的博客">
-<meta property="og:url" content="http://example.com/2022/06/30/%E5%A4%A9%E9%A9%AC%E6%AD%8C/index.html">
+<meta property="og:title" content="数据科学基础_7_线性模型">
+<meta property="og:url" content="http://example.com/2022/03/07/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%9F%BA%E7%A1%80/DataScience_7%20%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Geternitier的博客">
-<meta property="og:description" content="天马歌">
+<meta property="og:description" content="八月秋高风怒号，卷我屋上三重茅。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-06-29T18:11:07.000Z">
-<meta property="article:modified_time" content="2023-06-17T02:33:35.015Z">
+<meta property="article:published_time" content="2022-03-07T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-21T11:55:25.612Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Geternitier的博客 - Geternitier的博客</title>
+  <title>数据科学基础_7_线性模型 - Geternitier的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -184,7 +184,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Geternitier的博客"></span>
+            <span id="subtitle" data-typed-text="数据科学基础_7_线性模型"></span>
           
         </div>
 
@@ -195,8 +195,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-06-30 02:11" pubdate>
-          2022年6月30日 凌晨
+        <time datetime="2022-03-07 12:00" pubdate>
+          2022年3月7日 中午
         </time>
       </span>
     
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          283 字
+          1.1k 字
         
       </span>
     
@@ -247,31 +247,81 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Geternitier的博客</h1>
+            <h1 style="display: none">数据科学基础_7_线性模型</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="天马歌">天马歌</h3>
+                <p>八月秋高风怒号，卷我屋上三重茅。</p>
 <span id="more"></span>
-<p>唐·李白</p>
-<p>天马来出月支窟，背为虎文龙翼骨。<br />
-嘶青云，振绿发， 兰筋权奇走灭没。<br />
-腾昆仑，历西极，四足无一蹶。<br />
-鸡鸣刷燕晡秣越，神行电迈蹑慌惚。<br />
-天马呼，飞龙趋， 目明长庚臆双凫。<br />
-尾如流星首渴乌，口喷红光汗沟朱。 曾陪时龙蹑天衢，羁金络月照皇都。<br />
-逸气棱棱凌九区，白璧如山谁敢沽。<br />
-回头笑紫燕，但觉尔辈愚。<br />
-天马奔， 恋君轩，駷跃惊矫浮云翻。<br />
-万里足踯躅，遥瞻阊阖门。<br />
-不逢寒风子，谁采逸景孙。<br />
-白云在青天，丘陵远崔嵬。 盐车上峻坂，倒行逆施畏日晚。<br />
-伯乐翦拂中道遗，少尽其力老弃之。<br />
-愿逢田子方，恻然为我悲。<br />
-虽有玉山禾，不能疗苦饥。<br />
-严霜五月凋桂枝，伏枥衔冤摧两眉。<br />
-请君赎献穆天子，犹堪弄影舞瑶池。</p>
+<h1 id="datascience_7-线性模型">DataScience_7 线性模型</h1>
+<h2 id="回归分析">7.1 回归分析</h2>
+<p>回归分析的主要内容和步骤：</p>
+<ol type="1">
+<li>将变量分为自变量和因变量</li>
+<li>找出回归模型描述变量间关系</li>
+<li>对回归模型进行统计检验</li>
+<li>通过检验后，使用回归模型，根据自变量预测因变量</li>
+</ol>
+<p>只有一个自变量的称为一元回归，两个及以上自变量的称为多元回归。</p>
+<p>按照回归曲线的形态，回归也可分为线性和非线性回归。</p>
+<h3 id="一元线性回归">7.1.1 一元线性回归</h3>
+<p>若散点呈直线趋势，则认为<span
+class="math inline">\(x,y\)</span>的关系可以用一元线性回归模型描述，将数据描述成下述方程：</p>
+<p><span class="math inline">\(y=a+bx+e\)</span>。</p>
+<p>称上式为总体一元线性回归方程。<span
+class="math inline">\(a+bx\)</span>表示<span
+class="math inline">\(y\)</span>随<span
+class="math inline">\(x\)</span>的变化而线性变化的部分，<span
+class="math inline">\(e\)</span>是一切随机因素影响的总和，称为随机误差。对于<span
+class="math inline">\(x\)</span>某一确定的值，对应<span
+class="math inline">\(y\)</span>值虽然有波动，但<span
+class="math inline">\(e\)</span>的期望值为0。</p>
+<ul>
+<li>通常假设<span class="math inline">\(e\sim
+N(0,\sigma^2)\)</span>。</li>
+</ul>
+<h4 id="最小二乘估计">最小二乘估计</h4>
+<p>计算参数<span class="math inline">\(a,b\)</span>，使得<span
+class="math inline">\(Q(a,b)=\Sigma_{i=1}^ne_i^2=\Sigma_{i=1}^n(y_i-a-bx_i)^2\)</span>最小。</p>
+<h4 id="回归显著性检验">回归显著性检验</h4>
+<p>检验<span class="math inline">\(y\)</span>和<span
+class="math inline">\(x\)</span>是否存在线性关系。</p>
+<p>分解偏差平方和并进行比较。</p>
+<ul>
+<li><p>总偏差平方和：<span
+class="math inline">\(S_T=\Sigma_{i=1}^n(y_i-\overline
+y)^2\)</span></p></li>
+<li><p>回归偏差平方和：<span
+class="math inline">\(S_R=\Sigma_{i=1}^n(\hat{y_i}-\overline
+y)^2\)</span></p></li>
+<li><p>随机误差：<span
+class="math inline">\(S_e=\Sigma_{i=1}^n(\hat{y_i}-y_i)^2\)</span></p></li>
+<li><p><span class="math inline">\(S_T=S_R+S_e\)</span></p></li>
+</ul>
+<p><span class="math inline">\(S_R\)</span>应该尽量大，<span
+class="math inline">\(S_e\)</span>应该尽量小。</p>
+<p>且有<span class="math inline">\(\frac{S_e}{\sigma^2}\sim\mathcal
+X^2(n-2)\)</span>，<span
+class="math inline">\(\frac{S_R}{\sigma^2}\sim\mathcal
+X^2(1)\)</span>。</p>
+<p>构造统计量<span class="math inline">\(F=\frac{S_R}{\frac{S_e}{(n-2)}}
+\sim F(1,n-2)\)</span>，给定显著性水平<span
+class="math inline">\(\alpha\)</span>，当<span
+class="math inline">\(F\ge
+F_\alpha(1,n-2)\)</span>，认为样本数据具有显著的相关性。</p>
+<h3 id="广义线性回归">7.1.2 广义线性回归</h3>
+<p>转化为线性化问题。</p>
+<ol type="1">
+<li>双曲线：<span class="math inline">\(\frac1y=a+\frac
+bx,y&#39;=\frac1y,x&#39;=\frac bx,y&#39;=a+x&#39;\)</span></li>
+<li>指数：<span
+class="math inline">\(y=ae^{bx},y&#39;=lny,a&#39;=lna,y&#39;=a&#39;+bx\)</span></li>
+<li>对数：<span
+class="math inline">\(y=a+blnx,x&#39;=lnx,y=a+bx&#39;\)</span></li>
+<li>幂函数：<span
+class="math inline">\(y=ax^b,y&#39;=lny,x&#39;=lnx,a&#39;=lna,y&#39;=a&#39;+bx&#39;\)</span></li>
+</ol>
 
                 
               </div>
@@ -279,6 +329,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%9F%BA%E7%A1%80/" class="category-chain-item">数据科学基础</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
 </div>
@@ -291,9 +362,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/12/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Chapter1.0_Intro/" title="数据结构与算法-1.0_绪论">
+                      <a href="/2022/06/30/%E5%A4%A9%E9%A9%AC%E6%AD%8C/" title="Geternitier的博客">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">数据结构与算法-1.0_绪论</span>
+                        <span class="hidden-mobile">Geternitier的博客</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -301,8 +372,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/07/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%9F%BA%E7%A1%80/DataScience_7%20%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/" title="数据科学基础_7_线性模型">
-                        <span class="hidden-mobile">数据科学基础_7_线性模型</span>
+                      <a href="/2022/03/06/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%9F%BA%E7%A1%80/DataScience_6%20%E9%AB%98%E7%BB%B4%E6%95%B0%E6%8D%AE/" title="数据科学基础_6_高维数据">
+                        <span class="hidden-mobile">数据科学基础_6_高维数据</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -356,6 +427,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -549,6 +626,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
