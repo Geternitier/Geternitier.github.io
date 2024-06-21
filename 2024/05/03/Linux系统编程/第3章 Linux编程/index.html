@@ -1,0 +1,1029 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/yuanshen.jpeg">
+  <link rel="icon" href="/image/icon/yuanshen.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#5a9367">
+  <meta name="author" content="Geternitier">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="飞萤扑火，向死而生。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux系统编程_3_编程">
+<meta property="og:url" content="http://example.com/2024/05/03/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%AC%AC3%E7%AB%A0%20Linux%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Geternitier的博客">
+<meta property="og:description" content="飞萤扑火，向死而生。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/Linux系统编程/权限.png">
+<meta property="article:published_time" content="2024-05-03T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-21T07:23:49.037Z">
+<meta property="article:author" content="Geternitier">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/image/Linux系统编程/权限.png">
+  
+  
+  
+  <title>Linux系统编程_3_编程 - Geternitier的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Geternitier的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Geternitier的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/background/TheSpirits.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Linux系统编程_3_编程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-03 12:00" pubdate>
+          2024年5月3日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          18k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux系统编程_3_编程</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>飞萤扑火，向死而生。</p>
+<span id="more"></span>
+<h1 id="第3章-linux编程">第3章 Linux编程</h1>
+<h2 id="编程前的准备">0. 编程前的准备</h2>
+<h3 id="编译命令">0.1 编译命令</h3>
+<p>gcc -c（编译）</p>
+<p>gcc（链接 或者 编译 + 链接）</p>
+<p>g++（C++对应的命令，其实就是换了前端）</p>
+<p>gcc [options] [filename]</p>
+<p>基础可选项:</p>
+<ul>
+<li>-E: 只对源程序进行预处理(调用cpp预处理器)</li>
+<li>-S: 只对源程序进行预处理、编译</li>
+<li>-c: 执行预处理、编译、汇编而不链接</li>
+<li>-o output_file: 指定输出文件名</li>
+<li>-g: 产生调试工具必需的符号信息</li>
+<li>-O/On: 在程序编译、链接过程中进行优化处理</li>
+<li>-Wall: 显示所有的警告信息</li>
+<li>-Idir: 指定额外的头文件搜索路径</li>
+<li>-Ldir: 指定额外的库文件搜索路径</li>
+<li>-lname: 链接时搜索指定的库文件</li>
+<li>-DMACRO[=DEFN]: 定义MACRO宏</li>
+</ul>
+<h3 id="make">0.2 make</h3>
+<p>make [-f Makefile] [option] [target]</p>
+<p>makefile描述模块间的依赖关系，make命令根据makefile对程序进行管理和维护；make判断被维护文件的时序关系。</p>
+<h4 id="make执行顺序">make执行顺序</h4>
+<ol type="1">
+<li>make会在当前目录下找名字叫“Makefile” 或“makefile” 的文件。</li>
+<li>查找文件中的第一个目标文件（target），举例中的hello</li>
+<li>如果hello文件不存在，或是hello所依赖的文件修改时间要比hello新，就会执行后面所定义的命令来生成hello文件。</li>
+<li>如果hello所依赖的.o文件不存在，那么make会在当前文件中找目标为.o文件的依赖性，如果找到则再根据那一个规则生成.o文件。（类似一个堆栈的过程）</li>
+<li>make根据.o文件的规则生成 .o 文件，然后再用 .o
+文件生成hello文件。</li>
+</ol>
+<h4 id="makefile规则结构">Makefile规则结构</h4>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">target <span class="hljs-string">...</span> : prerequisites <span class="hljs-string">...</span><br>	<span class="hljs-keyword">command</span>```<br></code></pre></td></tr></table></figure>
+<ul>
+<li>target是一个目标文件，可以是Object File，也可以是执行文件</li>
+<li>prerequisites是要生成target所需要的文件或是目标</li>
+<li>command是make需要执行的命令。（可以是任意的Shell命令）</li>
+</ul>
+<p>例：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs stylus">hello : <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.o</span> <span class="hljs-selector-tag">kbd</span><span class="hljs-selector-class">.o</span><br>	gcc -o hello <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.o</span> <span class="hljs-selector-tag">kbd</span><span class="hljs-selector-class">.o</span><br><span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.o</span> : <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.c</span> defs<span class="hljs-selector-class">.h</span><br>	cc -c <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.c</span><br><span class="hljs-selector-tag">kbd</span><span class="hljs-selector-class">.o</span> : <span class="hljs-selector-tag">kbd</span><span class="hljs-selector-class">.c</span> defs<span class="hljs-selector-class">.h</span> command<span class="hljs-selector-class">.h</span><br>	cc -c <span class="hljs-selector-tag">kbd</span><span class="hljs-selector-class">.c</span><br>clean :<br>	rm edit <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.o</span> <span class="hljs-selector-tag">kbd</span>.o<br></code></pre></td></tr></table></figure>
+<p>伪目标：clean</p>
+<p>取名不能和文件名重名，可以使用一个特殊的标记“.PHONY”来显示地指明一个目标是“伪目标”。</p>
+<ul>
+<li><p>一般没有依赖的文件，但也可以为伪目标指定所依赖的文件。</p></li>
+<li><p>伪目标同样可以作为“默认目标”，只要将其放在第一个。</p></li>
+</ul>
+<h4 id="预定义变量">预定义变量</h4>
+<ul>
+<li>$&lt; 第一个依赖文件的名称</li>
+<li>$?
+所有的依赖文件，以空格分开，这些依赖文件的修改日期比目标的创建日期晚</li>
+<li>$+
+所有的依赖文件，以空格分开，并以出现的先后为序，可能包含重复的依赖文件</li>
+<li>$^ 所有的依赖文件，以空格分开，不包含重复的依赖文件</li>
+<li>$* 不包括扩展名的目标文件名称</li>
+<li>$@ 目标的完整名称</li>
+<li>$% 如果目标是归档成员，则该变量表示目标的归档成员名称</li>
+</ul>
+<h4 id="多目标扩展">多目标扩展</h4>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">targets</span> <span class="hljs-attr">...</span>&gt;</span>: <span class="hljs-tag">&lt;<span class="hljs-name">target-pattern</span>&gt;</span>: <span class="hljs-tag">&lt;<span class="hljs-name">prereq-patterns</span> <span class="hljs-attr">...</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">commands</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>例：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs makefile">objects = foo.o bar.o<br><span class="hljs-section">all: <span class="hljs-variable">$(objects)</span></span><br><span class="hljs-variable">$(objects)</span>: %.o: %.c<br>	<span class="hljs-variable">$(CC)</span> -c <span class="hljs-variable">$(CFLAGS)</span> <span class="hljs-variable">$&lt;</span> -o <span class="hljs-variable">$@</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>目标从$object中获取</li>
+<li>“%.o”表明要所有以“.o”结尾的目标，即“foo.o
+bar.o”，就是变量$object集合的模式</li>
+<li>依赖模式“%.c”则取模式“%.o”的“%”，也就是“foo
+bar”，并为其加下“.c”的后缀，于是依赖的目标就是“foo.c bar.c”</li>
+</ul>
+<h4 id="函数">函数</h4>
+<p>调用语法：</p>
+<ul>
+<li><p><code>$(&lt;function&gt; &lt;arguments&gt;)</code></p></li>
+<li><p><code>$&#123;&lt;function&gt; &lt;arguments&gt;&#125;</code></p></li>
+<li><p>字符串处理函数</p>
+<ul>
+<li><code>$(subst &lt;from&gt;,&lt;to&gt;,&lt;text&gt;)</code></li>
+<li><code>$(strip &lt;string&gt;)</code></li>
+</ul></li>
+<li><p>文件名操作函数</p>
+<ul>
+<li><code>$(dir &lt;names...&gt;)</code></li>
+<li><code>$(basename &lt;names...&gt;)</code></li>
+</ul></li>
+<li><p>foreach
+函数：<code>$(foreach &lt;var&gt;,&lt;list&gt;,&lt;text&gt;)</code></p></li>
+<li><p>if
+函数：<code>$(if &lt;condition&gt;,&lt;then-part&gt;,&lt;else-part&gt;)</code></p></li>
+<li><p>call函数：<code>$(call &lt;expression&gt;,&lt;parm1&gt;,&lt;parm2&gt;,&lt;parm3&gt;...)</code></p></li>
+</ul>
+<h2 id="文件系统">1. 文件系统</h2>
+<p>文件：可以被读写的对象。</p>
+<ul>
+<li>文件的属性包含访问权限、文件类型。</li>
+</ul>
+<p>文件系统：文件及其属性的集合。</p>
+<h3 id="文件类型和结构">1.1 文件类型和结构</h3>
+<p>文件类型：</p>
+<ul>
+<li>-：常规文件</li>
+<li>d：目录</li>
+<li>l：链接</li>
+<li>c：字符设备文件</li>
+<li>b：块设备文件</li>
+<li>p：管道</li>
+<li>s：套接字</li>
+</ul>
+<p>文件结构：字节流</p>
+<h3 id="vfsvirtual-file-system-switch">1.2 VFS：Virtual File System
+Switch</h3>
+<p>用户程序系统调用的统一接口，连接Ext2、FAT等多种不同的文件系统。</p>
+<p>虚拟、只存在于内存。</p>
+<p>组件：</p>
+<ul>
+<li>超级块：文件系统的元数据，它包含了文件系统的全局信息，如块大小、inode和数据块的数量、分配策略等。</li>
+<li>i-node：文件的元数据，如文件的大小、创建时间、最后访问时间、最后修改时间、文件权限等，但不包括文件名和文件数据本身。</li>
+<li>文件：打开的文件，包含了读写文件的当前位置、文件的状态等。</li>
+<li>dentry：文件系统中的一个目录入口，即一个路径名与一个i-node的映射。</li>
+</ul>
+<h3 id="硬链接和符号链接">1.3 硬链接和符号链接</h3>
+<p>硬链接：</p>
+<ul>
+<li>不同的文件名对应同一个inode</li>
+<li>不能跨越文件系统</li>
+<li>对应系统调用link</li>
+</ul>
+<p>符号链接</p>
+<ul>
+<li>存储被链接文件的文件名(而不是inode)实现链接</li>
+<li>可跨越文件系统</li>
+<li>对应系统调用symlink</li>
+</ul>
+<h3 id="系统调用和库函数">1.4 系统调用和库函数</h3>
+<p>都是C函数。</p>
+<p>系统调用：Linux内核的对外接口；用户程序和内核之间唯一的接口。</p>
+<p>库函数：依赖于系统调用，提供较复杂功能。</p>
+<h4 id="基础io系统调用">基础I/O系统调用</h4>
+<ul>
+<li>文件描述符：非负整数
+<ul>
+<li>STDIN_FILENO (0)、STDOUT_FILENO (1)、STDERR_FILENO (2)</li>
+</ul></li>
+<li>基础I/O函数
+<ul>
+<li>open/creat、close、read、write、lseek</li>
+<li>dup/dup2</li>
+<li>fcntl</li>
+<li>ioctl</li>
+</ul></li>
+</ul>
+<h5 id="opencreat">open/creat</h5>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">open</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *pathname, <span class="hljs-type">int</span> flags)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">open</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *pathname, <span class="hljs-type">int</span> flags, <span class="hljs-type">mode_t</span> mode)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">creat</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *pathname, <span class="hljs-type">mode_t</span> mode)</span></span>;<br>(Return: a <span class="hljs-keyword">new</span> file descriptor <span class="hljs-keyword">if</span> success; <span class="hljs-number">-1</span> <span class="hljs-keyword">if</span> failure)<br></code></pre></td></tr></table></figure>
+<p>flags：文件访问模式。</p>
+<ul>
+<li>O_RDONLY：只读</li>
+<li>O_WRONLY：只写</li>
+<li>O_RDWR：读写</li>
+<li>O_APPEND：追加</li>
+<li>O_TRUNC：如果文件存在，截断到0字节</li>
+<li>O_CREAT：文件不存在则创建</li>
+<li>O_EXCL：与 <code>O_CREAT</code>
+标志结合使用。如果文件已存在则报错。</li>
+</ul>
+<p>mode：八进制数，文件权限。</p>
+<figure>
+<img src="/image/Linux系统编程/权限.png" srcset="/img/loading.gif" lazyload alt="权限" />
+<figcaption aria-hidden="true">权限</figcaption>
+</figure>
+<p>umask：一个环境变量，决定了文件创建时的权限掩码。</p>
+<ul>
+<li>mode &amp; ~umask，得到最终创建的文件权限。</li>
+</ul>
+<h5 id="close">close</h5>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">close</span><span class="hljs-params">(<span class="hljs-type">int</span> fd)</span></span>;<br>(Return: <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> success; <span class="hljs-number">-1</span> <span class="hljs-keyword">if</span> failure)<br></code></pre></td></tr></table></figure>
+<h5 id="readwrite">read/write</h5>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">ssize_t</span> <span class="hljs-title">read</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">void</span> *buf, <span class="hljs-type">size_t</span> count)</span></span>;<br>(返回值: 读到的字节数，若已到文件尾为<span class="hljs-number">0</span>，若出错为<span class="hljs-number">-1</span>)<br><span class="hljs-function"><span class="hljs-type">ssize_t</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *buf, <span class="hljs-type">size_t</span> count)</span></span>;<br>(返回值: 若成功为已写的字节数，若出错为<span class="hljs-number">-1</span>)<br></code></pre></td></tr></table></figure>
+<h5 id="lseek">lseek</h5>
+<p>改变文件读写位置。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/types.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">off_t</span> <span class="hljs-title">lseek</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">off_t</span> offset, <span class="hljs-type">int</span> whence)</span></span>;<br>(Return: the resulting offset location <span class="hljs-keyword">if</span> success; <span class="hljs-number">-1</span> <span class="hljs-keyword">if</span> failure)<br></code></pre></td></tr></table></figure>
+<p>whence（出发点）：</p>
+<ul>
+<li>SEEK_SET</li>
+<li>SEEK_CUR</li>
+<li>SEEK_END</li>
+</ul>
+<h5 id="dupdup2">dup/dup2</h5>
+<p>复制文件描述符</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">dup</span><span class="hljs-params">(<span class="hljs-type">int</span> oldfd)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">dup2</span><span class="hljs-params">(<span class="hljs-type">int</span> oldfd, <span class="hljs-type">int</span> newfd)</span></span>;<br>(Return: the <span class="hljs-keyword">new</span> file descriptor <span class="hljs-keyword">if</span> success; <span class="hljs-number">-1</span> <span class="hljs-keyword">if</span> failure)<br></code></pre></td></tr></table></figure>
+<h5 id="fcntl">fcntl</h5>
+<p>管理文件描述符</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;fcntl.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fcntl</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">int</span> cmd)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fcntl</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">int</span> cmd, <span class="hljs-type">long</span> arg)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fcntl</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">int</span> cmd, <span class="hljs-keyword">struct</span> flock *lock)</span></span>;<br>(返回值: 若成功则依赖于cmd，若出错为<span class="hljs-number">-1</span>)<br></code></pre></td></tr></table></figure>
+<p>cmd：</p>
+<ul>
+<li>F_DUPFD：复制文件描述符</li>
+<li>F_GETFD/F_SETFD：获取设置文件描述符控制标志</li>
+<li>F_GETFL/F_SETFL：获取设置文件描述符状态标志</li>
+<li>F_GETOWN/F_SETOWN：获取设置I/O可用性标志</li>
+<li>F_GETLK/F_SETLK/F_SETLKW：获取设置文件锁</li>
+</ul>
+<h5 id="ioctl">ioctl</h5>
+<p>控制设备。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/ioctl.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">ioctl</span><span class="hljs-params">(<span class="hljs-type">int</span> d, <span class="hljs-type">int</span> request, ...)</span></span>;<br></code></pre></td></tr></table></figure>
+<p>重定向用到了哪些系统调用？</p>
+<h4 id="标准io库">标准I/O库</h4>
+<p>主要考察缓冲。</p>
+<p>文件流</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs julia">FILE* fp;<br>// <span class="hljs-literal">stdin</span> <span class="hljs-literal">stdout</span> <span class="hljs-literal">stderr</span><br></code></pre></td></tr></table></figure>
+<p>三种缓冲：</p>
+<ul>
+<li>块缓冲</li>
+<li>线性缓冲</li>
+<li>无缓冲</li>
+</ul>
+<p>setbuf、setvbuf</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setbuf</span><span class="hljs-params">(FILE *stream, <span class="hljs-type">char</span> *buf)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">setvbuf</span><span class="hljs-params">(FILE *stream, <span class="hljs-type">char</span> *buf, <span class="hljs-type">int</span> mode, <span class="hljs-type">size_t</span> size)</span></span>;<br></code></pre></td></tr></table></figure>
+<p>mode：_IOFBF（满缓冲）、_IOLBF（行缓冲）、_IONBF（无缓冲）</p>
+<p>流式I/O函数：</p>
+<ul>
+<li><p>open/close</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">FILE *<span class="hljs-title">fopen</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *filename, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *mode)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fclose</span><span class="hljs-params">(FILE *stream)</span></span>;<br>(Return: <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> success; <span class="hljs-number">-1</span> <span class="hljs-keyword">if</span> failure)<br></code></pre></td></tr></table></figure>
+<p>mode：r w a r+(读写) w+(读写，无则新建，有则清空)
+a+(读与追加，无则新建)</p></li>
+<li><p>read/write</p>
+<ul>
+<li><p>每次一个字符的I/O</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-built_in">int</span> <span class="hljs-title">getc</span>(<span class="hljs-params">FILE *fp</span>)</span>;<br><span class="hljs-function"><span class="hljs-built_in">int</span> <span class="hljs-title">fgetc</span>(<span class="hljs-params">FILE *fp</span>)</span>;<br><span class="hljs-function"><span class="hljs-built_in">int</span> <span class="hljs-title">getchar</span>(<span class="hljs-params"><span class="hljs-keyword">void</span></span>)</span>;<br>（Result: Reads the next character <span class="hljs-keyword">from</span> a stream <span class="hljs-keyword">and</span> returns it <span class="hljs-keyword">as</span> an unsigned <span class="hljs-built_in">char</span> cast to an <span class="hljs-built_in">int</span>, <span class="hljs-keyword">or</span> EOF <span class="hljs-keyword">on</span> end of file <span class="hljs-keyword">or</span> error.）<br><span class="hljs-function"><span class="hljs-built_in">int</span> <span class="hljs-title">ungetc</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> c, FILE *stream</span>)</span>; <span class="hljs-comment">// 将字符插回流中</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs fortran"><span class="hljs-built_in">int</span> putc(<span class="hljs-built_in">int</span> c, <span class="hljs-keyword">FILE</span> *fp);<br><span class="hljs-built_in">int</span> fputc(<span class="hljs-built_in">int</span> c, <span class="hljs-keyword">FILE</span> *fp);<br><span class="hljs-built_in">int</span> putchar(<span class="hljs-built_in">int</span> c);<br>(<span class="hljs-keyword">Return</span>: the <span class="hljs-keyword">character</span> <span class="hljs-keyword">if</span> success; -<span class="hljs-number">1</span> <span class="hljs-keyword">if</span> failure)<br></code></pre></td></tr></table></figure></li>
+<li><p>每次一行的I/O</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-function"><span class="hljs-type">char</span> *<span class="hljs-title">fgets</span><span class="hljs-params">(<span class="hljs-type">char</span> *s, <span class="hljs-type">int</span> size, FILE *stream)</span></span>;<br><span class="hljs-function"><span class="hljs-type">char</span> *<span class="hljs-title">gets</span><span class="hljs-params">(<span class="hljs-type">char</span> *s)</span></span>; <span class="hljs-comment">//not recommended.</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fputs</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *s, FILE *stream)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">puts</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *s)</span></span>;<br></code></pre></td></tr></table></figure></li>
+<li><p>直接I/O(二进制I/O)</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-function"><span class="hljs-type">size_t</span> <span class="hljs-title">fread</span><span class="hljs-params">(<span class="hljs-type">void</span> *ptr, <span class="hljs-type">size_t</span> size, <span class="hljs-type">size_t</span> nmemb, FILE *stream)</span></span>;<br><span class="hljs-function"><span class="hljs-type">size_t</span> <span class="hljs-title">fwrite</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">void</span> *ptr, <span class="hljs-type">size_t</span> size, <span class="hljs-type">size_t</span> nmemb, FILE *stream)</span></span>;<br>(Return: the number of a items successfully read <span class="hljs-keyword">or</span> written.)<br></code></pre></td></tr></table></figure></li>
+<li><p>格式化I/O</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">scanf</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *format, ...)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fscanf</span><span class="hljs-params">(FILE *stream, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *format, ...)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sscanf</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *str, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *format, ...)</span></span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">printf</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *format, ...)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fprintf</span><span class="hljs-params">(FILE *stream, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *format, ...)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sprintf</span><span class="hljs-params">(<span class="hljs-type">char</span> *str, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *format, ...)</span></span>;<br></code></pre></td></tr></table></figure></li>
+</ul></li>
+<li><p>reposition</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fseek</span><span class="hljs-params">(FILE *stream, <span class="hljs-type">long</span> <span class="hljs-type">int</span> offset, <span class="hljs-type">int</span> whence)</span></span>;<br><span class="hljs-function"><span class="hljs-type">long</span> <span class="hljs-title">ftell</span><span class="hljs-params">(FILE *stream)</span></span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">rewind</span><span class="hljs-params">(FILE *stream)</span></span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fgetpos</span><span class="hljs-params">(FILE *fp, <span class="hljs-type">fpos_t</span> *pos)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fsetpos</span><span class="hljs-params">(FILE *fp, <span class="hljs-type">const</span> <span class="hljs-type">fpos_t</span> *pos)</span></span>;<br></code></pre></td></tr></table></figure></li>
+<li><p>flush</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fflush</span><span class="hljs-params">(FILE *stream)</span></span>;<br></code></pre></td></tr></table></figure></li>
+<li><p>流与文件描述符</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fileno</span><span class="hljs-params">(FILE *fp)</span></span>;<br><span class="hljs-function">FILE *<span class="hljs-title">fdopen</span><span class="hljs-params">(<span class="hljs-type">int</span> fildes, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *mode)</span></span>;<br></code></pre></td></tr></table></figure></li>
+<li><p>临时文件</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs scss">char *<span class="hljs-built_in">tmpnam</span>(char *s);<br>(返回值: 指向唯一路径名的指针)<br>FILE *<span class="hljs-built_in">tmpfile</span>(void);<br>(返回值: 若成功为文件指针，若出错为NULL)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="高级系统调用">高级系统调用</h4>
+<p>stat、fstat：返回文件状态信息，存储在buf中</p>
+<p>lstat：获取符号链接本身的状态信息，存储在buf中</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">stat</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *filename, <span class="hljs-keyword">struct</span> stat *buf)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fstat</span><span class="hljs-params">(<span class="hljs-type">int</span> filedes, <span class="hljs-keyword">struct</span> stat *buf)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lstat</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *file_name, <span class="hljs-keyword">struct</span> stat *buf)</span></span>;<br>(Return: <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> success; <span class="hljs-number">-1</span> <span class="hljs-keyword">if</span> failure)<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">stat</span> &#123;<br>	<span class="hljs-type">mode_t</span> st_mode; <span class="hljs-comment">/*file type &amp; mode*/</span><br>	<span class="hljs-type">ino_t</span> st_ino; <span class="hljs-comment">/*inode number (serial number)*/</span><br>	<span class="hljs-type">dev_t</span> st_rdev; <span class="hljs-comment">/*device number (file system)*/</span><br>	<span class="hljs-type">nlink_t</span> st_nlink; <span class="hljs-comment">/*link count*/</span><br>	<span class="hljs-type">uid_t</span> st_uid; <span class="hljs-comment">/*user ID of owner*/</span><br>	<span class="hljs-type">gid_t</span> st_gid; <span class="hljs-comment">/*group ID of owner*/</span><br>	<span class="hljs-type">off_t</span> st_size; <span class="hljs-comment">/*size of file, in bytes*/</span><br>	<span class="hljs-type">time_t</span> st_atime; <span class="hljs-comment">/*time of last access*/</span><br>	<span class="hljs-type">time_t</span> st_mtime; <span class="hljs-comment">/*time of last modification*/</span><br>	<span class="hljs-type">time_t</span> st_ctime; <span class="hljs-comment">/*time of last file status change*/</span><br>	<span class="hljs-type">long</span> st_blksize; <span class="hljs-comment">/*Optimal block size for I/O*/</span><br>	<span class="hljs-type">long</span> st_blocks; <span class="hljs-comment">/*number 512-byte blocks allocated*/</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>测试文件类型：sys/stat.h</p>
+<ul>
+<li>S_ISREG()</li>
+<li>S_ISDIR()</li>
+<li>S_ISCHAR()</li>
+<li>S_ISBLK()</li>
+<li>S_ISFIFO()</li>
+<li>S_ISLNK()</li>
+<li>S_ISSOCK()</li>
+</ul>
+<p>文件权限</p>
+<ul>
+<li><p>rwx</p></li>
+<li><p>SUID：需要有效uid</p></li>
+<li><p>SGID：需要有效gid</p></li>
+<li><p>Sticky bit：只有owner</p></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/types.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/stat.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">chmod</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *path, <span class="hljs-type">mode_t</span> mode)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fchmod</span><span class="hljs-params">(<span class="hljs-type">int</span> fildes, <span class="hljs-type">mode_t</span> mode)</span></span>;<br>(Return: <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> success; <span class="hljs-number">-1</span> <span class="hljs-keyword">if</span> failure)<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/types.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">chown</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *path, <span class="hljs-type">uid_t</span> owner, <span class="hljs-type">gid_t</span> group)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fchown</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">uid_t</span> owner, <span class="hljs-type">gid_t</span> group)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lchown</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *path, <span class="hljs-type">uid_t</span> owner, <span class="hljs-type">gid_t</span> group)</span></span>;<br>(Return: <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> success; <span class="hljs-number">-1</span> <span class="hljs-keyword">if</span> failure)<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/types.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/stat.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">mode_t</span> <span class="hljs-title">umask</span><span class="hljs-params">(<span class="hljs-type">mode_t</span> mask)</span></span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">link</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *oldpath, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *newpath)</span></span>;<br>(Return: <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> success; <span class="hljs-number">-1</span> <span class="hljs-keyword">if</span> failure)<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">unlink</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *pathname)</span></span>;<br>(Return: <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> success; <span class="hljs-number">-1</span> <span class="hljs-keyword">if</span> failure)<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">symlink</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *oldpath, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *newpath)</span></span>;<br>(Return: <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> success; <span class="hljs-number">-1</span> <span class="hljs-keyword">if</span> failure)<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">readlink</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *path, <span class="hljs-type">char</span> *buf, <span class="hljs-type">size_t</span> bufsiz)</span></span>;<br>(Return: the count of characters placed in the buffer <span class="hljs-keyword">if</span> success;<span class="hljs-number">-1</span> <span class="hljs-keyword">if</span> failure)<br></code></pre></td></tr></table></figure>
+<p>目录</p>
+<ul>
+<li>mkdir/rmdir</li>
+<li>chdir/fchdir, getcwd</li>
+<li>读取目录：DIR数据结构
+<ul>
+<li>opendir/closedir</li>
+<li>readdir</li>
+<li>telldir</li>
+<li>seekdir</li>
+</ul></li>
+</ul>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">mkdir</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *pathname, <span class="hljs-type">mode_t</span> mode)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">rmdir</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *pathname)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">chdir</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *path)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fchdir</span><span class="hljs-params">(<span class="hljs-type">int</span> fd)</span></span>;<br><span class="hljs-function"><span class="hljs-type">char</span> *<span class="hljs-title">getcwd</span><span class="hljs-params">(<span class="hljs-type">char</span> *buf, <span class="hljs-type">size_t</span> size)</span></span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">DIR *<span class="hljs-title">opendir</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *name)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">closedir</span><span class="hljs-params">(DIR *dir)</span></span>;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">dirent</span> *<span class="hljs-built_in">readdir</span>(DIR *dir);<br><span class="hljs-function"><span class="hljs-type">off_t</span> <span class="hljs-title">telldir</span><span class="hljs-params">(DIR *dir)</span></span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">seekdir</span><span class="hljs-params">(DIR *dir, <span class="hljs-type">off_t</span> offset)</span></span>;<br></code></pre></td></tr></table></figure>
+<p>文件锁 important</p>
+<ul>
+<li><p>记录锁</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-built_in">int</span> <span class="hljs-title">fcntl</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> fd, <span class="hljs-built_in">int</span> cmd, <span class="hljs-keyword">struct</span> flock *<span class="hljs-keyword">lock</span></span>)</span>;<br>(返回值: 若成功则依赖于cmd，若出错为<span class="hljs-number">-1</span>)<br></code></pre></td></tr></table></figure></li>
+<li><p>劝告锁</p>
+<ul>
+<li>检查，加锁有应用程序自己控制</li>
+</ul></li>
+<li><p>强制锁</p>
+<ul>
+<li>检查，加锁由内核控制</li>
+<li>影响[open() read() write()]等</li>
+</ul></li>
+<li><p>共享锁</p></li>
+<li><p>排他锁</p></li>
+<li><p>共享模式强制锁</p></li>
+<li><p>租借锁</p></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">flock</span>&#123;<br>	...<br>	<span class="hljs-type">short</span> l_type; <span class="hljs-comment">/* Type of lock: F_RDLCK, F_WRLCK, F_UNLCK */</span><br>	<span class="hljs-type">short</span> l_whence; <span class="hljs-comment">/* How to interpret l_start: SEEK_SET, SEEK_CUR,</span><br><span class="hljs-comment">	SEEK_END */</span><br>	<span class="hljs-type">off_t</span> l_start; <span class="hljs-comment">/* Starting offset for lock */</span><br>	<span class="hljs-type">off_t</span> l_len; <span class="hljs-comment">/* Number of bytes to lock */</span><br>	<span class="hljs-type">pid_t</span> l_pid; <span class="hljs-comment">/* PID of process blocking our lock (F_GETLK only) */</span><br>	...<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>cmd</p>
+<ul>
+<li>F_GETLK：获得文件的封锁信息</li>
+<li>F_SETLK：对文件的某个区域封锁或解除封锁</li>
+<li>F_SETLKW：功能同F_SETLK，wait方式。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/file.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lockf</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">int</span> cmd, <span class="hljs-type">off_t</span> len)</span></span>;<br></code></pre></td></tr></table></figure>
+<h2 id="多核编程">2. 多核编程</h2>
+<h3 id="exec">exec</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">execl</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *path, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *arg0, ..., (<span class="hljs-type">char</span> *)<span class="hljs-number">0</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">execlp</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *file, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *arg0, ..., (<span class="hljs-type">char</span> *)<span class="hljs-number">0</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">execle</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *path, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *arg0, ..., (<span class="hljs-type">char</span> *)<span class="hljs-number">0</span>, <span class="hljs-type">char</span> *<span class="hljs-type">const</span> envp[])</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">execv</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *path, <span class="hljs-type">char</span> *<span class="hljs-type">const</span> argv[])</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">execvp</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *file, <span class="hljs-type">char</span> *<span class="hljs-type">const</span> argv[])</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">execve</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *path, <span class="hljs-type">char</span> *<span class="hljs-type">const</span> argv[], <span class="hljs-type">char</span> *<span class="hljs-type">const</span> envp[])</span></span>;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><p><code>execl</code>、<code>execlp</code>和<code>execle</code>：可变参数为逐个列举。<code>execl</code>和<code>execle</code>带有环境变量，而<code>execlp</code>不带环境变量。实际上会调用对应的v系列函数。</p></li>
+<li><p><code>execv</code>、<code>execvp</code>和<code>execve</code>：可变参数为NULL结尾的指针数组。<code>execv</code>和<code>execvp</code>不带环境变量，而<code>execve</code>可以传递环境变量。前两者最终会调用execve函数。</p></li>
+</ul>
+<h3 id="fork">fork</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/types.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">pid_t</span> <span class="hljs-title">fork</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>;<br><br><span class="hljs-keyword">if</span>(fork()==<span class="hljs-number">0</span>)<br>&#123;子进程执行的代码段；&#125;<br><span class="hljs-keyword">else</span><br>&#123;父进程执行的代码段；&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="wait-waitpid">wait &amp; waitpid</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/types.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/wait.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">pid_t</span> <span class="hljs-title">wait</span><span class="hljs-params">(<span class="hljs-type">int</span> *status)</span></span>;<br><span class="hljs-function"><span class="hljs-type">pid_t</span> <span class="hljs-title">waitpid</span><span class="hljs-params">(<span class="hljs-type">pid_t</span> pid, <span class="hljs-type">int</span> *status, <span class="hljs-type">int</span> options)</span></span>;<br></code></pre></td></tr></table></figure>
+<p>wait：调用wait函数的进程会被挂起，等待任意一个子进程结束，如果该子进程结束了，此函数会回收子进程的资源。</p>
+<ul>
+<li>如果成功，wait会返回被收集的子进程的进程ID；</li>
+<li>如果调用进程没有子进程，调用就会失败，此时wait返回-1，同时errno被置为ECHILD。</li>
+</ul>
+<p>waitpid：回收指定进程号的子进程，可以设置是否阻塞。</p>
+<ul>
+<li><p>pid=0，等待任意子进程。</p></li>
+<li><p>pid=-1，回收所有子进程。</p></li>
+<li><p>pid&lt;-1，其绝对值为某个进程组的组id，回收该进程组的所有进程。</p></li>
+<li><p>status用来保存被收集进程退出时的一些状态，它是一个指向int类型的指针。</p></li>
+<li><p>options：WNOHANG，非阻塞。</p></li>
+</ul>
+<ol type="1">
+<li><p>当正常返回的时候，waitpid返回收集到的子进程的进程ID；</p></li>
+<li><p>如果设置了选项WNOHANG，而调用中waitpid发现没有已退出的子进程可收集，则返回0；
+　　</p></li>
+<li><p>如果调用中出错，则返回-1，这时errno会被设置成相应的值以指示错误所在；</p>
+<p>当pid所指示的子进程不存在，或此进程存在，但不是调用进程的子进程，waitpid就会出错返回，这时errno被设置为ECHILD。</p></li>
+</ol>
+<h3 id="signal">Signal</h3>
+<p>信号处理</p>
+<ul>
+<li><p>忽略信号</p></li>
+<li><p>不能忽略的信号： SIGKILL, SIGSTOP、一些硬件异常信号</p></li>
+<li><p>执行系统默认动作</p></li>
+<li><p>捕捉信号</p></li>
+</ul>
+<p>signal函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;signal.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">void</span> <span class="hljs-params">(*<span class="hljs-type">sighandler_t</span>)</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-type">sighandler_t</span> <span class="hljs-title">signal</span><span class="hljs-params">(<span class="hljs-type">int</span> signum, <span class="hljs-type">sighandler_t</span> handler)</span></span>;<br>(Returned Value: the previous handler <span class="hljs-keyword">if</span> success, SIG_ERR <span class="hljs-keyword">if</span> error)<br></code></pre></td></tr></table></figure>
+<p>handler为用户定义的函数。</p>
+<h4 id="kill和raise">kill和raise</h4>
+<p>kill向进程发送信号，raise向当前进程发送信号。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/types.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;signal.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">kill</span><span class="hljs-params">(<span class="hljs-type">pid_t</span> pid, <span class="hljs-type">int</span> sig)</span></span>;<br>(Returned Value: <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> success, <span class="hljs-number">-1</span> <span class="hljs-keyword">if</span> failure)<br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;signal.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">raise</span><span class="hljs-params">(<span class="hljs-type">int</span> sig)</span></span>;<br>(Returned Value: <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> success, <span class="hljs-number">-1</span> <span class="hljs-keyword">if</span> failure)<br></code></pre></td></tr></table></figure>
+<h4 id="alarm和pause">alarm和pause</h4>
+<p>alarm：一定时间后发送SIGALRM信号。</p>
+<p>pause：挂起等待信号。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> <span class="hljs-title">alarm</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> seconds)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">pause</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>;<br></code></pre></td></tr></table></figure>
+<p>组合两者可以让进程等待一段时间后执行。</p>
+<h4 id="可靠信号机制">可靠信号机制</h4>
+<h3 id="可重入函数">可重入函数</h3>
+<p>可以被中断的函数。</p>
+<p>不可重入函数：</p>
+<ul>
+<li>系统资源</li>
+<li>全局变量</li>
+<li>使用静态数据结构</li>
+<li>malloc、free</li>
+<li>标准IO函数</li>
+</ul>
+<h3 id="posix-thread">POSIX Thread</h3>
+<p>编译：gcc thread.c –o thread –lpthread</p>
+<h4 id="创建和终止">创建和终止</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;pthread.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">pthread_create</span><span class="hljs-params">(</span></span><br><span class="hljs-params"><span class="hljs-function">	<span class="hljs-type">pthread_t</span> *thread,</span></span><br><span class="hljs-params"><span class="hljs-function">	<span class="hljs-type">pthread_attr_t</span> *attr,</span></span><br><span class="hljs-params"><span class="hljs-function">	<span class="hljs-type">void</span> *(*start_routine)(<span class="hljs-type">void</span> *),</span></span><br><span class="hljs-params"><span class="hljs-function">	<span class="hljs-type">void</span> *arg)</span></span>;<br>	<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">pthread_exit</span><span class="hljs-params">(<span class="hljs-type">void</span> *retval)</span></span>;<br></code></pre></td></tr></table></figure>
+<h4 id="等待和分离">等待和分离</h4>
+<p>Joinable Thread：可连接线程</p>
+<ul>
+<li>可以被其他线程等待（join）的线程。</li>
+</ul>
+<p>Detached Thread：分离线程</p>
+<ul>
+<li>启动后独立运行的线程。</li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">#<span class="hljs-keyword">include</span> &lt;pthread.h&gt;<br><span class="hljs-built_in">int</span> pthread<span class="hljs-constructor">_join(<span class="hljs-params">pthread_t</span> <span class="hljs-params">th</span>, <span class="hljs-params">void</span> <span class="hljs-operator">**</span><span class="hljs-params">thread_return</span>)</span>;<br><span class="hljs-built_in">int</span> pthread<span class="hljs-constructor">_detach(<span class="hljs-params">pthread_t</span> <span class="hljs-params">th</span>)</span>;<br></code></pre></td></tr></table></figure>
+<h4 id="线程同步">线程同步</h4>
+<h5 id="信号量">信号量</h5>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">#<span class="hljs-keyword">include</span> &lt;semaphore.h&gt;<br><span class="hljs-built_in">int</span> sem<span class="hljs-constructor">_init(<span class="hljs-params">sem_t</span> <span class="hljs-operator">*</span><span class="hljs-params">sem</span>, <span class="hljs-params">int</span> <span class="hljs-params">pshared</span>, <span class="hljs-params">unsigned</span> <span class="hljs-params">int</span> <span class="hljs-params">value</span>)</span>;<br><span class="hljs-built_in">int</span> sem<span class="hljs-constructor">_wait(<span class="hljs-params">sem_t</span> <span class="hljs-operator">*</span><span class="hljs-params">sem</span>)</span>;<br><span class="hljs-built_in">int</span> sem<span class="hljs-constructor">_post(<span class="hljs-params">sem_t</span> <span class="hljs-operator">*</span><span class="hljs-params">sem</span>)</span>;<br><span class="hljs-built_in">int</span> sem<span class="hljs-constructor">_destroy(<span class="hljs-params">sem_t</span> <span class="hljs-operator">*</span><span class="hljs-params">sem</span>)</span>;<br><span class="hljs-built_in">int</span> sem<span class="hljs-constructor">_trywait(<span class="hljs-params">sem_t</span> <span class="hljs-operator">*</span><span class="hljs-params">sem</span>)</span>;<br><span class="hljs-built_in">int</span> sem<span class="hljs-constructor">_getvalue(<span class="hljs-params">sem_t</span> <span class="hljs-operator">*</span><span class="hljs-params">sem</span>, <span class="hljs-params">int</span> <span class="hljs-operator">*</span><span class="hljs-params">sval</span>)</span>;<br></code></pre></td></tr></table></figure>
+<p>生产者-消费者问题：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#include &lt;stdio.h&gt;</span><br><span class="hljs-comment">#include &lt;stdlib.h&gt;</span><br><span class="hljs-comment">#include &lt;unistd.h&gt;</span><br><span class="hljs-comment">#include &lt;sys/wait.h&gt;</span><br><span class="hljs-comment">#include &lt;sys/types.h&gt;</span><br><span class="hljs-comment">#include &lt;fcntl.h&gt;</span><br><span class="hljs-comment">#include &lt;semaphore.h&gt;</span><br><br><span class="hljs-comment">#define BUFFER_SIZE 10</span><br><span class="hljs-comment">#define PRODUCER_COUNT 3</span><br><span class="hljs-comment">#define CONSUMER_COUNT 2</span><br><br>sem_t empty, full, mutex;<br>int buffer[BUFFER_SIZE];<br>int <span class="hljs-keyword">in</span> = <span class="hljs-number">0</span>;<br>int out = <span class="hljs-number">0</span>;<br><br>void produce(int index) &#123;<br>    sem_wait(&amp;empty);<br>    sem_wait(&amp;mutex);<br><br>    printf(<span class="hljs-string">&quot;生产者%d生产了一个产品\n&quot;</span>, index);<br>    buffer[<span class="hljs-keyword">in</span>] = index;<br>    <span class="hljs-keyword">in</span> = (<span class="hljs-keyword">in</span> + <span class="hljs-number">1</span>) % BUFFER_SIZE;<br><br>    sem_post(&amp;mutex);<br>    sem_post(&amp;full);<br>&#125;<br><br>void consume(int index) &#123;<br>    sem_wait(&amp;full);<br>    sem_wait(&amp;mutex);<br><br>    printf(<span class="hljs-string">&quot;消费者%d消费了一个产品\n&quot;</span>, index);<br>    buffer[out] = -<span class="hljs-number">1</span>; <span class="hljs-regexp">//</span> 或者可以用某种方式标记为已消费<br>    out = (out + <span class="hljs-number">1</span>) % BUFFER_SIZE;<br><br>    sem_post(&amp;mutex);<br>    sem_post(&amp;empty);<br>&#125;<br><br>int main() &#123;<br>    <span class="hljs-regexp">//</span> 初始化信号量<br>    <span class="hljs-keyword">if</span> (sem_init(&amp;empty, <span class="hljs-number">1</span>, BUFFER_SIZE) == -<span class="hljs-number">1</span>) &#123;<br>        perror(<span class="hljs-string">&quot;sem_init&quot;</span>);<br>        <span class="hljs-keyword">exit</span>(EXIT_FAILURE);<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (sem_init(&amp;full, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>) == -<span class="hljs-number">1</span>) &#123;<br>        perror(<span class="hljs-string">&quot;sem_init&quot;</span>);<br>        <span class="hljs-keyword">exit</span>(EXIT_FAILURE);<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (sem_init(&amp;mutex, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>) == -<span class="hljs-number">1</span>) &#123;<br>        perror(<span class="hljs-string">&quot;sem_init&quot;</span>);<br>        <span class="hljs-keyword">exit</span>(EXIT_FAILURE);<br>    &#125;<br><br>    pid_t pid;<br>    <span class="hljs-keyword">for</span> (int i = <span class="hljs-number">0</span>; i &lt; PRODUCER_COUNT; i++) &#123;<br>        pid = fork();<br>        <span class="hljs-keyword">if</span> (pid &lt; <span class="hljs-number">0</span>) &#123;<br>            perror(<span class="hljs-string">&quot;fork&quot;</span>);<br>            <span class="hljs-keyword">exit</span>(EXIT_FAILURE);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pid == <span class="hljs-number">0</span>) &#123; <span class="hljs-regexp">//</span> 子进程，生产者<br>            <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>                produce(i);<br>                sleep(rand() % <span class="hljs-number">3</span>); <span class="hljs-regexp">//</span> 随机睡眠以模拟不同生产者生产速度<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">for</span> (int i = <span class="hljs-number">0</span>; i &lt; CONSUMER_COUNT; i++) &#123;<br>        pid = fork();<br>        <span class="hljs-keyword">if</span> (pid &lt; <span class="hljs-number">0</span>) &#123;<br>            perror(<span class="hljs-string">&quot;fork&quot;</span>);<br>            <span class="hljs-keyword">exit</span>(EXIT_FAILURE);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pid == <span class="hljs-number">0</span>) &#123; <span class="hljs-regexp">//</span> 子进程，消费者<br>            <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>                consume(i);<br>                sleep(rand() % <span class="hljs-number">3</span>); <span class="hljs-regexp">//</span> 随机睡眠以模拟不同消费者消费速度<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-regexp">//</span> 等待所有生产者和消费者结束<br>    <span class="hljs-keyword">while</span> (wait(NULL) &gt; <span class="hljs-number">0</span>);<br><br>    <span class="hljs-regexp">//</span> 销毁信号量<br>    sem_destroy(&amp;empty);<br>    sem_destroy(&amp;full);<br>    sem_destroy(&amp;mutex);<br><br>    <span class="hljs-keyword">exit</span>(EXIT_SUCCESS);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h5 id="互斥量">互斥量</h5>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;pthread.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">pthread_mutex_init</span><span class="hljs-params">(<span class="hljs-type">pthread_mutex_t</span> *mutex, <span class="hljs-type">const</span> <span class="hljs-type">pthread_mutexattr_t</span> *mutexattr)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">pthread_mutex_lock</span><span class="hljs-params">(<span class="hljs-type">pthread_mutex_t</span> *mutex)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">pthread_mutex_unlock</span><span class="hljs-params">(<span class="hljs-type">pthread_mutex_t</span> *mutex)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">pthread_mutex_destroy</span><span class="hljs-params">(<span class="hljs-type">pthread_mutex_t</span> *mutex)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">pthread_mutex_trylock</span><span class="hljs-params">(<span class="hljs-type">pthread_mutex_t</span> *mutex)</span></span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;pthread.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;semaphore.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> BUFFER_SIZE 10</span><br><br><span class="hljs-type">int</span> buffer[BUFFER_SIZE];<br><span class="hljs-type">int</span> in = <span class="hljs-number">0</span>;<br><span class="hljs-type">int</span> out = <span class="hljs-number">0</span>;<br><br><span class="hljs-comment">// 互斥量初始化</span><br><span class="hljs-type">pthread_mutex_t</span> mutex, empty, full;<br><br><span class="hljs-function"><span class="hljs-type">void</span>* <span class="hljs-title">producer</span><span class="hljs-params">(<span class="hljs-type">void</span>* arg)</span> </span>&#123;<br>    <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-comment">// 等待有空余位置</span><br>        <span class="hljs-built_in">pthread_mutex_lock</span>(&amp;empty);<br>        <span class="hljs-keyword">while</span> (in == BUFFER_SIZE) &#123;<br>            <span class="hljs-built_in">pthread_mutex_unlock</span>(&amp;empty);<br>            <span class="hljs-built_in">sleep</span>(<span class="hljs-built_in">rand</span>() % <span class="hljs-number">3</span>); <span class="hljs-comment">// 生产者等待</span><br>            <span class="hljs-built_in">pthread_mutex_lock</span>(&amp;empty);<br>        &#125;<br><br>        <span class="hljs-comment">// 生产产品</span><br>        buffer[in] = *(<span class="hljs-type">int</span>*)arg;<br>        in = (in + <span class="hljs-number">1</span>) % BUFFER_SIZE;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;生产者生产了产品 %d\n&quot;</span>, *(<span class="hljs-type">int</span>*)arg);<br><br>        <span class="hljs-comment">// 通知消费者有新产品</span><br>        <span class="hljs-built_in">pthread_mutex_unlock</span>(&amp;empty);<br>        <span class="hljs-built_in">pthread_mutex_lock</span>(&amp;full);<br>        full++;<br>        <span class="hljs-built_in">pthread_mutex_unlock</span>(&amp;full);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span>* <span class="hljs-title">consumer</span><span class="hljs-params">(<span class="hljs-type">void</span>* arg)</span> </span>&#123;<br>    <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-comment">// 等待有产品</span><br>        <span class="hljs-built_in">pthread_mutex_lock</span>(&amp;full);<br>        <span class="hljs-keyword">while</span> (out == in) &#123;<br>            <span class="hljs-built_in">pthread_mutex_unlock</span>(&amp;full);<br>            <span class="hljs-built_in">sleep</span>(<span class="hljs-built_in">rand</span>() % <span class="hljs-number">3</span>); <span class="hljs-comment">// 消费者等待</span><br>            <span class="hljs-built_in">pthread_mutex_lock</span>(&amp;full);<br>        &#125;<br><br>        <span class="hljs-comment">// 消费产品</span><br>        <span class="hljs-type">int</span> product = buffer[out];<br>        out = (out + <span class="hljs-number">1</span>) % BUFFER_SIZE;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;消费者消费了产品 %d\n&quot;</span>, product);<br><br>        <span class="hljs-comment">// 通知生产者有空余位置</span><br>        <span class="hljs-built_in">pthread_mutex_unlock</span>(&amp;full);<br>        <span class="hljs-built_in">pthread_mutex_lock</span>(&amp;empty);<br>        empty++;<br>        <span class="hljs-built_in">pthread_mutex_unlock</span>(&amp;empty);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-comment">// 初始化互斥量</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">pthread_mutex_init</span>(&amp;mutex, <span class="hljs-literal">NULL</span>)) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; mutex init failed\n&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">pthread_mutex_init</span>(&amp;empty, <span class="hljs-literal">NULL</span>)) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; empty init failed\n&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">pthread_mutex_init</span>(&amp;full, <span class="hljs-literal">NULL</span>)) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; full init failed\n&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-type">pthread_t</span> pid, cid;<br>    <span class="hljs-type">int</span> producer_arg = <span class="hljs-number">1</span>;<br>    <span class="hljs-type">int</span> consumer_arg = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-comment">// 创建生产者线程</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">pthread_create</span>(&amp;pid, <span class="hljs-literal">NULL</span>, producer, &amp;producer_arg)) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Thread creation failed\n&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 创建消费者线程</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">pthread_create</span>(&amp;cid, <span class="hljs-literal">NULL</span>, consumer, &amp;consumer_arg)) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Thread creation failed\n&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 等待线程结束</span><br>    <span class="hljs-built_in">pthread_join</span>(pid, <span class="hljs-literal">NULL</span>);<br>    <span class="hljs-built_in">pthread_join</span>(cid, <span class="hljs-literal">NULL</span>);<br><br>    <span class="hljs-comment">// 销毁互斥量</span><br>    <span class="hljs-built_in">pthread_mutex_destroy</span>(&amp;mutex);<br>    <span class="hljs-built_in">pthread_mutex_destroy</span>(&amp;empty);<br>    <span class="hljs-built_in">pthread_mutex_destroy</span>(&amp;full);<br></code></pre></td></tr></table></figure>
+<h5 id="条件变量">条件变量</h5>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-built_in">int</span> pthread<span class="hljs-constructor">_cond_init(<span class="hljs-params">pthread_cond_t</span> <span class="hljs-operator">*</span><span class="hljs-params">cond</span>, <span class="hljs-params">pthread_condattr_t</span> <span class="hljs-operator">*</span><span class="hljs-params">cond_attr</span>)</span>;<br><span class="hljs-built_in">int</span> pthread<span class="hljs-constructor">_cond_destory(<span class="hljs-params">pthread_cond_t</span> <span class="hljs-operator">*</span><span class="hljs-params">cond</span>)</span>;<br><span class="hljs-built_in">int</span> pthread<span class="hljs-constructor">_cond_wait(<span class="hljs-params">pthread_cond_t</span> <span class="hljs-operator">*</span><span class="hljs-params">cond</span>, <span class="hljs-params">pthread_mutex_t</span> <span class="hljs-params">mutex</span>)</span>;<br><span class="hljs-built_in">int</span> pthread<span class="hljs-constructor">_cond_signal(<span class="hljs-params">pthread_cond_t</span> <span class="hljs-params">cond</span>)</span>;<br><span class="hljs-built_in">int</span> pthread<span class="hljs-constructor">_cond_broadcast(<span class="hljs-params">pthread_cond_t</span> <span class="hljs-params">cond</span>)</span>;<br></code></pre></td></tr></table></figure>
+<p>条件变量使用：与互斥量结合</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;pthread.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;semaphore.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> BUFFER_SIZE 10</span><br><br><span class="hljs-type">int</span> buffer[BUFFER_SIZE];<br><span class="hljs-type">int</span> in = <span class="hljs-number">0</span>;<br><span class="hljs-type">int</span> out = <span class="hljs-number">0</span>;<br><br><span class="hljs-comment">// 互斥量初始化</span><br><span class="hljs-type">pthread_mutex_t</span> mutex;<br><br><span class="hljs-comment">// 条件变量初始化</span><br><span class="hljs-type">pthread_cond_t</span> empty, full;<br><br><span class="hljs-function"><span class="hljs-type">void</span>* <span class="hljs-title">producer</span><span class="hljs-params">(<span class="hljs-type">void</span>* arg)</span> </span>&#123;<br>    <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-comment">// 等待有空余位置</span><br>        <span class="hljs-built_in">pthread_mutex_lock</span>(&amp;mutex);<br>        <span class="hljs-keyword">while</span> (in == BUFFER_SIZE) &#123;<br>            <span class="hljs-built_in">pthread_cond_wait</span>(&amp;empty, &amp;mutex);<br>        &#125;<br><br>        <span class="hljs-comment">// 生产产品</span><br>        buffer[in] = *(<span class="hljs-type">int</span>*)arg;<br>        in = (in + <span class="hljs-number">1</span>) % BUFFER_SIZE;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;生产者生产了产品 %d\n&quot;</span>, *(<span class="hljs-type">int</span>*)arg);<br><br>        <span class="hljs-comment">// 通知消费者有新产品</span><br>        <span class="hljs-built_in">pthread_cond_signal</span>(&amp;full);<br>        <span class="hljs-built_in">pthread_mutex_unlock</span>(&amp;mutex);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span>* <span class="hljs-title">consumer</span><span class="hljs-params">(<span class="hljs-type">void</span>* arg)</span> </span>&#123;<br>    <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-comment">// 等待有产品</span><br>        <span class="hljs-built_in">pthread_mutex_lock</span>(&amp;mutex);<br>        <span class="hljs-keyword">while</span> (out == in) &#123;<br>            <span class="hljs-built_in">pthread_cond_wait</span>(&amp;full, &amp;mutex);<br>        &#125;<br><br>        <span class="hljs-comment">// 消费产品</span><br>        <span class="hljs-type">int</span> product = buffer[out];<br>        out = (out + <span class="hljs-number">1</span>) % BUFFER_SIZE;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;消费者消费了产品 %d\n&quot;</span>, product);<br><br>        <span class="hljs-comment">// 通知生产者有空余位置</span><br>        <span class="hljs-built_in">pthread_cond_signal</span>(&amp;empty);<br>        <span class="hljs-built_in">pthread_mutex_unlock</span>(&amp;mutex);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-comment">// 初始化互斥量</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">pthread_mutex_init</span>(&amp;mutex, <span class="hljs-literal">NULL</span>)) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; mutex init failed\n&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 初始化条件变量</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">pthread_cond_init</span>(&amp;empty, <span class="hljs-literal">NULL</span>)) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; empty init failed\n&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">pthread_cond_init</span>(&amp;full, <span class="hljs-literal">NULL</span>)) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; full init failed\n&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-type">pthread_t</span> pid, cid;<br>    <span class="hljs-type">int</span> producer_arg = <span class="hljs-number">1</span>;<br>    <span class="hljs-type">int</span> consumer_arg = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-comment">// 创建生产者线程</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">pthread_create</span>(&amp;pid, <span class="hljs-literal">NULL</span>, producer, &amp;producer_arg)) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Thread creation failed\n&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 创建消费者线程</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">pthread_create</span>(&amp;cid, <span class="hljs-literal">NULL</span>, consumer, &amp;consumer_arg)) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Thread creation failed\n&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 等待线程结束</span><br>    <span class="hljs-built_in">pthread_join</span>(pid, <span class="hljs-literal">NULL</span>);<br>    <span class="hljs-built_in">pthread_join</span>(cid, <span class="hljs-literal">NULL</span>);<br><br>    <span class="hljs-comment">// 销毁互斥量</span><br>    <span class="hljs-built_in">pthread_mutex_destroy</span>(&amp;mutex);<br>    <span class="hljs-built_in">pthread_cond_destroy</span>(&amp;empty);<br>    <span class="hljs-built_in">pthread_cond_destroy</span>(&amp;full);<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="线程取消">线程取消</h4>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-built_in">int</span> pthread<span class="hljs-constructor">_cancel(<span class="hljs-params">pthread_t</span> <span class="hljs-params">thread</span>)</span>;<br><span class="hljs-built_in">int</span> pthread<span class="hljs-constructor">_setcancelstate(<span class="hljs-params">int</span> <span class="hljs-params">state</span>, <span class="hljs-params">int</span> <span class="hljs-operator">*</span><span class="hljs-params">oldstate</span>)</span>;<br><span class="hljs-built_in">int</span> pthread<span class="hljs-constructor">_setcanceltype(<span class="hljs-params">int</span> <span class="hljs-params">type</span>, <span class="hljs-params">int</span> <span class="hljs-operator">*</span><span class="hljs-params">oldtype</span>)</span>;<br></code></pre></td></tr></table></figure>
+<h4 id="线程局部存储-tls">线程局部存储 TLS</h4>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-built_in">int</span> pthread<span class="hljs-constructor">_key_create(<span class="hljs-params">pthread_key_t</span> <span class="hljs-operator">*</span><span class="hljs-params">key</span>, <span class="hljs-params">void</span> (<span class="hljs-operator">*</span><span class="hljs-params">destructor</span>)</span>(void*));<br><span class="hljs-built_in">int</span> pthread<span class="hljs-constructor">_key_delete(<span class="hljs-params">pthread_key_t</span> <span class="hljs-params">key</span>)</span>;<br>void *pthread<span class="hljs-constructor">_getspecific(<span class="hljs-params">pthread_key_t</span> <span class="hljs-params">key</span>)</span>;<br><span class="hljs-built_in">int</span> pthread<span class="hljs-constructor">_setspecific(<span class="hljs-params">pthread_key_t</span> <span class="hljs-params">key</span>, <span class="hljs-params">const</span> <span class="hljs-params">void</span> <span class="hljs-operator">*</span><span class="hljs-params">value</span>)</span>;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/" class="category-chain-item">Linux系统编程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/05/04/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%20%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8/" title="Linux系统编程_4_内核驱动">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux系统编程_4_内核驱动</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/05/02/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%AC%AC2%E7%AB%A0%20Shell%E7%BC%96%E7%A8%8B/" title="Linux系统编程_2_Shell">
+                        <span class="hidden-mobile">Linux系统编程_2_Shell</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>长风破浪会有时，直挂云帆济沧海</p> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

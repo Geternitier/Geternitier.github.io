@@ -16,21 +16,23 @@
   <meta name="author" content="Geternitier">
   <meta name="keywords" content="">
   
-    <meta name="description" content="子不语">
+    <meta name="description" content="飞萤扑火，向死而生。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="编译原理-目标代码生成">
-<meta property="og:url" content="http://example.com/2023/06/04/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%9B%AE%E6%A0%87%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90/index.html">
+<meta property="og:title" content="Linux系统编程_4_内核驱动">
+<meta property="og:url" content="http://example.com/2024/05/04/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%20%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8/index.html">
 <meta property="og:site_name" content="Geternitier的博客">
-<meta property="og:description" content="子不语">
+<meta property="og:description" content="飞萤扑火，向死而生。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-06-04T04:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-24T05:24:36.365Z">
+<meta property="og:image" content="http://example.com/image/Linux系统编程/menu.png">
+<meta property="article:published_time" content="2024-05-04T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-21T07:24:02.689Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/image/Linux系统编程/menu.png">
   
   
   
-  <title>编译原理-目标代码生成 - Geternitier的博客</title>
+  <title>Linux系统编程_4_内核驱动 - Geternitier的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -184,7 +186,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="编译原理-目标代码生成"></span>
+            <span id="subtitle" data-typed-text="Linux系统编程_4_内核驱动"></span>
           
         </div>
 
@@ -195,8 +197,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-06-04 12:00" pubdate>
-          2023年6月4日 中午
+        <time datetime="2024-05-04 12:00" pubdate>
+          2024年5月4日 中午
         </time>
       </span>
     
@@ -207,7 +209,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          670 字
+          2.4k 字
         
       </span>
     
@@ -247,66 +249,116 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">编译原理-目标代码生成</h1>
+            <h1 style="display: none">Linux系统编程_4_内核驱动</h1>
             
             
               <div class="markdown-body">
                 
-                <p>子不语</p>
+                <p>飞萤扑火，向死而生。</p>
 <span id="more"></span>
-<h1 id="目标代码生成">目标代码生成</h1>
-<h2 id="risc-v">RISC-V</h2>
-<h3 id="寄存器">寄存器</h3>
+<h1 id="第4章-内核驱动">第4章 内核驱动</h1>
+<h2 id="什么是内核">0. 什么是内核？</h2>
+<p>操作系统是一系列程序的集合，其中最重要的部分构成了内核。</p>
+<p>单内核/微内核</p>
 <ul>
-<li><p>zero：存放常数0，不允许修改</p></li>
-<li><p>ra：存放返回地址</p></li>
-<li><p>t0~t6：保存临时变量</p></li>
-<li><p>pc：保存下一条指令的地址</p></li>
+<li>单内核是一个很大的进程，内部可以分为若干模块，运行时是一个独立的二进制文件，模块间通讯通过直接调用函数实现</li>
+<li>微内核中大部分内核作为独立的进程在特权下运行，通过消息传递进行通讯</li>
 </ul>
-<h3 id="指令">指令</h3>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">li <span class="hljs-built_in">t0</span>, <span class="hljs-number">20</span>		<span class="hljs-comment"># li: load immediate</span><br>li <span class="hljs-built_in">t1</span>, <span class="hljs-number">22</span><br><span class="hljs-keyword">add </span><span class="hljs-built_in">t2</span>, <span class="hljs-built_in">t0</span>, <span class="hljs-built_in">t1</span><br></code></pre></td></tr></table></figure>
-<p>li指令是一条伪指令，最终会翻译为addi t0, zero, 20的形式</p>
+<p>Linux内核的能力</p>
 <ul>
-<li>负数则为addi t0, zero, -20</li>
-<li>没有subi指令</li>
+<li>内存管理，文件系统，进程管理，多线程支持，抢占式，多处理支持</li>
 </ul>
-<h3 id="系统调用">系统调用</h3>
+<p>Linux内核区别于其他UNIX商业内核的优点</p>
+<ul>
+<li>单内核，模块支持</li>
+<li>免费/开源</li>
+<li>支持多种CPU，硬件支持能力非常强大</li>
+<li>Linux开发者都是非常出色的程序员</li>
+<li>通过学习Linux内核的源码可以了解现代操作系统的实现原理</li>
+</ul>
+<h3 id="配置内核">配置内核</h3>
+<p>下载源码、解压、make clean、<strong>make menuconfig</strong></p>
+<figure>
+<img src="/image/Linux系统编程/menu.png" srcset="/img/loading.gif" lazyload alt="menu" />
+<figcaption aria-hidden="true">menu</figcaption>
+</figure>
+<p>编译内核：</p>
+<ul>
+<li>make</li>
+<li>make zImage、make bzImage：生成压缩内核镜像</li>
+<li>make modules：编译模块</li>
+</ul>
+<p>make install：将编译好的内核copy到/boot</p>
+<h2 id="驱动">1. 驱动</h2>
+<p>许多常见驱动的源代码集成在内核源码里，也有第三方开发的驱动，可以单独编译成模块.ko。编译需要内核头文件的支持。</p>
+<p>驱动运行在内核态。</p>
+<h3 id="加载模块">加载模块</h3>
+<p>底层命令：</p>
+<p>insmod：<code>insmod [options] module_file</code></p>
+<ul>
+<li><code>-f</code>: 强制加载模块，即使模块已被其他进程使用。</li>
+<li><code>-o</code>: 指定模块的参数。</li>
+<li><code>-v</code>: 显示详细信息。</li>
+</ul>
+<p>rmmod：<code>rmmod [options] module_name</code></p>
+<ul>
+<li><code>-f</code>: 强制卸载模块，即使模块已被其他进程使用。</li>
+<li><code>-s</code>: 模块卸载后，不更新/proc/modules文件。</li>
+<li><code>-w</code>: 在卸载模块之前，等待其关闭所有文件描述符。</li>
+</ul>
+<p>高层命令：</p>
+<p>modprobe：<code>modprobe [options] module_name</code></p>
+<ul>
+<li><code>-a</code>: 自动加载所有依赖的模块。</li>
+<li><code>-c</code>: 从 /etc/modprobe.conf 中读取配置。</li>
+<li><code>-d</code>: 检测模块依赖，但不加载它们。</li>
+<li><code>-e</code>: 禁止使用某些内核特性（如 SMP）。</li>
+<li><code>-k</code>: 保留内核符号表。</li>
+<li><code>-l</code>: 列出可以加载的模块，而不实际加载它们。</li>
+<li><code>-n</code>: 禁止自动插入已指定名字的模块。</li>
+<li><code>-p</code>: 使用预设的模块参数。</li>
+<li><code>-r</code>: 删除模块及其依赖的模块。</li>
+<li><code>-s</code>: 使模块静默加载，不输出信息。</li>
+<li><code>-v</code>: 输出更多的信息。</li>
+</ul>
+<p>模块依赖</p>
+<p>自动按需加载/卸载</p>
+<p>moddep：列出指定内核模块所依赖的其他模块</p>
+<p>lsmod：列出当前内核加载的所有模块及其各种信息</p>
+<p>modinfo：显示关于内核模块的详细信息</p>
+<h3 id="模块编写">模块编写</h3>
+<p>不能使用c库。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;linux/kernel.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;linux/module.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;linux/init.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;linux/moduleparam.h&gt;</span></span><br><span class="hljs-type">static</span> <span class="hljs-type">int</span> test;<br><span class="hljs-built_in">module_param</span>(test, <span class="hljs-type">int</span>, <span class="hljs-number">0644</span>);	<span class="hljs-comment">//module_param(变量名称，类型, 访问许可掩码)</span><br><span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">int</span> __init <span class="hljs-title">hello_init</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span><br><span class="hljs-function"></span>&#123;<br><span class="hljs-built_in">printk</span>(KERN_INFO “Hello world test=%d \n” , test);<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> __exit <span class="hljs-title">hello_exit</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span><br><span class="hljs-function"></span>&#123;<br><span class="hljs-built_in">printk</span>(KERN_INFO <span class="hljs-string">&quot;Goodbye world\n&quot;</span>);<br>&#125;<br><span class="hljs-built_in">MODULE_LICENSE</span>(<span class="hljs-string">&quot;GPL&quot;</span>);<br><span class="hljs-built_in">MODULE_DESCRIPTION</span>(<span class="hljs-string">&quot;Test&quot;</span>);<br><span class="hljs-built_in">MODULE_AUTHOR</span>(<span class="hljs-string">&quot;xxx&quot;</span>);<br><span class="hljs-built_in">module_init</span>(hello_init);<br><span class="hljs-built_in">module_exit</span>(hello_exit);<br></code></pre></td></tr></table></figure>
+<h4 id="导出符号">导出符号</h4>
+<p>如果一个模块需要向其他模块导出符号（方法或全局变量），需要使用：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-constructor">EXPORT_SYMBOL(<span class="hljs-params">name</span>)</span>;<br><span class="hljs-constructor">EXPORT_SYMBOL_GPL(<span class="hljs-params">name</span>)</span>;<br></code></pre></td></tr></table></figure>
+<p>符号必须在模块文件的全局部分导出。</p>
+<p>/proc/kallsyms 可以显示所有导出的符号。</p>
+<h3 id="字符设备">字符设备</h3>
+<h4 id="设备号">设备号</h4>
+<p>一个字符设备或者块设备都有一个主设备号和次设备号。</p>
+<ul>
+<li>主设备号和次设备号统称为设备号。
+<ul>
+<li>主设备号用来表示一个特定的驱动程序。</li>
+<li>次设备号用来表示使用该驱动程序的各设备。</li>
+</ul></li>
+</ul>
+<h4 id="cdev">cdev</h4>
+<p>linux内核中使用cdev结构体来描述字符设备。该结构体是所有字符设备的抽象，其包含了大量字符设备所共有的特性。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">struct</span> cdev *my_cdev = cdev<span class="hljs-constructor">_alloc()</span>;<br>my_cdev-&gt;ops = &amp;my_fops;<br>void cdev<span class="hljs-constructor">_init(<span class="hljs-params">struct</span> <span class="hljs-params">cdev</span> <span class="hljs-operator">*</span><span class="hljs-params">cdev</span>, <span class="hljs-params">struct</span> <span class="hljs-params">file_operations</span> <span class="hljs-operator">*</span><span class="hljs-params">fops</span>)</span>;<br></code></pre></td></tr></table></figure>
+<h4 id="初始化加载过程">初始化加载过程</h4>
 <ol type="1">
-<li>把服务号写入a7寄存器</li>
-<li>把参数写入a0、a1、a2、a3、fa0、...</li>
-<li><code>ecall</code></li>
-<li>从结果寄存器中获得返回值</li>
+<li>申请设备号</li>
+<li>定义文件操作结构体 file_operations</li>
+<li>创建并初始化定义结构体 cdev</li>
+<li>将cdev注册到系统，并和对应的设备号绑定</li>
+<li>在/dev文件系统中用mknod创建设备文件，并将该文件绑定到设备号上</li>
 </ol>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">li <span class="hljs-built_in">a7</span>, <span class="hljs-number">1</span>					<span class="hljs-comment"># service 1 is print integer</span><br><span class="hljs-keyword">add </span><span class="hljs-built_in">a0</span>, <span class="hljs-built_in">t0</span>, <span class="hljs-built_in">zero</span>	<span class="hljs-comment"># load desired int into a0</span><br>ecall<br></code></pre></td></tr></table></figure>
-<h3 id="代码段">代码段</h3>
-<ul>
-<li><p>.开始的指令是写给汇编器的指令</p></li>
-<li><p>.data存储全局变量</p>
-<ul>
-<li><code>g: .word 0</code></li>
-<li><code>msg: .string "sss"</code>以\0结尾的string</li>
-<li><code>msg: .ascii "sds"</code>的string不以\0结尾</li>
-</ul></li>
-<li><p>.text存储运行代码</p>
-<ul>
-<li><code>la t0, g      # la: load address</code></li>
-<li><code>lw t0, 0(t0) # lw: load word</code></li>
-<li><code>sw t6, 0(t0) #sw: store word</code></li>
-</ul></li>
-</ul>
-<p>默认在程序开始添加.text</p>
-<ul>
-<li>打印字符串：</li>
-</ul>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">li <span class="hljs-built_in">a7</span>, <span class="hljs-number">4</span><br>la <span class="hljs-built_in">a0</span>, msg<br>ecall<br></code></pre></td></tr></table></figure>
-<ul>
-<li>mv</li>
-</ul>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">li <span class="hljs-built_in">a7</span>, <span class="hljs-number">1</span><br>mv <span class="hljs-built_in">a0</span>, <span class="hljs-built_in">t6</span> <span class="hljs-comment">#add a0, t6, zero</span><br>ecall<br></code></pre></td></tr></table></figure>
-<ul>
-<li>数组：偏移地址</li>
-</ul>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-meta">.data</span><br><span class="hljs-symbol">numbers:</span> <span class="hljs-meta">.word</span> -<span class="hljs-number">30</span>, <span class="hljs-number">30</span>, -<span class="hljs-number">20</span>, <span class="hljs-number">20</span>, -<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">0</span><br><br><span class="hljs-meta">.text</span><br>la <span class="hljs-built_in">t0</span>, numbers<br><span class="hljs-keyword">lw </span><span class="hljs-built_in">t1</span>, <span class="hljs-number">12</span>(<span class="hljs-built_in">t0</span>)				<span class="hljs-comment"># 偏移12个字节，到20</span><br><span class="hljs-keyword">addi </span><span class="hljs-built_in">t1</span>, <span class="hljs-built_in">t1</span>, <span class="hljs-number">90</span><br><span class="hljs-keyword">sw </span><span class="hljs-built_in">t1</span>, <span class="hljs-number">12</span>(<span class="hljs-built_in">t0</span>)<br></code></pre></td></tr></table></figure>
+<p>申请释放设备号：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-built_in">int</span> register<span class="hljs-constructor">_chrdev_region(<span class="hljs-params">dev_t</span> <span class="hljs-params">first</span>, <span class="hljs-params">unsigned</span> <span class="hljs-params">int</span> <span class="hljs-params">count</span>, <span class="hljs-params">char</span> <span class="hljs-operator">*</span><span class="hljs-params">name</span>)</span>;<br><span class="hljs-built_in">int</span> alloc<span class="hljs-constructor">_chrdev_region(<span class="hljs-params">dev_t</span> <span class="hljs-operator">*</span><span class="hljs-params">dev</span>, <span class="hljs-params">unsigned</span> <span class="hljs-params">int</span> <span class="hljs-params">firstminor</span>, <span class="hljs-params">unsigned</span> <span class="hljs-params">int</span> <span class="hljs-params">count</span>, <span class="hljs-params">char</span> <span class="hljs-operator">*</span><span class="hljs-params">name</span>)</span>;<br>void unregister<span class="hljs-constructor">_chrdev_region(<span class="hljs-params">dev_t</span> <span class="hljs-params">first</span>, <span class="hljs-params">unsigned</span> <span class="hljs-params">int</span> <span class="hljs-params">count</span>)</span>;<br></code></pre></td></tr></table></figure>
+<p>设备注册与释放</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-built_in">int</span> cdev<span class="hljs-constructor">_add(<span class="hljs-params">struct</span> <span class="hljs-params">cdev</span> <span class="hljs-operator">*</span><span class="hljs-params">dev</span>, <span class="hljs-params">dev_t</span> <span class="hljs-params">num</span>, <span class="hljs-params">unsigned</span> <span class="hljs-params">int</span> <span class="hljs-params">count</span>)</span>;<br>void cdev<span class="hljs-constructor">_del(<span class="hljs-params">struct</span> <span class="hljs-params">cdev</span> <span class="hljs-operator">*</span><span class="hljs-params">dev</span>)</span>;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -325,7 +377,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" class="category-chain-item">编译原理</a>
+  <a href="/categories/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/" class="category-chain-item">Linux系统编程</a>
   
   
 
@@ -347,18 +399,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/06/15/%E6%AF%9B%E6%A6%82%20%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="毛概-期末复习">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">毛概-期末复习</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/06/03/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/" title="编译原理-语法分析">
-                        <span class="hidden-mobile">编译原理-语法分析</span>
+                      <a href="/2024/05/03/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%AC%AC3%E7%AB%A0%20Linux%E7%BC%96%E7%A8%8B/" title="Linux系统编程_3_编程">
+                        <span class="hidden-mobile">Linux系统编程_3_编程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

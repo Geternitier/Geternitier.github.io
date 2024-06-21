@@ -16,21 +16,23 @@
   <meta name="author" content="Geternitier">
   <meta name="keywords" content="">
   
-    <meta name="description" content="子不语">
+    <meta name="description" content="飞萤扑火，向死而生。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="编译原理-目标代码生成">
-<meta property="og:url" content="http://example.com/2023/06/04/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%9B%AE%E6%A0%87%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90/index.html">
+<meta property="og:title" content="Linux系统编程_2_Shell">
+<meta property="og:url" content="http://example.com/2024/05/02/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%AC%AC2%E7%AB%A0%20Shell%E7%BC%96%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Geternitier的博客">
-<meta property="og:description" content="子不语">
+<meta property="og:description" content="飞萤扑火，向死而生。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-06-04T04:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-24T05:24:36.365Z">
+<meta property="og:image" content="http://example.com/image/Linux系统编程/参数.png">
+<meta property="article:published_time" content="2024-05-02T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-21T07:23:33.201Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/image/Linux系统编程/参数.png">
   
   
   
-  <title>编译原理-目标代码生成 - Geternitier的博客</title>
+  <title>Linux系统编程_2_Shell - Geternitier的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -184,7 +186,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="编译原理-目标代码生成"></span>
+            <span id="subtitle" data-typed-text="Linux系统编程_2_Shell"></span>
           
         </div>
 
@@ -195,8 +197,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-06-04 12:00" pubdate>
-          2023年6月4日 中午
+        <time datetime="2024-05-02 12:00" pubdate>
+          2024年5月2日 中午
         </time>
       </span>
     
@@ -207,7 +209,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          670 字
+          2.6k 字
         
       </span>
     
@@ -247,66 +249,332 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">编译原理-目标代码生成</h1>
+            <h1 style="display: none">Linux系统编程_2_Shell</h1>
             
             
               <div class="markdown-body">
                 
-                <p>子不语</p>
+                <p>飞萤扑火，向死而生。</p>
 <span id="more"></span>
-<h1 id="目标代码生成">目标代码生成</h1>
-<h2 id="risc-v">RISC-V</h2>
-<h3 id="寄存器">寄存器</h3>
+<h1 id="第2章-shell编程">第2章 Shell编程</h1>
+<p>Shell：指令解释器和编程环境。</p>
+<p>用户和操作系统之间的接口，作为核外程序存在。</p>
+<p>Shell的双重角色：</p>
 <ul>
-<li><p>zero：存放常数0，不允许修改</p></li>
-<li><p>ra：存放返回地址</p></li>
-<li><p>t0~t6：保存临时变量</p></li>
-<li><p>pc：保存下一条指令的地址</p></li>
-</ul>
-<h3 id="指令">指令</h3>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">li <span class="hljs-built_in">t0</span>, <span class="hljs-number">20</span>		<span class="hljs-comment"># li: load immediate</span><br>li <span class="hljs-built_in">t1</span>, <span class="hljs-number">22</span><br><span class="hljs-keyword">add </span><span class="hljs-built_in">t2</span>, <span class="hljs-built_in">t0</span>, <span class="hljs-built_in">t1</span><br></code></pre></td></tr></table></figure>
-<p>li指令是一条伪指令，最终会翻译为addi t0, zero, 20的形式</p>
+<li>命令解释程序
 <ul>
-<li>负数则为addi t0, zero, -20</li>
-<li>没有subi指令</li>
+<li>Linux的开机启动过程；进程树</li>
+<li>Shell的工作步骤</li>
+<li>打印提示符；得到命令行；解析命令；查找文件；准备参数；执行命令</li>
+</ul></li>
+<li>独立的程序设计语言解释器</li>
 </ul>
-<h3 id="系统调用">系统调用</h3>
+<p>Shell列举：ash、bsh、bash、sh、csh、zsh</p>
+<h2 id="脚本文件">脚本文件</h2>
+<p>注释：#</p>
+<p>退出码：</p>
+<ul>
+<li>0：正常返回</li>
+<li>1~128：错误码</li>
+<li>129+：信号量</li>
+</ul>
+<h3 id="执行脚本文件">执行脚本文件</h3>
 <ol type="1">
-<li>把服务号写入a7寄存器</li>
-<li>把参数写入a0、a1、a2、a3、fa0、...</li>
-<li><code>ecall</code></li>
-<li>从结果寄存器中获得返回值</li>
+<li><p>$ sh script_file</p></li>
+<li><p>chmod +x script_file</p>
+<p>./script_file</p></li>
+<li><p>source script_file或 . script_file</p></li>
 </ol>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">li <span class="hljs-built_in">a7</span>, <span class="hljs-number">1</span>					<span class="hljs-comment"># service 1 is print integer</span><br><span class="hljs-keyword">add </span><span class="hljs-built_in">a0</span>, <span class="hljs-built_in">t0</span>, <span class="hljs-built_in">zero</span>	<span class="hljs-comment"># load desired int into a0</span><br>ecall<br></code></pre></td></tr></table></figure>
-<h3 id="代码段">代码段</h3>
+<h3 id="用户环境">用户环境</h3>
+<ol type="1">
+<li>.bash_profile，.bash_logout，.bashrc
 <ul>
-<li><p>.开始的指令是写给汇编器的指令</p></li>
-<li><p>.data存储全局变量</p>
-<ul>
-<li><code>g: .word 0</code></li>
-<li><code>msg: .string "sss"</code>以\0结尾的string</li>
-<li><code>msg: .ascii "sds"</code>的string不以\0结尾</li>
+<li>.bash_profile：用户登录时被读取，其中命令被bash执行</li>
+<li>.bashrc：启动一个新的shell时被读取并执行</li>
+<li>.bash_logout：登录退出时读取执行</li>
 </ul></li>
-<li><p>.text存储运行代码</p>
+<li>Alias：alias/unalias</li>
+<li>环境变量
 <ul>
-<li><code>la t0, g      # la: load address</code></li>
-<li><code>lw t0, 0(t0) # lw: load word</code></li>
-<li><code>sw t6, 0(t0) #sw: store word</code></li>
+<li>export/env/set</li>
+</ul></li>
+</ol>
+<h3 id="变量">变量</h3>
+<ul>
+<li>用户变量</li>
+<li>环境变量</li>
+<li>参数变量和内部变量</li>
+</ul>
+<h4 id="用户变量">用户变量</h4>
+<p>用户在shell脚本里定义的变量。</p>
+<ul>
+<li><p>变量的赋值与使用：var=value echo $var</p></li>
+<li><p>read命令：read var（读取用户输入并赋值给var）</p>
+<ul>
+<li>-p：在提示符后添加文本</li>
+<li>-s：不显示用户输入</li>
+<li>-r：用户输入不能修改</li>
+<li>-n[字符数]：指定读取字符数，例如-n1</li>
+</ul></li>
+<li><p>引号</p>
+<ul>
+<li>单引号内的所有字符保持本身字符的意思，不被bash解释</li>
+<li>除了$、``（不是单引号）、，双引号内的所有字符将保持字符本身含义，不被bash解释</li>
 </ul></li>
 </ul>
-<p>默认在程序开始添加.text</p>
+<h4 id="环境变量">环境变量</h4>
+<p>Shell环境提供的变量，通常使用大写字母做名称。</p>
+<table>
+
+<thead>
+<tr class="header">
+<th>环境变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>$HOME</td>
+<td>当前用户登录目录</td>
+</tr>
+<tr class="even">
+<td>$PATH</td>
+<td>以冒号分隔的用来搜索命令的目录清单</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(PS1 |
+命令行提示符，通常是”\)</span>”字符</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>$PS2</td>
+<td>辅助提示符，用来提示后续输入，通常是”&gt;”字符</td>
+</tr>
+<tr class="odd">
+<td>$IFS</td>
+<td>输入区分隔符。当shell读取输入数据时会把一组字符看成是单词之间的分隔符，通常是空格、制表符、换行符等。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="参数变量和内部变量">参数变量和内部变量</h4>
+<p>调用脚本程序时如果带有参数，对应的参数和额外产生的一些变量。</p>
+<table>
+
+<thead>
+<tr class="header">
+<th>环境变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>$#</td>
+<td>传递到脚本程序的参数个数</td>
+</tr>
+<tr class="even">
+<td>$0</td>
+<td>脚本程序的名字</td>
+</tr>
+<tr class="odd">
+<td>$1</td>
+<td>脚本程序的参数</td>
+</tr>
+<tr class="even">
+<td>$*</td>
+<td>一个全体参数组成的清单，它是一个独立的变量，各个参数之间用环境变量IFS中的第一个字符分隔开</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(@ |
+“\)</span>*”的一种变体，它不使用IFS环境变量。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="条件测试">条件测试</h3>
+<p>test expression 或 [ expression ]</p>
 <ul>
-<li>打印字符串：</li>
+<li>字符串比较</li>
+<li>算术比较</li>
+<li>文件相关测试</li>
+<li>逻辑操作</li>
 </ul>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">li <span class="hljs-built_in">a7</span>, <span class="hljs-number">4</span><br>la <span class="hljs-built_in">a0</span>, msg<br>ecall<br></code></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr class="header">
+<th>字符串比较</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>str1 = str2</td>
+<td>相同则为真</td>
+</tr>
+<tr class="even">
+<td>str1!=str2</td>
+<td>不同则为真</td>
+</tr>
+<tr class="odd">
+<td>-z str</td>
+<td>字符串为空则结果为真</td>
+</tr>
+<tr class="even">
+<td>-n str</td>
+<td>字符串不为空则结果为真</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>算术比较</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>expr1 –eq expr2</td>
+<td>两个表达式相等则结果为真</td>
+</tr>
+<tr class="even">
+<td>expr1 –ne expr2</td>
+<td>两个表达式不等则结果为真</td>
+</tr>
+<tr class="odd">
+<td>expr1 –gt expr2</td>
+<td>expr1 大于 expr2 则结果为真</td>
+</tr>
+<tr class="even">
+<td>expr1 –ge expr2</td>
+<td>expr1 大于或等于 expr2 则结果为真</td>
+</tr>
+<tr class="odd">
+<td>expr1 –lt expr2</td>
+<td>expr1 小于 expr2 则结果为真</td>
+</tr>
+<tr class="even">
+<td>expr1 –le expr2</td>
+<td>expr1 小于或等于 expr2 则结果为真</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>文件条件测试</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-e file</td>
+<td>文件存在则结果为真</td>
+</tr>
+<tr class="even">
+<td>-d file</td>
+<td>文件是一个子目录则结果为真</td>
+</tr>
+<tr class="odd">
+<td>-f file</td>
+<td>文件是一个普通文件则结果为真</td>
+</tr>
+<tr class="even">
+<td>-s file</td>
+<td>文件的长度不为零则结果为真</td>
+</tr>
+<tr class="odd">
+<td>-r file</td>
+<td>文件可读则结果为真</td>
+</tr>
+<tr class="even">
+<td>-w file</td>
+<td>文件可写则结果为真</td>
+</tr>
+<tr class="odd">
+<td>-x file</td>
+<td>文件可执行则结果为真</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>逻辑操作</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>! expr</td>
+<td>逻辑表达式求反</td>
+</tr>
+<tr class="even">
+<td>expr1 –a expr2</td>
+<td>两个逻辑表达式“And”（“与”）</td>
+</tr>
+<tr class="odd">
+<td>expr1 –o expr2</td>
+<td>两个逻辑表达式“Or”（“或”）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="条件语句">条件语句</h3>
+<h4 id="if语句">if语句</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-keyword">if</span> [ expression ]<br><span class="hljs-keyword">then</span><br>	statements<br><span class="hljs-keyword">elif</span> [ expression ]<br><span class="hljs-keyword">then</span><br>	statements<br><span class="hljs-keyword">elif</span> …<br><span class="hljs-keyword">else</span><br>	statements<br><span class="hljs-keyword">fi</span><br></code></pre></td></tr></table></figure>
+<h4 id="case语句">case语句</h4>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs coq"><span class="hljs-built_in">case</span> str <span class="hljs-built_in">in</span><br>	str1 | <span class="hljs-type">str2</span>) statements;;<br>	str3 | <span class="hljs-type">str4</span>) statements;;<br>	*) statements;;<br>esac<br></code></pre></td></tr></table></figure>
+<h3 id="重复语句">重复语句</h3>
+<h4 id="for语句">for语句</h4>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">for</span> <span class="hljs-keyword">var</span> <span class="hljs-keyword">in</span> list<br><span class="hljs-keyword">do</span><br>	statements<br>done<br></code></pre></td></tr></table></figure>
+<h4 id="while语句">while语句</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-keyword">while</span> condition<br><span class="hljs-keyword">do</span><br>	statements<br><span class="hljs-keyword">done</span><br></code></pre></td></tr></table></figure>
+<h4 id="until语句">until语句</h4>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs gauss"><span class="hljs-keyword">until</span> condition<br><span class="hljs-keyword">do</span><br>	<span class="hljs-built_in">statements</span><br>done<br></code></pre></td></tr></table></figure>
+<h4 id="select语句">select语句</h4>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs gauss"><span class="hljs-built_in">select</span> item in itemlist<br><span class="hljs-keyword">do</span><br>	<span class="hljs-built_in">statements</span><br>done<br></code></pre></td></tr></table></figure>
+<p>生成菜单列表</p>
+<h3 id="命令表">命令表</h3>
+<p>命令的组合。</p>
 <ul>
-<li>mv</li>
+<li><p>分号串联：command1 ; command2 ; …</p></li>
+<li><p>条件组合，AND和OR：</p>
+<p><code>statement1 &amp;&amp; statement2 &amp;&amp; …</code>和<code>statement1 || statement2 || …</code></p></li>
 </ul>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">li <span class="hljs-built_in">a7</span>, <span class="hljs-number">1</span><br>mv <span class="hljs-built_in">a0</span>, <span class="hljs-built_in">t6</span> <span class="hljs-comment">#add a0, t6, zero</span><br>ecall<br></code></pre></td></tr></table></figure>
+<h3 id="语句块">语句块</h3>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs gcode">&#123;<br>	stateme<span class="hljs-symbol">nt1</span><br>	stateme<span class="hljs-symbol">nt2</span><br>	…<br>&#125;<br>&#123; stateme<span class="hljs-symbol">nt1</span>; stateme<span class="hljs-symbol">nt2</span> ; … ; &#125;<br></code></pre></td></tr></table></figure>
+<h3 id="函数">函数</h3>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">func</span><span class="hljs-params">()</span></span><br>&#123;<br>	statements<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>局部变量：local关键字</p>
+<p>函数调用：func para1 para2 ...</p>
+<p>返回值：return</p>
+<h3 id="杂项命令">杂项命令</h3>
 <ul>
-<li>数组：偏移地址</li>
+<li>break：从for/while/until循环退出</li>
+<li>continue：跳到下一个循环继续执行</li>
+<li>exit n：以退出码”n”退出脚本运行</li>
+<li>return：函数返回</li>
+<li>export：将变量导出到shell，使之成为shell的环境变量</li>
+<li>set：为shell设置参数变量</li>
+<li>unset：从环境中删除变量或函数</li>
+<li>trap：指定在收到操作系统信号后执行的动作</li>
+<li>“:”(冒号命令)：空命令</li>
+<li>“.”(句点命令)或source在当前shell中执行命令</li>
 </ul>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-meta">.data</span><br><span class="hljs-symbol">numbers:</span> <span class="hljs-meta">.word</span> -<span class="hljs-number">30</span>, <span class="hljs-number">30</span>, -<span class="hljs-number">20</span>, <span class="hljs-number">20</span>, -<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">0</span><br><br><span class="hljs-meta">.text</span><br>la <span class="hljs-built_in">t0</span>, numbers<br><span class="hljs-keyword">lw </span><span class="hljs-built_in">t1</span>, <span class="hljs-number">12</span>(<span class="hljs-built_in">t0</span>)				<span class="hljs-comment"># 偏移12个字节，到20</span><br><span class="hljs-keyword">addi </span><span class="hljs-built_in">t1</span>, <span class="hljs-built_in">t1</span>, <span class="hljs-number">90</span><br><span class="hljs-keyword">sw </span><span class="hljs-built_in">t1</span>, <span class="hljs-number">12</span>(<span class="hljs-built_in">t0</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="捕获命令输出">捕获命令输出</h3>
+<p><code>$(command)</code>和<code>`(command)`</code></p>
+<h3 id="算术扩展">算术扩展</h3>
+<p><code>$((...))</code></p>
+<h3 id="参数扩展">参数扩展</h3>
+<p>批处理 1_tmp, 2_tmp, …</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/sh</span><br>i=1<br><span class="hljs-keyword">while</span> [ “<span class="hljs-variable">$i</span>” –ne 10 ]; <span class="hljs-keyword">do</span><br>	<span class="hljs-built_in">touch</span> “<span class="hljs-variable">$&#123;i&#125;</span>_tmp”<br>	i=$((<span class="hljs-variable">$i</span>+<span class="hljs-number">1</span>))<br><span class="hljs-keyword">done</span><br><span class="hljs-built_in">exit</span> 0<br></code></pre></td></tr></table></figure>
+<p>更复杂形式：</p>
+<figure>
+<img src="/image/Linux系统编程/参数.png" srcset="/img/loading.gif" lazyload alt="参数扩展" />
+<figcaption aria-hidden="true">参数扩展</figcaption>
+</figure>
+<h3 id="即时文档">即时文档</h3>
+<p>在shell脚本中向一条命令传送输入数据。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><span class="hljs-built_in">cat</span> &gt;&gt; file.txt &lt;&lt; !CATINPUT!<br>Hello, this is a here document.<br>!CATINPUT!<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -325,7 +593,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" class="category-chain-item">编译原理</a>
+  <a href="/categories/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/" class="category-chain-item">Linux系统编程</a>
   
   
 
@@ -347,9 +615,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/06/15/%E6%AF%9B%E6%A6%82%20%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="毛概-期末复习">
+                      <a href="/2024/05/03/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%AC%AC3%E7%AB%A0%20Linux%E7%BC%96%E7%A8%8B/" title="Linux系统编程_3_编程">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">毛概-期末复习</span>
+                        <span class="hidden-mobile">Linux系统编程_3_编程</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -357,8 +625,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/06/03/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/" title="编译原理-语法分析">
-                        <span class="hidden-mobile">编译原理-语法分析</span>
+                      <a href="/2024/05/01/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%AC%AC1%E7%AB%A0%20Linux%E5%9F%BA%E7%A1%80/" title="Linux系统编程_1_基础">
+                        <span class="hidden-mobile">Linux系统编程_1_基础</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

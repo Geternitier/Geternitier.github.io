@@ -16,21 +16,21 @@
   <meta name="author" content="Geternitier">
   <meta name="keywords" content="">
   
-    <meta name="description" content="子不语">
+    <meta name="description" content="飞萤扑火，向死而生。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="编译原理-目标代码生成">
-<meta property="og:url" content="http://example.com/2023/06/04/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%9B%AE%E6%A0%87%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90/index.html">
+<meta property="og:title" content="Linux系统编程_1_基础">
+<meta property="og:url" content="http://example.com/2024/05/01/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%AC%AC1%E7%AB%A0%20Linux%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Geternitier的博客">
-<meta property="og:description" content="子不语">
+<meta property="og:description" content="飞萤扑火，向死而生。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-06-04T04:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-24T05:24:36.365Z">
+<meta property="article:published_time" content="2024-05-01T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-21T07:23:15.117Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>编译原理-目标代码生成 - Geternitier的博客</title>
+  <title>Linux系统编程_1_基础 - Geternitier的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -184,7 +184,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="编译原理-目标代码生成"></span>
+            <span id="subtitle" data-typed-text="Linux系统编程_1_基础"></span>
           
         </div>
 
@@ -195,8 +195,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-06-04 12:00" pubdate>
-          2023年6月4日 中午
+        <time datetime="2024-05-01 12:00" pubdate>
+          2024年5月1日 中午
         </time>
       </span>
     
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          670 字
+          3.9k 字
         
       </span>
     
@@ -247,66 +247,296 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">编译原理-目标代码生成</h1>
+            <h1 style="display: none">Linux系统编程_1_基础</h1>
             
             
               <div class="markdown-body">
                 
-                <p>子不语</p>
+                <p>飞萤扑火，向死而生。</p>
 <span id="more"></span>
-<h1 id="目标代码生成">目标代码生成</h1>
-<h2 id="risc-v">RISC-V</h2>
-<h3 id="寄存器">寄存器</h3>
+<h1 id="第1章-linux系统基础">第1章 Linux系统基础</h1>
+<h2 id="linux概念与使用">1. Linux概念与使用</h2>
+<p>基于GNU通用公共协议的类Unix操作系统。</p>
 <ul>
-<li><p>zero：存放常数0，不允许修改</p></li>
-<li><p>ra：存放返回地址</p></li>
-<li><p>t0~t6：保存临时变量</p></li>
-<li><p>pc：保存下一条指令的地址</p></li>
+<li>开源、流行、支持大多数平台</li>
 </ul>
-<h3 id="指令">指令</h3>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">li <span class="hljs-built_in">t0</span>, <span class="hljs-number">20</span>		<span class="hljs-comment"># li: load immediate</span><br>li <span class="hljs-built_in">t1</span>, <span class="hljs-number">22</span><br><span class="hljs-keyword">add </span><span class="hljs-built_in">t2</span>, <span class="hljs-built_in">t0</span>, <span class="hljs-built_in">t1</span><br></code></pre></td></tr></table></figure>
-<p>li指令是一条伪指令，最终会翻译为addi t0, zero, 20的形式</p>
+<h3 id="gnulinux系统">GNU/Linux系统</h3>
+<p>GNU软件/库+Linux内核</p>
+<p>版本：Ubuntu、Debian、Mint、Red Hat、Fodore、SuSe</p>
+<h3 id="boot-loader">Boot loader</h3>
+<p>Boot loader加载并启动Linux内核。</p>
+<p>常见的Boot loader：</p>
 <ul>
-<li>负数则为addi t0, zero, -20</li>
-<li>没有subi指令</li>
+<li>LILO：Linux Loader</li>
+<li>GRUB：Grand Unified Boot Loader
+<ul>
+<li>配置文件：<code>/boot/grub/grub.conf</code>（旧版）</li>
+<li>不需要和LILO一样进行配置激活（自动识别加载系统内核和initrd文件）</li>
+<li>使用grub-install安装在MBR中</li>
+</ul></li>
 </ul>
-<h3 id="系统调用">系统调用</h3>
+<p>GRUB引导过程：</p>
 <ol type="1">
-<li>把服务号写入a7寄存器</li>
-<li>把参数写入a0、a1、a2、a3、fa0、...</li>
-<li><code>ecall</code></li>
-<li>从结果寄存器中获得返回值</li>
+<li>MBR上的引导程序，负责加载GRUB的第二阶段</li>
+<li>完整的内核加载在/boot/grub目录下</li>
 </ol>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">li <span class="hljs-built_in">a7</span>, <span class="hljs-number">1</span>					<span class="hljs-comment"># service 1 is print integer</span><br><span class="hljs-keyword">add </span><span class="hljs-built_in">a0</span>, <span class="hljs-built_in">t0</span>, <span class="hljs-built_in">zero</span>	<span class="hljs-comment"># load desired int into a0</span><br>ecall<br></code></pre></td></tr></table></figure>
-<h3 id="代码段">代码段</h3>
+<p>要能读懂GRUB配置文件</p>
+<p>基本结构：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">default</span>=<span class="hljs-number">0</span>  # 默认启动第一个系统<br><span class="hljs-attribute">timeout</span>=<span class="hljs-number">5</span>  # 等待超时时间<span class="hljs-number">5</span>秒<br><span class="hljs-attribute">splashimage</span>=(hd0,<span class="hljs-number">0</span>)/grub/splash.xpm.gz  # 背景图片<br><span class="hljs-attribute">hiddenmenu</span>  # 隐藏菜单，若要显式，在启动时按下ESC<br><span class="hljs-attribute">title</span> Red Hat Enterprise Linux AS (<span class="hljs-number">2</span>.<span class="hljs-number">6</span>.<span class="hljs-number">18</span>-<span class="hljs-number">92</span>.el5)  # 定义操作系统的说明信息<br>    <span class="hljs-attribute">root</span> (hd0,<span class="hljs-number">0</span>) <br>    <span class="hljs-attribute">kernel</span> /vmlinuz-<span class="hljs-number">2</span>.<span class="hljs-number">6</span>.<span class="hljs-number">18</span>-<span class="hljs-number">92</span>.el5 ro root＝/dev/sda2 rhgb quiet<br>    <span class="hljs-attribute">initrd</span> /initrd-<span class="hljs-number">2</span>.<span class="hljs-number">6</span>.<span class="hljs-number">18</span>-<span class="hljs-number">92</span>.el5.img<br></code></pre></td></tr></table></figure>
+<p>GRUB2：<code>/boot/grub/grub.cfg</code></p>
+<h3 id="虚拟终端">虚拟终端</h3>
+<p>控制台模拟了一个或多个虚拟终端。</p>
+<p>每个虚拟终端是独立的控制台，不同用户可以使用不同的虚拟终端。</p>
+<p>切换方式：Ctrl+Alt+Fn / Alt+Fn</p>
+<h2 id="linux基础命令">2. Linux基础命令</h2>
+<p>命令行：$ 和 #（root）</p>
+<p>$ command option(s) argument(s)</p>
+<p>主要命令都需要掌握。</p>
+<h3 id="基础命令">0. 基础命令</h3>
 <ul>
-<li><p>.开始的指令是写给汇编器的指令</p></li>
-<li><p>.data存储全局变量</p>
+<li>passwd：修改密码</li>
+<li>mkpasswd：生成随机密码</li>
+<li>date, cal：打印日期/日历</li>
+<li>who, finger：查看系统上在线的用户信息</li>
+<li>clear：清空屏幕</li>
+<li>echo：打印信息</li>
+<li>write, wall, talk：与其他用户信息通信。
 <ul>
-<li><code>g: .word 0</code></li>
-<li><code>msg: .string "sss"</code>以\0结尾的string</li>
-<li><code>msg: .ascii "sds"</code>的string不以\0结尾</li>
+<li><code>write username</code>：提示输入消息内容，然后将消息发送给
+<code>username</code>。</li>
+<li><code>wall</code>：即write all，发送给所有用户</li>
+<li><code>talk username</code>：连接目标用户，启动聊天会话</li>
 </ul></li>
-<li><p>.text存储运行代码</p>
+</ul>
+<h3 id="目录命令">1. 目录命令</h3>
 <ul>
-<li><code>la t0, g      # la: load address</code></li>
-<li><code>lw t0, 0(t0) # lw: load word</code></li>
-<li><code>sw t6, 0(t0) #sw: store word</code></li>
+<li><p>pwd：打印工作目录</p></li>
+<li><p>cd</p></li>
+<li><p>mkdir</p></li>
+<li><p>rmdir</p></li>
+<li><p>ls：列出目录中的内容</p>
+<ul>
+<li><p>-l：以长格式显示文件和目录的信息。</p>
+<p>包括文件或目录的权限模式、所有者、群组、大小和最后修改日期。</p></li>
+<li><p>-a：显示所有文件，包括以.开头的隐藏文件。</p></li>
+<li><p>-R：递归列出所有子目录中的内容。</p></li>
+</ul></li>
+<li><p>mknod：创建字符设备或块设备
+<code>mknod [options] [name] [type] [major minor]</code></p>
+<ul>
+<li><code>[options]</code>：可选的标志，如 <code>-m</code>
+用来设置文件的权限模式。</li>
+<li><code>[major minor]</code>：设备的节点号。主节点号和次节点号用于识别设备类型。对于字符设备，主节点号通常表示设备类，而次节点号表示特定的设备。</li>
 </ul></li>
 </ul>
-<p>默认在程序开始添加.text</p>
+<h3 id="文件命令">2. 文件命令</h3>
 <ul>
-<li>打印字符串：</li>
-</ul>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">li <span class="hljs-built_in">a7</span>, <span class="hljs-number">4</span><br>la <span class="hljs-built_in">a0</span>, msg<br>ecall<br></code></pre></td></tr></table></figure>
+<li><p>touch：创建新文件、更新文件修改时间</p></li>
+<li><p>cp</p></li>
+<li><p>mv：移动并重命名文件</p></li>
+<li><p>ln：链接文件</p>
 <ul>
-<li>mv</li>
-</ul>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">li <span class="hljs-built_in">a7</span>, <span class="hljs-number">1</span><br>mv <span class="hljs-built_in">a0</span>, <span class="hljs-built_in">t6</span> <span class="hljs-comment">#add a0, t6, zero</span><br>ecall<br></code></pre></td></tr></table></figure>
+<li>硬链接：<code>ln source_file link_name</code></li>
+<li>符号链接：<code>ln -s /full/path/to/source source_directory/link_name</code></li>
+</ul></li>
+<li><p>rm</p></li>
+<li><p>cat</p></li>
+<li><p>chown：改变文件或目录的所有者。<code>chown [options] [user:group] [file...]</code></p>
 <ul>
-<li>数组：偏移地址</li>
+<li><p><code>[options]</code>：</p>
+<p><code>-R</code> 用于递归改变所有子目录和文件的所有者；</p>
+<p><code>-h</code>：对于符号链接，改变链接本身的所有者，而不是链接指向的文件。</p></li>
+<li><p><code>[user:group]</code>：指定新的所有者和组。用户名可以单独指定，或者与组名一起指定。如果只指定用户名，则默认组为用户所属的默认组。</p></li>
+<li><p><code>[file...]</code>：要改变所有者的文件或目录列表。</p></li>
+</ul></li>
+<li><p>chgrp：改变文件或目录的组所有权。<code>chgrp [options] [group] [file...]</code></p></li>
+<li><p>more/less：分页查看文件内容</p>
+<ul>
+<li>more：逐页显示文件，空格下一页，<code>b</code>上一页，<code>q</code>退出</li>
+<li>less：滚动显示文件，功能更多。
+<ul>
+<li>按 <code>/</code> ，输入搜索词搜索文件内容，按 <code>n</code>
+查找下一个匹配项，按 <code>p</code> 查找上一个匹配项。</li>
+</ul></li>
+</ul></li>
 </ul>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-meta">.data</span><br><span class="hljs-symbol">numbers:</span> <span class="hljs-meta">.word</span> -<span class="hljs-number">30</span>, <span class="hljs-number">30</span>, -<span class="hljs-number">20</span>, <span class="hljs-number">20</span>, -<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">0</span><br><br><span class="hljs-meta">.text</span><br>la <span class="hljs-built_in">t0</span>, numbers<br><span class="hljs-keyword">lw </span><span class="hljs-built_in">t1</span>, <span class="hljs-number">12</span>(<span class="hljs-built_in">t0</span>)				<span class="hljs-comment"># 偏移12个字节，到20</span><br><span class="hljs-keyword">addi </span><span class="hljs-built_in">t1</span>, <span class="hljs-built_in">t1</span>, <span class="hljs-number">90</span><br><span class="hljs-keyword">sw </span><span class="hljs-built_in">t1</span>, <span class="hljs-number">12</span>(<span class="hljs-built_in">t0</span>)<br></code></pre></td></tr></table></figure>
+<h4 id="文件权限">文件权限</h4>
+<p>三个访问等级：</p>
+<ul>
+<li>用户</li>
+<li>群组</li>
+<li>其他</li>
+</ul>
+<p>三个权限：</p>
+<ul>
+<li>读 r</li>
+<li>写 w</li>
+<li>执行 x</li>
+</ul>
+<p>ls -l会展示文件权限</p>
+<p>默认文件权限</p>
+<p>file：-rw-r--r--</p>
+<p>Directory：drwxr-xr-x</p>
+<p>第一个字符表示文件类型，后续9个字符分别为u、g、o的rwx。</p>
+<p>文件类型：</p>
+<ul>
+<li>-：常规文件</li>
+<li>d：目录</li>
+<li>l：链接</li>
+<li>c：字符设备文件</li>
+<li>b：块设备文件</li>
+<li>p：管道</li>
+<li>s：套接字</li>
+</ul>
+<p>修改权限：<code>chmod who operator what filename</code></p>
+<ul>
+<li>who:
+<ul>
+<li>u：文件所有者</li>
+<li>g：群组</li>
+<li>o：系统其他用户</li>
+<li>a：all</li>
+</ul></li>
+<li>operator:
+<ul>
+<li>+：添加权限</li>
+<li>-：删除权限</li>
+<li>=: 设置明确权限</li>
+</ul></li>
+<li>what: rwx</li>
+</ul>
+<p>将u、g、o各自的rwx权限看为一个二进制数，可以用数字为它们赋予权限。</p>
+<ul>
+<li><p>r=4,w=2,x=1</p></li>
+<li><p>chmod 765 file：u=rwx,g=rw,o=rx</p></li>
+</ul>
+<h4 id="文件编辑">文件编辑</h4>
+<p>vi、emacs、gedit</p>
+<h3 id="进程">3. 进程</h3>
+<p>进程是一个正在执行的程序实例。由执行程序、它的当前值、状态信息以及通过操作系统管理此进程执行情况的资源组成。</p>
+<ul>
+<li><p>ps：报告进程状态</p></li>
+<li><p>pstree：展示进程树</p></li>
+<li><p>jobs, fg, bg, ctrl-z：任务控制</p>
+<ul>
+<li><p>jobs：查看当前 shell
+环境中所有在后台运行的任务列表，会给出每个任务的唯一编号。</p></li>
+<li><p>fg %1：将一个后台任务调至前台执行，用%指定任务编号。</p></li>
+<li><p>bg %1：将一个在后台暂停的任务继续运行在后台。</p></li>
+<li><p>Ctrl+Z：将当前前台执行的任务挂起到后台。</p></li>
+</ul></li>
+<li><p>kill：杀死进程<code>kill [PID]</code>、发送信号给进程<code>kill [signal] [PID]</code></p></li>
+<li><p>nohup：无视挂起信号运行指令</p></li>
+<li><p>nice, renice：调整进程优先级</p>
+<p>nice介于-20～19，影响调度优先级，nice越低优先级越高</p>
+<ul>
+<li><p>nice：启动一个新进程，并为其设置一个nice值。</p></li>
+<li><p>renice：改变正在运行的进程的nice值。</p></li>
+</ul></li>
+<li><p>top：展示占用CPU最高的进程列表</p></li>
+</ul>
+<h3 id="寻找帮助">4. 寻找帮助</h3>
+<p>man、info、--help</p>
+<h3 id="重定向">5. 重定向</h3>
+<p>标准输入、标准输出、标准错误</p>
+<ul>
+<li>对应的文件描述符：0, 1, 2</li>
+</ul>
+<p><code>&lt;、&gt;</code>：覆盖文件</p>
+<p><code>&gt;&gt;</code>：追加到末尾</p>
+<p><code>2&gt;</code>：将标准错误输出到文件，而标准输出仍然会输出到命令行</p>
+<p><code>&gt;&amp;</code>：将标准输出和错误都输出到文件</p>
+<p><code>2&gt;&amp;1</code>：将标准错误输出重定向到标准输出，与上个选项的区别是会打印到命令行</p>
+<h3 id="管道">6. 管道</h3>
+<p>一个进程的输出作为另一个进程的输入。</p>
+<p><code>命令1|命令2</code>：命令1的输出会直接传递给命令2作为输入。</p>
+<h3 id="高级命令">7. 高级命令</h3>
+<ul>
+<li><p>find：查找文件。<code>find [options] [path...] [-exec [command] &#123;&#125; +]</code></p>
+<ul>
+<li><code>[options]</code>：find命令的行为选项，如
+<code>-name</code>、<code>-type</code>、<code>-mtime</code> 等。
+<ul>
+<li><code>-print</code>：打印找到的文件名。</li>
+<li><code>-delete</code>：删除找到的文件。</li>
+</ul></li>
+<li><code>[path...]</code>：要搜索的目录路径。如果省略，默认在当前目录搜索。</li>
+</ul></li>
+<li><p>sed：通过模式匹配对文本进行处理。</p></li>
+<li><p>grep：在文本文件中搜索指定的文本字符串。<code>grep [options] [pattern] [file...]</code></p>
+<ul>
+<li>选项：
+<ul>
+<li><code>-i</code>：忽略大小写。</li>
+<li><code>-v</code>：反转匹配，只显示不匹配的行。</li>
+<li><code>-c</code>：计数，只输出匹配行的数量。</li>
+<li><code>-n</code>：显示匹配行及其行号。</li>
+<li><code>-l</code>：只输出包含匹配字符串的文件名。</li>
+<li><code>-L</code>：只输出不包含匹配字符串的文件名。</li>
+<li><code>-r</code> 或 <code>-R</code>：递归搜索目录中的所有文件。</li>
+<li><code>-E</code>：使用扩展正则表达式。</li>
+<li><code>-o</code>：只输出匹配到的部分，而不是整行内容。</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>基本正则表达式：</p>
+<ul>
+<li><code>.</code>：匹配任意单个字符。
+<ul>
+<li>例子：<code>grep '.$' file.txt</code> 将匹配 file.txt
+中以任意字符结尾的行。</li>
+</ul></li>
+<li><code>*</code>：匹配前一个字符出现零次或多次。
+<ul>
+<li>例子：<code>grep 'o*' file.txt</code> 将匹配 file.txt
+中包含零个或多个 “o” 的行。</li>
+</ul></li>
+<li><code>^</code>：匹配行的开始。
+<ul>
+<li>例子：<code>grep '^A' file.txt</code> 将匹配 file.txt 中以 “A”
+开头的行。</li>
+</ul></li>
+<li><code>$</code>：匹配行的结束。
+<ul>
+<li>例子：<code>grep 'B$' file.txt</code> 将匹配 file.txt 中以 “B”
+结尾的行。</li>
+</ul></li>
+<li><code>[abc]</code>：匹配方括号内的任意一个字符。
+<ul>
+<li>例子：<code>grep '[abc]' file.txt</code> 将匹配 file.txt 中包含
+“a”、“b” 或 “c” 的行。</li>
+</ul></li>
+<li><code>[^abc]</code>：匹配不在方括号内的任意一个字符。
+<ul>
+<li>例子：<code>grep '[^abc]' file.txt</code> 将匹配 file.txt 中不包含
+“a”、“b” 或 “c” 的行。</li>
+</ul></li>
+<li><code>\</code>：转义字符，用于匹配特殊字符。
+<ul>
+<li>例子：<code>grep '\\.' file.txt</code> 将匹配 file.txt
+中包含一个反斜杠后跟一个点（<code>.</code>）的行。</li>
+</ul></li>
+<li><code>()</code>：标记子表达式的开始和结束。
+<ul>
+<li>例子：<code>grep '(abc|def)' file.txt</code> 将匹配 file.txt 中包含
+“abc” 或 “def” 的行。</li>
+</ul></li>
+<li><code>|</code>：逻辑或操作符。
+<ul>
+<li>例子：<code>grep 'A|B' file.txt</code> 将匹配 file.txt 中包含 “A” 或
+“B” 的行。</li>
+</ul></li>
+<li><code>\&lt;</code>：匹配单词的开始（前面必须有一个单词边界）。
+<ul>
+<li>例子：<code>grep '\&lt;word' file.txt</code> 将匹配 file.txt 中以
+“word” 开头的行，其中 “word” 是一个单词。</li>
+</ul></li>
+<li><code>\&gt;</code>：匹配单词的结束（后面必须有一个单词边界）。
+<ul>
+<li>例子：<code>grep '\&gt;word' file.txt</code> 将匹配 file.txt 中以
+“word” 结尾的行，其中 “word” 是一个单词。</li>
+</ul></li>
+</ul>
 
                 
               </div>
@@ -325,7 +555,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" class="category-chain-item">编译原理</a>
+  <a href="/categories/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/" class="category-chain-item">Linux系统编程</a>
   
   
 
@@ -347,9 +577,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/06/15/%E6%AF%9B%E6%A6%82%20%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="毛概-期末复习">
+                      <a href="/2024/05/02/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%AC%AC2%E7%AB%A0%20Shell%E7%BC%96%E7%A8%8B/" title="Linux系统编程_2_Shell">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">毛概-期末复习</span>
+                        <span class="hidden-mobile">Linux系统编程_2_Shell</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -357,8 +587,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/06/03/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/" title="编译原理-语法分析">
-                        <span class="hidden-mobile">编译原理-语法分析</span>
+                      <a href="/2024/04/05/%E4%BA%91%E8%AE%A1%E7%AE%97/5-%E4%BA%91%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/" title="云计算_5_云数据中心">
+                        <span class="hidden-mobile">云计算_5_云数据中心</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
