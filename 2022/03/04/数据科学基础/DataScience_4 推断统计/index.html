@@ -24,7 +24,7 @@
 <meta property="og:description" content="八月秋高风怒号，卷我屋上三重茅。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-04T04:00:00.000Z">
-<meta property="article:modified_time" content="2024-06-21T07:44:56.883Z">
+<meta property="article:modified_time" content="2024-06-22T06:39:31.666Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k 字
+          4.9k 字
         
       </span>
     
@@ -402,13 +402,97 @@ X^2_{\frac\alpha2}(n-1)\}\)</span></p>
 X^2_{\frac\alpha2}(n-1)},\frac{(n-1)S^2}{\mathcal
 X^2_{1-\frac\alpha2}(n-1)})\)</span>。</p>
 <h4 id="双总体均值差区间估计">双总体均值差区间估计</h4>
+<p><span class="math inline">\(X_1,...,X_{n_1}\)</span>和<span
+class="math inline">\(Y_1,...,Y_{n_2}\)</span>是来自某两个总体的样本，且两样本独立。对于给定的置信水平<span
+class="math inline">\(\alpha\)</span>，计算关于两总体均值差<span
+class="math inline">\(\mu_1-\mu_2\)</span>的置信水平为<span
+class="math inline">\(1-\alpha\)</span>的置信区间。</p>
+<ol type="1">
+<li>两总体近似服从正态分布<span
+class="math inline">\(N(\mu_1,\sigma_1^2)\)</span>和<span
+class="math inline">\(N(\mu_2,\sigma_2^2)\)</span>，<span
+class="math inline">\(\mu_1,\mu_2\)</span>未知，<span
+class="math inline">\(\sigma_1^2,\sigma_2^2\)</span>已知。</li>
+</ol>
+<p><span class="math inline">\(\overline X-\overline Y\sim
+N(\mu_1-\mu_2,\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2})\)</span></p>
+<ol start="2" type="1">
+<li>两总体近似服从正态分布<span
+class="math inline">\(N(\mu_1,\sigma_1^2)\)</span>和<span
+class="math inline">\(N(\mu_2,\sigma_2^2)\)</span>，<span
+class="math inline">\(\mu_1,\mu_2,\sigma_1^2,\sigma_2^2\)</span>未知，但<span
+class="math inline">\(\sigma_1^2=\sigma_2^2\)</span>。</li>
+</ol>
+<p><span class="math inline">\(\frac{(\overline X-\overline
+Y)-(\mu_1-\mu_2)}{S_w\sqrt{1/n_1+2/n_2}}\sim t(n_1+n_2-2)\)</span></p>
+<ol start="3" type="1">
+<li>两总体不服从正态分布，但样本量较大。</li>
+</ol>
+<p><span class="math inline">\(\overline X-\overline Y\sim
+N(\mu_1-\mu_2,\frac{S_1^2}{n_1}+\frac{S_2^2}{n_2})\)</span></p>
 <h4 id="双总体方差比区间估计">双总体方差比区间估计</h4>
+<p><span class="math inline">\(X_1,...,X_{n_1}\)</span>和<span
+class="math inline">\(Y_1,...,Y_{n_2}\)</span>是来自某两个总体的样本，且两样本独立。对于给定的置信水平<span
+class="math inline">\(\alpha\)</span>，计算关于两总体方差比<span
+class="math inline">\(\frac{\sigma_1^2}{\sigma_2^2}\)</span>的置信水平为<span
+class="math inline">\(1-\alpha\)</span>的置信区间。</p>
+<p>估计条件：两总体近似服从正态分布<span
+class="math inline">\(N(\mu_1,\sigma_1^2)\)</span>和<span
+class="math inline">\(N(\mu_2,\sigma_2^2)\)</span>，<span
+class="math inline">\(\mu_1,\mu_2,\sigma_1^2,\sigma_2^2\)</span>未知。</p>
+<p><span
+class="math inline">\(\frac{S_1^2/S_2^2}{\sigma_1^2/\sigma_2^2}\sim
+F(n_1-1,n_2-1)\)</span></p>
 <h2 id="假设检验">4.2 假设检验</h2>
 <p>在样本的基础上对总体的某种结论作出判断。</p>
 <h3 id="参数假设检验">4.2.1 参数假设检验</h3>
 <p>参数假设检验是对总体分布中未知参数的假设检验。</p>
+<p>检验方法参考区间估计。</p>
 <h3 id="非参数假设检验">4.2.2 非参数假设检验</h3>
 <p>对未知分布函数类型或其某些特征提出的假设进行检验。</p>
+<h4 id="符号检验">符号检验</h4>
+<p>两个总体，从总体分布<span
+class="math inline">\(F(x),G(x)\)</span>中分别取容量为<span
+class="math inline">\(n\)</span>的样本<span
+class="math inline">\(X_1,...,X_n\)</span>和<span
+class="math inline">\(Y_1,...,Y_n\)</span>，检验<span
+class="math inline">\(H_0:F(x)=G(x),H_1:F(x)\ne G(x)\)</span>。</p>
+<p>首先将样本数据配对排列，当<span class="math inline">\(x_i\gt
+y_i,n_+\)</span>加一，<span class="math inline">\(x_i\lt
+y_i,n_-\)</span>加一。</p>
+<p>计算临界值<span class="math inline">\(c_1,c_2\)</span>，如果<span
+class="math inline">\(c_1\le n_+\le c_2\)</span>，不拒绝原假设：</p>
+<p><span class="math inline">\(P(n_+\le
+c_1)=\Sigma_{i=0}^{c_1}C_n^i(0.5)^n\le\frac\alpha2\)</span></p>
+<p><span class="math inline">\(P(n_+\ge
+c_2)=\Sigma_{i=c_2}^{n}C_n^i(0.5)^n\le\frac\alpha2\)</span></p>
+<h4 id="秩和检验">秩和检验</h4>
+<p>双总体非参数假设检验。</p>
+<p>两总体中分别取容量为<span
+class="math inline">\(n_1,n_2\)</span>的样本，检验假设：</p>
+<p><span class="math inline">\(H_0:F(x)=G(x),H_1:F(x)\ne
+G(x)\)</span></p>
+<p>若原假设<span
+class="math inline">\(H_0\)</span>成立，将两总体的观察值放在一起并排序，两样本的数据应该均匀分散在队列中。</p>
+<p>样本数据的秩是该数据在混合排序后的序号，若几个样本数据相同，则每个数据的秩取为这几个数据的序号的平均数。求出每个观察值的秩，将属于<span
+class="math inline">\(X\)</span>的样本数据的秩求和为<span
+class="math inline">\(R_1\)</span>，总体<span
+class="math inline">\(Y\)</span>的秩和为<span
+class="math inline">\(R_2\)</span>。</p>
+<p>假设<span class="math inline">\(R_1\le R_2\)</span>，取<span
+class="math inline">\(T=R_1\)</span>作为统计量，根据给定<span
+class="math inline">\(\alpha\)</span>查表得临界值<span
+class="math inline">\(T_1,T_2\)</span>，若<span
+class="math inline">\(T\)</span>在两者之间，则不能拒绝原假设<span
+class="math inline">\(H_0\)</span>，两样本间总体差异不显著。</p>
+<p>大样本逼近：样本容量较大时，<span
+class="math inline">\(T\)</span>近似服从<span
+class="math inline">\(N(\mu,\sigma^2)\)</span>，其中</p>
+<p><span
+class="math inline">\(\mu=\frac{n_1(n_1+n_2+1)}{2},\sigma^2=\frac{n_1n_2(n_1+n_2+1)}{12}\)</span>。则<span
+class="math inline">\(U=\frac{T-\mu}{\sigma}\sim N(0,1)\)</span>。</p>
+<p>秩和检验的拒绝域为<span class="math inline">\(|U|\gt
+z_{\frac\alpha2}\)</span>。</p>
 
                 
               </div>
