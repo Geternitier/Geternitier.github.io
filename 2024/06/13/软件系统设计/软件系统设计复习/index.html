@@ -24,7 +24,7 @@
 <meta property="og:description" content="天生我材必有用，千金散尽还复来。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-13T04:00:00.000Z">
-<meta property="article:modified_time" content="2024-06-23T08:37:44.952Z">
+<meta property="article:modified_time" content="2024-06-23T08:50:39.269Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          1.2k 字
         
       </span>
     
@@ -348,11 +348,22 @@
 </ol>
 <h2 id="表驱动法">4. 表驱动法</h2>
 <h3 id="目标">目标</h3>
+<p>将复杂逻辑从代码中⽴出来，以便于单独维护。</p>
 <h3 id="原理">原理</h3>
+<p>从表⾥⾯查找信息⽽不使⽤逻辑语句。</p>
 <h3 id="查询">查询</h3>
 <h4 id="直接访问">直接访问</h4>
+<p>通过索引值（如下标）直接从表中找到对应的条⽬。</p>
 <h4 id="索引访问">索引访问</h4>
+<p>当⽆法直接从表中查询需要的条⽬时，就需要借助其他⽅法先获取表键值</p>
+<ul>
+<li>⽅法：先⽤⼀个基本类型的数据从索引表中查出⼀个键值，然后再⽤这⼀键值查出主数据。</li>
+</ul>
 <h4 id="阶梯访问">阶梯访问</h4>
+<p>基本思想：通过确定每项命中的阶梯层次确定其归类。</p>
+<ul>
+<li>⽐索引访问⽅法节省空间，当阶梯多了⽐较次数就多。</li>
+</ul>
 
                 
               </div>
