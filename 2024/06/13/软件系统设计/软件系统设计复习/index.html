@@ -16,23 +16,21 @@
   <meta name="author" content="Geternitier">
   <meta name="keywords" content="">
   
-    <meta name="description" content="飞萤扑火，向死而生。">
+    <meta name="description" content="天生我材必有用，千金散尽还复来。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux系统编程_4_内核驱动">
-<meta property="og:url" content="http://example.com/2024/05/04/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%20%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8/index.html">
+<meta property="og:title" content="软件系统设计_详细设计复习">
+<meta property="og:url" content="http://example.com/2024/06/13/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E5%A4%8D%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Geternitier的博客">
-<meta property="og:description" content="飞萤扑火，向死而生。">
+<meta property="og:description" content="天生我材必有用，千金散尽还复来。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/image/Linux系统编程/menu.png">
-<meta property="article:published_time" content="2024-05-04T04:00:00.000Z">
-<meta property="article:modified_time" content="2024-06-21T07:24:02.689Z">
+<meta property="article:published_time" content="2024-06-13T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-23T08:37:44.952Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/image/Linux系统编程/menu.png">
   
   
   
-  <title>Linux系统编程_4_内核驱动 - Geternitier的博客</title>
+  <title>软件系统设计_详细设计复习 - Geternitier的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -186,7 +184,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Linux系统编程_4_内核驱动"></span>
+            <span id="subtitle" data-typed-text="软件系统设计_详细设计复习"></span>
           
         </div>
 
@@ -197,8 +195,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-04 12:00" pubdate>
-          2024年5月4日 中午
+        <time datetime="2024-06-13 12:00" pubdate>
+          2024年6月13日 中午
         </time>
       </span>
     
@@ -209,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          1k 字
         
       </span>
     
@@ -249,116 +247,112 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Linux系统编程_4_内核驱动</h1>
+            <h1 style="display: none">软件系统设计_详细设计复习</h1>
             
             
               <div class="markdown-body">
                 
-                <p>飞萤扑火，向死而生。</p>
+                <p>天生我材必有用，千金散尽还复来。</p>
 <span id="more"></span>
-<h1 id="第4章-内核驱动">第4章 内核驱动</h1>
-<h2 id="什么是内核">0. 什么是内核？</h2>
-<p>操作系统是一系列程序的集合，其中最重要的部分构成了内核。</p>
-<p>单内核/微内核</p>
+<h1 id="详细设计复习">详细设计复习</h1>
+<h2 id="软件模式">1. 软件模式</h2>
+<p>软件开发的总体指导思路或参照样板。</p>
 <ul>
-<li>单内核是一个很大的进程，内部可以分为若干模块，运行时是一个独立的二进制文件，模块间通讯通过直接调用函数实现</li>
-<li>微内核中大部分内核作为独立的进程在特权下运行，通过消息传递进行通讯</li>
+<li>软件模式并非仅限于设计模式，还包括架构模式、分析模式和过程模式等。</li>
+<li>在软件生存期的每一个阶段都存在着一些被认同的模式。</li>
 </ul>
-<p>Linux内核的能力</p>
+<h3 id="组成">组成</h3>
 <ul>
-<li>内存管理，文件系统，进程管理，多线程支持，抢占式，多处理支持</li>
+<li>问题描述</li>
+<li>前提条件(环境或约束条件)</li>
+<li>解法</li>
+<li>效果。</li>
 </ul>
-<p>Linux内核区别于其他UNIX商业内核的优点</p>
+<h3 id="大三律">大三律</h3>
+<p>只有经过三个以上不同类型(或不同领域)系统的校验，一个解决方案才能从候选模式升格为模式。</p>
+<h2 id="设计模式">2.设计模式</h2>
+<p>被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。</p>
+<h3 id="基本要素">基本要素</h3>
 <ul>
-<li>单内核，模块支持</li>
-<li>免费/开源</li>
-<li>支持多种CPU，硬件支持能力非常强大</li>
-<li>Linux开发者都是非常出色的程序员</li>
-<li>通过学习Linux内核的源码可以了解现代操作系统的实现原理</li>
+<li>模式名称 (Pattern name)</li>
+<li>问题 (Problem)</li>
+<li>解决方案 (Solution)</li>
+<li>效果 (Consequences)</li>
 </ul>
-<h3 id="配置内核">配置内核</h3>
-<p>下载源码、解压、make clean、<strong>make menuconfig</strong></p>
-<figure>
-<img src="/image/Linux系统编程/menu.png" srcset="/img/loading.gif" lazyload alt="menu" />
-<figcaption aria-hidden="true">menu</figcaption>
-</figure>
-<p>编译内核：</p>
+<h3 id="分类">分类</h3>
+<p>根据其目的分为</p>
 <ul>
-<li>make</li>
-<li>make zImage、make bzImage：生成压缩内核镜像</li>
-<li>make modules：编译模块</li>
+<li>创建型（Creational）：创建对象</li>
+<li>结构型（Structural）：处理类或对象的组合</li>
+<li>行为型（Bahavioral）：描述对类或对象怎样交互和分配职责</li>
 </ul>
-<p>make install：将编译好的内核copy到/boot</p>
-<h2 id="驱动">1. 驱动</h2>
-<p>许多常见驱动的源代码集成在内核源码里，也有第三方开发的驱动，可以单独编译成模块.ko。编译需要内核头文件的支持。</p>
-<p>驱动运行在内核态。</p>
-<h3 id="加载模块">加载模块</h3>
-<p>底层命令：</p>
-<p>insmod：<code>insmod [options] module_file</code></p>
+<p>根据范围，即模式主要用于处理类/对象之间关系分为</p>
 <ul>
-<li><code>-f</code>: 强制加载模块，即使模块已被其他进程使用。</li>
-<li><code>-o</code>: 指定模块的参数。</li>
-<li><code>-v</code>: 显示详细信息。</li>
+<li>类模式：处理类和子类的关系，这些关系在编译时确定，是静态的</li>
+<li>对象模式：处理对象间关系，这些关系在运行时变化，是动态的</li>
 </ul>
-<p>rmmod：<code>rmmod [options] module_name</code></p>
-<ul>
-<li><code>-f</code>: 强制卸载模块，即使模块已被其他进程使用。</li>
-<li><code>-s</code>: 模块卸载后，不更新/proc/modules文件。</li>
-<li><code>-w</code>: 在卸载模块之前，等待其关闭所有文件描述符。</li>
-</ul>
-<p>高层命令：</p>
-<p>modprobe：<code>modprobe [options] module_name</code></p>
-<ul>
-<li><code>-a</code>: 自动加载所有依赖的模块。</li>
-<li><code>-c</code>: 从 /etc/modprobe.conf 中读取配置。</li>
-<li><code>-d</code>: 检测模块依赖，但不加载它们。</li>
-<li><code>-e</code>: 禁止使用某些内核特性（如 SMP）。</li>
-<li><code>-k</code>: 保留内核符号表。</li>
-<li><code>-l</code>: 列出可以加载的模块，而不实际加载它们。</li>
-<li><code>-n</code>: 禁止自动插入已指定名字的模块。</li>
-<li><code>-p</code>: 使用预设的模块参数。</li>
-<li><code>-r</code>: 删除模块及其依赖的模块。</li>
-<li><code>-s</code>: 使模块静默加载，不输出信息。</li>
-<li><code>-v</code>: 输出更多的信息。</li>
-</ul>
-<p>模块依赖</p>
-<p>自动按需加载/卸载</p>
-<p>moddep：列出指定内核模块所依赖的其他模块</p>
-<p>lsmod：列出当前内核加载的所有模块及其各种信息</p>
-<p>modinfo：显示关于内核模块的详细信息</p>
-<h3 id="模块编写">模块编写</h3>
-<p>不能使用c库。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;linux/kernel.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;linux/module.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;linux/init.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;linux/moduleparam.h&gt;</span></span><br><span class="hljs-type">static</span> <span class="hljs-type">int</span> test;<br><span class="hljs-built_in">module_param</span>(test, <span class="hljs-type">int</span>, <span class="hljs-number">0644</span>);	<span class="hljs-comment">//module_param(变量名称，类型, 访问许可掩码)</span><br><span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">int</span> __init <span class="hljs-title">hello_init</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span><br><span class="hljs-function"></span>&#123;<br><span class="hljs-built_in">printk</span>(KERN_INFO “Hello world test=%d \n” , test);<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> __exit <span class="hljs-title">hello_exit</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span><br><span class="hljs-function"></span>&#123;<br><span class="hljs-built_in">printk</span>(KERN_INFO <span class="hljs-string">&quot;Goodbye world\n&quot;</span>);<br>&#125;<br><span class="hljs-built_in">MODULE_LICENSE</span>(<span class="hljs-string">&quot;GPL&quot;</span>);<br><span class="hljs-built_in">MODULE_DESCRIPTION</span>(<span class="hljs-string">&quot;Test&quot;</span>);<br><span class="hljs-built_in">MODULE_AUTHOR</span>(<span class="hljs-string">&quot;xxx&quot;</span>);<br><span class="hljs-built_in">module_init</span>(hello_init);<br><span class="hljs-built_in">module_exit</span>(hello_exit);<br></code></pre></td></tr></table></figure>
-<h4 id="导出符号">导出符号</h4>
-<p>如果一个模块需要向其他模块导出符号（方法或全局变量），需要使用：</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-constructor">EXPORT_SYMBOL(<span class="hljs-params">name</span>)</span>;<br><span class="hljs-constructor">EXPORT_SYMBOL_GPL(<span class="hljs-params">name</span>)</span>;<br></code></pre></td></tr></table></figure>
-<p>符号必须在模块文件的全局部分导出。</p>
-<p>/proc/kallsyms 可以显示所有导出的符号。</p>
-<h3 id="字符设备">字符设备</h3>
-<h4 id="设备号">设备号</h4>
-<p>一个字符设备或者块设备都有一个主设备号和次设备号。</p>
-<ul>
-<li>主设备号和次设备号统称为设备号。
-<ul>
-<li>主设备号用来表示一个特定的驱动程序。</li>
-<li>次设备号用来表示使用该驱动程序的各设备。</li>
-</ul></li>
-</ul>
-<h4 id="cdev">cdev</h4>
-<p>linux内核中使用cdev结构体来描述字符设备。该结构体是所有字符设备的抽象，其包含了大量字符设备所共有的特性。</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">struct</span> cdev *my_cdev = cdev<span class="hljs-constructor">_alloc()</span>;<br>my_cdev-&gt;ops = &amp;my_fops;<br>void cdev<span class="hljs-constructor">_init(<span class="hljs-params">struct</span> <span class="hljs-params">cdev</span> <span class="hljs-operator">*</span><span class="hljs-params">cdev</span>, <span class="hljs-params">struct</span> <span class="hljs-params">file_operations</span> <span class="hljs-operator">*</span><span class="hljs-params">fops</span>)</span>;<br></code></pre></td></tr></table></figure>
-<h4 id="初始化加载过程">初始化加载过程</h4>
+<h3 id="考察内容">考察内容</h3>
+<table>
+
+<thead>
+<tr class="header">
+<th>范围/目的</th>
+<th>创建型模式</th>
+<th>结构型模式</th>
+<th>行为型模式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>类模式</td>
+<td>工厂方法模式</td>
+<td>（类）适配器模式</td>
+<td>模板方法模式</td>
+</tr>
+<tr class="even">
+<td>对象模式</td>
+<td>抽象工厂模式<br />原型模式</td>
+<td>（对象）适配器模式<br />组合模式<br />装饰模式<br />外观模式</td>
+<td>命令模式<br />中介者模式<br />观察者模式<br />状态模式<br />策略模式</td>
+</tr>
+</tbody>
+</table>
+<h3 id="设计模式与类库框架">设计模式与类库框架</h3>
 <ol type="1">
-<li>申请设备号</li>
-<li>定义文件操作结构体 file_operations</li>
-<li>创建并初始化定义结构体 cdev</li>
-<li>将cdev注册到系统，并和对应的设备号绑定</li>
-<li>在/dev文件系统中用mknod创建设备文件，并将该文件绑定到设备号上</li>
+<li><p>设计模式比库的层次更高。设计模式告诉我们如何构建类和对象以解决特定问题。</p></li>
+<li><p>框架和库不是设计模式；它们提供了具体的实现，我们将这些实现链接到我们的代码中。</p></li>
 </ol>
-<p>申请释放设备号：</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-built_in">int</span> register<span class="hljs-constructor">_chrdev_region(<span class="hljs-params">dev_t</span> <span class="hljs-params">first</span>, <span class="hljs-params">unsigned</span> <span class="hljs-params">int</span> <span class="hljs-params">count</span>, <span class="hljs-params">char</span> <span class="hljs-operator">*</span><span class="hljs-params">name</span>)</span>;<br><span class="hljs-built_in">int</span> alloc<span class="hljs-constructor">_chrdev_region(<span class="hljs-params">dev_t</span> <span class="hljs-operator">*</span><span class="hljs-params">dev</span>, <span class="hljs-params">unsigned</span> <span class="hljs-params">int</span> <span class="hljs-params">firstminor</span>, <span class="hljs-params">unsigned</span> <span class="hljs-params">int</span> <span class="hljs-params">count</span>, <span class="hljs-params">char</span> <span class="hljs-operator">*</span><span class="hljs-params">name</span>)</span>;<br>void unregister<span class="hljs-constructor">_chrdev_region(<span class="hljs-params">dev_t</span> <span class="hljs-params">first</span>, <span class="hljs-params">unsigned</span> <span class="hljs-params">int</span> <span class="hljs-params">count</span>)</span>;<br></code></pre></td></tr></table></figure>
-<p>设备注册与释放</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-built_in">int</span> cdev<span class="hljs-constructor">_add(<span class="hljs-params">struct</span> <span class="hljs-params">cdev</span> <span class="hljs-operator">*</span><span class="hljs-params">dev</span>, <span class="hljs-params">dev_t</span> <span class="hljs-params">num</span>, <span class="hljs-params">unsigned</span> <span class="hljs-params">int</span> <span class="hljs-params">count</span>)</span>;<br>void cdev<span class="hljs-constructor">_del(<span class="hljs-params">struct</span> <span class="hljs-params">cdev</span> <span class="hljs-operator">*</span><span class="hljs-params">dev</span>)</span>;<br></code></pre></td></tr></table></figure>
+<h2 id="设计原则">3. 设计原则</h2>
+<p>对于面向对象的软件系统设计来说，在支持可维护性的同时，需要提高系统的可复用性。</p>
+<ul>
+<li>软件的复用可以提高软件的开发效率和软件质量，节约开发成本。</li>
+<li>恰当的复用还可以改善系统的可维护性。</li>
+</ul>
+<p>目标：开闭原则</p>
+<p>指导：最小知识原则</p>
+<p>基础：单一职责原则、可变性封装原则</p>
+<p>实现：依赖倒转原则、合成复用原则、里氏代换原则、接口隔离原则</p>
+<ol type="1">
+<li><p>开闭原则：一个软件实体应当对扩展开放，对修改关闭。</p></li>
+<li><p>单一职责原则：一个类只负责一个功能领域中的相应职责。</p></li>
+<li><p>里氏代换原则：在软件中如果能够使用基类对象，那么一定能够使用其子类对象。</p></li>
+<li><p>依赖倒转原则：</p>
+<p>抽象不应该依赖于细节，细节应该依赖于抽象</p>
+<p>针对接口编程，不要针对实现编程。</p></li>
+<li><p>接口隔离原则：客户端不应该依赖那些它不需要的接口。</p>
+<ul>
+<li>将一些大的接口细化成一些小的接口供客户端使用。</li>
+</ul></li>
+<li><p>合成复用原则：复用时尽量使用对象组合，而不使用继承。</p></li>
+<li><p>迪米特法则：一个软件实体应当尽可能少的与其他实体发生相互作用。</p></li>
+</ol>
+<h2 id="表驱动法">4. 表驱动法</h2>
+<h3 id="目标">目标</h3>
+<h3 id="原理">原理</h3>
+<h3 id="查询">查询</h3>
+<h4 id="直接访问">直接访问</h4>
+<h4 id="索引访问">索引访问</h4>
+<h4 id="阶梯访问">阶梯访问</h4>
 
                 
               </div>
@@ -377,7 +371,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/" class="category-chain-item">Linux系统编程</a>
+  <a href="/categories/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" class="category-chain-item">软件系统设计</a>
   
   
 
@@ -399,18 +393,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/11/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/" title="软件系统设计_面向对象设计原则">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">软件系统设计_面向对象设计原则</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/03/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%AC%AC3%E7%AB%A0%20Linux%E7%BC%96%E7%A8%8B/" title="Linux系统编程_3_编程">
-                        <span class="hidden-mobile">Linux系统编程_3_编程</span>
+                      <a href="/2024/06/12/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="软件系统设计_设计模式">
+                        <span class="hidden-mobile">软件系统设计_设计模式</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

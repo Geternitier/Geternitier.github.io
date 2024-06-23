@@ -16,23 +16,21 @@
   <meta name="author" content="Geternitier">
   <meta name="keywords" content="">
   
-    <meta name="description" content="飞萤扑火，向死而生。">
+    <meta name="description" content="天生我材必有用，千金散尽还复来。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux系统编程_4_内核驱动">
-<meta property="og:url" content="http://example.com/2024/05/04/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%20%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8/index.html">
+<meta property="og:title" content="软件系统设计_面向对象设计原则">
+<meta property="og:url" content="http://example.com/2024/06/11/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/index.html">
 <meta property="og:site_name" content="Geternitier的博客">
-<meta property="og:description" content="飞萤扑火，向死而生。">
+<meta property="og:description" content="天生我材必有用，千金散尽还复来。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/image/Linux系统编程/menu.png">
-<meta property="article:published_time" content="2024-05-04T04:00:00.000Z">
-<meta property="article:modified_time" content="2024-06-21T07:24:02.689Z">
+<meta property="article:published_time" content="2024-06-11T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-23T08:37:17.503Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/image/Linux系统编程/menu.png">
   
   
   
-  <title>Linux系统编程_4_内核驱动 - Geternitier的博客</title>
+  <title>软件系统设计_面向对象设计原则 - Geternitier的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -186,7 +184,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Linux系统编程_4_内核驱动"></span>
+            <span id="subtitle" data-typed-text="软件系统设计_面向对象设计原则"></span>
           
         </div>
 
@@ -197,8 +195,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-04 12:00" pubdate>
-          2024年5月4日 中午
+        <time datetime="2024-06-11 12:00" pubdate>
+          2024年6月11日 中午
         </time>
       </span>
     
@@ -209,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          2.8k 字
         
       </span>
     
@@ -249,116 +247,173 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Linux系统编程_4_内核驱动</h1>
+            <h1 style="display: none">软件系统设计_面向对象设计原则</h1>
             
             
               <div class="markdown-body">
                 
-                <p>飞萤扑火，向死而生。</p>
+                <p>天生我材必有用，千金散尽还复来。</p>
 <span id="more"></span>
-<h1 id="第4章-内核驱动">第4章 内核驱动</h1>
-<h2 id="什么是内核">0. 什么是内核？</h2>
-<p>操作系统是一系列程序的集合，其中最重要的部分构成了内核。</p>
-<p>单内核/微内核</p>
+<h1 id="面向对象设计原则">面向对象设计原则</h1>
+<p>需求：系统需要满足的目标</p>
+<p>规约：系统的外部可观察到的行为</p>
+<p>架构：</p>
 <ul>
-<li>单内核是一个很大的进程，内部可以分为若干模块，运行时是一个独立的二进制文件，模块间通讯通过直接调用函数实现</li>
-<li>微内核中大部分内核作为独立的进程在特权下运行，通过消息传递进行通讯</li>
+<li><p>系统一级的主要组成部分</p></li>
+<li><p>各部分的交互方法</p></li>
+<li><p>使用的技术</p></li>
 </ul>
-<p>Linux内核的能力</p>
+<p>设计：</p>
 <ul>
-<li>内存管理，文件系统，进程管理，多线程支持，抢占式，多处理支持</li>
-</ul>
-<p>Linux内核区别于其他UNIX商业内核的优点</p>
+<li>如何完成任务</li>
+<li>需要写的代码
 <ul>
-<li>单内核，模块支持</li>
-<li>免费/开源</li>
-<li>支持多种CPU，硬件支持能力非常强大</li>
-<li>Linux开发者都是非常出色的程序员</li>
-<li>通过学习Linux内核的源码可以了解现代操作系统的实现原理</li>
-</ul>
-<h3 id="配置内核">配置内核</h3>
-<p>下载源码、解压、make clean、<strong>make menuconfig</strong></p>
-<figure>
-<img src="/image/Linux系统编程/menu.png" srcset="/img/loading.gif" lazyload alt="menu" />
-<figcaption aria-hidden="true">menu</figcaption>
-</figure>
-<p>编译内核：</p>
-<ul>
-<li>make</li>
-<li>make zImage、make bzImage：生成压缩内核镜像</li>
-<li>make modules：编译模块</li>
-</ul>
-<p>make install：将编译好的内核copy到/boot</p>
-<h2 id="驱动">1. 驱动</h2>
-<p>许多常见驱动的源代码集成在内核源码里，也有第三方开发的驱动，可以单独编译成模块.ko。编译需要内核头文件的支持。</p>
-<p>驱动运行在内核态。</p>
-<h3 id="加载模块">加载模块</h3>
-<p>底层命令：</p>
-<p>insmod：<code>insmod [options] module_file</code></p>
-<ul>
-<li><code>-f</code>: 强制加载模块，即使模块已被其他进程使用。</li>
-<li><code>-o</code>: 指定模块的参数。</li>
-<li><code>-v</code>: 显示详细信息。</li>
-</ul>
-<p>rmmod：<code>rmmod [options] module_name</code></p>
-<ul>
-<li><code>-f</code>: 强制卸载模块，即使模块已被其他进程使用。</li>
-<li><code>-s</code>: 模块卸载后，不更新/proc/modules文件。</li>
-<li><code>-w</code>: 在卸载模块之前，等待其关闭所有文件描述符。</li>
-</ul>
-<p>高层命令：</p>
-<p>modprobe：<code>modprobe [options] module_name</code></p>
-<ul>
-<li><code>-a</code>: 自动加载所有依赖的模块。</li>
-<li><code>-c</code>: 从 /etc/modprobe.conf 中读取配置。</li>
-<li><code>-d</code>: 检测模块依赖，但不加载它们。</li>
-<li><code>-e</code>: 禁止使用某些内核特性（如 SMP）。</li>
-<li><code>-k</code>: 保留内核符号表。</li>
-<li><code>-l</code>: 列出可以加载的模块，而不实际加载它们。</li>
-<li><code>-n</code>: 禁止自动插入已指定名字的模块。</li>
-<li><code>-p</code>: 使用预设的模块参数。</li>
-<li><code>-r</code>: 删除模块及其依赖的模块。</li>
-<li><code>-s</code>: 使模块静默加载，不输出信息。</li>
-<li><code>-v</code>: 输出更多的信息。</li>
-</ul>
-<p>模块依赖</p>
-<p>自动按需加载/卸载</p>
-<p>moddep：列出指定内核模块所依赖的其他模块</p>
-<p>lsmod：列出当前内核加载的所有模块及其各种信息</p>
-<p>modinfo：显示关于内核模块的详细信息</p>
-<h3 id="模块编写">模块编写</h3>
-<p>不能使用c库。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;linux/kernel.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;linux/module.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;linux/init.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;linux/moduleparam.h&gt;</span></span><br><span class="hljs-type">static</span> <span class="hljs-type">int</span> test;<br><span class="hljs-built_in">module_param</span>(test, <span class="hljs-type">int</span>, <span class="hljs-number">0644</span>);	<span class="hljs-comment">//module_param(变量名称，类型, 访问许可掩码)</span><br><span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">int</span> __init <span class="hljs-title">hello_init</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span><br><span class="hljs-function"></span>&#123;<br><span class="hljs-built_in">printk</span>(KERN_INFO “Hello world test=%d \n” , test);<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> __exit <span class="hljs-title">hello_exit</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span><br><span class="hljs-function"></span>&#123;<br><span class="hljs-built_in">printk</span>(KERN_INFO <span class="hljs-string">&quot;Goodbye world\n&quot;</span>);<br>&#125;<br><span class="hljs-built_in">MODULE_LICENSE</span>(<span class="hljs-string">&quot;GPL&quot;</span>);<br><span class="hljs-built_in">MODULE_DESCRIPTION</span>(<span class="hljs-string">&quot;Test&quot;</span>);<br><span class="hljs-built_in">MODULE_AUTHOR</span>(<span class="hljs-string">&quot;xxx&quot;</span>);<br><span class="hljs-built_in">module_init</span>(hello_init);<br><span class="hljs-built_in">module_exit</span>(hello_exit);<br></code></pre></td></tr></table></figure>
-<h4 id="导出符号">导出符号</h4>
-<p>如果一个模块需要向其他模块导出符号（方法或全局变量），需要使用：</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-constructor">EXPORT_SYMBOL(<span class="hljs-params">name</span>)</span>;<br><span class="hljs-constructor">EXPORT_SYMBOL_GPL(<span class="hljs-params">name</span>)</span>;<br></code></pre></td></tr></table></figure>
-<p>符号必须在模块文件的全局部分导出。</p>
-<p>/proc/kallsyms 可以显示所有导出的符号。</p>
-<h3 id="字符设备">字符设备</h3>
-<h4 id="设备号">设备号</h4>
-<p>一个字符设备或者块设备都有一个主设备号和次设备号。</p>
-<ul>
-<li>主设备号和次设备号统称为设备号。
-<ul>
-<li>主设备号用来表示一个特定的驱动程序。</li>
-<li>次设备号用来表示使用该驱动程序的各设备。</li>
+<li>可维护、可复用</li>
 </ul></li>
 </ul>
-<h4 id="cdev">cdev</h4>
-<p>linux内核中使用cdev结构体来描述字符设备。该结构体是所有字符设备的抽象，其包含了大量字符设备所共有的特性。</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">struct</span> cdev *my_cdev = cdev<span class="hljs-constructor">_alloc()</span>;<br>my_cdev-&gt;ops = &amp;my_fops;<br>void cdev<span class="hljs-constructor">_init(<span class="hljs-params">struct</span> <span class="hljs-params">cdev</span> <span class="hljs-operator">*</span><span class="hljs-params">cdev</span>, <span class="hljs-params">struct</span> <span class="hljs-params">file_operations</span> <span class="hljs-operator">*</span><span class="hljs-params">fops</span>)</span>;<br></code></pre></td></tr></table></figure>
-<h4 id="初始化加载过程">初始化加载过程</h4>
+<p>面向对象软件设计：将实现的约束条件应用到面向对象分析所产生的概念模型的过程。</p>
+<ul>
+<li><p>用方法和属性来描述用于构成系统的类</p></li>
+<li><p>添加不明显属于领域的类，比如接口</p></li>
+<li><p>描述类是如何构成组件的</p></li>
+</ul>
+<p>难点：将一个系统分解成对象</p>
+<h2 id="面向对象设计原则概述">0. 面向对象设计原则概述</h2>
+<p>目标：提高软件的可维护性和可复用性</p>
+<p>Robert C.Martin认为一个软件设计可维护性较低通常的4个原因：</p>
+<ul>
+<li><p>过于僵硬（Rigidity）</p></li>
+<li><p>过于脆弱（Fragility）</p></li>
+<li><p>复用率低（Immobility）</p></li>
+<li><p>黏度过高（Viscosity）</p></li>
+</ul>
+<p>Peter Coad认为，一个好的系统设计具备的三个性质:</p>
+<ul>
+<li>可扩展性（Extensibility）</li>
+<li>灵活性（Flexibility）</li>
+<li>可插入性（Pluggability）</li>
+</ul>
+<p>软件的复用拥有众多优点，如可以提高软件的开发效率，提高软件质量，节约开发成本。</p>
+<p>恰当的复用还可以改善系统的可维护性。</p>
+<p>面向对象设计复用的目标在于实现支持可维护性的复用。</p>
+<p>在面向对象的设计里面，可维护性复用都是以面向对象设计原则为基础的，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性。</p>
+<p>面向对象设计原则也是对系统进行合理重构的指南针，重构是在不改变软件现有功能的基础上，通过调整程序代码改善软件的质量、性能，使其程序的设计模式和架构更趋合理，提高软件的扩展性和维护性。</p>
+<p>常用的7个面向对象设计原则：</p>
+<ul>
+<li>单一职责原则</li>
+<li>开闭原则</li>
+<li>里氏代换原则</li>
+<li>依赖倒转原则</li>
+<li>接口隔离原则</li>
+<li>合成复用原则</li>
+<li>迪米特法则</li>
+</ul>
+<p>这些原则并不是孤立存在的，它们相互依赖，相互补充。</p>
+<h2 id="单一职责原则">1. 单一职责原则</h2>
+<p>一个对象应该只包含单一的职责，并且该职责被完整地封装在一个类里。</p>
+<ul>
+<li>对一个类而言，应该仅有一个引起它变化的原因。</li>
+</ul>
+<p>一个类承担的职责越多，
+它被复用的可能性越小。让一个类承担过多的职责相当于将这些职责耦合，当其中一个职责变化时，可能会影响其他职责的运作。</p>
+<p>数据职责（属性）和行为职责（方法）。</p>
+<h2 id="开闭原则">2. 开闭原则</h2>
+<p>一个软件实体应当对扩展开放，对修改关闭。</p>
+<ul>
+<li><p>在设计一个模块的时候，应当使这个模块可以在不被修改的前提下被扩展，即实现在不修改源代码的情况下改变这个模块的行为。</p></li>
+<li><p>软件实体可以指一个软件模块，一个由多个类组成的局部结构或一个独立的类。</p></li>
+</ul>
+<p>抽象化是开闭原则的关键。</p>
+<p>对可变性封装原则：找到系统的可变因素并将其封装起来。</p>
+<h2 id="里氏代换原则">3. 里氏代换原则</h2>
+<p>如果对每一个类型为<span class="math inline">\(S\)</span>的对象<span
+class="math inline">\(o_1\)</span>，都有类型为<span
+class="math inline">\(T\)</span>的对象<span
+class="math inline">\(o_2\)</span>，使得以<span
+class="math inline">\(T\)</span>定义的所有程序<span
+class="math inline">\(P\)</span>在所有的对象<span
+class="math inline">\(o_2\)</span>都代换成<span
+class="math inline">\(o_1\)</span>时，程序<span
+class="math inline">\(P\)</span>的行为没有变化，那么类型<span
+class="math inline">\(S\)</span>是类型<span
+class="math inline">\(T\)</span>的子类型。</p>
+<ul>
+<li>所有引用基类的地方必须能透明地使用其子类的对象。</li>
+</ul>
+<p>里氏代换原则是实现开闭原则的重要方式之一，由于使用基类对象的地方都可以使用子类对象，因此在程序中尽量使用基类类型来对对象进行定义，而在运行时再确定其子类类型，用子类对象来替换父类对象。</p>
+<h2 id="依赖倒转原则">4. 依赖倒转原则</h2>
+<p>高层模块不应该依赖低层模块，它们都应该依赖抽象。抽象不应该依赖于细节，细节应该依赖于抽象。</p>
+<ul>
+<li><p>要针对接口编程，不要针对实现编程。</p></li>
+<li><p>代码要依赖于抽象的类，而不要依赖于具体的类；要针对接口或抽象类编程，而不是针对具体类编程。</p></li>
+</ul>
+<p>如果说开闭原则是面向对象设计的目标的话，那么依赖倒转原则就是面向对象设计的主要手段。</p>
+<p>依赖倒转原则的常用实现方式之一是在代码中使用抽象类，而将具体类放在配置文件中。</p>
+<p>类之间的耦合：</p>
+<ul>
+<li>零耦合关系</li>
+<li>具体耦合关系</li>
+<li>抽象耦合关系</li>
+</ul>
+<p>依赖倒转原则要求客户端依赖于抽象耦合，以抽象方式耦合是依赖倒转原则的关键。</p>
+<h2 id="接口隔离原则">5. 接口隔离原则</h2>
+<p>客户端不应该依赖那些它不需要的接口。</p>
+<ul>
+<li>一旦一个接口太大，则需要将它分割成一些更细小的接口，使用该接口的客户端仅需知道与之相关的方法即可。</li>
+</ul>
+<p>使用多个专门的接口，而不使用单一的总接口。每一个接口应该承担一种相对独立的角色。</p>
+<p>使用接口隔离原则拆分接口时，首先必须满足单一职责原则，将一组相关的操作定义在一个接口中，且在满足高内聚的前提下，接口中的方法越少越好。</p>
+<ul>
+<li>只提供用户需要的行为，而隐藏用户不需要的行为。</li>
+</ul>
+<h2 id="合成复用原则">6. 合成复用原则</h2>
+<p>尽量使用对象组合，而不是继承来达到复用的目的。</p>
+<p>合成复用原则就是指在一个新的对象里通过关联关系（包括组合关系和聚合关系）来使用一些已有的对象，使之成为新对象的一部分；新对象通过委派调用已有对象的方法达到复用其已有功能的目的。简言之：要尽量使用组合/聚合关系，少用继承。</p>
+<h2 id="迪米特法则">7. 迪米特法则</h2>
+<p>也称最小知识原则。几种典型定义：</p>
 <ol type="1">
-<li>申请设备号</li>
-<li>定义文件操作结构体 file_operations</li>
-<li>创建并初始化定义结构体 cdev</li>
-<li>将cdev注册到系统，并和对应的设备号绑定</li>
-<li>在/dev文件系统中用mknod创建设备文件，并将该文件绑定到设备号上</li>
+<li><p>不和“陌生人”说话。</p></li>
+<li><p>只与你的直接朋友通信。</p></li>
+<li><p>每一个软件单位对其他的单位都只有最少的知识，而且局限于那些与本单位密切相关的软件单位。</p></li>
 </ol>
-<p>申请释放设备号：</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-built_in">int</span> register<span class="hljs-constructor">_chrdev_region(<span class="hljs-params">dev_t</span> <span class="hljs-params">first</span>, <span class="hljs-params">unsigned</span> <span class="hljs-params">int</span> <span class="hljs-params">count</span>, <span class="hljs-params">char</span> <span class="hljs-operator">*</span><span class="hljs-params">name</span>)</span>;<br><span class="hljs-built_in">int</span> alloc<span class="hljs-constructor">_chrdev_region(<span class="hljs-params">dev_t</span> <span class="hljs-operator">*</span><span class="hljs-params">dev</span>, <span class="hljs-params">unsigned</span> <span class="hljs-params">int</span> <span class="hljs-params">firstminor</span>, <span class="hljs-params">unsigned</span> <span class="hljs-params">int</span> <span class="hljs-params">count</span>, <span class="hljs-params">char</span> <span class="hljs-operator">*</span><span class="hljs-params">name</span>)</span>;<br>void unregister<span class="hljs-constructor">_chrdev_region(<span class="hljs-params">dev_t</span> <span class="hljs-params">first</span>, <span class="hljs-params">unsigned</span> <span class="hljs-params">int</span> <span class="hljs-params">count</span>)</span>;<br></code></pre></td></tr></table></figure>
-<p>设备注册与释放</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-built_in">int</span> cdev<span class="hljs-constructor">_add(<span class="hljs-params">struct</span> <span class="hljs-params">cdev</span> <span class="hljs-operator">*</span><span class="hljs-params">dev</span>, <span class="hljs-params">dev_t</span> <span class="hljs-params">num</span>, <span class="hljs-params">unsigned</span> <span class="hljs-params">int</span> <span class="hljs-params">count</span>)</span>;<br>void cdev<span class="hljs-constructor">_del(<span class="hljs-params">struct</span> <span class="hljs-params">cdev</span> <span class="hljs-operator">*</span><span class="hljs-params">dev</span>)</span>;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>一个软件实体应当尽可能少的与其他实体发生相互作用。</li>
+</ul>
+<p>对于一个对象，其朋友包括以下几类:</p>
+<ul>
+<li>当前对象本身</li>
+<li>以参数形式传入到当前对象方法中的对象</li>
+<li>当前对象的成员对象</li>
+<li>如果当前对象的成员对象是一个集合，那么集合中的元素也都是朋友</li>
+<li>当前对象所创建的对象</li>
+</ul>
+<p>狭义迪米特法则：</p>
+<p>如果两个类之间不必彼此直接通信，那么这两个类就不应当发生直接的相互作用，如果其中的一个类需要调用另一个类的某一个方法的话，可以通过第三者转发这个调用。</p>
+<p>广义的迪米特法则：</p>
+<p>指对对象之间的信息流量、流向以及信息的影响的控制，主要是对信息隐藏的控制。</p>
+<p>迪米特法则的主要用途在于控制信息的过载：</p>
+<ol type="1">
+<li>在类的划分上，应当尽量创建松耦合的类，类之间的耦合度越低，就越有利于复用，一个处在松耦合中的类一旦被修改，不会对关联的类造成太大波及;</li>
+<li>在类的结构设计上，每一个类都应当尽量降低其成员变量和成员函数的访问权限;</li>
+<li>在类的设计上，只要有可能，一个类型应当设计成不变类;</li>
+<li>在对其他类的引用上，一个对象对其他对象的引用应当降到最低。</li>
+</ol>
+<h2 id="小结">8. 小结</h2>
+<ol start="0" type="1">
+<li><p>对于面向对象的软件系统设计来说，在支持可维护性的同时，需要提高系统的可复用性。</p></li>
+<li><p>软件的复用可以提高软件的开发效率，提高软件质量，节约开发成本，恰当的复用还可以改善系统的可维护性。</p></li>
+<li><p>单一职责原则要求在软件系统中，一个类只负责一个功能领域中的相应职责。</p></li>
+<li><p>开闭原则要求一个软件实体应当对扩展开放，对修改关闭，即在不修改源代码的基础上扩展一个系统的行为。</p></li>
+<li><p>里氏代换原则可以通俗表述为在软件中如果能够使用基类对象，那么一定能够使用其子类对象。</p></li>
+<li><p>依赖倒转原则要求抽象不应该依赖于细节，细节应该依赖于抽象;要针对接口编程，不要针对实现编程。</p></li>
+<li><p>接口隔离原则要求客户端不应该依赖那些它不需要的接口，即将一些大的接口细化成一些小的接口供客户端使用。</p></li>
+<li><p>合成复用原则要求复用时尽量使用对象组合，而不使用继承。</p></li>
+<li><p>迪米特法则要求一个软件实体应当尽可能少的与其他实体发生相互作用。</p></li>
+</ol>
+<p>目标：开闭原则</p>
+<p>指导：最小知识原则</p>
+<p>基础：单一职责原则、可变性封装原则</p>
+<p>实现：依赖倒转原则、合成复用原则、里氏代换原则、接口隔离原则</p>
 
                 
               </div>
@@ -377,7 +432,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/" class="category-chain-item">Linux系统编程</a>
+  <a href="/categories/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" class="category-chain-item">软件系统设计</a>
   
   
 
@@ -399,9 +454,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/11/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/" title="软件系统设计_面向对象设计原则">
+                      <a href="/2024/06/12/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="软件系统设计_设计模式">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">软件系统设计_面向对象设计原则</span>
+                        <span class="hidden-mobile">软件系统设计_设计模式</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -409,8 +464,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/03/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%AC%AC3%E7%AB%A0%20Linux%E7%BC%96%E7%A8%8B/" title="Linux系统编程_3_编程">
-                        <span class="hidden-mobile">Linux系统编程_3_编程</span>
+                      <a href="/2024/05/04/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%20%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8/" title="Linux系统编程_4_内核驱动">
+                        <span class="hidden-mobile">Linux系统编程_4_内核驱动</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
