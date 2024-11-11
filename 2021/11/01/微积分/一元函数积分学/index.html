@@ -1,0 +1,1205 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/yuanshen.jpeg">
+  <link rel="icon" href="/image/icon/yuanshen.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#5a9367">
+  <meta name="author" content="Geternitier">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="踏遍青山人未老，风景这边独好。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一元函数积分学">
+<meta property="og:url" content="http://example.com/2021/11/01/%E5%BE%AE%E7%A7%AF%E5%88%86/%E4%B8%80%E5%85%83%E5%87%BD%E6%95%B0%E7%A7%AF%E5%88%86%E5%AD%A6/index.html">
+<meta property="og:site_name" content="Geternitier的博客">
+<meta property="og:description" content="踏遍青山人未老，风景这边独好。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-01T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-11T06:27:09.001Z">
+<meta property="article:author" content="Geternitier">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>一元函数积分学 - Geternitier的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Geternitier的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Geternitier的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/background/TheSpirits.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="一元函数积分学"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-11-01 12:00" pubdate>
+          2021年11月1日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          10k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">一元函数积分学</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>踏遍青山人未老，风景这边独好。</p>
+<span id="more"></span>
+<h1 id="三-一元函数积分学">三 一元函数积分学</h1>
+<h2 id="原函数与不定积分">1. 原函数与不定积分</h2>
+<h3 id="定义">1.1 定义</h3>
+<ol type="1">
+<li><p>原函数：</p>
+<p>设函数<span class="math inline">\(f\)</span>在区间<span
+class="math inline">\(I\)</span>上有定义，若函数<span
+class="math inline">\(F\)</span>在区间<span
+class="math inline">\(I\)</span>连续且可导，满足条件：<span
+class="math inline">\(\forall x\in I\)</span><span
+class="math inline">\(F’(x) = f(x)\)</span>成立，</p>
+<p>称<span class="math inline">\(F\)</span>是<span
+class="math inline">\(f\)</span>的一个原函数，或者说<span
+class="math inline">\(F\)</span>是微分形式<span
+class="math inline">\(f(x)dx\)</span>的一个原函数。</p>
+<ul>
+<li>设函数<span class="math inline">\(f\)</span>在区间<span
+class="math inline">\(I\)</span>上有定义，若函数<span
+class="math inline">\(F\)</span>是<span
+class="math inline">\(f\)</span>的一个原函数，则<span
+class="math inline">\(\forall C\in R,F(x)+C\)</span>也是<span
+class="math inline">\(f\)</span>的原函数。</li>
+</ul></li>
+<li><p>不定积分：</p>
+<p>设函数<span class="math inline">\(f\)</span>在区间<span
+class="math inline">\(I\)</span>上有定义，若函数<span
+class="math inline">\(F\)</span>是<span
+class="math inline">\(f\)</span>的一个原函数，则函数簇<span
+class="math inline">\(F(x)+C(C\in R)\)</span>表示<span
+class="math inline">\(f\)</span>的一切原函数，我们把这一函数簇称为函数<span
+class="math inline">\(f\)</span>的不定积分，记为<span
+class="math inline">\(\int f(x)dx=F(x)+C\)</span>。</p>
+<p>其中，<span class="math inline">\(f(x)\)</span>称为被积函数，<span
+class="math inline">\(f(x)dx\)</span>称为被积表达式，而<span
+class="math inline">\(\int\)</span>是表示不定积分的符号。</p>
+<ul>
+<li>根据定义，有
+<ul>
+<li><span class="math inline">\((\int f(x)dx)’=f(x)\)</span></li>
+<li><span class="math inline">\(d(\int f(x)dx)=f(x)dx\)</span></li>
+<li><span class="math inline">\(\int F&#39;(x)dx=F(x)+C\)</span></li>
+<li><span class="math inline">\(\int dF(x)=F(x)+C\)</span></li>
+</ul></li>
+<li>不定积分的运算法则：
+<ul>
+<li><span class="math inline">\(\int(f(x) + g(x))dx = \int f(x)dx +\int
+g(x)dx\)</span></li>
+<li><span class="math inline">\(\int\lambda f(x)dx = \lambda\int
+f(x)dx\)</span></li>
+</ul></li>
+</ul></li>
+</ol>
+<h3 id="存在定理">1.2 存在定理</h3>
+<ol type="1">
+<li>连续函数必有原函数。</li>
+<li>含有第一类间断点和无穷间断点的函数在包含该间断点的区间内必无原函数。</li>
+</ol>
+<h3 id="基本不定积分表">1.3 基本不定积分表</h3>
+<ol type="1">
+<li><p><span class="math inline">\(\int 0·dx = C\)</span></p>
+<p><span class="math inline">\(\int1·dx = x + C\)</span></p></li>
+<li><p><span class="math inline">\(\int x^\mu dx = \frac1{\mu + 1}·x^{𝜇
++ 1} + C,𝜇\ne-1\)</span></p>
+<p><span class="math inline">\(\int\frac1xdx=\ln|x|+C\)</span></p>
+<p><span
+class="math inline">\(\int\frac1{x-a}dx=\ln|x-a|+C\)</span></p></li>
+<li><p><span class="math inline">\(\int e^xdx=e^x+C\)</span></p>
+<p><span class="math inline">\(\int a^xdx=\frac{a^x}{\ln a} +
+C\)</span></p></li>
+<li><p><span class="math inline">\(\int\cos xdx = \sin x +
+C\)</span>，<span class="math inline">\(\int \sin xdx = -\cos x +
+C\)</span></p>
+<p><span class="math inline">\(\int \sec^2x·dx = \tan x + C\)</span>
+，<span class="math inline">\(\int\csc^2x·dx=-\cot x+C\)</span></p>
+<p><span class="math inline">\(\int\sec\tan xdx=\sec x+C\)</span>，<span
+class="math inline">\(\int\csc\cot xdx=-\csc x+C\)</span></p></li>
+<li><p><span class="math inline">\(\int\tan xdx=-\ln|\cos
+x|+C\)</span>，<span class="math inline">\(\int\cot xdx = \ln|\sin x| +
+C\)</span></p>
+<p><span class="math inline">\(\int \sec xdx = \ln|\sec x + \tan x| +
+C\)</span>，<span class="math inline">\(\int \csc xdx = \ln|\csc x -
+\cot x| + C\)</span></p></li>
+<li><p><span class="math inline">\(\int\frac1{x^2+1}dx=\arctan
+x+C\)</span>，<span
+class="math inline">\(\int\frac1{x^2+a^2}dx=\frac1a\arctan\frac xa +
+C\)</span></p>
+<p><span class="math inline">\(\int\frac1{x^2-1}dx=\frac12\ln|\frac{x -
+1}{x + 1}|+C\)</span>，<span
+class="math inline">\(\int\frac1{x^2-a^2}dx=\frac1{2a}\ln|\frac{x - a}{x
++ a}| + C\)</span></p></li>
+<li><p><span class="math inline">\(\int\frac1{\sqrt{1-x^2}}dx=\arcsin x
++ C\)</span>，<span
+class="math inline">\(\int\frac1{\sqrt{a^2-x^2}}dx=\arcsin\frac xa +
+C\)</span></p></li>
+<li><p><span class="math inline">\(\int\frac1{\sqrt{x^2+a^2}}dx=\ln
+(x+\sqrt{x^2+a^2})+C\)</span>，<span
+class="math inline">\(\int\frac1{\sqrt{x^2-a^2}}dx=\ln|x+\sqrt{x^2-a^2}|+C\)</span></p></li>
+<li><p><span class="math inline">\(\int \cosh xdx = \sinh x +
+C\)</span>，<span class="math inline">\(\int \sinh xdx = \cosh x +
+C\)</span></p></li>
+</ol>
+<h3 id="积分法">1.4 积分法</h3>
+<h4 id="换元积分法">换元积分法</h4>
+<ol type="1">
+<li><p>一元函数微分表示的不变性：</p>
+<p><span class="math inline">\(dG(u) = g(u)du\)</span>，若把<span
+class="math inline">\(u\)</span>换为可微函数<span
+class="math inline">\(u = u(v)\)</span>，则有<span
+class="math inline">\(dG(u(v)) = g(u(v))du(v)\)</span>。</p>
+<p>由此，从<span class="math inline">\(\int g(u)du = G(u) +
+C\)</span>可以得到<span class="math inline">\(\int g(u(v))du(v) =
+G(u(v)) +C\)</span>。</p></li>
+<li><p>第一换元法（凑微分法）：<span class="math inline">\(\int
+f(x)dx=\int g(u(x))u&#39;(x)dx=\int g(u(x))du(x)=G(u(x))+C\)</span></p>
+<ul>
+<li>用例：
+<ul>
+<li><span class="math inline">\(\int g(ax+b)dx\)</span></li>
+<li><span class="math inline">\(\int g(x^k)x^{k-1}dx\)</span></li>
+<li><span class="math inline">\(\int g(\ln x)\frac1xdx\)</span></li>
+<li><span class="math inline">\(\int g(e^x)e^xdx\)</span></li>
+<li><span class="math inline">\(\int g(\cos x)\sin xdx,\int g(\sin
+x)\cos xdx\)</span></li>
+<li><span class="math inline">\(\int \tan xdx,\int \cot
+xdx\)</span></li>
+</ul></li>
+</ul></li>
+<li><p>第二换元法：<span class="math inline">\(\int f(x)dx=\int
+f(u(v))du(v)=\int g(v)dv=G(v)+C=G(u^{-1}(x))+C\)</span></p>
+<ul>
+<li>用例：
+<ul>
+<li><span class="math inline">\(\int\sqrt{x^2 + a^2}dx\)</span></li>
+<li><span class="math inline">\(\int\frac1{\sqrt{x^2\pm
+a^2}}dx\)</span></li>
+<li><span class="math inline">\(\int\frac1{\sqrt{a^2 -
+x^2}}dx\)</span></li>
+<li><span class="math inline">\(\int\frac1{x^2+a^2}dx\)</span></li>
+</ul></li>
+</ul></li>
+</ol>
+<h4 id="分部积分法">分部积分法</h4>
+<p>因为<span class="math inline">\(d(u(x)v(x)) = u(x)dv(x) +
+v(x)dv(x)\)</span>，有<span class="math inline">\(\int
+u(x)dv(x)=u(x)v(x)-\int v(x)du(x)\)</span>。</p>
+<h4 id="有理函数的积分">有理函数的积分</h4>
+<p>初等函数的导数一定是初等函数，但不少初等函数的不定积分并非初等函数，如：</p>
+<p><span class="math inline">\(\int e^{-x^2}dx\)</span>，<span
+class="math inline">\(\int \sin x^2dx\)</span>，<span
+class="math inline">\(\int \cos x^2dx\)</span>，<span
+class="math inline">\(\int \frac{\sin x}xdx\)</span>，<span
+class="math inline">\(\int\frac{\cos x}xdx\)</span>，<span
+class="math inline">\(\int \frac x{\ln x}dx\)</span></p>
+<p>一个不定积分不能用初等函数来表示，并非这个不定积分不存在。</p>
+<p>事实上，任何连续函数<span
+class="math inline">\(f(x)\)</span>都具有原函数。</p>
+<p>有理函数：<span class="math inline">\(f(x) =
+\frac{P(x)}{Q(x)}=\frac{a_0+a_1x+...+a_nx^n}{b_0+b_1x+...+b_mx^m}\)</span>：</p>
+<p>此处<span class="math inline">\(P(x)\)</span>和<span
+class="math inline">\(Q(x)\)</span>都是实系数的多项式。若<span
+class="math inline">\(n&lt;m\)</span>，称<span
+class="math inline">\(f(x)\)</span>为有理真分式，否则为有理假分式。</p>
+<ul>
+<li>利用多项式的除法，可以把有理假分式表示为多项式和有理真分式的和。</li>
+</ul>
+<p>在实数范围内，一个多项式的不可约因式只可能是一次的或者二次的。设<span
+class="math inline">\(Q(x)\)</span>的不可约因式分解如下：</p>
+<p><span
+class="math inline">\(Q(x)=(x-a_1)^{k_1}···(x-a_r)^{k_r}·(x^2+p_1x+q_1)^{k_1}...(x^2+p_sx+q_s)^{k_s}\)</span></p>
+<p>其中<span class="math inline">\(a_i\)</span>为实数，<span
+class="math inline">\(x^2+p_jx+q_j\)</span>为不可约的实系数二次三项式，且其中每个因式互质，有<span
+class="math inline">\(p_i^2&lt;4q_i\)</span>。</p>
+<p>有理真分式<span
+class="math inline">\(\frac{P(x)}{Q(x)}\)</span>可以唯一地表示为以下形状的简单分式之和：</p>
+<p><span class="math inline">\(\int\frac{dx}{(x-a)^n}\)</span>和<span
+class="math inline">\(\int\frac{(Mx+N)dx}{(x^2+px+q)^n}\)</span></p>
+<p>该分解式称为真分式<span
+class="math inline">\(\frac{P(x)}{Q(x)}\)</span>的简单分式分解或部分分式分解。</p>
+<p>通过部分因式分解，求有理分式的不定积分的问题归结为计算以下两种类型积分：</p>
+<ol type="1">
+<li><p><span
+class="math inline">\(\int\frac{dx}{(x-a)^n}=\begin{cases}\ln|x-a|+C,n=1\\-\frac{dx}{(n-1)(x-a)^{n-1}}+C,n\ne1
+\end{cases}\)</span></p></li>
+<li><p><span
+class="math inline">\(\int\frac{(Mx+N)dx}{(x^2+px+q)^n}=\int\frac{\frac
+M2(2x+p)+(N-\frac M2p)}{(x^2+px+q)^n}=\frac
+M2\int\frac{d(x^2+px+q)}{(x^2+px+q)^n}+(N-\frac
+M2p)\int\frac{dx}{(x^2+px+q)^n}\)</span></p>
+<ul>
+<li><p><span
+class="math inline">\(\int\frac{d(x^2+px+q)}{(x^2+px+q)^n}=\begin{cases}\ln(x^2+px+q)+C,n=1\\-\frac{1}{(k-1)(x^2+px+q)^{n-1}}+C,n\ne1\end{cases}\)</span></p></li>
+<li><p><span class="math inline">\(x^2+px+q=(x+\frac
+p2)^2+q-\frac{p^2}4=t^2+b^2\)</span>，因此此类积分可转化为<span
+class="math inline">\(\int\frac{dt}{(t^2+b^2)^n}\)</span></p>
+<ul>
+<li><span
+class="math inline">\(J_n=\int\frac{dt}{(t^2+b^2)^n}=\begin{cases}\frac1b\arctan\frac
+tb+C,n=1\\\frac1{2(n-1)b^2}[\frac
+t{(t^2+b^2)^{n-1}}+(2n-3)J_{n-1}],n\ne1\end{cases}\)</span></li>
+</ul></li>
+</ul></li>
+</ol>
+<h5 id="可有理化的被积表达式">可有理化的被积表达式</h5>
+<p>某些被积表达式可以通过变元替换而有理化，例如：</p>
+<p>（<span class="math inline">\(R(u,v)\)</span>表示两个变量<span
+class="math inline">\(u,v\)</span>的有理式）</p>
+<ol type="1">
+<li><p><span class="math inline">\(R(\sin x,\cos x)dx\)</span></p>
+<p>含三角函数的表达式可通过各种三角代换进行有理化，如万能代换。</p></li>
+<li><p><span class="math inline">\(R(x,\sqrt{ax^2+bx+c})dx\)</span></p>
+<p><span class="math inline">\(\sqrt{ax^2+bx+c}\)</span>可化为<span
+class="math inline">\(\sqrt{u^2+-v^2}\)</span>和<span
+class="math inline">\(\sqrt{v^2-u^2}\)</span>，进而进行有理化。</p></li>
+<li><p><span
+class="math inline">\(R(x,\sqrt[n]{\frac{ax+b}{cx+d}})dx\)</span></p>
+<p>若<span class="math inline">\(ad=bc\)</span>，则<span
+class="math inline">\(a/c=b/d=k\)</span>，<span
+class="math inline">\(R(x,\sqrt[n]{\frac{ax+b}{cx+d}})dx=R(x,\sqrt[n]k)dx\)</span></p>
+<p>若<span class="math inline">\(ad\ne bc\)</span>，则可令<span
+class="math inline">\(t=\sqrt[n]\frac{ax+b}{cx+d}\)</span>，则：</p>
+<p><span class="math inline">\(x=\frac{dt^n-b}{a-ct^n}\)</span>，<span
+class="math inline">\(dx=dt·\frac{n(ad-bc)t^{n-1}}{a-ct^n}\)</span></p>
+<p>原式=<span
+class="math inline">\(R(\frac{dt^n-b}{a-ct^n},t)dt·\frac{n(ad-bc)t^{n-1}}{a-ct^n}\)</span></p></li>
+<li><p><span class="math inline">\(x^𝜆(a+bx^𝜇)^vdx\)</span></p>
+<p>设<span class="math inline">\(a,b\in\R\)</span>，<span
+class="math inline">\(𝜆,𝜇,v∈Q\)</span>，且<span
+class="math inline">\(a,b,𝜇,v\ne 0\)</span>，为了防止根号嵌套，可设<span
+class="math inline">\(x^𝜇=t\)</span>，即<span
+class="math inline">\(x=\sqrt[\mu]t\)</span>。</p>
+<p>此时<span
+class="math inline">\(dx=t^{\frac1𝜇-1}\frac{dt}𝜇\)</span>。</p>
+<p>原式=<span
+class="math inline">\(\frac1𝜇t^{\frac{𝜆+1}{𝜇-1}}(a+bt)^vdt\)</span></p>
+<p>如果<span class="math inline">\(\frac{𝜆+1}𝜇\in\Z\)</span>或<span
+class="math inline">\(\frac{𝜆+1}{𝜇+v}\in\Z\)</span>，则可把该式转化为3中情形。</p>
+<p>切比雪夫证明，除了上述情形以外，二项型微分式都不能被积分成有限形式。</p></li>
+</ol>
+<h2 id="定积分">2. 定积分</h2>
+<h3 id="定义和性质">2.1 定义和性质</h3>
+<ol type="1">
+<li><p>定积分概念的精确化是黎曼所作的贡献，因此我们也把这种积分称作黎曼积分。</p></li>
+<li><p>分割：闭区间<span
+class="math inline">\([a,b]\)</span>的一个分割，是指插入在<span
+class="math inline">\(a\)</span>和<span
+class="math inline">\(b\)</span>之间的有限个分点<span
+class="math inline">\(P:a=x_0&lt;…&lt;x_m=b\)</span>。</p>
+<ul>
+<li><p>这些分点把<span class="math inline">\([a,b]\)</span>分成<span
+class="math inline">\(m\)</span>个闭子区间<span
+class="math inline">\([x_0,x_1]…[x_m-1,x_m]\)</span>。</p></li>
+<li><p><span
+class="math inline">\(|P|=\max{(∆x_1,……,∆x_m)}\)</span>称为分割<span
+class="math inline">\(P\)</span>的模。</p></li>
+<li><p>在分割<span
+class="math inline">\(P\)</span>的每一闭子区间上任意选取一点<span
+class="math inline">\(\xi_i∈[x_i-1,x_i]\)</span>，<span
+class="math inline">\(i=1,2,…,m\)</span>，这<span
+class="math inline">\(m\)</span>个点称为相应于分割<span
+class="math inline">\(P\)</span>的一组标识点，约定用单独一个字母<span
+class="math inline">\(\xi\)</span>来表示它们。</p></li>
+<li><p>设函数<span class="math inline">\(f\)</span>在闭区间<span
+class="math inline">\([a,b]\)</span>上有定义，对<span
+class="math inline">\([a,b]\)</span>的任何一个分割<span
+class="math inline">\(P\)</span>和相应于这分割的任何一组标志点<span
+class="math inline">\(\xi\)</span>，作和数<span
+class="math inline">\(\sigma(f,P,\xi)=\Sigma_1^mf(\xi_i)\Delta
+x_i\)</span>。称这样的和数为函数<span
+class="math inline">\(f\)</span>在闭区间<span
+class="math inline">\([a,b]\)</span>上的积分和或黎曼和。</p></li>
+<li><p>如果闭区间<span
+class="math inline">\([a,b]\)</span>的分割的序列<span
+class="math inline">\(\{P(n)\}\)</span>满足<span
+class="math inline">\(\lim|P|=0\)</span>，则称<span
+class="math inline">\(\{P(n)\}\)</span>是一个无穷细分割序列。</p></li>
+</ul></li>
+<li><p>黎曼积分：设函数<span
+class="math inline">\(f\)</span>在闭区间<span
+class="math inline">\([a,b]\)</span>上有定义，如果存在实数<span
+class="math inline">\(I\)</span>，使得对于任意无穷细分割序列<span
+class="math inline">\(\{P(n)\}\)</span>，不论相应于它的标志点组怎样选择，都有<span
+class="math inline">\(\lim\sigma(f,P,\xi)=I\)</span>，那么我们就说函数<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\([a,b]\)</span>上可积，并把<span
+class="math inline">\(I\)</span>称为函数<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\([a,b]\)</span>上的定积分。记为：<span
+class="math inline">\(\int_a^bf(x)dx=\lim_{|P|\rightarrow0}\sigma(f,P,\xi)=I\)</span>。</p>
+<ul>
+<li>其中<span class="math inline">\(\int\)</span>称为积分号，<span
+class="math inline">\(f(x)dx\)</span>称为被积表达式，<span
+class="math inline">\(a\)</span>和<span
+class="math inline">\(b\)</span>称为积分下限和上限。</li>
+</ul></li>
+<li><p>基本性质：</p>
+<ul>
+<li><p><span class="math inline">\(\int_a^bCdx=C(b-a)\)</span></p></li>
+<li><p>线性性质：</p>
+<p><span
+class="math inline">\(\int_a^b(f(x)+g(x))dx=\int_a^bf(x)dx+\int_a^bg(x)dx\)</span></p>
+<p><span
+class="math inline">\(\int_a^b𝜆f(x)dx=𝜆\int_a^bf(x)dx\)</span></p></li>
+<li><p>可加性：</p>
+<p><span
+class="math inline">\(\int_a^cf(x)dx=\int_a^bf(x)dx+\int_b^bf(x)dx\)</span></p></li>
+<li><p>单调性：</p>
+<p>设<span class="math inline">\(a&lt;b\)</span>，函数<span
+class="math inline">\(f\)</span>和<span
+class="math inline">\(g\)</span>在<span
+class="math inline">\([a,b]\)</span>上可积并且满足<span
+class="math inline">\(f(x)\le g(x)\)</span>，则有<span
+class="math inline">\(\int_a^bf(x)dx\le\int_a^bg(x)dx\)</span></p></li>
+<li><p>积分中值定理：</p>
+<p>设<span class="math inline">\(a&lt;b\)</span>，函数<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\([a,b]\)</span>可积(则<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\([a,b]\)</span>上有界)，若<span
+class="math inline">\(∀x∈[a,b]\)</span>有<span
+class="math inline">\(m\le f(x)\le M\)</span>，则<span
+class="math inline">\(m(b-a)\le\int_a^bf(x)dx\le M(b-a)\)</span>。</p>
+<p>特别的，如果<span class="math inline">\(f\)</span>在<span
+class="math inline">\([a,b]\)</span>连续，那么存在<span
+class="math inline">\(c∈[a,b]\)</span>，使得<span
+class="math inline">\(\int_a^bf(x)dx=f(c)(b-a)\)</span>。</p></li>
+</ul></li>
+</ol>
+<h3 id="存在定理-1">2.2 存在定理</h3>
+<ol type="1">
+<li><p>黎曼可积性：可以通过黎曼积分的定义计算积分值。也称为一元函数的常义可积性。</p>
+<ul>
+<li>常义，即区间有限、函数有界。区别于反常积分的区间无限、函数无界。</li>
+</ul></li>
+<li><p>定积分存在定理：即一元函数的常义可积性。</p>
+<ul>
+<li><p>充分条件：</p>
+<ul>
+<li><p><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\([a,b]\)</span>上连续，则<span
+class="math inline">\(\int_a^b f(x)dx\)</span>存在</p></li>
+<li><p><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\([a,b]\)</span>上单调，则<span
+class="math inline">\(\int_a^b f(x)dx\)</span>存在</p></li>
+<li><p><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\([a,b]\)</span>上有界，且只有有限个间断点，则<span
+class="math inline">\(\int_a^b f(x)dx\)</span>存在</p></li>
+</ul></li>
+<li><p>必要条件：有界。</p></li>
+</ul></li>
+</ol>
+<h3 id="变限积分">2.3 变限积分</h3>
+<p><span
+class="math inline">\(F(x)=\int_a^xf(t)dt\)</span>为变上限的积分，同理也有变下限和上下限都变化的积分。</p>
+<ul>
+<li>性质：
+<ul>
+<li><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(I\)</span>上可积，则<span
+class="math inline">\(F(x)=\int_a^xf(t)dt\)</span>在<span
+class="math inline">\(I\)</span>上连续</li>
+<li><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(I\)</span>上连续，则<span
+class="math inline">\(F(x)=\int_a^xf(t)dt\)</span>在<span
+class="math inline">\(I\)</span>上可导且<span
+class="math inline">\(F&#39;(x)=f(x)\)</span></li>
+<li>若<span class="math inline">\(x=x_0\in I\)</span>是<span
+class="math inline">\(f(x)\)</span>唯一的跳跃间断点，则<span
+class="math inline">\(F(x)=\int_a^xf(t)dt\)</span>在<span
+class="math inline">\(x_0\)</span>处不可导
+<ul>
+<li><span class="math inline">\(F&#39;_-(x_0)=\lim_{x\rightarrow
+x_0^-}f(x)\)</span></li>
+<li><span class="math inline">\(F&#39;_+(x_0)=\lim_{x\rightarrow
+x_0^+}f(x)\)</span></li>
+</ul></li>
+<li>若<span class="math inline">\(x=x_0\in I\)</span>是<span
+class="math inline">\(f(x)\)</span>唯一的可去间断点，则<span
+class="math inline">\(F(x)=\int_a^xf(t)dt\)</span>在<span
+class="math inline">\(x_0\)</span>处可导
+<ul>
+<li><span class="math inline">\(F&#39;(x_0)=\lim_{x\rightarrow
+x_0}f(x)\)</span></li>
+</ul></li>
+</ul></li>
+<li>求导公式：设<span
+class="math inline">\(F(x)=\int_{\varphi_1(x)}^{\varphi_2(x)}f(t)dt\)</span>，则<span
+class="math inline">\(F&#39;(x)=f(\varphi_2(x))\varphi_2&#39;(x)-f(\varphi_1(x))\varphi_1&#39;(x)\)</span>。
+<ul>
+<li>当<span class="math inline">\(f(t)\)</span>中包含<span
+class="math inline">\(x\)</span>，不能直接使用该求导公式。</li>
+</ul></li>
+<li>结论：
+<ul>
+<li><span class="math inline">\(f(x)\)</span>为可积的奇函数，则<span
+class="math inline">\(\int_a^xf(t)dt\)</span>为偶函数。</li>
+<li><span class="math inline">\(f(x)\)</span>为可积的偶函数，则<span
+class="math inline">\(\int_0^xf(t)dt\)</span>为奇函数。</li>
+</ul></li>
+</ul>
+<h3 id="反常积分">2.4 反常积分</h3>
+<ol type="1">
+<li>无穷区间的反常积分：<span class="math inline">\(F(x)\)</span>为<span
+class="math inline">\(f(x)\)</span>在相应区间的一个原函数。
+<ul>
+<li><span
+class="math inline">\(\int_a^{+\infin}f(x)dx=\lim_{x\rightarrow+\infin}F(x)-F(a)\)</span>，极限存在即收敛，否则发散</li>
+<li><span
+class="math inline">\(\int_{-\infin}^bf(x)dx=F(b)-\lim_{x\rightarrow-\infin}F(x)\)</span>，极限存在即收敛，否则发散</li>
+<li><span
+class="math inline">\(\int_{-\infin}^{+\infin}f(x)dx=\lim_{x\rightarrow+\infin}F(x)-\lim_{x\rightarrow-\infin}F(x)\)</span>，两个极限都存在即收敛，否则发散</li>
+</ul></li>
+<li><span class="math inline">\(f(x)\)</span>的瑕点<span
+class="math inline">\(x_0\)</span>：<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>的邻域内。</li>
+<li>无界函数的反常积分：<span class="math inline">\(F(x)\)</span>为<span
+class="math inline">\(f(x)\)</span>在相应区间的一个原函数。
+<ul>
+<li><span class="math inline">\(x=a\)</span>为瑕点，<span
+class="math inline">\(\int_a^bf(x)dx=F(b)-\lim_{x\rightarrow
+a^+}F(a)\)</span>，极限存在即收敛，否则发散</li>
+<li><span class="math inline">\(x=b\)</span>为瑕点，<span
+class="math inline">\(\int_a^bf(x)dx=\lim_{x\rightarrow
+b^-}F(b)-F(a)\)</span>，极限存在即收敛，否则发散</li>
+<li><span class="math inline">\(x=c\in(a,b)\)</span>为瑕点，<span
+class="math inline">\(\int_a^bf(x)dx=\int_a^cf(x)dx+\int_c^bf(x)dx\)</span>，两积分都存在则收敛，否则发散</li>
+</ul></li>
+<li>反常积分敛散性判别：比较法。</li>
+<li>重要结论：
+<ul>
+<li><span
+class="math inline">\(\int_0^1\frac1{x^p}\begin{cases}收敛，0\lt p\lt
+1\\发散，p\ge1 \end{cases}\)</span></li>
+<li><span
+class="math inline">\(\int_1^{+\infin}\frac1{x^p}\begin{cases}收敛，p\gt
+1\\发散，p\le1 \end{cases}\)</span></li>
+</ul></li>
+</ol>
+<h3 id="牛顿-莱布尼茨公式">2.5 牛顿-莱布尼茨公式</h3>
+<p>设函数<span class="math inline">\(f\)</span>在<span
+class="math inline">\([a,b]\)</span>连续，如果存在函数<span
+class="math inline">\(F\)</span>，它在<span
+class="math inline">\([a,b]\)</span>连续且可导，并且满足<span
+class="math inline">\(F’(x)=f(x)\)</span>，那么函数<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\([a,b]\)</span>可积，且<span
+class="math inline">\(\int_a^bf(x)dx=F(b)-F(a)\)</span>。</p>
+<ul>
+<li>基于牛顿-莱布尼茨公式，求定积分可转化为求不定积分。</li>
+</ul>
+<p>连续可微：</p>
+<ul>
+<li><p>如果函数<span class="math inline">\(f\)</span>在<span
+class="math inline">\((a,b)\)</span>上每一点可导，并且导函数在<span
+class="math inline">\((a,b)\)</span>连续，那么我们说函数<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\((a,b)\)</span>连续可微。</p></li>
+<li><p>如果函数<span class="math inline">\(f\)</span>在<span
+class="math inline">\([a,b]\)</span>上每一点可导(在<span
+class="math inline">\(a\)</span>右可导，在<span
+class="math inline">\(b\)</span>左可导)，并且导函数在<span
+class="math inline">\([a,b]\)</span>连续，那么我们说函数<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\([a,b]\)</span>连续可微。</p></li>
+</ul>
+<h4 id="换元法">换元法</h4>
+<p>设函数<span class="math inline">\(𝜑∈C^1[𝛼,𝛽]\)</span>，<span
+class="math inline">\(𝜑(𝛼)=a\)</span>，<span
+class="math inline">\(𝜑(𝛽)=b\)</span>，<span
+class="math inline">\(𝜑((𝛼,𝛽))⊂(a,b)\)</span>，如果<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\([a,b]\)</span>连续，那么<span
+class="math inline">\(\int_a^bf(x)dx=\int_\alpha^\beta
+f(𝜑(t))𝜑’(t)dt\)</span></p>
+<h4 id="分部积分">分部积分</h4>
+<p>设函数<span class="math inline">\(u,v\in C^1[a,b]\)</span>，则<span
+class="math inline">\(\int_a^bu(x)v’(x)dx=u(x)v(x)|_a^b-\int_a^bv(x)u’(x)dx\)</span></p>
+<h4 id="常用结论">常用结论</h4>
+<ol type="1">
+<li><p><span class="math inline">\(f(x)\)</span>为连续偶函数，则<span
+class="math inline">\(\int_{-a}^af(x)dx=2\int_0^af(x)dx\)</span>。</p></li>
+<li><p><span class="math inline">\(f(x)\)</span>为连续奇函数，则<span
+class="math inline">\(\int_{-a}^af(x)dx=0\)</span>。</p></li>
+<li><p><span class="math inline">\(f(x)\)</span>是周期为<span
+class="math inline">\(T\)</span>的连续函数，则<span
+class="math inline">\(\forall
+a,\int_a^{a+T}f(x)dx=\int_0^Tf(x)dx\)</span>。</p></li>
+<li><p><span class="math inline">\(f(x)\)</span>为连续函数，则<span
+class="math inline">\(\int_a^bf(x)dx=\int_a^bf(a+b-x)dx\)</span></p></li>
+<li><p>华莱士公式：</p>
+<p><span
+class="math inline">\(\int_0^{\frac\pi2}\sin^nxdx=\int_0^{\frac\pi2}\cos^nxdx=\begin{cases}\frac{(n-1)!!}{n!!},n为大于1的奇数\\\frac{(n-1)!!}{n!!}\frac\pi2,n为正偶数
+\end{cases}\)</span></p>
+<ul>
+<li>派生：
+<ul>
+<li><span
+class="math inline">\(\int_0^{\pi}\sin^nxdx=2\int_0^{\frac\pi2}\sin^nxdx\)</span></li>
+<li><span
+class="math inline">\(\int_0^{\pi}\cos^nxdx=\begin{cases}0,n为正奇数\\
+2\int_0^{\frac\pi2}\sin^nxdx,n为正偶数\end{cases}\)</span></li>
+<li><span
+class="math inline">\(\int_0^{2\pi}\cos^nxdx=\int_0^{2\pi}\sin^nxdx=\begin{cases}0,n为正奇数\\
+4\int_0^{\frac\pi2}\sin^nxdx,n为正偶数\end{cases}\)</span></li>
+</ul></li>
+</ul></li>
+</ol>
+<h2 id="应用">3. 应用</h2>
+<h4 id="几何计算">几何计算</h4>
+<ol type="1">
+<li><p>平面图形面积：</p>
+<ul>
+<li>直角坐标系：<span
+class="math inline">\(y=f(x),y=g(x)\)</span>与<span
+class="math inline">\(x=a,x=b\)</span>围成的图形面积：<span
+class="math inline">\(\int_a^b|f(x)-g(x)|dx\)</span></li>
+<li>极坐标系：<span
+class="math inline">\(r=\rho_1(\theta),r=\rho_2(\theta)\)</span>与<span
+class="math inline">\(\theta=\alpha,\theta=\beta\)</span>围成的图形面积：<span
+class="math inline">\(\frac12\int_\alpha^\beta|\rho_1^2(\theta)-\rho_2^2(\theta)
+|d\theta\)</span></li>
+<li>参数方程：转换为直角坐标系并换元</li>
+</ul></li>
+<li><p>旋转体体积：</p>
+<ul>
+<li><p><span class="math inline">\(y=f(x),x=a,x=b\)</span>及<span
+class="math inline">\(x\)</span>轴围成的图形绕<span
+class="math inline">\(x\)</span>轴旋转一周所得旋转体体积：<span
+class="math inline">\(\int_a^b\pi f(x)^2dx\)</span></p></li>
+<li><p><span class="math inline">\(y=f(x),x=a,x=b\)</span>及<span
+class="math inline">\(x\)</span>轴围成的图形绕<span
+class="math inline">\(y\)</span>轴旋转一周所得旋转体体积：<span
+class="math inline">\(2\pi\int_a^bx|f(x)|dx\)</span></p></li>
+<li><p>平面曲线<span class="math inline">\(y=f(x)\)</span>绕定直线<span
+class="math inline">\(Ax+By+C=0\)</span>旋转一周所得旋转体体积：</p>
+<p><span
+class="math inline">\(\frac\pi{(A^+B^2)^{\frac32}}\int_a^b[Ax+Bf(x)+C]^2|Af&#39;(x)-B|dx\)</span></p></li>
+</ul></li>
+<li><p>函数平均值：<span class="math inline">\(y=f(x)\)</span>在<span
+class="math inline">\([a,b]\)</span>上的平均值为<span
+class="math inline">\(\frac1{b-a}\int_a^bf(x)dx\)</span></p></li>
+<li><p>曲边梯形的质心：<span
+class="math inline">\(y=f(x),x=a,x=b\)</span>所围曲边梯形质心坐标：</p>
+<p><span
+class="math inline">\(x=\frac{\int_a^bxf(x)dx}{\int_a^bf(x)dx}\)</span>，<span
+class="math inline">\(y=\frac{\frac12\int_a^bf(x)^2dx}{\int_a^bf(x)dx}\)</span></p></li>
+<li><p>平面曲线的弧长</p>
+<ul>
+<li><span class="math inline">\(y=f(x),x\in[a,b]\)</span>：<span
+class="math inline">\(\int_a^b\sqrt{1+f&#39;(x)^2}dx\)</span></li>
+<li><span
+class="math inline">\(x=x(t),y=y(t),t\in[\alpha,\beta]\)</span>：<span
+class="math inline">\(\int_\alpha^\beta\sqrt{x&#39;(t)^2+y&#39;(t)^2}dt\)</span></li>
+<li><span
+class="math inline">\(r=\rho(\theta),\theta\in[\alpha,\beta]\)</span>：<span
+class="math inline">\(\int_\alpha^\beta\sqrt{[\rho(\theta)^2+\rho&#39;(\theta)^2]}dx\)</span></li>
+</ul></li>
+<li><p>旋转曲面的面积：</p>
+<ul>
+<li><span class="math inline">\(y=f(x),x\in[a,b]\)</span>绕<span
+class="math inline">\(x\)</span>轴旋转：<span
+class="math inline">\(2\pi\int_a^b|f(x)|\sqrt{1+f&#39;(x)^2}dx\)</span></li>
+<li><span
+class="math inline">\(x=x(t),y=y(t),t\in[\alpha,\beta]\)</span>绕<span
+class="math inline">\(x\)</span>轴旋转：<span
+class="math inline">\(2\pi\int_\alpha^\beta|y(t)|\sqrt{x&#39;(t)^2+y&#39;(t)^2}dt\)</span></li>
+<li><span
+class="math inline">\(r=\rho(\theta),\theta\in[\alpha,\beta]\)</span>：<span
+class="math inline">\(2\pi\int_\alpha^\beta|\rho(\theta)\sin\theta|\sqrt{[\rho(\theta)^2+\rho&#39;(\theta)^2]}d\theta\)</span></li>
+</ul></li>
+</ol>
+<h4 id="物理计算">物理计算</h4>
+<ol type="1">
+<li>变力按直线做功：<span
+class="math inline">\(W=\int_a^bF(x)dx\)</span></li>
+<li>抽水做功：水面距离容器口高度<span
+class="math inline">\(x\)</span>，对应水平截面面积<span
+class="math inline">\(A(x)\)</span>，<span class="math inline">\(W=\rho
+g\int_a^bxA(x)dx\)</span></li>
+<li>静水压力：平板两曲边距水距离为<span
+class="math inline">\(f(x),g(x)\)</span>，<span
+class="math inline">\(P=\rho g\int_a^bx(f(x)-g(x))dx\)</span></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BE%AE%E7%A7%AF%E5%88%86/" class="category-chain-item">微积分</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/01/%E5%BE%AE%E7%A7%AF%E5%88%86/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%AD%A6/" title="多元函数微分学">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">多元函数微分学</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/01/%E5%BE%AE%E7%A7%AF%E5%88%86/%E4%B8%80%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%AD%A6/" title="一元函数微分学">
+                        <span class="hidden-mobile">一元函数微分学</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>长风破浪会有时，直挂云帆济沧海</p> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

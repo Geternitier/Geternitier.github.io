@@ -1,0 +1,1126 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/yuanshen.jpeg">
+  <link rel="icon" href="/image/icon/yuanshen.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#5a9367">
+  <meta name="author" content="Geternitier">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="踏遍青山人未老，风景这边独好。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一元函数微分学">
+<meta property="og:url" content="http://example.com/2021/10/01/%E5%BE%AE%E7%A7%AF%E5%88%86/%E4%B8%80%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%AD%A6/index.html">
+<meta property="og:site_name" content="Geternitier的博客">
+<meta property="og:description" content="踏遍青山人未老，风景这边独好。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-01T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-11T06:26:06.847Z">
+<meta property="article:author" content="Geternitier">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>一元函数微分学 - Geternitier的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Geternitier的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Geternitier的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/background/TheSpirits.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="一元函数微分学"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-01 12:00" pubdate>
+          2021年10月1日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.9k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">一元函数微分学</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>踏遍青山人未老，风景这边独好。</p>
+<span id="more"></span>
+<h1 id="二-一元函数微分学">二 一元函数微分学</h1>
+<h2 id="概念">1. 概念</h2>
+<h3 id="导数">1.1 导数</h3>
+<p>设<span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>的<span
+class="math inline">\(\delta\)</span>邻域有定义，称<span
+class="math inline">\(\lim_{x\rightarrow
+x_0}\frac{f(x)-f(x_0)}{x-x_0}\)</span>为<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>的导数，记为<span
+class="math inline">\(f&#39;(x)\)</span>。</p>
+<ul>
+<li>导数的几何意义：函数图像的切线。</li>
+</ul>
+<h4 id="单侧导数">单侧导数</h4>
+<p>若<span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(U_+(x_0,𝛿)\)</span>有定义，且<span
+class="math inline">\(\lim_{x\rightarrow
+x_0^+}\frac{f(x)-f(x_0)}{x-x_0}\)</span>存在，则称其为<span
+class="math inline">\(f(x)\)</span>的右导数。</p>
+<p>若<span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(U_-(x_0,𝛿)\)</span>有定义，且<span
+class="math inline">\(\lim_{x\rightarrow
+x_0^-}\frac{f(x)-f(x_0)}{x-x_0}\)</span>存在，则称其为<span
+class="math inline">\(f(x)\)</span>的左导数。</p>
+<p><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>处左可导又右可导，则<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>处左连续又右连续，则<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>连续。</p>
+<h4 id="导函数">导函数</h4>
+<p>若<span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\((a,b)\)</span>上有定义，且<span
+class="math inline">\(\forall x∈(a,b)\)</span>，<span
+class="math inline">\(f(x)\)</span>有导数，则称<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\((a,b)\)</span>上可导，<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\((a,b)\)</span>上的导数也是一个关于<span
+class="math inline">\(x\)</span>的函数，称为<span
+class="math inline">\(f(x)\)</span>的导函数，简称导数。</p>
+<p>若<span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\([a,b]\)</span>上有定义，且在<span
+class="math inline">\((a,b)\)</span>上可导，在<span
+class="math inline">\(a\)</span>有右导数，在<span
+class="math inline">\(b\)</span>有左导数，则称<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\([a,b]\)</span>上可导。</p>
+<h3 id="微分">1.2 微分</h3>
+<p>可微性：<span class="math inline">\(f\)</span>在<span
+class="math inline">\(x_0\)</span>的邻域有定义，若<span
+class="math inline">\(f(x)-f(x_0) = A(x-x_0) +
+o(x-x_0)\)</span>，则称<span class="math inline">\(f\)</span>在<span
+class="math inline">\(x_0\)</span>可微。</p>
+<ul>
+<li><p><span
+class="math inline">\(f(x)-f(x_0)\)</span>称为函数的增量，<span
+class="math inline">\(A(x-x_0)\)</span>称为函数增量的可线性化部分，<span
+class="math inline">\(o(x-x_0)\)</span>为高阶无穷小量</p></li>
+<li><p><span class="math inline">\(f\)</span>在<span
+class="math inline">\(x_0\)</span>可微等价于<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\(x_0\)</span>可导。</p></li>
+</ul>
+<p>函数增量的线性部分，即<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>处导数乘以<span
+class="math inline">\(dx\)</span>，称为<span
+class="math inline">\(f(x)\)</span>的<strong>微分</strong>，记作<span
+class="math inline">\(df\)</span>。<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x\)</span>趋于<span
+class="math inline">\(x_0\)</span>时的导数为<span
+class="math inline">\(\frac{df}{dx}\)</span>，也称为微商。</p>
+<h4 id="一阶微分的形式不变性">一阶微分的形式不变性</h4>
+<p><span class="math inline">\(y = f(u)\)</span>，则<span
+class="math inline">\(dy = f’(u)du\)</span>始终成立。</p>
+<h2 id="求导法则">2. 求导法则</h2>
+<h3 id="四则运算">2.1 四则运算</h3>
+<p>导数：<span
+class="math inline">\(u(x),v(x)\)</span>的导数存在，则</p>
+<p><span class="math inline">\(u(x)+v(x)\)</span>的导数也存在，且为<span
+class="math inline">\(u’(x)+v’(x)\)</span>；</p>
+<p><span class="math inline">\(u(x)\times
+v(x)\)</span>的导数也存在，且为<span
+class="math inline">\(u(x)v’(x)+u’(x)v(x)\)</span>；</p>
+<p><span class="math inline">\(\frac{u(x)}{v(x)}\)</span>中<span
+class="math inline">\(v(x)\ne0\)</span>，其导数也存在，且为<span
+class="math inline">\(\frac{u’(x)v(x)-v’(x)u(x)}{v(x)^2}\)</span>。</p>
+<p>微分：<span
+class="math inline">\(u(x),v(x)\)</span>的微分存在，则</p>
+<p><span class="math inline">\(u(x)+v(x)\)</span>的微分也存在，且为<span
+class="math inline">\((u’+v’)dx\)</span>；</p>
+<p><span class="math inline">\(u(x)\times
+v(x)\)</span>的微分也存在，且为<span
+class="math inline">\((uv’+u’v)dx\)</span>；</p>
+<p><span class="math inline">\(\frac {u(x)}{v(x)}\)</span>中<span
+class="math inline">\(v(x)\ne0\)</span>，其微分也存在，且为<span
+class="math inline">\(\frac{u’v-v’u}{v^2}dx\)</span>。</p>
+<h3 id="复合函数">2.2 复合函数</h3>
+<p>链式求导法则：<span
+class="math inline">\(u(x),f(u)\)</span>的导数存在，则</p>
+<p><span class="math inline">\(\frac{df}{dx}=f’(u)·u’(x)\)</span>。</p>
+<p>微分：<span
+class="math inline">\(u(x),f(u)\)</span>的微分存在，则</p>
+<p><span class="math inline">\(df = f’·u’·dx\)</span>。</p>
+<p>例：双曲余弦函数：<span class="math inline">\(ch\;x = \frac{e^x +
+e^{-x}}2\)</span>，双曲正弦函数：<span class="math inline">\(sh\;x
+=\frac{e^x-e^{-x}}2\)</span>，两者互为导数。</p>
+<h3 id="反函数">2.3 反函数</h3>
+<p>若<span class="math inline">\(y = f(x)\)</span>在<span
+class="math inline">\(I\)</span>上严格单调且连续，且在<span
+class="math inline">\(x_0\)</span>处可导，<span
+class="math inline">\(f’(x)\ne0\)</span>，则其反函数<span
+class="math inline">\(x = 𝜑(y)\)</span>在<span class="math inline">\(y =
+f(x_0)\)</span>的导数为<span
+class="math inline">\(\frac1{f’(x_0)}\)</span>。</p>
+<h3 id="参数方程">2.4 参数方程</h3>
+<p><span class="math inline">\(x = u(t),y = v(t)\)</span>，则<span
+class="math inline">\(y\)</span>关于<span
+class="math inline">\(x\)</span>的导数为<span
+class="math inline">\(\frac{v’(t)}{u’(t)}\)</span>。</p>
+<h3 id="隐函数">2.5 隐函数</h3>
+<p>关于<span
+class="math inline">\(x,y\)</span>的方程式，如果对于给定<span
+class="math inline">\(x\)</span>有唯一<span
+class="math inline">\(y\)</span>，则<span
+class="math inline">\(y\)</span>是<span
+class="math inline">\(x\)</span>的隐函数。</p>
+<ul>
+<li><p>求导法则：将<span class="math inline">\(y\)</span>视作关于<span
+class="math inline">\(x\)</span>的函数进行求导。</p></li>
+<li><p>应用：对数求导法</p></li>
+</ul>
+<h3 id="高阶导数">2.6 高阶导数</h3>
+<p>若函数<span class="math inline">\(y = f(x)\)</span>的导函数<span
+class="math inline">\(f’\)</span>在区间<span
+class="math inline">\(I\)</span>上有定义且可导，则其在<span
+class="math inline">\(x\)</span>的导数，称为<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\(x\)</span>的二阶导数。</p>
+<p>若<span class="math inline">\(f(x)\)</span>的<span
+class="math inline">\(n-1\)</span>阶导数在区间<span
+class="math inline">\(I\)</span>上有定义且可导，其导函数称为<span
+class="math inline">\(f(x)\)</span>的<span
+class="math inline">\(n\)</span>阶导数，记为<span
+class="math inline">\(f^{(n)}(x)\)</span>。</p>
+<h4 id="莱布尼茨公式">莱布尼茨公式</h4>
+<p>设函数<span class="math inline">\(u,v\)</span>都在<span
+class="math inline">\(x\)</span>处<span
+class="math inline">\(n\)</span>次可导，则其乘积<span
+class="math inline">\(uv\)</span>也在<span
+class="math inline">\(x\)</span>处<span
+class="math inline">\(n\)</span>次可导，且有：</p>
+<p><span class="math inline">\((uv)^{(n)} = \Sigma_{k=0}^nC^k_n
+·u^{(n-k)}·v^{(k)}\)</span></p>
+<h4 id="高阶微分">高阶微分</h4>
+<p><span class="math inline">\(dy = f’(x)dx\)</span></p>
+<p><span class="math inline">\(d^2y = d(dy) = f’’(x)dx^2\)</span></p>
+<p><span class="math inline">\(d^ny = f^{(n)}(x)dx^n\)</span></p>
+<p><span class="math inline">\(d^n(uv) = (uv)^{(n)}dx^n =
+\Sigma_{k=1}^nC^k_n ·u^{(n-k)}·v^{(k)}dx^n\)</span></p>
+<p>高阶微分一般不具有形式不变性。</p>
+<h3 id="常见求导公式">2.7 常见求导公式</h3>
+<ol type="1">
+<li><span class="math inline">\((C)&#39;=0,C\in\R\)</span></li>
+<li><span class="math inline">\((x^\mu)&#39;=\mu
+x^{\mu-1},\mu\in\R\)</span></li>
+<li><span class="math inline">\((a^x)&#39;=a^x\ln a,a\gt0\and
+a\ne1\)</span></li>
+<li><span class="math inline">\((\log_ax)&#39;=\frac1{x\ln a},a\gt0\and
+a\ne1\)</span></li>
+<li><span class="math inline">\((\sin x)&#39;=\cos x,(\cos x)&#39;=-\sin
+x\)</span></li>
+<li><span class="math inline">\((\tan
+x)&#39;=\sec^2x=\frac1{\cos^2x},(\cot
+x)&#39;=-\csc^2x=-\frac1{\sin^2x}\)</span></li>
+<li><span class="math inline">\((\sec x)&#39;=\sec x\tan x,(\csc
+x)&#39;=-\csc x\cot x\)</span></li>
+<li><span class="math inline">\((\arcsin
+x)&#39;=\frac1{\sqrt{1-x^2}},(\arccos
+x)&#39;=-\frac1{\sqrt{1-x^2}},(\arctan
+x)&#39;=\frac1{1+x^2}\)</span></li>
+<li><span class="math inline">\((\sinh x)&#39;=\cosh x,(\cosh
+x)&#39;=\sinh x,(\tanh x)&#39;=\frac1{\cosh^2x}\)</span></li>
+</ol>
+<h2 id="微分中值定理">3. 微分中值定理</h2>
+<p>当<span
+class="math inline">\(∆x\rightarrow0,f(x_0+∆x)=f(x_0)+f’(x_0)·∆x +
+o(∆x)\)</span>，该式与其等价形式被称为无穷小增量公式。</p>
+<h3 id="极值">3.0 极值</h3>
+<p>内点：设区间<span class="math inline">\(I\)</span>，<span
+class="math inline">\(x_0\in I\)</span>，如果存在<span
+class="math inline">\(\eta&gt;0\)</span>，使得<span
+class="math inline">\(U(x_0,\eta)\in I\)</span>，则称<span
+class="math inline">\(x_0\)</span>为区间<span
+class="math inline">\(I\)</span>的一个内点。</p>
+<p>极大值点：设函数<span class="math inline">\(f\)</span>在区间<span
+class="math inline">\(I\)</span>有定义，存在<span
+class="math inline">\(U(x_0，\delta)\in I\)</span>，任意<span
+class="math inline">\(x\in U(x_0，\delta)\)</span>，都有<span
+class="math inline">\(f(x)\le f(x_0)\)</span>(或<span
+class="math inline">\(f(x)\ge f(x_0)\)</span>)，则称函数<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>取得极大值(或极小值)，称<span
+class="math inline">\(x_0\)</span>为函数<span
+class="math inline">\(f(x)\)</span>的极大值点(或极小值点)。</p>
+<p>此时，如果对于任何<span class="math inline">\(x\in U(x_0，𝛿)\and x\ne
+x_0\)</span>，都有<span
+class="math inline">\(f(x)&lt;f(x_0)\)</span>或<span
+class="math inline">\(f(x)&gt;f(x_0)\)</span>，则称<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>取得严格的极大值或极小值。极大值和极小值统称为极值。</p>
+<h4 id="极值的判别">极值的判别</h4>
+<p>单调性的判别：设<span class="math inline">\(y=f(x)\)</span>在<span
+class="math inline">\([a,b]\)</span>上连续，<span
+class="math inline">\((a,b)\)</span>内可导。</p>
+<ul>
+<li>如果<span class="math inline">\((a,b)\)</span>内<span
+class="math inline">\(f&#39;(x)\ge0\)</span>，且等号仅在有限个点处成立，则<span
+class="math inline">\(y=f(x)\)</span>在<span
+class="math inline">\([a,b]\)</span>上严格单调增加。</li>
+<li>如果<span class="math inline">\((a,b)\)</span>内<span
+class="math inline">\(f&#39;(x)\le0\)</span>，且等号仅在有限个点处成立，则<span
+class="math inline">\(y=f(x)\)</span>在<span
+class="math inline">\([a,b]\)</span>上严格单调减少。</li>
+</ul>
+<p>极值点的必要条件：一阶导数为0或不存在。</p>
+<ul>
+<li>极值的第一充分条件：<span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x=x_0\)</span>处连续，且在<span
+class="math inline">\(x_0\)</span>的某去心邻域内可导，<span
+class="math inline">\(f&#39;(x_0)=0\)</span>；
+<ul>
+<li><span class="math inline">\(f&#39;(x)\)</span>在<span
+class="math inline">\(x_0\)</span>的左邻域小于0，右邻域大于0，则<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x=x_0\)</span>处取极小值。</li>
+<li><span class="math inline">\(f&#39;(x)\)</span>在<span
+class="math inline">\(x_0\)</span>的左邻域大于0，右邻域小于0，则<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x=x_0\)</span>处取极大值。</li>
+</ul></li>
+<li>极值的第二充分条件：<span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x=x_0\)</span>处二阶可导，且<span
+class="math inline">\(f&#39;(x_0)=0\)</span>，<span
+class="math inline">\(f&#39;&#39;(x_0)\neq0\)</span>。
+<ul>
+<li><span class="math inline">\(f&#39;&#39;(x_0)\gt0\)</span>，则<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x=x_0\)</span>处取极小值。</li>
+<li><span class="math inline">\(f&#39;&#39;(x_0)\lt0\)</span>，则<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x=x_0\)</span>处取极大值。</li>
+</ul></li>
+<li>极值的第三充分条件：<span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x=x_0\)</span>处<span
+class="math inline">\(n\)</span>阶可导，且<span
+class="math inline">\(f^{(m)(x_0)}=0\)</span>，<span
+class="math inline">\(m=1,2,...,n-1\)</span>，<span
+class="math inline">\(f^{(n)}(x_0)\neq0\)</span>，则
+<ul>
+<li>当<span class="math inline">\(n\)</span>为偶数且<span
+class="math inline">\(f^{(n)}(x_0)\gt0\)</span>，<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x=x_0\)</span>处取极小值。</li>
+<li>当<span class="math inline">\(n\)</span>为偶数且<span
+class="math inline">\(f^{(n)}(x_0)\lt0\)</span>，<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x=x_0\)</span>处取极大值。</li>
+</ul></li>
+</ul>
+<h3 id="费马定理">3.1 费马定理</h3>
+<p>设<span class="math inline">\(f(x)\)</span>在区间<span
+class="math inline">\(I\)</span>上有定义并在区间I的内点<span
+class="math inline">\(x\)</span>上取得极值，若<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x\)</span>可导，则<span
+class="math inline">\(f’(x)=0\)</span>。</p>
+<ul>
+<li>证明：极大值点左导数大于等于0，右导数小于等于0。</li>
+<li><span class="math inline">\(f’(x)=0\)</span>，称<span
+class="math inline">\(x\)</span>为临界点。<span
+class="math inline">\(f(x)\)</span>的最值只会在边界点和临界点中取得。</li>
+</ul>
+<h3 id="洛尔定理">3.2 洛尔定理</h3>
+<p>设函数<span class="math inline">\(f\)</span>在<span
+class="math inline">\([a,b]\)</span>上连续，在<span
+class="math inline">\((a,b)\)</span>上可导，并且满足<span
+class="math inline">\(f(a)=f(b)\)</span>，则存在<span
+class="math inline">\(c\in(a,b)\)</span>，<span
+class="math inline">\(f’(c)=0\)</span>。</p>
+<ul>
+<li>证明：应用闭区间上连续函数的最值定理和费马定理。</li>
+</ul>
+<h3 id="拉格朗日中值定理">3.3 拉格朗日中值定理</h3>
+<p><span class="math inline">\(f\in C[a,b]\)</span>，且在<span
+class="math inline">\((a,b)\)</span>可导，则存在<span
+class="math inline">\(c∈(a,b)\)</span>，<span
+class="math inline">\(f’(c)=\frac{f(a)-f(b)}{a - b}\)</span>。</p>
+<ul>
+<li><p>证明：构造<span
+class="math inline">\(F(x)=f(x)-\frac{f(a)-f(b)}{a-b}(x-a)\)</span>，应用洛尔定理。</p></li>
+<li><p>拉格朗日中值定理也称为有限增量公式：</p>
+<p><span class="math inline">\(f\in C[a,b]\)</span>，且在<span
+class="math inline">\((a,b)\)</span>可导，则存在<span
+class="math inline">\(c\in(a,b)\)</span>，<span
+class="math inline">\(f(a) - f(b)=f’(c)·(a - b)\)</span>。</p></li>
+</ul>
+<h3 id="柯西中值定理">3.4 柯西中值定理</h3>
+<p><span class="math inline">\(f,g∈C[a,b]\)</span>，且在<span
+class="math inline">\((a,b)\)</span>可导，则存在<span
+class="math inline">\(c\in(a,b)\)</span>，使得<span
+class="math inline">\(\frac{f’(c)}{g’(c)}=\frac{f(a)-g(b)}{g(a)-g(b)}\)</span>。</p>
+<ul>
+<li>证明：构造<span
+class="math inline">\(F(x)=(f(x)-f(a))(g(b)-g(a))-(g(x)-g(a))(f(b)-f(a))\)</span>，应用洛尔定理。</li>
+</ul>
+<h3 id="微分中值定理的应用">3.5 微分中值定理的应用</h3>
+<h4 id="洛必达法则">洛必达法则</h4>
+<ol type="1">
+<li><span class="math inline">\(x\rightarrow a\)</span>或<span
+class="math inline">\(x\rightarrow\infin\)</span>，函数<span
+class="math inline">\(f(x)\)</span>和<span
+class="math inline">\(F(x)\)</span>趋于0或无穷。</li>
+<li><span class="math inline">\(f&#39;(x)\)</span>和<span
+class="math inline">\(F&#39;(x)\)</span>在<span
+class="math inline">\(a\)</span>的去心邻域，或<span
+class="math inline">\(x\)</span>足够大时存在，且<span
+class="math inline">\(F&#39;(x)\)</span>不为0。</li>
+<li><span
+class="math inline">\(\lim\frac{f&#39;(x)}{F&#39;(x)}\)</span>存在或为无穷大。</li>
+</ol>
+<p>则<span class="math inline">\(\lim_{x\rightarrow
+a}\frac{f(x)}{F(x)}=\lim_{x\rightarrow
+a}\frac{f&#39;(x)}{F&#39;(x)}\)</span>，或<span
+class="math inline">\(\lim_{x\rightarrow
+\infin}\frac{f(x)}{F(x)}=\lim_{x\rightarrow
+\infin}\frac{f&#39;(x)}{F&#39;(x)}\)</span>。</p>
+<ul>
+<li>注意定义中的使用条件。</li>
+<li>证明：应用柯西中值定理。</li>
+</ul>
+<h4 id="泰勒公式">泰勒公式</h4>
+<p><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>处<span
+class="math inline">\(n\)</span>次可导，则<span
+class="math inline">\(x\rightarrow x_0\)</span>时，</p>
+<p><span class="math inline">\(f(x) =
+f(x_0)+\frac{f’(x_0)(x-x_0)}{1!}+……+\frac{f^{(n)}(x)(x -
+x_0)^n}{n!}+o((x - x_0)^n)\)</span></p>
+<p><span class="math inline">\(o((x -
+x_0)^n)\)</span>称为皮亚诺余项，该公式称为带皮亚诺余项的泰勒展开式。</p>
+<p><span
+class="math inline">\(x_0=0\)</span>时，又称为带皮亚诺余项的麦克劳林公式。</p>
+<ul>
+<li><p>推导：反复应用拉格朗日中值定理。</p></li>
+<li><p><span class="math inline">\(x\rightarrow0\)</span>时，有</p>
+<ul>
+<li><span class="math inline">\(\sin x=x - \frac{x^3}{3!} +
+\frac{x^5}{5!}+……+ (-1)^{(n-1)}·\frac{x^{(2n-1)}} {(2n-1)!} +
+o(x^{2n})\)</span></li>
+<li><span class="math inline">\(\cos
+x=1-\frac{x^2}{2!}+\frac{x^4}{4!}+...+(-1)^n·\frac{x^{2n}}{(2n)!}+o(x^{2n})\)</span></li>
+<li><span class="math inline">\(\tan x=x-\frac{x^3}3 +
+o(x^3)\)</span></li>
+<li><span
+class="math inline">\(e^x=1+x+\frac{x^2}{2!}+...+\frac{x^n}{n!}+o(x^n)\)</span></li>
+<li><span
+class="math inline">\(\ln(x+1)=x-\frac{x^2}{2}+\frac{x^3}3+...+(-1)^{(n-1)}·\frac{x^n}n
++ o(x^n)\)</span></li>
+<li><span class="math inline">\((1+x)^\alpha=1+\alpha
+x+\frac{\alpha(\alpha-1)}{2!}x^2+...+\frac{\alpha(\alpha-1)...(\alpha-n+1)}{n!}x^n+o(x^n)\)</span></li>
+<li><span class="math inline">\(\arctan
+x=x-\frac{x^3}3+\frac{x^5}5+...+(-1)^{(n+1)}·\frac{x^{2n+1}}{2n+1}+o(x^{2n+1})\)</span></li>
+</ul></li>
+<li><p><span
+class="math inline">\(f(x)=\Sigma_{k=0}^n\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+R_n(x)\)</span>，其中<span
+class="math inline">\(R_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}\)</span>称为拉格朗日余项。</p>
+<p><span class="math inline">\(\xi\)</span>在<span
+class="math inline">\(x\)</span>和<span
+class="math inline">\(x_0\)</span>之间。</p></li>
+</ul>
+<h4 id="七种未定式计算">七种未定式计算</h4>
+<p><span
+class="math inline">\(\frac00,\frac\infin\infin,0·\infin,\infin-\infin,\infin^0,0^0,1^\infin\)</span></p>
+<ol type="1">
+<li>化简：
+<ul>
+<li>提取因式</li>
+<li>等价无穷小代换</li>
+<li>恒等变形</li>
+</ul></li>
+<li>判断类型</li>
+<li>使用洛必达法则、夹逼准则、泰勒展开进行计算</li>
+</ol>
+<h2 id="导数的应用">4. 导数的应用</h2>
+<h3 id="凹凸性与拐点">4.1 凹凸性与拐点</h3>
+<ol type="1">
+<li><p>凹凸性：</p>
+<p>设函数<span class="math inline">\(f(x)\)</span>在区间<span
+class="math inline">\(I\)</span>上连续，如果对<span
+class="math inline">\(I\)</span>上任意两点<span
+class="math inline">\(x_1,x_2\)</span>，恒有<span
+class="math inline">\(f(\frac{x_1+x_2}2)\lt\frac{f(x_1)+f(x_2)}2\)</span>，则称函数<span
+class="math inline">\(f(x)\)</span>在区间<span
+class="math inline">\(I\)</span>上是凹的；若<span
+class="math inline">\(f(\frac{x_1+x_2}2)\gt\frac{f(x_1)+f(x_2)}2\)</span>，则称函数<span
+class="math inline">\(f(x)\)</span>在区间<span
+class="math inline">\(I\)</span>上是凸的。</p>
+<ul>
+<li>另一定义：对区间内的任意<span
+class="math inline">\(x,x_0\)</span>，均有<span
+class="math inline">\(f(x_0)+f&#39;(x_0)(x-x_0)\lt
+f(x)\)</span>，则为凹的。</li>
+<li>凹凸性的判断：二阶导数大于0则为凹函数，二阶导数小于0为凸函数。</li>
+</ul></li>
+<li><p>拐点：凹弧和凸弧的分界点。</p>
+<ul>
+<li>拐点的必要条件：二阶导数为0或不存在。
+<ul>
+<li>拐点的第一充分条件：<span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x=x_0\)</span>连续，且在<span
+class="math inline">\(x=x_0\)</span>的某去心邻域内二阶导数存在，且左右邻域中<span
+class="math inline">\(f&#39;&#39;(x)\)</span>的正负不同。</li>
+<li>拐点的第二充分条件：二阶导数为0，三阶导数不为0。</li>
+<li>拐点的第三充分条件：<span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x=x_0\)</span>处<span
+class="math inline">\(n\)</span>阶可导，且<span
+class="math inline">\(f^{(m)(x_0)}=0\)</span>，<span
+class="math inline">\(m=2,...,n-1\)</span>，<span
+class="math inline">\(f^{(n)}(x_0)\neq0\)</span>，<span
+class="math inline">\(n\)</span>为奇数。</li>
+</ul></li>
+</ul></li>
+<li><p>重要结论：</p>
+<ul>
+<li><p>曲线的可导点不可同时为极值点和拐点，不可导点可以同时为极值的和拐点。</p></li>
+<li><p><span class="math inline">\(f(x)=(x-a)^ng(x)\)</span>，且<span
+class="math inline">\(g(a)\neq0\)</span>，当<span
+class="math inline">\(n\)</span>为偶数，<span
+class="math inline">\(x=a\)</span>为极值点，当<span
+class="math inline">\(n\)</span>为奇数，<span
+class="math inline">\(x=a\)</span>为拐点。</p></li>
+<li><p><span
+class="math inline">\(f(x)=(x-a_1)^{n_1}...(x-a_k)^{n_k}\)</span>，其中<span
+class="math inline">\(n_i\)</span>为正整数，<span
+class="math inline">\(a_i\)</span>为实数且两两不等。</p>
+<p>记<span class="math inline">\(k_1\)</span>为<span
+class="math inline">\(n_i=1\)</span>的个数，<span
+class="math inline">\(k_2\)</span>为<span
+class="math inline">\(n_i\gt1\)</span>且为偶数的个数，<span
+class="math inline">\(k_3\)</span>为<span
+class="math inline">\(n_i\gt1\)</span>且为奇数的个数，</p>
+<p>则<span class="math inline">\(f(x)\)</span>的极值点有<span
+class="math inline">\(k_1+2k_2+k_3-1\)</span>个，拐点有<span
+class="math inline">\(k_1+2k_2+3k_3-2\)</span>个。</p></li>
+</ul></li>
+</ol>
+<h3 id="渐近线">4.2 渐近线</h3>
+<p>定义：</p>
+<ul>
+<li>铅直渐近线：<span class="math inline">\(\lim_{x\rightarrow
+x_0^+}f(x)=\infin\)</span>或<span
+class="math inline">\(\lim_{x\rightarrow
+x_0^-}f(x)=\infin\)</span>，则<span
+class="math inline">\(x=x_0\)</span>为一条铅直渐近线。</li>
+<li>水平渐近线：<span
+class="math inline">\(\lim_{x\rightarrow+\infin}f(x)=y_1\)</span>或<span
+class="math inline">\(\lim_{x\rightarrow
+-\infin}f(x)=y_1\)</span>，则<span
+class="math inline">\(y=y_1\)</span>为一条水平渐近线。</li>
+<li>斜渐近线：<span
+class="math inline">\(\lim_{x\rightarrow+\infin}\frac{f(x)}x=a_1,\lim_{x\rightarrow+\infin}(f(x)-a_1x)=b_1\)</span>，则<span
+class="math inline">\(y=a_1x+b_1\)</span>为一条斜渐近线。
+<ul>
+<li>或<span
+class="math inline">\(\lim_{x\rightarrow-\infin}\frac{f(x)}x=a_1,\lim_{x\rightarrow-\infin}(f(x)-a_1x)=b_1\)</span>，则<span
+class="math inline">\(y=a_1x+b_1\)</span>为一条斜渐近线。</li>
+</ul></li>
+</ul>
+<h3 id="曲率">4.3 曲率</h3>
+<p>设<span class="math inline">\(y(x)\)</span>二阶可导，则曲线<span
+class="math inline">\(y=y(x)\)</span>在点<span
+class="math inline">\((x,y(x))\)</span>处的曲率公式为<span
+class="math inline">\(k=\frac{|y|&#39;&#39;}{(1+y&#39;^2)^{\frac32}}\)</span>，曲率半径为<span
+class="math inline">\(R=\frac1k\)</span>。</p>
+<h3 id="物理应用">4.4 物理应用</h3>
+<ol type="1">
+<li>质点运动的位移<span class="math inline">\(s\)</span>关于时间<span
+class="math inline">\(t\)</span>的函数为<span
+class="math inline">\(s=s(t)\)</span>，称它为质点的运动方程。
+<ul>
+<li>速度为<span class="math inline">\(v(t)=s&#39;(t)\)</span></li>
+<li>加速度为<span
+class="math inline">\(a(t)=s&#39;&#39;(t)\)</span>。</li>
+</ul></li>
+<li>相关变化率：若函数<span
+class="math inline">\(y=f(x)\)</span>由参数方程<span
+class="math inline">\(\begin{cases}x=x(t)\\y=y(t)\end{cases}\)</span>确定且可导，则<span
+class="math inline">\(y&#39;,x’\)</span>由<span
+class="math inline">\(f&#39;\)</span>联系起来，称这种相互关联的变化率为相关变化率。</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BE%AE%E7%A7%AF%E5%88%86/" class="category-chain-item">微积分</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/01/%E5%BE%AE%E7%A7%AF%E5%88%86/%E4%B8%80%E5%85%83%E5%87%BD%E6%95%B0%E7%A7%AF%E5%88%86%E5%AD%A6/" title="一元函数积分学">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">一元函数积分学</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/01/%E5%BE%AE%E7%A7%AF%E5%88%86/%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90%E4%B8%8E%E8%BF%9E%E7%BB%AD/" title="函数极限与连续">
+                        <span class="hidden-mobile">函数极限与连续</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>长风破浪会有时，直挂云帆济沧海</p> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

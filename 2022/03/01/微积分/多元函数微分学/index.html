@@ -1,0 +1,1398 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/yuanshen.jpeg">
+  <link rel="icon" href="/image/icon/yuanshen.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#5a9367">
+  <meta name="author" content="Geternitier">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="踏遍青山人未老，风景这边独好。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多元函数微分学">
+<meta property="og:url" content="http://example.com/2022/03/01/%E5%BE%AE%E7%A7%AF%E5%88%86/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%AD%A6/index.html">
+<meta property="og:site_name" content="Geternitier的博客">
+<meta property="og:description" content="踏遍青山人未老，风景这边独好。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-01T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-11T06:27:58.872Z">
+<meta property="article:author" content="Geternitier">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>多元函数微分学 - Geternitier的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Geternitier的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Geternitier的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/background/TheSpirits.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="多元函数微分学"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-01 12:00" pubdate>
+          2022年3月1日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          13k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">多元函数微分学</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>踏遍青山人未老，风景这边独好。</p>
+<span id="more"></span>
+<h1 id="四-多元函数微分学">四 多元函数微分学</h1>
+<h2 id="多元函数极限与连续">1. 多元函数极限与连续</h2>
+<h3 id="点集与多元函数">1.1 点集与多元函数</h3>
+<ol type="1">
+<li><p>点集基本知识：<span class="math inline">\(N\)</span>维空间<span
+class="math inline">\(R_n\)</span></p>
+<ul>
+<li>距离：<span
+class="math inline">\(P_1(a_1,……,a_n),P_2(b_1,……,b_n)\)</span>之间的距离为<span
+class="math inline">\(\rho(P_1,P_2)=\Sigma_{i=1}^n\sqrt{(a_i-b_i)^2}\)</span></li>
+<li>邻域：设<span class="math inline">\(P_0\in R_n,\delta\gt0\)</span>，
+<ul>
+<li><span class="math inline">\(N_\delta(P_0)=U(P_0,\delta)=\{P:P\in
+R_n,\rho(P,P_0)&lt;\delta\}\)</span>为点<span
+class="math inline">\(P_0\)</span>的<span
+class="math inline">\(\delta\)</span>邻域，简称邻域。</li>
+<li><span class="math inline">\(\dot N_\delta(P_0)=\dot
+U(P_0,\delta)=\{P:P\in R_n,0\lt\rho(P,P_0)\lt\delta\}\)</span>为点<span
+class="math inline">\(P_0\)</span>的去心<span
+class="math inline">\(\delta\)</span>邻域，简称去心邻域。</li>
+</ul></li>
+</ul>
+<p>设<span class="math inline">\(G\subseteq R_n\)</span>，</p>
+<p>内点、外点、边界点、聚点：</p>
+<ul>
+<li><span class="math inline">\(P_0\in G\)</span>，且存在<span
+class="math inline">\(\delta\gt0\)</span>，使得<span
+class="math inline">\(N_\delta(P_0)⊂G\)</span>，<span
+class="math inline">\(P_0\)</span>是<span
+class="math inline">\(G\)</span>的内点。
+<ul>
+<li><span class="math inline">\(G\)</span>的内点的集合称为<span
+class="math inline">\(G\)</span>的内部。</li>
+</ul></li>
+<li><span class="math inline">\(P_0\notin G\)</span>，且存在<span
+class="math inline">\(\delta\gt0\)</span>，使得<span
+class="math inline">\(N_\delta(P_0)\cap G=\varnothing\)</span>，<span
+class="math inline">\(P_0\)</span>是<span
+class="math inline">\(G\)</span>的外点。
+<ul>
+<li><span class="math inline">\(G\)</span>的内点的集合称为<span
+class="math inline">\(G\)</span>的外部。</li>
+</ul></li>
+<li><span class="math inline">\(P_0\in R_n\)</span>，且对任意的<span
+class="math inline">\(\delta\gt0\)</span>，<span
+class="math inline">\(N_\delta(P_0)\)</span>中既有点属于<span
+class="math inline">\(G\)</span>，又有点不属于<span
+class="math inline">\(G\)</span>，<span
+class="math inline">\(P_0\)</span>是<span
+class="math inline">\(G\)</span>的边界点。
+<ul>
+<li><span class="math inline">\(G\)</span>的全部边界点的集合称为<span
+class="math inline">\(G\)</span>的边界，记为<span
+class="math inline">\(\partial A\)</span>。</li>
+</ul></li>
+<li><span class="math inline">\(P_0\in R_n\)</span>，且对任意的<span
+class="math inline">\(\delta\gt0\)</span>，<span
+class="math inline">\(\dot N_\delta(P_0)\)</span>中总有点属于<span
+class="math inline">\(G\)</span>，则称<span
+class="math inline">\(P_0\)</span>为<span
+class="math inline">\(G\)</span>的聚点。</li>
+</ul>
+<p>开集、闭集、连通集：</p>
+<ul>
+<li>若<span class="math inline">\(G\)</span>的所有点都是<span
+class="math inline">\(G\)</span>的内点，则称<span
+class="math inline">\(G\)</span>为开集。</li>
+<li>若<span class="math inline">\(G\)</span>关于全集<span
+class="math inline">\(R_n\)</span>的补集是开集，则称<span
+class="math inline">\(G\)</span>为闭集。</li>
+<li>如果点集<span
+class="math inline">\(G\)</span>内任意两点都可用曲线连接起来，且该曲线上的点都属于<span
+class="math inline">\(G\)</span>，则称<span
+class="math inline">\(G\)</span>为连通集。</li>
+</ul>
+<p>开区域、闭区域：</p>
+<ul>
+<li>若<span class="math inline">\(G\)</span>是开集且是连通集，则称<span
+class="math inline">\(G\)</span>为开区域。</li>
+<li>若存在非空开区域<span class="math inline">\(A\)</span>，使得<span
+class="math inline">\(G = A\cap\partial A\)</span>，则称<span
+class="math inline">\(G\)</span>为闭区域。</li>
+<li>开区域与闭区域统称区域。</li>
+</ul>
+<p>规定：空集既是开集又是闭集，全空间<span
+class="math inline">\(R_n\)</span>既是开集又是闭集。除此之外，<span
+class="math inline">\(R_n\)</span>的任何非空真子集都不可能既是开集又是闭集。</p>
+<p>有界集：设<span class="math inline">\(G\subseteq R_n,P_0\in
+R_n\)</span>，若存在<span class="math inline">\(k\in
+R\)</span>，使得<span class="math inline">\(G\sub
+N_k(P_0)\)</span>，则称<span
+class="math inline">\(G\)</span>为有界集。此时称<span
+class="math inline">\(d(G) = \sup{\rho(P_1,P_2)|\forall P_1,P_2\in
+G}\)</span>为<span class="math inline">\(G\)</span>的直径，否则，称<span
+class="math inline">\(G\)</span>为无界集。</p></li>
+<li><p>多元函数：设<span class="math inline">\(D\in
+R_n\)</span>，称映射<span class="math inline">\(f：D\rightarrow
+R\)</span>为定义在<span class="math inline">\(D\)</span>上的<span
+class="math inline">\(n\)</span>元函数。</p>
+<ul>
+<li><span class="math inline">\(n\)</span>元函数也常常记为<span
+class="math inline">\(y=f(P),P\in D\)</span>，或<span
+class="math inline">\(y=f(x_1,……,x_n),(x_1,……,x_n)\in D\)</span>。</li>
+<li>其中变量<span
+class="math inline">\(x_1,x_2,……,x_n\)</span>称为自变量，<span
+class="math inline">\(y\)</span>称为因变量，<span
+class="math inline">\(D\)</span>称为函数<span
+class="math inline">\(f\)</span>的定义域，记为<span
+class="math inline">\(D(f)\)</span>。</li>
+<li><span class="math inline">\(f(D) = {f(P)|P\in
+D(f)}\)</span>称为函数<span
+class="math inline">\(f\)</span>的值域。</li>
+</ul>
+<p>对于由解析表达式给出的多元函数，常常并不明确表明定义域，此时多元函数的定义域理解为其自然定义域，即使这个解析表达式有意义时自变量的范围。</p></li>
+</ol>
+<h3 id="多元函数极限">1.2 多元函数极限</h3>
+<ol type="1">
+<li><p>二重极限：设<span class="math inline">\(D\in
+R_2\)</span>，函数<span class="math inline">\(f(x,y)\)</span>在<span
+class="math inline">\(D\)</span>上有定义，<span
+class="math inline">\(P_0(x_0,y_0)\)</span>是<span
+class="math inline">\(D\)</span>的聚点。</p>
+<p>若存在常数<span
+class="math inline">\(A\)</span>，使得对于任意给定的正数<span
+class="math inline">\(\varepsilon\)</span>，总存在正数<span
+class="math inline">\(\delta\)</span>，当<span
+class="math inline">\(P(x,y)∈D\)</span>且<span
+class="math inline">\(0&lt;\rho(P,P_0)&lt;\delta\)</span>时，恒有<span
+class="math inline">\(|f(P) - A| = |f(x,y) -
+A|&lt;\varepsilon\)</span>，则称函数<span
+class="math inline">\(f(x,y)\)</span>在<span
+class="math inline">\(P\rightarrow P_0\)</span>时以<span
+class="math inline">\(A\)</span>为极限。</p>
+<ul>
+<li>可推广一元函数极限的性质：
+<ul>
+<li>四则运算</li>
+<li>唯一性</li>
+<li>局部保号性</li>
+<li>夹逼准则</li>
+</ul></li>
+<li>二重极限的复杂性在于点<span
+class="math inline">\(P\)</span>在平面上可以多种方式趋近<span
+class="math inline">\(P_0\)</span>。若<span
+class="math inline">\(P\)</span>以不同方式趋近于<span
+class="math inline">\(P_0\)</span>，<span
+class="math inline">\(f(x,y)\)</span>趋向于不同的值，则认为<span
+class="math inline">\(f(x,y)\)</span>在<span
+class="math inline">\(P_0\)</span>处的极限不存在。</li>
+</ul></li>
+<li><p>累次极限：对于二元函数<span
+class="math inline">\(f(x,y)\)</span>。</p>
+<p>先固定变量<span class="math inline">\(y\)</span>，此时<span
+class="math inline">\(f(x,y)\)</span>只是<span
+class="math inline">\(x\)</span>的一元函数，如果对于一切固定的<span
+class="math inline">\(y\)</span>，极限<span
+class="math inline">\(\lim_{x\rightarrow
+x_0}f(x,y)\)</span>存在，则这个极限是与<span
+class="math inline">\(y\)</span>有关的函数，记为<span
+class="math inline">\(\varphi(y)\)</span>。然后再让<span
+class="math inline">\(y\)</span>趋于<span
+class="math inline">\(y_0\)</span>，若<span
+class="math inline">\(\lim_{y\rightarrow
+y_0}\varphi(y)\)</span>也存在，设为<span
+class="math inline">\(A\)</span>，则称<span
+class="math inline">\(A\)</span>为函数<span
+class="math inline">\(f(x,y)\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>处先对<span
+class="math inline">\(x\)</span>后对<span
+class="math inline">\(y\)</span>的累次极限，记为<span
+class="math inline">\(\lim_{y\rightarrow y_0}\lim_{x\rightarrow
+x_0}f(x,y)=A\)</span>。</p>
+<ul>
+<li>二元函数的二重极限与累次极限是两个不同的概念。二重极限存在不能得出累次极限存在，累次极限存在也不能得出二重极限存在。</li>
+<li>若二重极限和累次极限都存在，则两者必相等。</li>
+</ul></li>
+</ol>
+<h3 id="多元函数连续性">1.3 多元函数连续性</h3>
+<ol type="1">
+<li><p>设<span class="math inline">\(G\subseteq R_n\)</span>，函数<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\(G\)</span>上有定义，<span
+class="math inline">\(P_0\)</span>是<span
+class="math inline">\(G\)</span>的聚点且<span
+class="math inline">\(P_0\in G\)</span>。若<span
+class="math inline">\(\lim_{P\rightarrow
+P_0}f(P)=f(P_0)\)</span>，则称函数<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\(P_0\)</span>处连续。</p>
+<ul>
+<li>如果<span
+class="math inline">\(G\)</span>内的每一点都是聚点，且<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\(G\)</span>的每一点都连续，则称<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\(G\)</span>上连续。</li>
+<li>如果函数<span class="math inline">\(f\)</span>在<span
+class="math inline">\(P_0\)</span>处不连续，则称函数<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\(P_0\)</span>处间断，并称<span
+class="math inline">\(P_0\)</span>是函数<span
+class="math inline">\(f\)</span>的间断点。</li>
+</ul></li>
+<li><p>若<span class="math inline">\(f\)</span>为二元函数<span
+class="math inline">\(z=f(x,y)\)</span>，记<span
+class="math inline">\(\Delta x=x-x_0,\Delta y=y-y_0,\Delta
+z=f(x,y)-f(x_0,y_0)\)</span>。称<span class="math inline">\(\Delta
+z\)</span>为函数<span class="math inline">\(z=f(x,y)\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>处的全增量。</p>
+<ul>
+<li><span class="math inline">\(f(x,y)\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>处连续等价于<span
+class="math inline">\(\Delta x\rightarrow0\)</span>，<span
+class="math inline">\(\Delta y\rightarrow 0\)</span>时<span
+class="math inline">\(\Delta z\)</span>的极限为0。</li>
+</ul></li>
+<li><p>有限个多元连续函数的和、差、积、商(分母不为0)仍是连续函数。</p>
+<p>多元连续函数的复合函数仍是连续函数，多元连续函数在其定义域上的每一点都连续。</p></li>
+<li><p>有界闭区域上多元连续函数的性质：设<span
+class="math inline">\(G\in R_n\)</span>为有界闭区域，函数<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\(G\)</span>上连续</p>
+<ul>
+<li>零点定理：若<span class="math inline">\(P_1,P_2\in
+G\)</span>，且<span
+class="math inline">\(f(P_1)f(P_2)&lt;0\)</span>，则存在<span
+class="math inline">\(P_0\in G,f(P_0)=0\)</span>。</li>
+<li>介值定理：若<span class="math inline">\(P_1,P_2\in G\)</span>，<span
+class="math inline">\(f(P_1) \neq f(P_2)\)</span>，设<span
+class="math inline">\(\mu\)</span>为满足<span
+class="math inline">\(f(P_1)
+&lt;\mu&lt;f(P_2)\)</span>的任意实数，则存在<span
+class="math inline">\(P_0\in G\)</span>，使得<span
+class="math inline">\(f(P_0)=𝜇\)</span>。</li>
+<li>有界性定理：函数<span class="math inline">\(f\)</span>在<span
+class="math inline">\(G\)</span>上有界。</li>
+<li>最值定理：函数<span class="math inline">\(f\)</span>在<span
+class="math inline">\(G\)</span>上有最值。</li>
+</ul></li>
+</ol>
+<h2 id="偏导数与全微分">2. 偏导数与全微分</h2>
+<h3 id="偏导数">2.1 偏导数</h3>
+<ol type="1">
+<li><p>偏导数：设<span class="math inline">\(P(x_0,y_0)\in
+R_2\)</span>，函数<span class="math inline">\(z=f(x,y)\)</span>在<span
+class="math inline">\(P_0\)</span>的<span
+class="math inline">\(\delta\)</span>邻域内有定义，</p>
+<p>若<span class="math inline">\(\lim_{\Delta x\rightarrow0}
+\frac{f(x_0+\Delta x,y_0) - f(x_0,y_0)}{\Delta
+x}\)</span>存在，称其为<span
+class="math inline">\(z=f(x,y)\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>处对<span
+class="math inline">\(x\)</span>的偏导数<span
+class="math inline">\(f&#39;_x(x_0,y_0)\)</span>。</p>
+<p>类似可得函数<span class="math inline">\(z=f(x,y)\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>处对<span
+class="math inline">\(y\)</span>的偏导数<span
+class="math inline">\(f&#39;_y(x_0,y_0)\)</span>。</p>
+<ul>
+<li>偏导数也可记为<span class="math inline">\(\frac{\partial z}{\partial
+x}\)</span>等。</li>
+</ul></li>
+<li><p>若二元函数<span class="math inline">\(f(x,y)\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>处对<span
+class="math inline">\(x\)</span>及对<span
+class="math inline">\(y\)</span>的两个偏导数都存在，则称<span
+class="math inline">\(f\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>处可偏导。</p>
+<ul>
+<li>若二元函数<span class="math inline">\(f(x,y)\)</span>在开区域<span
+class="math inline">\(G\)</span>中的每一点均可偏导，则称<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\(G\)</span>上可偏导。</li>
+</ul></li>
+<li><p>可偏导和连续的关系：设函数<span
+class="math inline">\(z=f(x,y)\)</span>在<span
+class="math inline">\(P_0(x_0,y_0)\)</span>的某邻域<span
+class="math inline">\(N_\delta(P_0)\)</span>内可偏导，且<span
+class="math inline">\(f’_x(x,y),f’_y(x,y)\)</span>在<span
+class="math inline">\(N_\delta(P_0)\)</span>内有界，则函数<span
+class="math inline">\(f(x,y)\)</span>在<span
+class="math inline">\(P_0\)</span>处连续。</p></li>
+<li><p>高阶偏导数：函数<span
+class="math inline">\(z=f(x,y)\)</span>的偏导数<span
+class="math inline">\(f’_x(x,y),f’_y(x,y)\)</span>如果可以继续对<span
+class="math inline">\(x\)</span>或<span
+class="math inline">\(y\)</span>求偏导数，则可得到四个新的偏导数<span
+class="math inline">\(f&#39;&#39;_{xx},f&#39;&#39;_{xy},f&#39;&#39;_{yx},f&#39;&#39;_{yy}\)</span>，称为二阶偏导数。</p>
+<ul>
+<li>其中<span
+class="math inline">\(f’&#39;_{xy},f’’_{yx}\)</span>称为二阶混合偏导数，二阶以上的偏导数统称为高阶偏导数。</li>
+<li>若二阶混合偏导数<span
+class="math inline">\(f’’_xy(x,y),f’’_yx(x,y)\)</span>在<span
+class="math inline">\((x,y)\)</span>处都连续，则两者相等。
+<ul>
+<li>二阶混合偏导数在连续的条件下与求导的次序无关。</li>
+</ul></li>
+<li>二阶偏导数也可记为<span class="math inline">\(\frac{\partial^2
+z}{\partial x^2},\frac{\partial^2 z}{\partial x\partial
+y}\)</span>等。</li>
+</ul></li>
+</ol>
+<h3 id="全微分">2.2 全微分</h3>
+<ol type="1">
+<li><p>全微分：设函数<span
+class="math inline">\(z=f(x,y)\)</span>在点<span
+class="math inline">\(P(x,y)\)</span>的某邻域内有定义，若函数在点<span
+class="math inline">\(P\)</span>的全增量可表示为<span
+class="math inline">\(\Delta z=A\Delta x+B\Delta
+y+o(\rho)\)</span>，其中<span
+class="math inline">\(A,B\)</span>仅与点<span
+class="math inline">\((x,y)\)</span>有关而与增量<span
+class="math inline">\(\Delta x,\Delta y\)</span>无关。</p>
+<p><span class="math inline">\(\rho=\sqrt{(\Delta x)^2+(\Delta
+y)^2}\)</span>，<span
+class="math inline">\(\rho\rightarrow0_+\)</span>，则称函数<span
+class="math inline">\(f(x,y)\)</span>在点<span
+class="math inline">\((x,y)\)</span>处可微，其线性部分<span
+class="math inline">\(A\Delta x+B\Delta y\)</span>称为函数<span
+class="math inline">\(f(x,y)\)</span>在<span
+class="math inline">\((x,y)\)</span>处的全微分，记为<span
+class="math inline">\(dz=A\Delta x+B\Delta y\)</span>。</p></li>
+<li><p>可微、连续、可偏导之间关系：</p>
+<p>函数<span class="math inline">\(z=f(x,y)\)</span>在<span
+class="math inline">\((x,y)\)</span>处可微，则<span
+class="math inline">\(f(x,y)\)</span>在<span
+class="math inline">\((x,y)\)</span>处连续且可偏导，且<span
+class="math inline">\(dz=\frac{∂z}{∂x}dx+\frac{∂z}{∂y}dy\)</span>。</p>
+<ul>
+<li><p>连续和可偏导是可微的必要条件，但不是充分条件。</p></li>
+<li><p>函数可微的一个充分条件：</p>
+<p><span class="math inline">\(f(x,y)\)</span>在<span
+class="math inline">\((x,y)\)</span>的某邻域可偏导，且<span
+class="math inline">\(f’_x(x,y),f’_y(x,y)\)</span>在<span
+class="math inline">\((x,y)\)</span>连续，则<span
+class="math inline">\(f(x,y)\)</span>在<span
+class="math inline">\((x,y)\)</span>可微。</p></li>
+</ul></li>
+<li><p>连续可微：</p>
+<p><span class="math inline">\(f(x,y)\)</span>在<span
+class="math inline">\((x,y)\)</span>的某邻域可偏导，且<span
+class="math inline">\(f’_x(x,y),f’_y(x,y)\)</span>在<span
+class="math inline">\((x,y)\)</span>连续，则称<span
+class="math inline">\(f(x,y)\)</span>在<span
+class="math inline">\((x,y)\)</span>连续可微。</p>
+<ul>
+<li>若<span class="math inline">\(f(x,y)\)</span>在开区域<span
+class="math inline">\(G\)</span>上每一点都连续可微，则称函数<span
+class="math inline">\(f(x,y)\)</span>在<span
+class="math inline">\(G\)</span>上连续可微。</li>
+</ul></li>
+<li><p>高阶微分：</p>
+<p>函数<span
+class="math inline">\(z=f(x,y)\)</span>的全微分一般仍是<span
+class="math inline">\(x,y\)</span>的二元函数，若二元函数<span
+class="math inline">\(dz\)</span>可微，称<span
+class="math inline">\(z=f(x,y)\)</span>二阶可微，称<span
+class="math inline">\(dz\)</span>的全微分是函数<span
+class="math inline">\(z=f(x,y)\)</span>的二阶微分，记为<span
+class="math inline">\(d^2 z\)</span>。</p>
+<p>若<span class="math inline">\(d^{n-1} z\)</span>可微，则称函数<span
+class="math inline">\(z=f(x,y)\)</span>为n阶可微，称<span
+class="math inline">\(d^{n-1}\)</span>的全微分为函数的<span
+class="math inline">\(n\)</span>阶微分，记为<span
+class="math inline">\(d^n z\)</span>。</p></li>
+</ol>
+<h3 id="微分法则">2.3 微分法则</h3>
+<ol type="1">
+<li><p>四则运算：</p>
+<ul>
+<li><span class="math inline">\(d(u\pm v)=du\pm dv\)</span></li>
+<li><span class="math inline">\(d(uv)=du·dv\)</span></li>
+<li><span class="math inline">\(d(\frac uv)=\frac{du}{dv}\)</span></li>
+</ul></li>
+<li><p>复合函数：链式法则</p>
+<p>设<span class="math inline">\(u=f(x,y),v=g(x,y)\)</span>在点<span
+class="math inline">\((x,y)\)</span>处可偏导，<span
+class="math inline">\(z=h(u,v)\)</span>在对应的点<span
+class="math inline">\((u,v)\)</span>处可微，则：</p>
+<p><span class="math inline">\(z=h(f(x,y),g(x,y))\)</span>在点<span
+class="math inline">\((x,y)\)</span>处可偏导，且<span
+class="math inline">\(\frac{\partial z}{\partial x}=\frac{\partial
+z}{\partial u}\frac{\partial u}{\partial x}+\frac{\partial z}{\partial
+v}\frac{\partial v}{\partial x},\frac{\partial z}{\partial
+y}=\frac{\partial z}{\partial u}\frac{\partial u}{\partial
+y}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial
+y}\)</span>。</p>
+<ul>
+<li><p>一阶全微分的形式不变性：</p>
+<p>设函数<span class="math inline">\(u=f(x,y),v=g(x,y)\)</span>在点<span
+class="math inline">\((x,y)\)</span>处可微，函数<span
+class="math inline">\(z=h(u,v)\)</span>在对应的点<span
+class="math inline">\((u,v)\)</span>处可微，则复合函数<span
+class="math inline">\(z=f(u,v)\)</span>在点<span
+class="math inline">\((x,y)\)</span>处的全微分仍可表示为<span
+class="math inline">\(dz=\frac{\partial z}{\partial u}du+\frac{\partial
+z}{\partial v}dv\)</span>。</p>
+<p>无论<span
+class="math inline">\(u,v\)</span>是自变量还是中间变量，函数<span
+class="math inline">\(z=f(u,v)\)</span>的一阶全微分的形式是一样的。</p></li>
+</ul></li>
+<li><p>隐函数：</p>
+<ul>
+<li><p>方程确定隐函数：</p>
+<p>给定方程<span
+class="math inline">\(F(x_1,x_2,……,x_n,y)=0\)</span>，其中<span
+class="math inline">\((x_1,……,x_n)\in D\subseteq R,y\in I\subseteq
+R\)</span>。</p>
+<p>若对于<span class="math inline">\(D\)</span>中的每一点<span
+class="math inline">\(X\)</span>，都有唯一确定的<span
+class="math inline">\(y\)</span>值与之对应，使得方程<span
+class="math inline">\(F(x_1,x_2,……,x_n,y)=0\)</span>恒成立，则称方程确定了一个定义在<span
+class="math inline">\(D\)</span>上的隐函数。</p></li>
+<li><p>方程组确定隐函数组：</p>
+<p><span
+class="math inline">\(\begin{cases}F_1(x_1,...,x_n,y_1,...,y_m)=0\\...\\F_m(x_1,...,x_n,y_1,...,y_m)=0
+\end{cases},(x_1,……,x_n)\in D\subseteq R_n,(y_1,……,y_n)\in G\subseteq
+R\)</span>。</p>
+<p>若对于<span class="math inline">\(D\)</span>中的每一点<span
+class="math inline">\(X\)</span>，都有唯一确定的<span
+class="math inline">\(Y(y_1,……,y_n)\)</span>与之对应，满足上述方程组，则称方程组确定了一个定义在<span
+class="math inline">\(D\)</span>上的隐函数组。</p></li>
+</ul>
+<p>隐函数存在定理</p>
+<ul>
+<li><p><span class="math inline">\(F(x,y)=0\)</span>确定隐函数<span
+class="math inline">\(y=f(x)\)</span>，<span
+class="math inline">\(F&#39;_y(x,y)\neq0\)</span>，有<span
+class="math inline">\(\frac{dy}{dx}=-\frac{F&#39;_x(x,y)}{F&#39;_y(x,y)}\)</span></p></li>
+<li><p><span class="math inline">\(F(x,y,z)=0\)</span>确定隐函数<span
+class="math inline">\(z=f(x,y)\)</span>，<span
+class="math inline">\(F&#39;_z(x,y,z)\neq0\)</span>，有<span
+class="math inline">\(\frac{\partial z}{\partial
+x}=-\frac{F&#39;_x(x,y,z)}{F&#39;_z(x,y,z)},\frac{\partial z}{\partial
+y}=-\frac{F&#39;_y(x,y,z)}{F&#39;_z(x,y,z)}\)</span></p></li>
+<li><p>设<span class="math inline">\(P_0=(x_0,y_0,u_0,v_0)\in
+R^4,G=N_\delta(P_0)\)</span>，假设</p>
+<ul>
+<li>函数<span class="math inline">\(F,H\)</span>在<span
+class="math inline">\(G\)</span>上连续可微</li>
+<li><span
+class="math inline">\(F(P_0)=F(x_0,y_0,u_0,v_0)=0,H(P_0)=H(x_0,y_0,u_0,v_0)=0\)</span></li>
+<li>雅可比行列式<span
+class="math inline">\(\frac{D(F,H)}{D(u,v)}|_{P_0}=\left|\begin{matrix}F&#39;_u
+&amp; F&#39;_v\\H&#39;_u&amp;H&#39;_v \end{matrix}\right|\)</span></li>
+</ul>
+<p>则存在<span
+class="math inline">\(U={(x,y)||x-x_0|&lt;h,|y-y_0|&lt;k}\)</span>和唯一一组函数<span
+class="math inline">\(u=u(x,y),v=v(x,y)\)</span>，使得</p>
+<ul>
+<li><p>对任意<span class="math inline">\((x,y)\in
+U,F(x,y,u,v)=0,H(x,y,u,v)=0\)</span></p></li>
+<li><p><span
+class="math inline">\(u(x_0,y_0)=u_0,v(x_0,y_0)=v_0\)</span></p></li>
+<li><p>函数<span
+class="math inline">\(u(x,y),v(x,y)\)</span>连续可微，且当<span
+class="math inline">\((x,y)\in U\)</span>时有</p>
+<p><span class="math inline">\(\frac{\partial u}{\partial
+x}=-\frac{\frac{D(F,H)}{D(x,v)}}{\frac{D(F,H)}{D(u,v)}},\frac{\partial
+u}{\partial
+y}=-\frac{\frac{D(F,H)}{D(y,v)}}{\frac{D(F,H)}{D(u,v)}},\frac{\partial
+v}{\partial
+x}=-\frac{\frac{D(F,H)}{D(u,x)}}{\frac{D(F,H)}{D(u,v)}},\frac{\partial
+v}{\partial
+y}=-\frac{\frac{D(F,H)}{D(u,y)}}{\frac{D(F,H)}{D(u,v)}}\)</span></p></li>
+</ul></li>
+</ul></li>
+</ol>
+<h3 id="极值与最值">2.4 极值与最值</h3>
+<ol type="1">
+<li><p>二元函数的极值</p>
+<p>设函数在区域<span class="math inline">\(G\)</span>中有定义，<span
+class="math inline">\(P_0\)</span>是<span
+class="math inline">\(G\)</span>的内点。若存在<span
+class="math inline">\(P_0\)</span>的<span
+class="math inline">\(\delta\)</span>去心邻域<span
+class="math inline">\(D\subseteq G\)</span>，使得当<span
+class="math inline">\(P\in D\)</span>时，恒有<span
+class="math inline">\(f(P)\le f(P_0)\)</span> 或<span
+class="math inline">\(f(P)\ge f(P_0)\)</span>，则称<span
+class="math inline">\(f(P_0)\)</span>是函数<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\(G\)</span>上的极大值或极小值，统称为极值。</p>
+<ul>
+<li>称<span class="math inline">\(P_0\)</span>为函数<span
+class="math inline">\(f\)</span>的极大/小值点，统称极值点。</li>
+<li>当上述<span class="math inline">\(\le/\ge\)</span>改为<span
+class="math inline">\(&lt;/&gt;\)</span>，称<span
+class="math inline">\(f(P_0)\)</span>为函数<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\(G\)</span>上的严格极大值/极小值。</li>
+</ul></li>
+<li><p>极值的必要条件：<span class="math inline">\(f\)</span>在<span
+class="math inline">\((x_0,y_0)\)</span>可偏导，<span
+class="math inline">\(f(x_0,y_0)\)</span>是函数<span
+class="math inline">\(f\)</span>的极值，则<span
+class="math inline">\(f’_x(x_0,y_0)=f’_y(x_0,y_0)=0\)</span>。</p>
+<ul>
+<li>驻点：<span class="math inline">\(f(x,y)\)</span>在<span
+class="math inline">\((x_0,y_0)\)</span>可偏导，<span
+class="math inline">\(f’_x(x_0,y_0)=f’_y(x_0,y_0)=0\)</span>，则称<span
+class="math inline">\((x_0,y_0)\)</span>是函数<span
+class="math inline">\(f\)</span>的驻点。</li>
+<li>可微函数只能在驻点取极值，函数在不可偏导点也可取极值，这两类点统称为函数的可疑极值点。</li>
+</ul></li>
+<li><p>极值判别法：</p>
+<ul>
+<li><p>设<span
+class="math inline">\(P_0(x_0,y_0)∈R^2,G=N_\delta(P_0)\)</span>，<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\(G\)</span>内连续，在<span
+class="math inline">\(P_0\)</span>的<span
+class="math inline">\(\delta\)</span>去心邻域<span
+class="math inline">\(U\)</span>内连续可微，</p>
+<p>记<span
+class="math inline">\(\mu(x,y)=f&#39;_x(x,y)(x-x_0)+f&#39;_y(x,y)(y-y_0)\)</span>。</p>
+<ul>
+<li><span class="math inline">\(\forall(x,y)\in
+U,\mu(x,y)\gt0\)</span>，则<span
+class="math inline">\(f(x_0,y_0)\)</span>为极小值。</li>
+<li><span class="math inline">\(\forall(x,y)\in
+U,\mu(x,y)\lt0\)</span>，则<span
+class="math inline">\(f(x_0,y_0)\)</span>为极大值。</li>
+</ul></li>
+<li><p>设<span class="math inline">\(P_0(x_0,y_0)\in
+R^2,G=N_\delta(P_0)\)</span>，<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\(G\)</span>内二阶连续可微，且<span
+class="math inline">\(f’_x(x_0,y_0)=f’_y(x_0,y_0)=0\)</span>，</p>
+<p>令<span
+class="math inline">\(A=f&#39;&#39;_{xx}(x_0,y_0),B=f&#39;&#39;_{xy}(x_0,y_0),C=f&#39;&#39;_{yy}(x_0,y_0)\)</span></p>
+<ul>
+<li>若<span class="math inline">\(B^2-AC\lt0\)</span>，
+<ul>
+<li><span class="math inline">\(A\lt0\)</span>，<span
+class="math inline">\(f(x_0,y_0)\)</span>为极大值。</li>
+<li><span class="math inline">\(A\gt0\)</span>，<span
+class="math inline">\(f(x_0,y_0)\)</span>为极小值。</li>
+</ul></li>
+<li>若<span class="math inline">\(B^2-AC\gt0\)</span>，<span
+class="math inline">\(f(x_0,y_0)\)</span>不是极值。</li>
+<li>若<span class="math inline">\(B^2-AC=0\)</span>，<span
+class="math inline">\(f(x_0,y_0)\)</span>不一定是极值。</li>
+</ul></li>
+</ul></li>
+<li><p>二元函数的最值：</p>
+<p>设函数在区域<span class="math inline">\(G\)</span>中有定义，<span
+class="math inline">\(P_0\)</span>是<span
+class="math inline">\(G\)</span>的内点。若当<span
+class="math inline">\(P\in G\)</span>时，恒有<span
+class="math inline">\(f(P)\le f(P_0)\)</span> 或<span
+class="math inline">\(f(P)\ge f(P_0)\)</span>，则称<span
+class="math inline">\(f(P_0)\)</span>是函数<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\(G\)</span>上的最大值或最小值，统称为最值。</p>
+<ul>
+<li>称<span class="math inline">\(P_0\)</span>为函数<span
+class="math inline">\(f\)</span>的最大/小值点，统称最值点。</li>
+<li>函数的最值点只可能在边界或驻点处。</li>
+</ul></li>
+<li><p>条件最值：拉格朗日乘数法</p>
+<p>设函数<span
+class="math inline">\(f(x,y,z)\)</span>连续可微，函数<span
+class="math inline">\(\varphi(x,y,z)\)</span>连续可微，且<span
+class="math inline">\(\varphi&#39;_z\neq0\)</span>，函数<span
+class="math inline">\(f(x,y,z)\)</span>满足约束方程<span
+class="math inline">\(\varphi(x,y,z)=0\)</span>的条件极值在<span
+class="math inline">\(P_0(x_0,y_0,z_0)\)</span>处取得，令<span
+class="math inline">\(F(x,y,z,𝜆)=f(x,y,z)+𝜆\varphi(x,y,z)\)</span>
+（拉格朗日函数，<span
+class="math inline">\(\lambda\)</span>为拉格朗日乘数），则<span
+class="math inline">\(P_0\)</span>满足下列方程组：</p>
+<p><span
+class="math inline">\(\begin{cases}F_x&#39;=f_x&#39;(x,y,z)+\lambda\varphi_x&#39;(x,y,z)=0\\F_y&#39;=f_y&#39;(x,y,z)+\lambda\varphi_y&#39;(x,y,z)=0\\F_z&#39;=f_z&#39;(x,y,z)+\lambda\varphi_z&#39;(x,y,z)=0\\F_\lambda&#39;=\varphi(x,y,z)=0
+\end{cases}\)</span></p>
+<ul>
+<li>若再添一条约束方程<span
+class="math inline">\(\psi(x,y,z)=0\)</span>，则拉格朗日函数为<span
+class="math inline">\(F(x,y,z,\lambda,\gamma)=f(x,y,z)+\lambda\varphi(x,y,z)+\gamma\psi(x,y,z)\)</span>。</li>
+</ul></li>
+</ol>
+<h2 id="几何应用">3. 几何应用</h2>
+<ol type="1">
+<li><p>空间曲线的切线和法平面：</p>
+<p>设有空间曲线<span class="math inline">\(C\)</span>，<span
+class="math inline">\(P_0\)</span>是曲线<span
+class="math inline">\(C\)</span>上一定点，<span
+class="math inline">\(P\)</span>是曲线上一动点，作割线<span
+class="math inline">\(P_0P\)</span>，当<span
+class="math inline">\(P\)</span>沿着曲线<span
+class="math inline">\(C\)</span>无限地接近<span
+class="math inline">\(P_0\)</span>时，若割线<span
+class="math inline">\(P_0P\)</span>的极限位置存在，对应的直线记为<span
+class="math inline">\(L\)</span>，我们称直线<span
+class="math inline">\(L\)</span>为曲线<span
+class="math inline">\(C\)</span>在点<span
+class="math inline">\(P_0\)</span>处的切线。</p>
+<ul>
+<li><p>通过点<span class="math inline">\(P_0\)</span>且与切线<span
+class="math inline">\(L\)</span>垂直的平面，称为曲线<span
+class="math inline">\(C\)</span>在<span
+class="math inline">\(P_0\)</span>的法平面。</p></li>
+<li><p>切线<span class="math inline">\(L\)</span>的方向向量称为曲线<span
+class="math inline">\(C\)</span>在点<span
+class="math inline">\(P_0\)</span>的切向量。</p></li>
+</ul>
+<p>计算：</p>
+<ul>
+<li><p>曲线<span class="math inline">\(C\)</span>方程为<span
+class="math inline">\(x=\varphi(t),y=\psi(t),z=\omega(t),t\in[a,b]\)</span>，<span
+class="math inline">\(x,y,z\)</span>在<span
+class="math inline">\(t=t_0\)</span>均可导，导数不全为0。</p>
+<p>曲线<span class="math inline">\(C\)</span>在点<span
+class="math inline">\(P_0\)</span>处的切线方程为<span
+class="math inline">\(\frac{x-\varphi(t_0)}{\varphi&#39;(t_0)}=\frac{y-\psi(t_0)}{\psi&#39;(t_0)}=\frac{z-\omega(t_0)}{\omega&#39;(t_0)}\)</span>。</p>
+<p>法平面方程为<span
+class="math inline">\(\varphi&#39;(t_0)(x-\varphi(t_0))+\psi&#39;(t_0)(y-\psi(t_0))+\omega&#39;(t_0)(z-\omega(t_0))\)</span>。</p></li>
+<li><p>曲线<span class="math inline">\(C\)</span>的一般式方程为<span
+class="math inline">\(\begin{cases}F(x,y,z)=0\\H(x,y,z)=0\end{cases}\)</span>，<span
+class="math inline">\(F,H\)</span>连续可微，且<span
+class="math inline">\(\frac{D(F,H)}{D(y,z)},\frac{D(F,H)}{D(x,y)},\frac{D(F,H)}{D(x,z)}\)</span>不全为0。</p>
+<p>曲线<span class="math inline">\(C\)</span>在点<span
+class="math inline">\(P_0(x_0,y_0,z_0)\)</span>的切线方程为<span
+class="math inline">\(\frac{x-x_0}{\frac{D(F,H)}{D(y,z)}|_{P_0}}=\frac{y-y_0}{\frac{D(F,H)}{D(z,x)}|_{P_0}}=\frac{z-z_0}{\frac{D(F,H)}{D(x,y)}|_{P_0}}\)</span>。</p>
+<p>法平面方程为<span
+class="math inline">\(\frac{D(F,H)}{D(y,z)}|_{P_0}(x-x_0)+\frac{D(F,H)}{D(z,x)}|_{P_0}(y-y_0)+\frac{D(F,H)}{D(x,y)}|_{P_0}(z-z_0)=0\)</span>。</p></li>
+</ul></li>
+<li><p>空间曲面的切平面和法线：</p>
+<p>设有空间曲面<span class="math inline">\(S\)</span>，<span
+class="math inline">\(P_0\)</span>是曲面<span
+class="math inline">\(S\)</span>上一定点，<span
+class="math inline">\(C\)</span>是曲面<span
+class="math inline">\(S\)</span>上通过点<span
+class="math inline">\(P_0\)</span>的任意一条光滑曲线，如果曲线<span
+class="math inline">\(S\)</span>在点<span
+class="math inline">\(P_0\)</span>的切线总保持在某一平面II上，则称平面II是曲面<span
+class="math inline">\(S\)</span>在点<span
+class="math inline">\(P_0\)</span>的切平面。</p>
+<ul>
+<li><p>通过点<span
+class="math inline">\(P_0\)</span>且与切平面垂直的直线称为曲面<span
+class="math inline">\(S\)</span>在点<span
+class="math inline">\(P_0\)</span>的法线。</p></li>
+<li><p>切平面II的法向量称为曲面<span
+class="math inline">\(S\)</span>在点<span
+class="math inline">\(P_0\)</span>的法向量。</p></li>
+<li><p>每一点都存在切平面和法线的曲面称为光滑曲面。</p></li>
+</ul>
+<p>计算：</p>
+<ul>
+<li><p>设空间曲面<span
+class="math inline">\(S\)</span>的一般式方程为<span
+class="math inline">\(F(x,y,z)=0\)</span>，这里<span
+class="math inline">\(F\)</span>连续可微，且<span
+class="math inline">\(F’_x,F’_y,F’_z\)</span>不全为0。</p>
+<p>曲面<span class="math inline">\(S\)</span>在点<span
+class="math inline">\(P_0\)</span>的切平面方程为<span
+class="math inline">\(F_x&#39;(P_0)(x-x_0)+F_y&#39;(P_0)(y-y_0)+F_z&#39;(P_0)(z-z_0)=0\)</span>。</p>
+<p>法线方程为<span
+class="math inline">\(\frac{x-x_0}{F_x&#39;(P_0)}=\frac{y-y_0}{F_y&#39;(P_0)}=\frac{z-z_0}{F_z&#39;(P_0)}\)</span>。</p></li>
+</ul></li>
+</ol>
+<h2 id="二重积分">4. 二重积分</h2>
+<h3 id="概念和性质">4.1 概念和性质</h3>
+<ol type="1">
+<li><p>二重积分：</p>
+<p>设函数<span
+class="math inline">\(f(x,y)\)</span>在平面有界闭区域<span
+class="math inline">\(D\)</span>上有定义，将区域<span
+class="math inline">\(D\)</span>任意地分割为<span
+class="math inline">\(n\)</span>个小闭区域<span
+class="math inline">\(D_i\)</span>，其中<span
+class="math inline">\(i=1,2,……,n\)</span>，<span
+class="math inline">\(D_i\)</span>的面积记为<span
+class="math inline">\(\Delta\sigma_i\)</span>，记<span
+class="math inline">\(\lambda=\max\{D_i的直径(1\le i\le
+n)\}\)</span>，在每一个小闭区域<span
+class="math inline">\(D_i\)</span>上任取一点<span
+class="math inline">\((\xi_i,\eta_i)\)</span>，作和式<span
+class="math inline">\(\Sigma_{i=1}^nf(\xi_i,\eta_i)\Delta\sigma_i\)</span>，若<span
+class="math inline">\(\lambda\rightarrow0\)</span>，该式的极限存在，则称<span
+class="math inline">\(f(x,y)\)</span>在区域<span
+class="math inline">\(D\)</span>上黎曼可积，称此极限为<span
+class="math inline">\(f(x,y)\)</span>在区域<span
+class="math inline">\(D\)</span>上的二重积分，记为<span
+class="math inline">\(\iint_Df(x,y)d\sigma\)</span>。</p>
+<ul>
+<li>称<span class="math inline">\(f(x,y)\)</span>为被积函数，<span
+class="math inline">\(D\)</span>为积分区域，<span
+class="math inline">\(d\sigma\)</span>为面积微元。</li>
+</ul></li>
+<li><p>二重积分的可积条件：</p>
+<ul>
+<li>函数<span class="math inline">\(f(x,y)\)</span>在有界闭区域<span
+class="math inline">\(D\)</span>上连续，则函数<span
+class="math inline">\(f(x,y)\)</span>在<span
+class="math inline">\(D\)</span>上可积。</li>
+<li>函数<span class="math inline">\(f(x,y)\)</span>在有界闭区域<span
+class="math inline">\(D\)</span>上有界，<span
+class="math inline">\(f(x,y)\)</span>的间断点分布在<span
+class="math inline">\(D\)</span>内有限条光滑曲线上，则函数<span
+class="math inline">\(f(x,y)\)</span>在<span
+class="math inline">\(D\)</span>上可积。</li>
+</ul></li>
+<li><p>二重积分的性质：<span class="math inline">\(D\sub
+R^2\)</span>为有界闭区域</p>
+<ul>
+<li><p><span
+class="math inline">\(\iint_Dd\sigma=\sigma(D)\)</span>，这里<span
+class="math inline">\(\sigma(D)\)</span>表示<span
+class="math inline">\(D\)</span>的面积。</p></li>
+<li><p>线性性质：<span class="math inline">\(\iint_D(k_1f(x,y)\pm
+k_2g(x,y))d\sigma=k_1\iint_Df(x,y)d\sigma\pm
+k_2\iint_Dg(x,y)d\sigma\)</span>。</p></li>
+<li><p>积分区域可加性：<span
+class="math inline">\(D=D_1+D_2\)</span>，则<span
+class="math inline">\(\iint_Df(x,y)d\sigma=\iint_{D_1}f(x,y)d\sigma+\iint_{D_2}f(x,y)d\sigma\)</span>。</p></li>
+<li><p>保向性：<span class="math inline">\(\forall x\in
+D\)</span>有<span class="math inline">\(f(x,y)\le
+g(x,y)\)</span>，则<span
+class="math inline">\(\iint_Df(x,y)d\sigma\le\iint_Dg(x,y)d\sigma\)</span>。</p></li>
+<li><p>估值性：<span class="math inline">\(f(x,y)\)</span>在<span
+class="math inline">\(D\)</span>的最大值<span
+class="math inline">\(M\)</span>，最小值<span
+class="math inline">\(m\)</span>，则<span
+class="math inline">\(m\le\frac1{\sigma(D)}\iint_Df(x,y)d\sigma\le
+M\)</span>。</p></li>
+<li><p>绝对值：<span
+class="math inline">\(|\iint_Df(x,y)d\sigma|\le\iint_D|f(x,y)|d\sigma\)</span></p></li>
+<li><p>中值定理:</p>
+<p>设<span class="math inline">\(D\subseteq
+R^2\)</span>是有界闭区域，函数<span
+class="math inline">\(f(x,y),g(x,y)\)</span>在<span
+class="math inline">\(D\)</span>上连续，且对任意<span
+class="math inline">\((x,y)\in D,g(x,y)\ge0\)</span>(或<span
+class="math inline">\(g(x,y)\le0\)</span>)，则存在<span
+class="math inline">\((\xi,\eta)\in D\)</span>，使得<span
+class="math inline">\(\iint_Df(x,y)g(x,y)d\sigma=f(\xi,\eta)\iint_Dg(x,y)d\sigma\)</span>。</p></li>
+<li><p>对称性：设<span class="math inline">\(D\)</span>关于<span
+class="math inline">\(x=0\)</span>对称</p>
+<ul>
+<li><p>如果函数<span class="math inline">\(f(x,y)\)</span>关于<span
+class="math inline">\(x\)</span>为奇函数，则<span
+class="math inline">\(\iint_D f(x,y)d\sigma=0\)</span>。</p></li>
+<li><p>如果函数<span class="math inline">\(f(x,y)\)</span>关于<span
+class="math inline">\(x\)</span>为偶函数，则<span
+class="math inline">\(\iint_D
+f(x,y)d\sigma=2\iint_{D_{x\ge0}}f(x,y)d\sigma\)</span>。</p></li>
+</ul></li>
+<li><p>轮换对称性：区域<span class="math inline">\(D\)</span>关于<span
+class="math inline">\(y=x\)</span>对称，则对换<span
+class="math inline">\(x\)</span>和<span
+class="math inline">\(y\)</span>，积分值不变。</p></li>
+</ul></li>
+</ol>
+<h3 id="计算">4.2 计算</h3>
+<ol type="1">
+<li>累次积分：
+<ul>
+<li>先对<span class="math inline">\(y\)</span>，后对<span
+class="math inline">\(x\)</span>：<span
+class="math inline">\(\iint_Df(x,y)dxdy=\int_a^bdx\int_{\varphi_1(x)}^{\varphi_2(x)}f(x,y)dy\)</span></li>
+<li>先对<span class="math inline">\(x\)</span>，后对<span
+class="math inline">\(y\)</span>：<span
+class="math inline">\(\iint_Df(x,y)dxdy=\int_c^ddy\int_{\psi_1(y)}^{\psi_2(y)}f(x,y)dx\)</span></li>
+</ul></li>
+<li>换元积分：<span
+class="math inline">\(\iint_Df(x,y)d\sigma=\iint_{D&#39;}f(x(u,v),y(u,v))|J(u,v)|dudv\)</span>。
+<ul>
+<li>其中雅可比行列式<span
+class="math inline">\(J(u,v)=\frac{D(x,y)}{D(u,v)}=\left|\begin{matrix}x&#39;_u&amp;x&#39;_v\\y&#39;_u&amp;y&#39;_v
+\end{matrix}\right|\neq0\)</span>。</li>
+<li>常用换元积分：<span
+class="math inline">\(x=\rho\cos\theta,y=\rho\sin\theta,J(\rho,\theta)=\rho\)</span>。</li>
+</ul></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BE%AE%E7%A7%AF%E5%88%86/" class="category-chain-item">微积分</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/01/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%9F%BA%E7%A1%80/DataScience_1%20%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="数据科学基础_1_基础知识">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据科学基础_1_基础知识</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/01/%E5%BE%AE%E7%A7%AF%E5%88%86/%E4%B8%80%E5%85%83%E5%87%BD%E6%95%B0%E7%A7%AF%E5%88%86%E5%AD%A6/" title="一元函数积分学">
+                        <span class="hidden-mobile">一元函数积分学</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>长风破浪会有时，直挂云帆济沧海</p> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1140 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/yuanshen.jpeg">
+  <link rel="icon" href="/image/icon/yuanshen.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#5a9367">
+  <meta name="author" content="Geternitier">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="踏遍青山人未老，风景这边独好。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数极限与连续">
+<meta property="og:url" content="http://example.com/2021/09/01/%E5%BE%AE%E7%A7%AF%E5%88%86/%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90%E4%B8%8E%E8%BF%9E%E7%BB%AD/index.html">
+<meta property="og:site_name" content="Geternitier的博客">
+<meta property="og:description" content="踏遍青山人未老，风景这边独好。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-01T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-11T06:25:02.741Z">
+<meta property="article:author" content="Geternitier">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>函数极限与连续 - Geternitier的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Geternitier的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Geternitier的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/background/TheSpirits.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="函数极限与连续"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-09-01 12:00" pubdate>
+          2021年9月1日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.6k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">函数极限与连续</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>踏遍青山人未老，风景这边独好。</p>
+<span id="more"></span>
+<h1 id="一-函数极限与连续">一 函数极限与连续</h1>
+<h2 id="数列极限">0. 数列极限</h2>
+<h3 id="数列概念与性质">0.1 数列概念与性质</h3>
+<p><span class="math inline">\(\forall n\in \N_+\)</span>，<span
+class="math inline">\(\exists x_n\in \R\)</span>，则<span
+class="math inline">\(x_1,x_2,...,x_n,...\)</span>排列得到的序列称为数列，记作数列<span
+class="math inline">\(\{x_n\}\)</span>。</p>
+<ul>
+<li><p>数列中的每一个数称为数列的项，第<span
+class="math inline">\(n\)</span>项称为数列的通项或一般项。</p></li>
+<li><p>子列：从数列中选取无穷多项，按照原来的顺序组成新的数列称为原数列的子列。</p></li>
+<li><p>等差数列：首项为<span
+class="math inline">\(a_1\)</span>，公差为<span
+class="math inline">\(d\ne0\)</span>，通项公式<span
+class="math inline">\(a_n=a_1+(n-1)d\)</span>，前<span
+class="math inline">\(n\)</span>项和<span
+class="math inline">\(S_n=\frac n2(a_1+a_n)\)</span>。</p></li>
+<li><p>等比数列：首项为<span
+class="math inline">\(a_1\)</span>，公比为<span
+class="math inline">\(q\ne0\)</span>，通项公式<span
+class="math inline">\(a_n=a_1q^{n-1}\)</span>，前<span
+class="math inline">\(n\)</span>项和<span
+class="math inline">\(S_n=\begin{cases} na_1,\quad
+q=1\\a_1\frac{1-q^n}{1-q} \quad q\ne1 \end{cases}\)</span></p>
+<ul>
+<li><span
+class="math inline">\(1+q+...+q^{n-1}=\frac{1-q^n}{1-q},q\ne1\)</span>。</li>
+</ul></li>
+<li><p>单调性：<span class="math inline">\(\forall n
+,a_{n+1}&gt;a_n\)</span>，则称数列<span
+class="math inline">\(\{a_n\}\)</span>为单调递增数列。</p></li>
+<li><p>有界性：<span class="math inline">\(\forall n,\exists M\in
+\R,|a_n|\le M\)</span>，则称数列<span
+class="math inline">\(\{a_n\}\)</span>为有界数列。</p></li>
+<li><p>重要数列：<span
+class="math inline">\(\{(1+\frac1n)^n\}\)</span>：单调递增，且<span
+class="math inline">\(\lim_{n\rightarrow\infin}(1+\frac1n)^n=e\)</span>。</p></li>
+</ul>
+<h3 id="数列极限-1">0.2 数列极限</h3>
+<p>数列<span class="math inline">\(x_n\)</span>，若<span
+class="math inline">\(\exists a\in \R,\forall\varepsilon\gt0,\exists
+N\in \N_+\)</span>，当<span class="math inline">\(n\gt N\)</span>，<span
+class="math inline">\(|x_n-a|\lt\varepsilon\)</span>，称常数<span
+class="math inline">\(a\)</span>为数列<span
+class="math inline">\(x_n\)</span>的极限，或数列<span
+class="math inline">\(x_n\)</span>收敛于<span
+class="math inline">\(a\)</span>，记为<span
+class="math inline">\(\lim_{n\rightarrow\infin}x_n=a\)</span>。</p>
+<p>如果不存在这样的常数<span
+class="math inline">\(a\)</span>，称数列<span
+class="math inline">\(x_n\)</span>是发散的。</p>
+<h4 id="性质">性质</h4>
+<ol type="1">
+<li>唯一性：数列<span class="math inline">\(x_n\)</span>，若存在<span
+class="math inline">\(\lim_{n\rightarrow\infin}x_n=a\)</span>，则<span
+class="math inline">\(a\)</span>是唯一的。</li>
+<li>有界性：数列<span
+class="math inline">\(x_n\)</span>的极限存在，那么它有界。</li>
+<li>保号性：<span
+class="math inline">\(\lim_{n\rightarrow\infin}x_n=a\)</span>，则<span
+class="math inline">\(\forall \varepsilon\gt 0,\exists N\in
+\N_+\)</span>，当<span class="math inline">\(n\gt N\)</span>，<span
+class="math inline">\(x_n\)</span>在<span
+class="math inline">\(a\)</span>的<span
+class="math inline">\(\varepsilon\)</span>邻域内。</li>
+<li>子列的极限：若数列收敛，则其任意子列也收敛于同一极限。</li>
+</ol>
+<h4 id="四则运算">四则运算</h4>
+<ol type="1">
+<li><p><span class="math inline">\(\lim x_n =a\)</span>，则<span
+class="math inline">\(\lim |x_n| = |a|\)</span></p></li>
+<li><p><span class="math inline">\(\lim x_n =a\)</span>，<span
+class="math inline">\(\lim y_n=b\)</span>，则<span
+class="math inline">\(\lim (x_n\pm y_n) = a\pm b\)</span></p></li>
+<li><p><span class="math inline">\(\lim x_n =a\)</span>，<span
+class="math inline">\(\lim y_n=b\)</span>，则<span
+class="math inline">\(\lim (x_n·y_n) = ab\)</span></p></li>
+<li><p>设<span class="math inline">\(x_n\ne0,n=1,2,...\)</span>，<span
+class="math inline">\(\lim x_n=a\ne0\)</span>，则<span
+class="math inline">\(\lim \frac1{x_n}=\frac1a\)</span>。</p></li>
+</ol>
+<h4 id="函数极限的数列定义">函数极限的数列定义</h4>
+<p><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(a\)</span>的某个去心邻域上有定义，那么<span
+class="math inline">\(\lim_{x→a}f(x)=A\)</span>等价于：</p>
+<p>每一项均在<span
+class="math inline">\(a\)</span>的去心邻域中的数列<span
+class="math inline">\(\{x_n\}\)</span>，<span class="math inline">\(\lim
+x_n=a\)</span>，<span class="math inline">\(f(x_n)\)</span>在<span
+class="math inline">\(n→+∞\)</span>的极限为<span
+class="math inline">\(A\)</span>。</p>
+<h3 id="数列极限存在准则">0.3 数列极限存在准则</h3>
+<h4 id="夹逼准则">夹逼准则</h4>
+<p>设<span
+class="math inline">\(\{x_n\},\{y_n\},\{z_n\}\)</span>都是实数列，<span
+class="math inline">\(\exists n_0\in \N_+\)</span>，当<span
+class="math inline">\(n\gt n_0\)</span>，有<span
+class="math inline">\(x_n\le y_n\le z_n\)</span>，那么如果<span
+class="math inline">\(\{x_n\}\)</span>与<span
+class="math inline">\(\{z_n\}\)</span>都收敛于<span
+class="math inline">\(a\)</span>，<span
+class="math inline">\(\{y_n\}\)</span>也收敛于<span
+class="math inline">\(a\)</span>。</p>
+<h4 id="单调有界准则">单调有界准则</h4>
+<p>递增序列收敛的充要条件是它有上界。</p>
+<h2 id="函数的概念与性质">1. 函数的概念与性质</h2>
+<h3 id="函数">1.1 函数</h3>
+<p>变量<span class="math inline">\(x,y\)</span>，给定数集<span
+class="math inline">\(D\)</span>，<span class="math inline">\(\forall
+x\in D\)</span>，按一定法则<span class="math inline">\(f\)</span>，<span
+class="math inline">\(\exists y\)</span>与<span
+class="math inline">\(x\)</span>对应，称<span
+class="math inline">\(y\)</span>为<span
+class="math inline">\(x\)</span>的函数，记作<span
+class="math inline">\(y=f(x)\)</span>。</p>
+<ul>
+<li><span class="math inline">\(x\)</span>为自变量，<span
+class="math inline">\(y\)</span>为因变量，<span
+class="math inline">\(D\)</span>为函数的定义域，<span
+class="math inline">\(\{f(x)|x\in D \}\)</span>为函数的值域。</li>
+</ul>
+<p>函数是两个非空数集上的双射。</p>
+<ul>
+<li>单射：每一个<span class="math inline">\(x\)</span>都有唯一的<span
+class="math inline">\(y\)</span>与之对应</li>
+<li>满射：每个<span class="math inline">\(y\)</span>都至少有一个<span
+class="math inline">\(x\)</span>与之对应</li>
+<li>满足单射和满射即为双射，也称一一对应。</li>
+</ul>
+<h4 id="基本初等函数和初等函数">基本初等函数和初等函数</h4>
+<p>基本初等函数：常函数、幂函数、指数函数、对数函数、三角函数、反三角函数</p>
+<ol type="1">
+<li><p><span class="math inline">\(y=C,C\in \mathbb
+R\)</span>。</p></li>
+<li><p><span class="math inline">\(y=x^a,a\in \mathbb
+R\)</span>。</p></li>
+<li><p><span class="math inline">\(y=a^x,a\in \mathbb
+R\)</span>。</p></li>
+<li><p><span class="math inline">\(y=\log_ax,a\in \mathbb
+R\)</span>。</p></li>
+<li><p><span class="math inline">\(y=\sin x,y=\cos x,y=\tan x,y=\cot
+x\)</span>，</p>
+<p><span class="math inline">\(y=\sec x=\frac1{\cos x},y=\csc
+x=\frac1{\sin x}\)</span>，</p></li>
+<li><p><span class="math inline">\(y=\arcsin x,y=\arccos x,y=\arctan
+x\)</span>。</p></li>
+</ol>
+<p>由基本初等函数经过有限次四则运算和有限次复合构成的可用表达式表示的函数为初等函数。</p>
+<ul>
+<li><span class="math inline">\(y=\sin x\)</span>和<span
+class="math inline">\(y=e^x\)</span>为初等函数的生成函数。</li>
+</ul>
+<h4 id="几个特殊函数">几个特殊函数</h4>
+<ol type="1">
+<li>取整函数：<span class="math inline">\(y=[x]\)</span>，当<span
+class="math inline">\(n\le x\lt n+1\)</span>，<span
+class="math inline">\(y=n\)</span>。</li>
+<li>符号函数：<span class="math inline">\(y =
+sgn(x)=\begin{cases}-1,x\lt0\\0,x=0\\1,x\gt0 \end{cases}\)</span>。</li>
+<li>狄利克雷函数：<span class="math inline">\(y =
+D(x)=\begin{cases}0,x为无理数\\1,x为有理数 \end{cases}\)</span>。</li>
+<li>黎曼函数：<span class="math inline">\(y=\begin{cases}\frac
+qp,x为有理数,\frac qp为x的既约分数表示\\0,x为无理数
+\end{cases}\)</span>。</li>
+</ol>
+<h4 id="反函数">反函数</h4>
+<p>设函数<span class="math inline">\(f(x)\)</span>的定义域为<span
+class="math inline">\(D\)</span>，值域为<span
+class="math inline">\(R\)</span>，如果对于每一个<span
+class="math inline">\(y\in R\)</span>，存在唯一<span
+class="math inline">\(x\in D\)</span>使得<span
+class="math inline">\(y=f(x)\)</span>，则可以定义函数<span
+class="math inline">\(x=\varphi(y)\)</span>，这个函数称为<span
+class="math inline">\(y=f(x)\)</span>的反函数，一般记作<span
+class="math inline">\(x=f^{-1}(y)\)</span>，它的定义域为<span
+class="math inline">\(R\)</span>，值域为<span
+class="math inline">\(D\)</span>。</p>
+<ul>
+<li>严格单调函数必有反函数。</li>
+<li><span class="math inline">\(y=f^{-1}(x)\)</span>与<span
+class="math inline">\(y=f(x)\)</span>的图像关于<span
+class="math inline">\(y=x\)</span>对称。</li>
+</ul>
+<p>双曲正弦函数：<span
+class="math inline">\(y=\frac{e^x-e^{-x}}2\)</span></p>
+<p>反双曲正弦函数：<span
+class="math inline">\(y=\ln(x+\sqrt{x^2+1})\)</span></p>
+<p>双曲余弦函数：<span
+class="math inline">\(y=\frac{e^x+e^{-x}}2\)</span></p>
+<p>重要结论：</p>
+<ol type="1">
+<li><span class="math inline">\(x\rightarrow0,\ln(x+\sqrt{x^2+1})\sim
+x\)</span>。</li>
+<li><span
+class="math inline">\([\ln(x+\sqrt{x^2+1})]&#39;=\frac{1}{\sqrt{x^2+1}},\int\frac{1}{\sqrt{x^2+1}}dx=\ln(x+\sqrt{x^2+1})+C\)</span></li>
+<li><span
+class="math inline">\(y=\ln(x+\sqrt{x^2+1})\)</span>是奇函数，<span
+class="math inline">\(\int_{-1}^1\ln(x+\sqrt{x^2+1})dx=0\)</span></li>
+</ol>
+<h4 id="复合函数">复合函数</h4>
+<p><span class="math inline">\(y=f(u)\)</span>的定义域为<span
+class="math inline">\(D_1\)</span>，<span
+class="math inline">\(u=g(x)\)</span>在<span
+class="math inline">\(D\)</span>上有定义，且<span
+class="math inline">\(g(D)\sub D_1\)</span>，由<span
+class="math inline">\(y=f[g(x)],x\in D\)</span>确定的函数称为由<span
+class="math inline">\(u=g(x)\)</span>和<span
+class="math inline">\(y=f(u)\)</span>构成的复合函数，它的定义域为<span
+class="math inline">\(D\)</span>，<span
+class="math inline">\(u\)</span>称为中间变量。</p>
+<h4 id="隐函数">隐函数</h4>
+<p>方程<span class="math inline">\(F(x,y)=0\)</span>，若<span
+class="math inline">\(x\)</span>取某区间的任一值，总有唯一的满足该方程的<span
+class="math inline">\(y\)</span>存在，则称<span
+class="math inline">\(F(x,y)=0\)</span>在上述区间上确定了一个隐函数<span
+class="math inline">\(y=f(x)\)</span>。</p>
+<h4 id="分段函数">分段函数</h4>
+<p>三个重要分段函数：</p>
+<ol type="1">
+<li><span class="math inline">\(y=|x|,x\in \mathbb R\)</span></li>
+<li><span class="math inline">\(y=sgn x= \begin{cases} 1,\quad x\gt
+0\\0,\quad x=0\\ -1, \quad x\lt0
+\end{cases}\)</span>，称为符号函数。</li>
+<li><span class="math inline">\(y=[x]\)</span>，取整函数，<span
+class="math inline">\(y\)</span>为不超过<span
+class="math inline">\(x\)</span>的最大整数。</li>
+</ol>
+<h3 id="函数的性质">1.2 函数的性质</h3>
+<h4 id="有界性">有界性</h4>
+<p>设<span class="math inline">\(f(x)\)</span>的定义域为<span
+class="math inline">\(D\)</span>，区间<span class="math inline">\(I\in
+D\)</span>，若<span class="math inline">\(\forall x\in I\)</span>，<span
+class="math inline">\(|f(x)|\le M\)</span>，称<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(I\)</span>上有界，否则称<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(I\)</span>上无界。</p>
+<h4 id="单调性">单调性</h4>
+<p>设<span class="math inline">\(f(x)\)</span>的定义域为<span
+class="math inline">\(D\)</span>，区间<span class="math inline">\(I\in
+D\)</span>，<span class="math inline">\(\forall x_1,x_2\in I,f(x_1)\lt
+f(x_2)\)</span>，则称<span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(I\)</span>上单调递增；<span
+class="math inline">\(f(x_1)\gt f(x_2)\)</span>，则称<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(I\)</span>上单调递减。</p>
+<ul>
+<li>定义法判别单调性：<span
+class="math inline">\((x_1-x_2)(f(x_1)-f(x_2))\gt0\)</span>，单调增。（类推单调减/不增/不减）</li>
+</ul>
+<h4 id="奇偶性">奇偶性</h4>
+<p>偶函数：<span
+class="math inline">\(f(x)=f(-x)\)</span>，图像关于<span
+class="math inline">\(y\)</span>轴对称。</p>
+<p>奇函数：<span
+class="math inline">\(-f(x)=f(-x)\)</span>，图像关于原点对称。</p>
+<ul>
+<li>定义域关于原点对称。</li>
+<li><span class="math inline">\(f(x)+f(-x)\)</span>是偶函数，<span
+class="math inline">\(f(x)-f(-x)\)</span>是奇函数。</li>
+<li>偶[奇]、奇[偶]、偶[偶]都是偶函数，奇[奇]为奇函数。</li>
+</ul>
+<h4 id="周期性">周期性</h4>
+<p>设<span class="math inline">\(f(x)\)</span>的定义域为<span
+class="math inline">\(D\)</span>，若存在正数<span
+class="math inline">\(T\)</span>，<span class="math inline">\(\forall
+x\in D\)</span>，<span class="math inline">\(x+T\in D\)</span>，<span
+class="math inline">\(f(x)=f(x+T)\)</span>，则称<span
+class="math inline">\(f(x)\)</span>为周期函数，<span
+class="math inline">\(T\)</span>为<span
+class="math inline">\(f(x)\)</span>的周期。</p>
+<ul>
+<li><span class="math inline">\(f(ax+b)\)</span>有周期<span
+class="math inline">\(\frac Ta\)</span>。</li>
+<li><span class="math inline">\(g(x)\)</span>为周期函数，则复合函数<span
+class="math inline">\(f(g(x))\)</span>也是周期函数。</li>
+<li>若<span class="math inline">\(f(x)\)</span>是周期为<span
+class="math inline">\(T\)</span>的可导函数，则<span
+class="math inline">\(f&#39;(x)\)</span>有周期<span
+class="math inline">\(T\)</span>。</li>
+<li>若<span class="math inline">\(f(x)\)</span>是周期为<span
+class="math inline">\(T\)</span>的连续函数，则仅当<span
+class="math inline">\(\int_0^Tf(x)dx=0\)</span>，<span
+class="math inline">\(\int_0^xf(t)dt\)</span>有周期<span
+class="math inline">\(T\)</span>。</li>
+</ul>
+<h2 id="函数的极限">2. 函数的极限</h2>
+<h3 id="函数极限">2.1 函数极限</h3>
+<h4 id="邻域">邻域</h4>
+<ol type="1">
+<li>正数<span class="math inline">\(\delta\)</span>，<span
+class="math inline">\((x_0-\delta,x_0+\delta)\)</span>称为<span
+class="math inline">\(x_0\)</span>的<span
+class="math inline">\(\delta\)</span>邻域，记作<span
+class="math inline">\(U(x_0,\delta)\)</span></li>
+<li>去心<span class="math inline">\(\delta\)</span>邻域：<span
+class="math inline">\(U\)</span>上加。</li>
+<li>左/右<span class="math inline">\(\delta\)</span>邻域：<span
+class="math inline">\(U^-/U^+\)</span></li>
+</ol>
+<h4 id="函数极限的定义">函数极限的定义</h4>
+<p>设函数<span class="math inline">\(f(x)\)</span>在点<span
+class="math inline">\(x_0\)</span>的某一去心邻域上有定义，<span
+class="math inline">\(\exists A\in \mathbb R,\forall \varepsilon\gt
+0\)</span>，总存在正数<span
+class="math inline">\(\delta\)</span>，使得当<span
+class="math inline">\(0\lt|x-x_0|\lt\delta\)</span>时，<span
+class="math inline">\(|f(x)-A|\lt\varepsilon\)</span>，则<span
+class="math inline">\(A\)</span>称为<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x\rightarrow x_0\)</span>时的极限，记为<span
+class="math inline">\(\lim_{x\rightarrow x_0}f(x)=A\)</span>，或<span
+class="math inline">\(x\rightarrow x_0\)</span>，<span
+class="math inline">\(f(x)\rightarrow A\)</span>。</p>
+<ul>
+<li><span class="math inline">\(x\rightarrow\infin\)</span>包含<span
+class="math inline">\(x\rightarrow+\infin\)</span>和<span
+class="math inline">\(x\rightarrow-\infin\)</span>。</li>
+<li><span class="math inline">\(x\rightarrow x_0\)</span>包含<span
+class="math inline">\(x\rightarrow x_0^+\)</span>和<span
+class="math inline">\(x\rightarrow x_0^-\)</span>。</li>
+<li>左右极限不同，则该极限不存在。</li>
+</ul>
+<h4 id="两个重要极限">两个重要极限</h4>
+<p><span class="math inline">\(\lim_{x\rightarrow0}\frac{\sin
+x}x=1,\lim_{x\rightarrow\infin}(1+\frac1x)^x=e\)</span>。</p>
+<h3 id="函数极限的性质">2.2 函数极限的性质</h3>
+<h4 id="唯一性">唯一性</h4>
+<p>如果函数极限存在，那么它唯一。</p>
+<h4 id="局部有界性">局部有界性</h4>
+<p>如果<span class="math inline">\(\lim_{x\rightarrow
+x_0}f(x)=A\)</span>，则存在正常数<span
+class="math inline">\(M\)</span>和<span
+class="math inline">\(\delta\)</span>，当<span
+class="math inline">\(0\lt|x-x_0|\lt\delta\)</span>，<span
+class="math inline">\(|f(x)|\le M\)</span>。</p>
+<h4 id="局部保号性">局部保号性</h4>
+<p>如果<span class="math inline">\(\lim_{x\rightarrow x_0}f(x)=A(A\ne
+0)\)</span>，则存在正常数<span
+class="math inline">\(\delta\)</span>，当<span
+class="math inline">\(0\lt|x-x_0|\lt\delta\)</span>，<span
+class="math inline">\(Af(x)\gt 0\)</span>。</p>
+<h4 id="无穷小和无穷大">无穷小和无穷大</h4>
+<p>如果当<span class="math inline">\(x\rightarrow
+x_0,f(x)\rightarrow0\)</span>，称<span
+class="math inline">\(f(x)\)</span>为<span
+class="math inline">\(x\rightarrow x_0\)</span>时的无穷小。</p>
+<p>如果当<span class="math inline">\(x\rightarrow
+x_0,|f(x)|\rightarrow\infin\)</span>，称<span
+class="math inline">\(f(x)\)</span>为<span
+class="math inline">\(x\rightarrow x_0\)</span>时的无穷大。</p>
+<ul>
+<li>有限个无穷小的和是无穷小。</li>
+<li>有界函数和无穷小的乘积是无穷小。</li>
+<li>有限个无穷小的乘积是无穷小。</li>
+</ul>
+<p>无穷小比阶：无穷小之间不一定可以比阶。</p>
+<ul>
+<li><p><span
+class="math inline">\(\lim\frac{\alpha(x)}{\beta(x)}=0\)</span>，则<span
+class="math inline">\(\alpha(x)\)</span>为比<span
+class="math inline">\(\beta(x)\)</span>更高阶的无穷小，记为<span
+class="math inline">\(\alpha(x)=o(\beta(x))\)</span>。</p></li>
+<li><p><span
+class="math inline">\(\lim\frac{\alpha(x)}{\beta(x)}=c,c\ne0\)</span>，则<span
+class="math inline">\(\alpha(x)\)</span>为<span
+class="math inline">\(\beta(x)\)</span>的同阶无穷小。</p></li>
+<li><p><span
+class="math inline">\(\lim\frac{\alpha(x)}{\beta(x)}=1\)</span>，则<span
+class="math inline">\(\alpha(x)\)</span>为<span
+class="math inline">\(\beta(x)\)</span>的等价无穷小。</p></li>
+<li><p><span
+class="math inline">\(\lim\frac{\alpha(x)}{\beta(x)^k}=c,c\ne0\)</span>，则<span
+class="math inline">\(\alpha(x)\)</span>为<span
+class="math inline">\(\beta(x)\)</span>的<span
+class="math inline">\(k\)</span>阶无穷小</p></li>
+</ul>
+<p>常用等价无穷小：<span
+class="math inline">\(x\rightarrow0\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(\sin x\sim x,\tan x\sim x,\arcsin x\sim
+x,\arctan x\sim x\)</span></li>
+<li><span class="math inline">\(\ln(1+x)\sim x\)</span></li>
+<li><span class="math inline">\(a^x-1\sim x\ln a,e^x-1\sim
+x\)</span></li>
+<li><span class="math inline">\(1-\cos x\sim \frac12x^2\)</span></li>
+<li><span class="math inline">\((1+x)^a-1\sim ax\)</span></li>
+<li><span class="math inline">\((1+x)^{\frac1x}-e\sim-\frac
+e2x\)</span></li>
+</ol>
+<p>无穷小计算：正整数m，n。</p>
+<ol type="1">
+<li><span
+class="math inline">\(o(x^m)+o(x^n)=o(x^l),l=min[m,n]\)</span>：加减法得低阶</li>
+<li><span
+class="math inline">\(o(x^m)·o(x^n)=o(x^{m+n}),x^m·o(x^n)=o(x^{m+n})\)</span>：乘法阶数相加</li>
+<li><span class="math inline">\(ko(x^m)=o(x^m),k\ne0\)</span>且<span
+class="math inline">\(k\)</span>为常数：非零常数相乘不影响阶数</li>
+</ol>
+<h3 id="函数极限的计算">2.3 函数极限的计算</h3>
+<h4 id="极限四则运算">极限四则运算</h4>
+<p>设<span class="math inline">\(\lim f(x)=A,\lim g(x)=B\)</span>：</p>
+<ol type="1">
+<li><span
+class="math inline">\(\lim[kf(x)+lg(x)]=kA+lB\)</span>，其中<span
+class="math inline">\(k,l\)</span>为常数。</li>
+<li><span class="math inline">\(\lim[f(x)·g(x)]=AB\)</span>。</li>
+<li><span class="math inline">\(\lim\frac{f(x)}{g(x)}=\frac
+AB,B\ne0\)</span>。</li>
+</ol>
+<h4 id="夹逼准则-1">夹逼准则</h4>
+<p><span class="math inline">\(f(x),g(x),h(x)\)</span>在<span
+class="math inline">\(a\)</span>的某个去心邻域上有定义，满足不等式<span
+class="math inline">\(f(x)\le g(x)\le h(x)\)</span>，并且<span
+class="math inline">\(f(x)\)</span>和<span
+class="math inline">\(h(x)\)</span>在<span
+class="math inline">\(x→a\)</span>的极限为<span
+class="math inline">\(A\)</span>，则<span
+class="math inline">\(g(x)\)</span>在<span
+class="math inline">\(x→a\)</span>的极限为<span
+class="math inline">\(A\)</span>。</p>
+<h2 id="函数的连续性">3. 函数的连续性</h2>
+<h3 id="间断与连续">3.1 间断与连续</h3>
+<p>间断：<span
+class="math inline">\(\exist\varepsilon&gt;0,\forall\delta&gt;0\)</span>，<span
+class="math inline">\(\exist x\)</span>满足<span
+class="math inline">\(|x-x_0|&lt;\delta\)</span>，使得<span
+class="math inline">\(|f(x)-f(x_0)|\ge\varepsilon\)</span>。</p>
+<p>连续：<span
+class="math inline">\(\forall\varepsilon\gt0,\exist\delta\gt0,\forall
+x\)</span>满足<span
+class="math inline">\(|x-x_0|&lt;\delta\)</span>，有<span
+class="math inline">\(|f(x)-f(x_0)|\lt\varepsilon\)</span>。</p>
+<ul>
+<li>初等函数在其定义域的每一点都连续。</li>
+</ul>
+<h4 id="单侧连续">单侧连续</h4>
+<ol type="1">
+<li><p><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>处右极限存在且等于<span
+class="math inline">\(f(x_0)\)</span>，则称其为右连续。</p></li>
+<li><p><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>处左极限存在且等于<span
+class="math inline">\(f(x_0)\)</span>，则称其为左连续。</p></li>
+<li><p><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>处连续等价于<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>处左右连续。</p></li>
+</ol>
+<h4 id="间断分类">间断分类</h4>
+<ol type="1">
+<li>第一类间断：<span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>的左右极限都存在。
+<ul>
+<li><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>的左极限不等于右极限：跳跃间断点。</li>
+<li><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>的左极限等于右极限：可去间断点。</li>
+</ul></li>
+<li>第二类间断：<span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>的左右极限至少有一个不存在。
+<ul>
+<li><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>的一侧极限为无穷：无穷间断点。</li>
+<li><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>的极限振荡不存在：振荡间断点。</li>
+</ul></li>
+</ol>
+<h4 id="连续函数">连续函数</h4>
+<p>若<span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\((a,b)\)</span>上有定义，且<span
+class="math inline">\(\forall x_0∈(a,b)\)</span>，<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\(x_0\)</span>连续，则称<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\((a,b)\)</span>上连续。</p>
+<p>若<span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\([a,b]\)</span>上有定义，且在<span
+class="math inline">\((a,b)\)</span>上连续，在<span
+class="math inline">\(a\)</span>右连续，在<span
+class="math inline">\(b\)</span>左连续，则称<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\([a,b]\)</span>上连续。</p>
+<ul>
+<li>连续函数的局部有界性、局部保号性</li>
+<li>连续函数四则运算仍为连续函数</li>
+<li>有限个连续函数的和是连续函数。</li>
+</ul>
+<h3 id="闭区间上连续函数的性质">3.2 闭区间上连续函数的性质</h3>
+<h4 id="零点定理">零点定理</h4>
+<p><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\([a,b]\)</span>上连续，且<span
+class="math inline">\(f(a)·f(b)&lt;0\)</span>,则至少存在一个<span
+class="math inline">\(\xi\in(a,b)\)</span>,使得<span
+class="math inline">\(f(\xi)=0\)</span>。</p>
+<h4 id="介值定理">介值定理</h4>
+<p><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\([a,b]\)</span>上连续且<span
+class="math inline">\(f(a)\)</span>不等于<span
+class="math inline">\(f(b)\)</span>，<span
+class="math inline">\(\mu\)</span>为满足不等式<span
+class="math inline">\(f(a)&lt;\mu&lt;f(b)\)</span>或<span
+class="math inline">\(f(b)&lt;\mu&lt;f(a)\)</span>的任何实数，则存在<span
+class="math inline">\(\xi\in(a,b)\)</span>，使<span
+class="math inline">\(f(\xi)=\mu\)</span>。</p>
+<p><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\((a,b)\)</span>连续，且<span
+class="math inline">\(\lim_{x\rightarrow a^+}f(x)=m\)</span>，<span
+class="math inline">\(\lim_{x\rightarrow b^-}f(x)=n\)</span>，<span
+class="math inline">\(\mu\)</span>为满足不等式<span
+class="math inline">\(m&lt;\mu&lt;n\)</span>或<span
+class="math inline">\(n&lt;\mu&lt;m\)</span>的任何实数，则存在<span
+class="math inline">\(\xi\in(a,b)\)</span>，使<span
+class="math inline">\(f(\xi)=\mu\)</span>。</p>
+<h4 id="有界性定理">有界性定理</h4>
+<p><span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\([a,b]\)</span>上连续，则<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\([a,b]\)</span>上有界。</p>
+<h4 id="最值定理">最值定理</h4>
+<p>若<span class="math inline">\(f(x)\)</span>在<span
+class="math inline">\([a,b]\)</span>上连续，则<span
+class="math inline">\(f(x)\)</span>在<span
+class="math inline">\([a,b]\)</span>上有最大最小值。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BE%AE%E7%A7%AF%E5%88%86/" class="category-chain-item">微积分</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/01/%E5%BE%AE%E7%A7%AF%E5%88%86/%E4%B8%80%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%AD%A6/" title="一元函数微分学">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">一元函数微分学</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>长风破浪会有时，直挂云帆济沧海</p> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
