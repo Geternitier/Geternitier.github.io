@@ -16,21 +16,21 @@
   <meta name="author" content="Geternitier">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Chapter2.0：算法分析">
+    <meta name="description" content="1. 线性表 夜阑月明人尽望，铁骑刀锋梦中伏。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构与算法-2.0_算法分析">
-<meta property="og:url" content="http://example.com/2022/12/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Chapter2.0_AlgorithmAnalysis/index.html">
+<meta property="og:title" content="数据结构与算法-1_线性表">
+<meta property="og:url" content="http://example.com/2022/12/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/1_%E7%BA%BF%E6%80%A7%E8%A1%A8/index.html">
 <meta property="og:site_name" content="Geternitier的博客">
-<meta property="og:description" content="Chapter2.0：算法分析">
+<meta property="og:description" content="1. 线性表 夜阑月明人尽望，铁骑刀锋梦中伏。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-12-02T05:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-17T02:37:30.129Z">
+<meta property="article:published_time" content="2022-12-02T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-12T05:44:07.324Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>数据结构与算法-2.0_算法分析 - Geternitier的博客</title>
+  <title>数据结构与算法-1_线性表 - Geternitier的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -184,7 +184,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="数据结构与算法-2.0_算法分析"></span>
+            <span id="subtitle" data-typed-text="数据结构与算法-1_线性表"></span>
           
         </div>
 
@@ -195,8 +195,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-12-02 13:00" pubdate>
-          2022年12月2日 下午
+        <time datetime="2022-12-02 12:00" pubdate>
+          2022年12月2日 中午
         </time>
       </span>
     
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          704 字
+          1.5k 字
         
       </span>
     
@@ -247,47 +247,203 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">数据结构与算法-2.0_算法分析</h1>
+            <h1 style="display: none">数据结构与算法-1_线性表</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="chapter2.0算法分析">Chapter2.0：算法分析</h2>
+                <h1 id="线性表">1. 线性表</h1>
+<p>夜阑月明人尽望，铁骑刀锋梦中伏。</p>
 <span id="more"></span>
-<p>算法是为解决问题而定义的一系列方法。
-算法分析主要在于算法占用的时间与空间。
-算法分析的两个方法：性能分析和性能度量</p>
-<h3 id="空间复杂度">1. 空间复杂度</h3>
-<p>运行完成程序需要的内存空间 组成：指令、数据、环境栈空间
-此处讨论的存储器主要指内存。 #### (1) 指令空间
-程序编译成的二进制码的空间大小 又称代码空间
-本课程中，我们默认忽略指令空间
-原因：操作系统对代码所占的内存具有一些管理机制，代码所占内存有限 ####
-(2) 数据空间 定长部分：包含指令、简单变量、定长度的成员变量、常量的内存
-变长部分：随数据变化而变化的部分，如递归栈、动态分配区域
-一般而言，变长部分更为重要。 #### (3) 环境栈空间</p>
-<h3 id="时间复杂度">2. 时间复杂度</h3>
-<p>运行完成程序需要的时间长度<br />
-编译时间不被计算进时间复杂度。<br />
-计算程序的时间复杂度，关键操作个数是核心，循环中操作个数格外重要。</p>
-<h4 id="最好最差和平均的复杂度分析">最好、最差和平均的复杂度分析</h4>
-<p>平均复杂度往往难以定义。<br />
-使用算术平均值作为平均复杂度(假设所有情况等概率)是简化的运算，不能完全代表平均情况。</p>
-<p>步骤数计算：count++；</p>
-<h4 id="算法的渐进分析">算法的渐进分析</h4>
-<p>记号：O、𝛺、o、𝜃</p>
-<h5 id="o表示法">O表示法</h5>
-<p>表示算法复杂度的上限<br />
-定义：f(n)=O(g(n))，即当n尽量大时，存在c，f(n)&lt;=cg(n)。</p>
-<h5 id="o表示法-1">o表示法</h5>
-<p>定义：f(n)=o(g(n))，即当n尽量大时，存在c，f(n)&lt;cg(n)。
-当前算法复杂度小于该量级。</p>
-<h5 id="𝛺表示法">𝛺表示法</h5>
-<p>表示算法复杂度的下界<br />
-定义：f(n)=𝛺(g(n))，即当n尽量大时，存在c，f(n)&gt;=cg(n)。</p>
-<h5 id="𝜃表示法">𝜃表示法</h5>
-<p>表示和算法复杂度同等的两级<br />
-f(n)=𝜃(g(n))，即当n尽量大，存在，，使g(n)&lt;=f(n)&lt;=g(n)。</p>
+<h2 id="线性表基础">1.1 线性表基础</h2>
+<h3 id="定义">定义</h3>
+<ol type="1">
+<li>线性表：具有相同数据类型的<span
+class="math inline">\(n\)</span>个数据元素的有限序列。
+<ul>
+<li><span class="math inline">\(n\)</span>为表长，当<span
+class="math inline">\(n=0\)</span>，该表为空表。</li>
+</ul></li>
+<li>基本操作：
+<ul>
+<li>初始化/销毁</li>
+<li>求表长</li>
+<li>判空</li>
+<li>按值查找位</li>
+<li>按位查找值</li>
+<li>插入/删除</li>
+</ul></li>
+</ol>
+<h3 id="顺序存储">顺序存储</h3>
+<ol type="1">
+<li>线性表的顺序存储，又称顺序表。
+<ul>
+<li>用一组地址空间连续的存储单元依次存储线性表中的数据元素。</li>
+</ul></li>
+<li>基本操作：
+<ul>
+<li>按值查找位：遍历表，时间复杂度<span
+class="math inline">\(O(n)\)</span>。</li>
+<li>按位查找值：随机访问，时间复杂度<span
+class="math inline">\(O(1)\)</span>。</li>
+<li>插入/删除：执行操作并移动操作位置后的所有元素，时间复杂度<span
+class="math inline">\(O(n)\)</span>。</li>
+</ul></li>
+<li>评价：
+<ul>
+<li>只存储数据元素，存储密度高，但需要连续存储空间，不灵活。</li>
+<li>访问<span class="math inline">\(O(1)\)</span>，但插入、删除<span
+class="math inline">\(O(n)\)</span>。</li>
+</ul></li>
+</ol>
+<h3 id="链式存储">链式存储</h3>
+<ol type="1">
+<li><p>单链表：通过一组链表结点存储线性表。</p>
+<ul>
+<li><p>每个链表结点包含数据元素与后继指针，表尾元素后继为空。</p></li>
+<li><p>头指针：链表的起始地址。</p>
+<ul>
+<li>头结点：指针指向第一个数据元素。</li>
+<li>有头结点时，头指针指向头结点，头结点指针指向空表示链表为空。</li>
+<li>无头结点时，头指针为第一个数据元素，为空时表示链表为空。</li>
+</ul></li>
+<li><p>基本操作：</p>
+<ul>
+<li>查找、求表长：遍历表，时间复杂度<span
+class="math inline">\(O(n)\)</span>。</li>
+<li>插入/删除：先查找<span
+class="math inline">\(O(n)\)</span>后操作<span
+class="math inline">\(O(1)\)</span>，时间复杂度<span
+class="math inline">\(O(n)\)</span>。</li>
+</ul></li>
+<li><p>循环单链表：表尾元素后继为头结点。</p>
+<ul>
+<li>常设尾指针，此时头插与尾插时间复杂度均为<span
+class="math inline">\(O(1)\)</span>。</li>
+</ul></li>
+</ul></li>
+<li><p>双链表：通过一组链表结点存储线性表。</p>
+<ul>
+<li>每个链表结点包含数据元素、前驱指针与后继指针，表头元素前驱为空，表尾元素后继为空。</li>
+<li>循环双链表：表头元素前驱为表尾元素，表尾元素后继为头结点。</li>
+</ul></li>
+<li><p>静态链表：用顺序存储的方式来存储链表，不同于顺序表的是，每个结点额外存储下一个元素的位置。</p></li>
+</ol>
+<h3 id="数组">数组</h3>
+<ol type="1">
+<li>具有相同数据类型的<span
+class="math inline">\(n\)</span>个数据元素的有限序列，线性表的推广。
+<ul>
+<li>每个数据元素称为一个数组元素</li>
+<li>每个元素的序号称为该元素的下标</li>
+</ul></li>
+<li>多维数组：元素为数组的数组。
+<ul>
+<li>特殊矩阵压缩存储：
+<ul>
+<li>上/下三角矩阵：按行或列序依次存储上/下三角元素到一维数组中。</li>
+<li>对称矩阵：转化为上/下三角矩阵。</li>
+<li>三对角矩阵：非零元素集中在以主对角线为中心的3条对角线上的矩阵。
+<ul>
+<li>按行或列序依次存储到一维数组中。</li>
+</ul></li>
+<li>稀疏矩阵：非零元素数远小于矩阵元素数。
+<ul>
+<li>三元组存储：<span
+class="math inline">\((行,列,值)\)</span>。也需要保存矩阵的行数、列数(和非零元素数)。</li>
+<li>十字链表</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ol>
+<h3 id="字符串">字符串</h3>
+<ol type="1">
+<li>字符串，简称串，零个或多个字符组成的有限序列。
+<ul>
+<li>长度为0的串称为空串。</li>
+</ul></li>
+<li>模式匹配：查找子串位置。
+<ul>
+<li>KMP算法：使用最长公共前后缀进行匹配。</li>
+</ul></li>
+</ol>
+<h2 id="栈">1.2 栈</h2>
+<h3 id="定义-1">定义</h3>
+<ol type="1">
+<li>栈：只允许在一端进行插入/删除的线性表。
+<ul>
+<li>栈顶：线性表允许进行插入/删除的端点。</li>
+<li>栈底：线性表不允许进行插入/删除的端点。</li>
+</ul></li>
+<li>基本操作：
+<ul>
+<li>初始化/销毁</li>
+<li>判空</li>
+<li>压栈/出栈</li>
+<li>读栈顶元素</li>
+</ul></li>
+<li>卡特兰数公式：当<span
+class="math inline">\(n\)</span>个不同元素按一定顺序压栈，出栈序列的排列数为<span
+class="math inline">\(\frac1{n+1}C_{2n}^n\)</span>。</li>
+</ol>
+<h3 id="存储">存储</h3>
+<ol type="1">
+<li>使用顺序表依次存储栈中元素，并记录栈顶元素位置。
+<ul>
+<li>共享栈：将两个栈的栈底设为一个顺序存储空间的两端，两个栈顶向中间延伸。</li>
+</ul></li>
+<li>使用链表存储栈。</li>
+</ol>
+<h3 id="应用">应用</h3>
+<ol type="1">
+<li>括号匹配、表达式求值</li>
+<li>递归算法非递归化</li>
+<li>函数调用</li>
+</ol>
+<h2 id="队列">1.3 队列</h2>
+<h3 id="定义-2">定义</h3>
+<ol type="1">
+<li>队列：只允许在一端进行插入、另一端进行删除的线性表。
+<ul>
+<li>队头：允许删除的一端</li>
+<li>队尾：允许插入的一端</li>
+</ul></li>
+<li>基本操作：
+<ul>
+<li>初始化/销毁</li>
+<li>判空</li>
+<li>入队/出队</li>
+<li>读队头元素</li>
+</ul></li>
+<li>双端队列：只允许在两端进行插入/删除的线性表。
+<ul>
+<li>输入受限：一端插入，两端删除</li>
+<li>输出受限：两端插入，一端删除</li>
+</ul></li>
+</ol>
+<h3 id="存储-1">存储</h3>
+<ol type="1">
+<li>使用顺序表依次存储队列中元素，记录队头和队尾位置。
+<ul>
+<li>已出队位置空间浪费<span
+class="math inline">\(\rightarrow\)</span>循环队列</li>
+<li>循环队列：队头/尾到顺序表上限后到0位继续操作。
+<ul>
+<li>判满与判空
+<ul>
+<li>计数</li>
+<li>一种方法：队尾=队头即空，(队尾+1)%表长=队头即满（会牺牲一个存储位置）</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>队列的链式存储也称链队列。</li>
+</ol>
+<h3 id="应用-1">应用</h3>
+<ol type="1">
+<li>层次遍历</li>
+<li>缓冲区</li>
+<li>资源的队列管理</li>
+</ol>
 
                 
               </div>
@@ -328,9 +484,9 @@ f(n)=𝜃(g(n))，即当n尽量大，存在，，使g(n)&lt;=f(n)&lt;=g(n)。</p
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/12/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Chapter3.1_Stack&amp;Queue/" title="数据结构与算法-3.1_栈与队列">
+                      <a href="/2022/12/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/2_%E6%A0%91/" title="数据结构与算法-2_树">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">数据结构与算法-3.1_栈与队列</span>
+                        <span class="hidden-mobile">数据结构与算法-2_树</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -338,8 +494,8 @@ f(n)=𝜃(g(n))，即当n尽量大，存在，，使g(n)&lt;=f(n)&lt;=g(n)。</p
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/12/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Chapter1.0_Intro/" title="数据结构与算法-1.0_绪论">
-                        <span class="hidden-mobile">数据结构与算法-1.0_绪论</span>
+                      <a href="/2022/12/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/0_%E7%BB%AA%E8%AE%BA/" title="数据结构与算法-0_绪论">
+                        <span class="hidden-mobile">数据结构与算法-0_绪论</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -393,6 +549,12 @@ f(n)=𝜃(g(n))，即当n尽量大，存在，，使g(n)&lt;=f(n)&lt;=g(n)。</p
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -586,6 +748,49 @@ f(n)=𝜃(g(n))，即当n尽量大，存在，，使g(n)&lt;=f(n)&lt;=g(n)。</p
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

@@ -16,21 +16,21 @@
   <meta name="author" content="Geternitier">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Chapter3.1：Stack Queue 栈与队列">
+    <meta name="description" content="4. 查找 夜阑月明人尽望，铁骑刀锋梦中伏。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构与算法-3.1_栈与队列">
-<meta property="og:url" content="http://example.com/2022/12/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Chapter3.1_Stack&Queue/index.html">
+<meta property="og:title" content="数据结构与算法-4_查找">
+<meta property="og:url" content="http://example.com/2022/12/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/4_%E6%9F%A5%E6%89%BE/index.html">
 <meta property="og:site_name" content="Geternitier的博客">
-<meta property="og:description" content="Chapter3.1：Stack Queue 栈与队列">
+<meta property="og:description" content="4. 查找 夜阑月明人尽望，铁骑刀锋梦中伏。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-12-03T06:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-17T02:37:36.076Z">
+<meta property="article:published_time" content="2022-12-05T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-12T05:46:05.205Z">
 <meta property="article:author" content="Geternitier">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>数据结构与算法-3.1_栈与队列 - Geternitier的博客</title>
+  <title>数据结构与算法-4_查找 - Geternitier的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -184,7 +184,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="数据结构与算法-3.1_栈与队列"></span>
+            <span id="subtitle" data-typed-text="数据结构与算法-4_查找"></span>
           
         </div>
 
@@ -195,8 +195,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-12-03 14:00" pubdate>
-          2022年12月3日 下午
+        <time datetime="2022-12-05 12:00" pubdate>
+          2022年12月5日 中午
         </time>
       </span>
     
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          2.7k 字
         
       </span>
     
@@ -247,54 +247,229 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">数据结构与算法-3.1_栈与队列</h1>
+            <h1 style="display: none">数据结构与算法-4_查找</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="chapter3.1stack-queue-栈与队列">Chapter3.1：Stack Queue
-栈与队列</h1>
+                <h1 id="查找">4. 查找</h1>
+<p>夜阑月明人尽望，铁骑刀锋梦中伏。</p>
 <span id="more"></span>
-<h2 id="一栈">一、栈</h2>
-<p>栈是插入与删除发生在同一端的列表，该端称为顶部，另一端称为底部。
-栈也被称为LIFO(Last In First Out)列表</p>
-<h3 id="栈的模型">栈的模型</h3>
-<p>Abstract Data Type: Stack：<br />
-instances: list of elements<br />
-operations:<br />
-Create(): Create an empty stack<br />
-IsEmpty()<br />
-IsFull()<br />
-Top(): Return top element of the stack<br />
-Add(x): add element x to the stack<br />
-Delete(x) :Delete top element from stack and put it in x</p>
-<h3 id="栈的链表实现">栈的链表实现</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Stack</span>&#123;<br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">Stack</span><span class="hljs-params">()</span>&#123;topOfStack = <span class="hljs-literal">null</span>;&#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isFull</span><span class="hljs-params">()</span>&#123;<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;&#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isEmpty</span><span class="hljs-params">()</span>&#123;<span class="hljs-keyword">return</span> topOfStack == <span class="hljs-literal">null</span>;&#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">makeEmpty</span><span class="hljs-params">()</span>&#123;topOfStack = <span class="hljs-literal">null</span>;&#125;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">push</span><span class="hljs-params">(object x)</span>&#123;<br>    topOfStack = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ListNode</span>(x, topOfStack);<br>  &#125;<br>  <span class="hljs-keyword">public</span> object <span class="hljs-title function_">top</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-keyword">if</span>(isEmpty())<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">return</span> topOFStack.element;<br>  &#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">pop</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Underflow&#123;<br>    <span class="hljs-keyword">if</span>(isEmpty())<br>      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Underflow</span>();<br>    topOfStack = topOfStack.next;<br>  &#125;<br>  <span class="hljs-keyword">public</span> object <span class="hljs-title function_">topAndPop</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-keyword">if</span>(isEmpty())<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    <span class="hljs-type">Object</span> <span class="hljs-variable">topItem</span> <span class="hljs-operator">=</span> topOfStack.element;<br>    topOfStack = topOfStack.next;<br>    <span class="hljs-keyword">return</span> topItem;<br>  &#125;<br><br>  <span class="hljs-keyword">private</span> ListNode topOfStack;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h3 id="栈的数组实现">栈的数组实现</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Stack</span>&#123;<br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">Stack</span><span class="hljs-params">()</span>&#123;<span class="hljs-built_in">this</span>(DEFAULT_CAPACITY);&#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">Stack</span><span class="hljs-params">(<span class="hljs-type">int</span> capacity)</span>&#123;<br>    array = <span class="hljs-keyword">new</span> <span class="hljs-title class_">object</span>[capacity];<br>    topOfStack = -<span class="hljs-number">1</span>;<br>  &#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isEmpty</span><span class="hljs-params">()</span>&#123;<span class="hljs-keyword">return</span> topOfStack==-<span class="hljs-number">1</span>;&#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isFull</span><span class="hljs-params">()</span>&#123;<span class="hljs-keyword">return</span> topOfStack==theArray.length–<span class="hljs-number">1</span>;&#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">makeEmpty</span><span class="hljs-params">()</span>&#123;topOfStack=-<span class="hljs-number">1</span>;&#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">push</span><span class="hljs-params">(object x)</span> <span class="hljs-keyword">throws</span> overflow&#123;<br>    <span class="hljs-keyword">if</span>(isFull()) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Overflow</span>();<br>    array[++topOfStack] = x;<br>  &#125;<br>  <span class="hljs-keyword">public</span> object <span class="hljs-title function_">top</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-keyword">if</span>(isEmpty()) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">return</span> array[topOfStack];<br>  &#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">pop</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Underflow&#123;<br>    <span class="hljs-keyword">if</span>(isEmpty()) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Underflow</span>();<br>    array[topOfStack--] = <span class="hljs-literal">null</span>;<br>  &#125;<br>  <span class="hljs-keyword">public</span> object <span class="hljs-title function_">topAndPop</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-keyword">if</span>(isEmpty()) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    <span class="hljs-type">Object</span> <span class="hljs-variable">topItem</span> <span class="hljs-operator">=</span> top();<br>    array[topOfStack--] = <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">return</span> topItem;<br>  &#125;<br>  <span class="hljs-keyword">private</span> object[] array;<br>  <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> topOfStack;<br>  <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">DEFAULT_CAPACITY</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>多个栈的存在会导致空间的浪费，当只有两个栈时，我们可以将两个栈在同一个线性表的两端进行存储，两者向中间延伸。</p>
-<h3 id="栈的应用">栈的应用</h3>
+<h2 id="概念">4.1 概念</h2>
+<ol type="1">
+<li><p>查找：在数据集合中寻找满足某种条件的数据元素的过程。</p></li>
+<li><p>查找表：用于查找的数据集合。</p>
 <ul>
-<li>括号匹配</li>
-</ul>
-<h2 id="二队列">二、队列</h2>
-<p>队列是插入和删除发送在两端的线性表，新元素插入的地方称为尾部，旧元素删除的地方称为首部。
-队列也被称为FIFO(First In First Out)列表。</p>
-<h3 id="队列的模型">队列的模型</h3>
-<p>Abstract Data Type: Queue: instances: ordered list of elements
-operations: Create(): Create an empty queue IsEmpty() IsFull() First():
-return first element of the queue Last(): return last element of the
-queue Add(x): add element x to the queue Delete(x): delete front element
-from the queue and put it in x</p>
-<h3 id="队列的数组实现">队列的数组实现</h3>
-<p>元素的增加：++back; array[back]=x;<br />
-元素的删除：两种办法<br />
-1. ++front; O(1)<br />
-2. 将整个队列左移 O(n)<br />
-可以使用循环数组来表示队列，方法有二<br />
-1. 分类讨论头和尾抵达了数组边界的情况 2. back = (back+1)%array.length;
-front = (front+1)%array.length</p>
-<h3 id="队列的链表实现">队列的链表实现</h3>
+<li><p>静态查找表：只读的查找表。常用顺序查找、二分查找、散列查找。</p></li>
+<li><p>动态查找表：需要动态插入或删除的查找表。常用二叉排序树、散列查找。</p></li>
+</ul></li>
+<li><p>关键字：数据元素中唯一标识该元素的某个数据项的值。</p>
+<p>查找长度：查找需要比较关键字次数。</p>
+<p>平均查找长度，ASL：所有查找过程中查找长度的平均值。</p></li>
+</ol>
+<h2 id="查找算法">4.2 查找算法</h2>
+<h3 id="线性查找">线性查找</h3>
+<ol type="1">
+<li>顺序查找：适用于顺序表和链表。
+<ul>
+<li>对无序线性表，查找成功的平均长度为<span
+class="math inline">\(\frac{n+1}2\)</span>，查找失败的平均长度为<span
+class="math inline">\(n+1\)</span>。</li>
+<li>对有序线性表，可以通过比较来提前得知查找失败。</li>
+</ul></li>
+<li>二分查找：仅适用于有序顺序表，不适用于链表。
+<ul>
+<li>查找成功的平均长度为<span
+class="math inline">\(\frac{n+1}{n}\log_2(n+1)-1\)</span>。</li>
+</ul></li>
+<li>分块查找：又称索引顺序查找。
+<ul>
+<li>将查找表分为多个块内元素可以无序，块间有序的查找块。</li>
+<li>建立索引表，记录每个块的最大值和第一个元素的地址。索引有序排列。</li>
+<li>先查索引，后查块。</li>
+</ul></li>
+</ol>
+<h3 id="树形查找">树形查找</h3>
+<ol type="1">
+<li><p>二叉排序树</p>
+<ul>
+<li>查找：从根结点开始逐层向下比较。
+<ul>
+<li>查找效率：取决于树的高度。平衡时为<span
+class="math inline">\(O(log_2n)\)</span>，极不平衡时为<span
+class="math inline">\(O(n)\)</span>。</li>
+</ul></li>
+<li>插入：递归
+<ol type="1">
+<li>若原二叉排序树为空，直接插入。</li>
+<li>若关键字小于根节点，插入左子树，否则插入右子树。</li>
+</ol></li>
+<li>构造：从空树开始依次插入元素。</li>
+<li>删除：
+<ul>
+<li>若为叶结点，直接删除。</li>
+<li>若只有一棵左子树或右子树，则让子树替代该结点位置。</li>
+<li>若有左右两棵子树，则让其后继或前驱替代其位置，再删除其后继或前驱的原本结点。</li>
+</ul></li>
+</ul></li>
+<li><p>二叉平衡树</p>
+<ul>
+<li><p>结点的平衡因子：左子树和右子树的高度差，只可以是<span
+class="math inline">\(-1,0,1\)</span>。</p></li>
+<li><p>插入：按二叉排序树的方式插入，检查插入路径上的结点，对以离插入结点最近的，平衡因子绝对值大于0的结点为根的子树（最小不平衡子树）进行调整。</p>
+<ul>
+<li><p>LL平衡旋转（右旋）：</p>
+<ul>
+<li><p>原因：结点A左子结点B的左子树插入结点，A的平衡因子由1变成2。</p></li>
+<li><p>过程：B取代A，A成为B的右子结点，B原本的右子树成为A的左子树。</p></li>
+</ul></li>
+<li><p>RR平衡选择（左旋）：</p>
+<ul>
+<li><p>原因：结点A右子结点B的右子树插入结点，A的平衡因子由-1变成-2。</p></li>
+<li><p>过程：B取代A，A成为B的左子结点，B原本的左子树成为A的右子树。</p></li>
+</ul></li>
+<li><p>LR平衡旋转（先左后右双旋）：</p>
+<ul>
+<li>原因：结点A左子结点B的右子树插入结点，A的平衡因子由1变成2。</li>
+<li>过程：先将B的右子结点C左旋到B，再将C右旋到A。</li>
+</ul></li>
+<li><p>RL平衡旋转（先右后左双旋）：</p>
+<ul>
+<li>原因：结点A右子结点B的左子树插入结点，A的平衡因子由-1变成-2。</li>
+<li>过程：先将B的左子结点C右旋到B，再将C左旋到A。</li>
+</ul></li>
+</ul></li>
+<li><p>构造：从空树开始依次插入元素。</p></li>
+<li><p>删除：按二叉排序树的方式删除。找到最小不平衡子树进行调整。然后向根节点逐层回溯检查。</p></li>
+</ul></li>
+<li><p>红黑树：满足一定红黑性质的二叉排序树。</p>
+<ul>
+<li>红黑性质：
+<ul>
+<li>每个结点是红的或黑的。</li>
+<li>根结点是黑的。</li>
+<li>叶结点都是黑的。引入<span
+class="math inline">\(n+1\)</span>个外部叶结点，使得每个内部结点的左右子结点非空。</li>
+<li>不存在两个相邻的红结点。</li>
+<li>对每个结点，从该结点到任意一个叶结点的简单路径上，所含黑结点的数量相同。</li>
+</ul></li>
+<li>红黑树的性质：
+<ul>
+<li>从根结点到叶结点的最长路径不大于最短路径的2倍。</li>
+<li>有<span
+class="math inline">\(n\)</span>个内部结点的红黑树的高度<span
+class="math inline">\(h\le2\log_2(n+1)\)</span>。</li>
+</ul></li>
+<li>插入：
+<ol type="1">
+<li>按二叉排序树的方式插入，并设该结点为红色。</li>
+<li>若其为根节点，则将其改为黑色，结束。</li>
+<li>若其父结点为黑色，结束。</li>
+<li>若其叔结点为红色，则将父结点和叔结点都改为黑色，将爷结点改为红色。然后将爷结点作为新结点进行循环调整。</li>
+<li>其叔结点为黑色：
+<ul>
+<li>该结点为爷结点的左子结点的左子结点：LL，并交换父结点和爷结点的颜色</li>
+<li>该结点为爷结点的左子结点的右子结点：LR，并交换父结点和爷结点的颜色</li>
+<li>该结点为爷结点的右子结点的左子结点：RL，并交换父结点和爷结点的颜色</li>
+<li>该结点为爷结点的右子结点的右子结点：RR，并交换父结点和爷结点的颜色</li>
+</ul></li>
+</ol></li>
+<li>删除</li>
+</ul></li>
+<li><p>B树：<span
+class="math inline">\(m\)</span>阶B树是所有结点的平衡因子均等于0的<span
+class="math inline">\(m\)</span>路平衡查找树。</p>
+<ul>
+<li>m阶B树满足的特性：
+<ul>
+<li>树中每个结点至多有<span
+class="math inline">\(m\)</span>棵子树，即至多有<span
+class="math inline">\(m-1\)</span>个关键字。</li>
+<li>非叶根结点至少有2棵子树，即至少有1个关键字。</li>
+<li>除根结点以外的所有非叶结点至少有<span class="math inline">\([\frac
+m2]\)</span>棵子树，即至少有<span class="math inline">\([\frac
+m2]-1\)</span>个关键字。</li>
+<li>非叶结点结构：<span
+class="math inline">\(n,P_0,K_1,P_1,....K_n,P_n\)</span>，<span
+class="math inline">\(K_i\)</span>为关键字，<span
+class="math inline">\(P_i\)</span>为指针。</li>
+<li>所有叶结点都是外部结点，在同一层，实际不存在。</li>
+</ul></li>
+<li>查找：多路比较关键字。</li>
+<li>高度：对一棵有<span
+class="math inline">\(n\)</span>个关键字，高度为<span
+class="math inline">\(h\)</span>、阶数为<span
+class="math inline">\(m\)</span>的B树：
+<ul>
+<li><span class="math inline">\(n\le m^h-1,h\ge\log_m(n+1)\)</span></li>
+<li><span class="math inline">\(h\le\log_{[\frac
+m2-1]}\frac{n+1}2+1\)</span></li>
+</ul></li>
+<li>插入：定位和插入，如果结点关键字多于<span
+class="math inline">\(m-1\)</span>，则需要进行分裂。
+<ul>
+<li>分裂：<span class="math inline">\([\frac
+m2]\)</span>位置的关键字插入父结点，其右的关键字作为新结点。</li>
+</ul></li>
+<li>删除：定位和删除，如果结点关键字少于<span
+class="math inline">\([\frac m2]-1\)</span>，则需要进行合并。
+<ul>
+<li>合并：如果兄弟结点关键字多于<span class="math inline">\([\frac
+m2]-1\)</span>，则调整其关键字进入父结点，原父结点中关键字进入原结点。否则合并父结点中关键字作为新结点。</li>
+</ul></li>
+</ul></li>
+<li><p>B+树</p>
+<ul>
+<li>m阶B+树满足的特性：
+<ul>
+<li>树中每个分支结点至多有<span
+class="math inline">\(m\)</span>棵子树。</li>
+<li>非叶根结点至少有2棵子树，其他分支结点至少有<span
+class="math inline">\([\frac m2]\)</span>棵子树。</li>
+<li>结点的子树个数和关键字个数相等。</li>
+<li>所有叶结点包含全部关键字并指向相应记录的指针。</li>
+<li>叶结点将关键字按大小排列并且相邻叶结点按大小顺序相互连接，支持顺序查找。</li>
+<li>所有分支结点仅包含其子结点中关键字的最大值和指向子结点的指针。</li>
+</ul></li>
+</ul></li>
+</ol>
+<h3 id="散列查找">散列查找</h3>
+<ol type="1">
+<li><p>散列函数：把查找表中的关键字映射为对应地址的函数。</p>
+<p>散列表：根据关键字直接进行访问的数据结构。</p>
+<ul>
+<li>散列函数定义域包含全部关键字，值域依赖于散列表大小。</li>
+<li>散列函数计算出的地址应尽可能均匀分布、减少冲突。</li>
+<li>散列函数应尽量简单，计算时间短。</li>
+</ul></li>
+<li><p>常用散列函数：</p>
+<ul>
+<li>直接定址：取关键字的某个线性函数值<span
+class="math inline">\(H(x)=ax+b\)</span>。</li>
+<li>除留余数：取一个不大于表长但接近表长的质数<span
+class="math inline">\(p\)</span>，取<span
+class="math inline">\(H(x)=x\mod p\)</span></li>
+<li>数字分析：<span class="math inline">\(r\)</span>进制数的<span
+class="math inline">\(r\)</span>个数码在各位上出现的频率不相同，则选取数码分布较平均的位进行散列。</li>
+<li>平方取中：取关键字的平方值的中间几位。</li>
+</ul></li>
+<li><p>处理冲突的方法：</p>
+<ul>
+<li>开放定址：空闲地址向非同义词开放。
+<ul>
+<li>线性探测：冲突发生时，按序查看表中下一个空闲单元。</li>
+<li>平方探测：冲突发生时，按序查看相对原址<span
+class="math inline">\(1,-1,2^2,-2^2,...\)</span>的下一个空闲单元。</li>
+<li>双散列：第一个散列函数冲突，则使用第二个散列函数。</li>
+<li>随机数</li>
+</ul></li>
+<li>拉链：同义词存于同一个链表中。</li>
+</ul></li>
+<li><p>散列表的查找效率取决于：散列函数、处理冲突办法、装填因子</p>
+<ul>
+<li>装填因子=记录数/表长。</li>
+</ul></li>
+</ol>
 
                 
               </div>
@@ -335,9 +510,9 @@ front = (front+1)%array.length</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/12/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Chapter4.0_Tree/" title="数据结构与算法-4.0_树">
+                      <a href="/2022/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/5_%E6%8E%92%E5%BA%8F/" title="数据结构与算法-5_排序">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">数据结构与算法-4.0_树</span>
+                        <span class="hidden-mobile">数据结构与算法-5_排序</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -345,8 +520,8 @@ front = (front+1)%array.length</p>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/12/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Chapter2.0_AlgorithmAnalysis/" title="数据结构与算法-2.0_算法分析">
-                        <span class="hidden-mobile">数据结构与算法-2.0_算法分析</span>
+                      <a href="/2022/12/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/3_%E5%9B%BE/" title="数据结构与算法-3_图">
+                        <span class="hidden-mobile">数据结构与算法-3_图</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -400,6 +575,12 @@ front = (front+1)%array.length</p>
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -593,6 +774,49 @@ front = (front+1)%array.length</p>
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
