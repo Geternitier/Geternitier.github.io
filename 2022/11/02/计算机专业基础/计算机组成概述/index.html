@@ -1,0 +1,1498 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/yuanshen.jpeg">
+  <link rel="icon" href="/image/icon/yuanshen.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#5a9367">
+  <meta name="author" content="Geternitier">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="计算机组成概述 夜阑月明人尽望，铁骑刀锋梦中伏。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成概述">
+<meta property="og:url" content="http://example.com/2022/11/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%93%E4%B8%9A%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="Geternitier的博客">
+<meta property="og:description" content="计算机组成概述 夜阑月明人尽望，铁骑刀锋梦中伏。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-02T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-14T12:58:49.980Z">
+<meta property="article:author" content="Geternitier">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>计算机组成概述 - Geternitier的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Geternitier的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Geternitier的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/background/TheSpirits.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="计算机组成概述"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-02 12:00" pubdate>
+          2022年11月2日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">计算机组成概述</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="计算机组成概述">计算机组成概述</h1>
+<p>夜阑月明人尽望，铁骑刀锋梦中伏。</p>
+<span id="more"></span>
+<h2 id="计算机系统概述">1. 计算机系统概述</h2>
+<h3 id="层次结构">层次结构</h3>
+<ol type="1">
+<li>计算机系统由硬件和软件系统共同构成。硬件指有形的物理设备，软件指运行的程序和相关的数据。</li>
+<li>计算机系统某一功能如果既可以用硬件实现，又可以用软件实现，则称软硬件在该逻辑功能上等价。</li>
+</ol>
+<h4 id="硬件">硬件</h4>
+<ol type="1">
+<li><p>存储程序的基本思想：将程序和数据存于主存储器中，计算机执行程序时逐条运行指令。</p></li>
+<li><p>存储程序计算机又称为冯·诺伊曼计算机，这类计算机具有三个基本原则：</p>
+<ul>
+<li><p>二进制</p></li>
+<li><p>存储程序</p></li>
+<li><p>五个基本组成部分：主存储器、算术逻辑单元、控制单元、输入设备、输出设备</p></li>
+</ul></li>
+<li><p>存储程序的工作方式：程序执行前，将第一条指令的地址存放在程序计数器PC。</p>
+<ul>
+<li><p>根据PC取指令。</p></li>
+<li><p>指令译码，PC自增。</p></li>
+<li><p>取操作数，执行指令，送回结果。</p></li>
+<li><p>循环上述步骤。</p></li>
+</ul></li>
+</ol>
+<h4 id="软件">软件</h4>
+<ol type="1">
+<li><p>软件按功能可分为系统软件和应用软件，其中系统软件主要有操作系统、数据库管理系统等。</p></li>
+<li><p>软件语言按级别分为机器语言、汇编语言和高级语言。</p>
+<ul>
+<li><p>机器语言是计算机唯一可以直接识别和执行的语言，每条指令以二进制编码。</p></li>
+<li><p>汇编语言用字符串取代二进制编码，便于理解。</p></li>
+<li><p>高级语言更方便程序员进行编写。</p></li>
+</ul></li>
+<li><p>软件语言转化需要翻译程序，包括汇编器、解释器和编译器。</p>
+<ul>
+<li>汇编器将汇编语言翻译成机器语言。</li>
+<li>解释器将源程序中语句按执行顺序逐条翻译为机器语言。</li>
+<li>编译器将高级语言编译为汇编语言或机器语言。</li>
+</ul></li>
+</ol>
+<h3 id="性能指标">性能指标</h3>
+<ol type="1">
+<li><p>机器字长：计算机进行一次整型运算能够处理的二进制数据位数。</p></li>
+<li><p>数据通路带宽：数据总线一次所能并行传送信息的位数。</p></li>
+<li><p>主存容量</p>
+<ul>
+<li>内存地址存储器，MAR的位数反映了存储单元的个数。</li>
+<li>内存数据存储器，MDR的位数反映了存储单元的字长。</li>
+</ul></li>
+<li><p>运算速度</p>
+<ul>
+<li><p>吞吐量是系统单位时间处理请求数量，响应时间是发出请求到系统对请求作出响应的时间。</p></li>
+<li><p>时钟周期是CPU工作最小的时间单位，主频是时钟周期的倒数，即每秒的时钟周期数。</p></li>
+<li><p>CPI，Cycle Per
+Instruction：执行一条指令需要的时钟周期数。</p></li>
+<li><p>IPS，Instruction Per
+Second：每秒执行指令数，IPS=主频/平均CPI。</p></li>
+<li><p>CPU执行时间：一个程序执行的时间。CPU执行时间=程序执行的CPU时钟周期数/主频。</p></li>
+<li><p>FLOPS，Floating-point Operations Per Second：每秒浮点运算数。</p>
+<ul>
+<li>M，<span class="math inline">\(10^6\)</span></li>
+<li>G，<span class="math inline">\(10^9\)</span></li>
+<li>T，<span class="math inline">\(10^{12}\)</span></li>
+<li>P，<span class="math inline">\(10^{15}\)</span></li>
+<li>E，<span class="math inline">\(10^{18}\)</span></li>
+<li>Z，<span class="math inline">\(10^{21}\)</span></li>
+<li>京=亿亿=<span class="math inline">\(10^{16}\)</span></li>
+<li>在描述存储时，K、M通常用2的幂次表示，而描述频率时，通常用10的幂次表示。</li>
+</ul></li>
+</ul></li>
+</ol>
+<h2 id="数据的表示和运算">2. 数据的表示和运算</h2>
+<h3 id="表示">表示</h3>
+<ol type="1">
+<li>十进制数与<span class="math inline">\(k\)</span>进制数的相互转换：
+<ul>
+<li><span class="math inline">\(k\)</span>进制<span
+class="math inline">\(\rightarrow\)</span>十进制：<span
+class="math inline">\(k\)</span>进制数<span
+class="math inline">\(a_n...a_0.a_{-1}...a_{-m}=a_n\times
+k^n+...+a_0\times k^0+a_{-1}\times k^{-1}+...+a_{-m}\times
+k^{-m}\)</span></li>
+<li>十进制<span class="math inline">\(\rightarrow\)</span><span
+class="math inline">\(k\)</span>进制：基数乘除法
+<ul>
+<li>整数部分除<span
+class="math inline">\(k\)</span>取余数，先取得的余数为低位，商为0时结束</li>
+<li>小数部分乘<span
+class="math inline">\(k\)</span>取整数，先取得的整数为高位，乘积为1.0时结束。</li>
+</ul></li>
+</ul></li>
+<li>数的二进制编码称为机器数，机器数的实际值称为真值。
+<ul>
+<li>为什么要采用二进制编码：易于物理表示、与逻辑真假对应、便于逻辑门计算。</li>
+<li>定点表示默认小数点在机器数的某位前或某位后。浮点表示则编码给出小数点位置。</li>
+</ul></li>
+<li>定点编码：<span class="math inline">\(n\)</span>位二进制编码
+<ul>
+<li>原码：<span class="math inline">\(y=\begin{cases}x, 0\le x\le
+2^{n-1}-1\\2^{n-1}-x,-2^{n-1}\le x\le0 \end{cases}\)</span></li>
+<li>反码：<span class="math inline">\(y=\begin{cases}x, 0\le x\le
+2^{n-1}-1\\2^n+x-1,-2^{n-1}\le x\lt0 \end{cases}\)</span></li>
+<li>移码：<span class="math inline">\(y=k+x，-k\le x\lt
+2^n-k\)</span></li>
+<li>补码：<span class="math inline">\(y=\begin{cases}x, 0\le x\le
+2^{n-1}-1\\2^n+x,-2^{n-1}\le x\lt0 \end{cases}\)</span></li>
+</ul></li>
+<li>浮点编码：IEEE 754标准
+<ul>
+<li>单精度浮点数，32位：1位符号，8位阶码（偏置值127），23位尾数
+<ul>
+<li>阶码为128（移码值255）时
+<ul>
+<li>尾数小数全为0，则为正/负无穷大</li>
+<li>尾数小数不为0，则为非数<span class="math inline">\(NaN\)</span></li>
+</ul></li>
+<li>阶码为-127（移码值0）时
+<ul>
+<li>尾数小数全为0，则为0</li>
+<li>尾数小数为<span class="math inline">\(f\)</span>，移码值为<span
+class="math inline">\(e\)</span>，<span
+class="math inline">\(N=(-1)^m2^{e-126}(0.f)\)</span></li>
+</ul></li>
+<li>一般情况：<span
+class="math inline">\(N=(-1)^m2^{e-127}(1.f)\)</span>，其中<span
+class="math inline">\(m\)</span>为符号位，<span
+class="math inline">\(e\)</span>为阶码移码值，<span
+class="math inline">\(f\)</span>为尾数小数。</li>
+</ul></li>
+<li>双精度浮点数，64位：1位符号，11位阶码，52位尾数</li>
+</ul></li>
+</ol>
+<h3 id="运算">运算</h3>
+<h4 id="基本部件">基本部件</h4>
+<ol type="1">
+<li><p>全加器Full Adder，FA：<span
+class="math inline">\(\oplus\)</span>表示异或</p>
+<ul>
+<li><p>输入：进位<span class="math inline">\(C\)</span>、输入位<span
+class="math inline">\(X\)</span>和<span
+class="math inline">\(Y\)</span>计算</p></li>
+<li><p>输出：结果位<span class="math inline">\(S=X\oplus Y\oplus
+C\)</span>，进位<span class="math inline">\(C&#39;=(X\and C)\or(X\and
+Y)\or(C\and Y)\)</span></p></li>
+</ul></li>
+<li><p>串行进位加法器：串联全加器，将上一个全加器的输出进位作为下一个全加器的输入进位。</p></li>
+<li><p>全先行进位加法器：提前计算每个全加器的输入进位，加速串行进位加法器的执行。</p>
+<ul>
+<li><span
+class="math inline">\(C_i=X_iC_{i-1}+Y_iC_{i-1}+X_iY_i\)</span>，设<span
+class="math inline">\(P_i=X_i+Y_i,G_i=X_iY_i\)</span>。
+<ul>
+<li><span class="math inline">\(C_1=G_1+P_1C_0\)</span></li>
+<li><span
+class="math inline">\(C_2=G_2+P_2C_1=G_2+P_2G_1+P_2P_1C_0\)</span></li>
+<li><span class="math inline">\(...\)</span></li>
+</ul></li>
+<li>计算快，但电路复杂。</li>
+</ul></li>
+<li><p>部分先行进位加法器：串联多个全先行进位加法器。</p></li>
+<li><p>带标志加法器：</p>
+<ul>
+<li>溢出标志<span class="math inline">\(OF=C_n\oplus
+C_{n-1}\)</span>。</li>
+<li>符号标志<span class="math inline">\(SF\)</span>为和的符号。</li>
+<li>零标志<span class="math inline">\(ZF=1\)</span>当且仅当和为0。</li>
+<li>进位标志<span class="math inline">\(CF=C_{out}\oplus
+C_{in}\)</span>。</li>
+</ul></li>
+</ol>
+<h4 id="运算实现">运算实现</h4>
+<ol type="1">
+<li><p>定点数移位：</p>
+<ul>
+<li>逻辑移位：左移时低位补0，右移时高位补0。</li>
+<li>算数移位：左移时低位补0，右移时高位补符号位</li>
+</ul></li>
+<li><p>定点数加减：</p>
+<ul>
+<li>原码：加法同号求和，异号求差；减法对减数符号取反，然后执行原码加法。</li>
+<li>补码：加法直接相加；减法将减数的负数的补码与被减数相加。
+<ul>
+<li>溢出判断：符号位相同且相加后符号位变化则溢出；最高位和次高位的进位不同则溢出。</li>
+</ul></li>
+</ul></li>
+<li><p>定点数乘法：逐位求积并对每一位的积求和。</p>
+<ul>
+<li><p>设乘数<span class="math inline">\(X\)</span>，被乘数<span
+class="math inline">\(Y\)</span>均为无符号<span
+class="math inline">\(n\)</span>位二进制数，则设<span
+class="math inline">\(2n\)</span>位乘积寄存器，初始全0。</p>
+<ul>
+<li>当<span class="math inline">\(Y_i\)</span>为0，部分积右移一位。</li>
+<li>当<span class="math inline">\(Y_i\)</span>为1，部分积前n位加上<span
+class="math inline">\(X\)</span>，并右移一位。</li>
+</ul></li>
+<li><p>布斯算法：带有符号位的乘法</p>
+<p><span class="math inline">\(\begin{aligned}X\times Y&amp;=X\times
+Y_nY_{n-1}...Y_2Y_1\\&amp;=X\times(-Y_n\times2^{n-1}+Y_{n-1}\times(2^{n-1}-2^{n-2})+...+Y_1\times(2-2^0))\\&amp;=X\times((Y_{n-1}-Y_n)\times2^{n-1}+...+(Y_0-Y_1)\times2^0)\\&amp;=2^n\times\Sigma_{i=0}^{n-1}(X\times(Y_i-Y_{i+1})\times2^{-(n-i)})
+\end{aligned}\)</span></p>
+<ul>
+<li><span class="math inline">\(Y_0=0\)</span></li>
+<li>根据<span
+class="math inline">\(Y_{i},Y_{i+1}\)</span>来确定部分积加上<span
+class="math inline">\(X,-X\)</span>或<span
+class="math inline">\(0\)</span>，右移部分积。重复<span
+class="math inline">\(n\)</span>次。</li>
+</ul></li>
+</ul></li>
+<li><p>定点数除法：</p>
+<ul>
+<li><p>被除数为0，除数不为0时商为0；除数为0时异常。</p></li>
+<li><p>恢复余数的除法过程：</p>
+<ol type="1">
+<li>在被除数前面加n位符号位扩展至2n位，存储在余数和商寄存器中</li>
+<li>将余数和商左移，判断是否够减（同号相减，异号相加，变号则不够减）
+<ul>
+<li>如果够，上商为1；不够，恢复余数，上商为0。</li>
+</ul></li>
+<li>重复</li>
+<li>如果除数和被除数不同号，则将商替换为其相反数</li>
+<li>余数存在余数寄存器中</li>
+</ol></li>
+<li><p>不恢复余数的除法过程：</p>
+<ol type="1">
+<li><p>在被除数前面加n位符号位扩展至2n位，存储在余数和商寄存器中</p></li>
+<li><p>若除数与被除数符号相同则作减法，否则作加法，如果余数和除数符号相同，上商为1，否则商为0；</p>
+<ul>
+<li><p>如果余数和除数符号相同，余数<span
+class="math inline">\(R_{i+1}=2R_i-Y\)</span>，否则，<span
+class="math inline">\(R_{i+1}=2R_i+Y\)</span>；</p>
+<p>如果新的余数和除数符号相同，商为1，否则，商为0</p></li>
+</ul></li>
+<li><p>重复。</p></li>
+</ol></li>
+</ul></li>
+<li><p>浮点数加减：检查0，对齐尾数（放大偏小的阶码），加减有效值，规格化结果。</p>
+<ul>
+<li>阶值上溢：正阶值超过可能的最大允许阶值，标记为<span
+class="math inline">\(+\infin\)</span>或<span
+class="math inline">\(-\infin\)</span></li>
+<li>阶值下溢：负阶值小于可能的最小允许阶值，报告为0</li>
+<li>有效值上溢：右规，同号两个有效值相加导致最高有效值的进位，需重新对齐以修正</li>
+<li>有效值下溢：左规，有效值对齐过程中，有数字移出右端最低位而丢失，需四舍五入</li>
+</ul></li>
+<li><p>浮点数乘除：</p>
+<ul>
+<li>乘法：检查0，阶值求和并减去一个偏移量，有效值相乘，规格化结果和舍入。</li>
+<li>除法：检查0，阶值相减并加上一个偏移量，有效值相除，规格化结果和舍入。</li>
+</ul></li>
+</ol>
+<h2 id="存储器">3. 存储器</h2>
+<h3 id="概述">概述</h3>
+<ol type="1">
+<li><p>存储器：由一定数量的单元构成，每个单元可以被唯一标识，并有存储一个数值的能力。</p>
+<ul>
+<li>地址：单元的唯一标识符</li>
+<li>地址空间：可唯一标识的单元总数</li>
+<li>寻址能力：存储在每个单元中信息的位数
+<ul>
+<li>大多数存储器是字节寻址的，而执行科学计算的计算机通常是64位寻址的</li>
+</ul></li>
+<li>位元：半导体存储器的基本元件，用于存储一位数据</li>
+</ul></li>
+<li><p>存储器的特性：</p>
+<ul>
+<li>存储介质：半导体存储器、磁表面存储器（磁盘、磁带）、磁芯存储器、光存储器（光盘）。</li>
+<li>存取方式：随机存取（RAM、ROM）、串行存取（顺序存取：磁带；直接存取：磁盘、光盘）</li>
+<li>易失性：断电后信息消失的存储器为易失存储器（RAM），否则为非易失存储器。</li>
+<li>破坏性读取：读取数据时是否会破坏数据。</li>
+</ul></li>
+<li><p>存储器性能指标：</p>
+<ul>
+<li>存储容量：存储字数<span
+class="math inline">\(\times\)</span>字长</li>
+<li>单位成本：每位的价格</li>
+<li>存储速度/数据传输速率（每秒传输信息位数）
+<ul>
+<li>存取时间：读取时间和写入时间。</li>
+<li>存取周期：存储器进行一次读写操作加上恢复操作所需的全部时间。</li>
+<li>主存带宽：即数据传输速率。</li>
+</ul></li>
+</ul></li>
+<li><p>计算机中的存储器：高速缓冲存储器、主存储器、辅助存储器。</p></li>
+</ol>
+<h3 id="物理存储器">物理存储器</h3>
+<ol type="1">
+<li><p>随机存储器，Random Access Memory，RAM。</p>
+<ul>
+<li><p>动态RAM，DRAM：使用电容充电的方式存储数据，根据电荷阈值确定1或0。</p>
+<ul>
+<li>破坏性读取，数据密度高，功耗小，价格低。</li>
+<li>电荷会逐渐消失，需要周期刷新数据存储。
+<ul>
+<li>集中刷新：停止读写内存并刷新每一行；刷新时无法操作内存。</li>
+<li>分散刷新：每个存储周期内，当读写操作完成时进行刷新。会增加每个存储周期的时间。</li>
+<li>异步刷新：每一行各自以一定的时间间隔刷新；效率高，较常用。</li>
+</ul></li>
+<li>同步DRAM，SDRAM：与处理器的数据交互同步与外部的时钟信号。</li>
+<li>双速率SDRAM，DDR：每个时钟周期发送两次数据，分别在时钟脉冲的上升沿和下降沿。</li>
+</ul></li>
+<li><p>静态RAM，SRAM：使用晶体管的触发器、逻辑门存储数据。</p>
+<ul>
+<li>存取快于DRAM，数据密度低，功耗大，价格贵。</li>
+<li>非破坏性读取，有电源就可以一直维持数据。</li>
+</ul></li>
+</ul></li>
+<li><p>只读存储器，Read-Only
+Memory，ROM：非易失；需要先擦除后写入，因此写比读慢。</p>
+<ul>
+<li><p>掩模式ROM，MROM：不可写入。</p></li>
+<li><p>可编程ROM，PROM：可以使用电信号等专门设备写入一次。</p></li>
+<li><p>可擦除PROM，EPROM：光擦除，电写入，更贵但能多次改写。</p></li>
+<li><p>电EPROM，EEPROM：随时写入。更贵，密度低于EPROM。</p></li>
+<li><p>快闪存储器，Flash
+Memory：块级电擦除，密度与EPROM相同，价格在EPROM和EEPROM间。</p></li>
+<li><p>固态硬盘，Solid State Drive：由Flash芯片和控制单元组成。</p>
+<ul>
+<li>与硬磁盘存储器相比：抗振性好、无噪声、能耗低、发热少。</li>
+<li>磨损均衡：闪存的擦写次数有限，如果集中在几个闪存块进行读写，会导致其磨损较快。
+<ul>
+<li>动态磨损均衡：写入时自动选择较新的闪存块。</li>
+<li>静态磨损均衡：SSD自动检测并进行数据分配，使得平时的读写在较新的闪存块进行。</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>存储芯片内部结构：存储体、读写电路、地址译码器、控制电路。</p>
+<ul>
+<li>存储体，又称存储矩阵，由行、列选择线来选择访问单元，这一过程称为字选。</li>
+<li>地址译码器，将地址转换为译码输出线的高电平来驱动读写电路。
+<ul>
+<li>单译码：只有一个行译码器，同一行中的各单元被同时读取输出，缺点是译码输出线太多。</li>
+<li>双译码：具有行、列译码器。</li>
+</ul></li>
+<li>读写电路：控制选择的单元的读取或写入，具有放大信息的作用。</li>
+<li>控制电路：
+<ul>
+<li>片选控制：存储器往往由多个存储芯片构成，需要进行芯片选择。
+<ul>
+<li>线选：高位地址线直连芯片，当电位为0时选择该芯片（1位地址决定一个芯片）。</li>
+<li>译码片选：高位地址译码器选片（n位地址选择<span
+class="math inline">\(2^n\)</span>个芯片）。</li>
+</ul></li>
+<li>读写控制：根据命令选择读/写。</li>
+</ul></li>
+</ul></li>
+<li><p>机械硬盘，Hard Disk
+Drive：由涂有可磁化材料的非磁性材料构成的圆形盘片。</p>
+<ul>
+<li>硬盘结构：
+<ul>
+<li>磁盘驱动器：驱动磁盘转动并在盘面上通过磁头进行读写。</li>
+<li>磁盘控制器：接受主机命令并向磁盘驱动器发出信号。</li>
+<li>存储区：多个盘片
+<ul>
+<li>每个盘片有两个盘面，每个盘面有一个读写磁头。</li>
+<li>每个盘面上有多个同心圆结构的磁道，相邻磁道间存在间隙。</li>
+<li>每个磁道分为多个扇区，相邻扇区间存在间隙，相邻多个扇区组合成簇，按簇读写。</li>
+<li>不同盘片相同位置的磁道构成柱面。</li>
+</ul></li>
+</ul></li>
+<li>记录密度：
+<ul>
+<li>道密度：沿磁盘半径方向单位长度上的磁道数。</li>
+<li>位密度：磁道单位长度上的位数。</li>
+<li>面密度：盘面单位面积上的位数，位密度和道密度的乘积。</li>
+</ul></li>
+<li>磁盘容量：
+<ul>
+<li>非格式化容量：可用磁化单元总数，记录面数<span
+class="math inline">\(\times\)</span>柱面数<span
+class="math inline">\(\times\)</span>每条磁道的磁化单元数。</li>
+<li>格式化容量：按某种特定格式能容纳的量，记录面数<span
+class="math inline">\(\times\)</span>柱面数<span
+class="math inline">\(\times\)</span>每道扇区数<span
+class="math inline">\(\times\)</span>每扇区容量。</li>
+</ul></li>
+<li>存取时间：寻道时间+旋转延迟+传输时间。
+<ul>
+<li>寻道时间：磁头定位到指定磁道的时间。
+<ul>
+<li>寻道算法：
+<ul>
+<li>先来先服务 FCFS</li>
+<li>最短寻道时间优先 SSTF</li>
+<li>扫描/电梯 SCAN：磁头按照一个方向移动到边缘，然后返回</li>
+<li>循环扫描 CSCAN：磁头只在往一个方向移动时进行读写，返回时不处理</li>
+<li>电梯 LOOK：SCAN时，如果方向上没有请求就返回</li>
+<li>循环电梯 CLOOK：CSCAN时，如果方向上没有请求就返回</li>
+</ul></li>
+</ul></li>
+<li>旋转延迟：等待响应扇区的起始处到达磁头所需的时间。
+<ul>
+<li>通常使用平均旋转延迟（旋转半周的时间）进行计算</li>
+</ul></li>
+<li>传输时间：数据传输速率<span
+class="math inline">\(rN\)</span>，其中磁盘转速<span
+class="math inline">\(r\)</span>转每秒，每条磁道容量<span
+class="math inline">\(N\)</span>字节。
+<ul>
+<li>需要传输<span class="math inline">\(b\)</span>字节，则传输时间<span
+class="math inline">\(\frac{b}{rN}\)</span>。</li>
+</ul></li>
+</ul></li>
+<li>磁盘地址：柱面（磁道）号，盘面（磁头）号，扇区号。</li>
+</ul></li>
+<li><p>冗余磁盘阵列，Redundant Array of Independent Disks，RAID：</p>
+<ul>
+<li>RAID0：无冗余、无校验磁盘阵列，通过多个磁盘进行存储提高读写速度</li>
+<li>RAID1：镜像磁盘阵列，通过磁盘镜像提高安全性</li>
+<li>RAID2：海明码磁盘阵列</li>
+<li>RAID3：位交叉奇偶校验磁盘阵列</li>
+<li>RAID4：块交叉奇偶校验磁盘阵列</li>
+<li>RAID5：无独立校验的奇偶校验磁盘阵列</li>
+</ul></li>
+</ol>
+<h3 id="高速缓冲存储器">高速缓冲存储器</h3>
+<ol type="1">
+<li><p>内存墙：CPU的速度比内存快，且两者差距不断扩大。</p></li>
+<li><p>程序访问的局部性原理：处理器频繁访问主存中相同位置或者相邻存储位置的现象。</p>
+<ul>
+<li>时间局部性：在相对较短的时间周期内，重复访问特定的信息。</li>
+<li>空间局部性：在相对较短的时间内，访问相邻存储位置的数据。
+<ul>
+<li>顺序局部性：数据被线性排列访问时，出现的一种空间局部性特殊情况。</li>
+</ul></li>
+</ul></li>
+<li><p>高速缓冲存储器，Cache Memory。由SRAM组成，集成在CPU中。</p></li>
+<li><p>工作流程：Cache和主存分块。当CPU试图访问主存中的某个字时，首先检查这个字是否在Cache中。</p>
+<ul>
+<li><p>命中：把这个字返回给CPU。</p></li>
+<li><p>未命中：将包含这个字的主存中的固定大小的块读入Cache，再从Cache中将字传输给CPU。</p></li>
+</ul></li>
+<li><p>时间计算：命中率<span
+class="math inline">\(p\)</span>，Cache访问时间<span
+class="math inline">\(T_C\)</span>，主存访问时间<span
+class="math inline">\(T_M\)</span>，平均访问时间<span
+class="math inline">\(T_A\)</span>。</p>
+<ul>
+<li><span class="math inline">\(T_A=T_C+(1-p)T_M\)</span>。</li>
+<li><span class="math inline">\(p\)</span>越大，<span
+class="math inline">\(T_C\)</span>越小，效果越好。</li>
+<li><span class="math inline">\(T_A\lt T_M\)</span>的条件是<span
+class="math inline">\(p\gt \frac{T_C}{T_M}\)</span>。</li>
+<li>Cache增大使得<span class="math inline">\(p\)</span>增大，但<span
+class="math inline">\(T_C\)</span>也增加。</li>
+</ul></li>
+<li><p>主存和Cache映射：假设Cache有<span
+class="math inline">\(2^c\)</span>行，主存<span
+class="math inline">\(2^m\)</span>块。</p>
+<ul>
+<li><p>直接映射：主存中每一块映射到固定的Cache行，主存地址高<span
+class="math inline">\(m-c\)</span>位作为标记。</p>
+<ul>
+<li>主存第<span class="math inline">\(j\)</span>块映射到第<span
+class="math inline">\(i\)</span>行：<span
+class="math inline">\(i=j\;mod\;2^c\)</span>。</li>
+<li>即主存地址由<span class="math inline">\(m-c\)</span>位标记，<span
+class="math inline">\(c\)</span>位行号和块内地址组成。
+<ul>
+<li>查找时，先根据行号查Cache，然后比对标记。</li>
+</ul></li>
+<li>缺点：抖动现象（Thrashing），程序重复访问两个需要映射到同一行中且来自不同块的字，则这两个块不断被交换到Cache中导致命中率下降。</li>
+</ul></li>
+<li><p>关联映射：一个主存块可以装入Cache任意一行</p>
+<ul>
+<li>将块装入空行，满之后根据特定算法进行替换。</li>
+<li>缺点：搜索需要遍历每一行，适合小容量Cache。</li>
+</ul></li>
+<li><p>组关联映射：Cache分为多个组，主存块装入固定组的任意行。</p>
+<ul>
+<li>假设有<span class="math inline">\(2^s\)</span>组，则主存地址前<span
+class="math inline">\(m-s\)</span>位为标记，接下来<span
+class="math inline">\(s\)</span>位为组号。</li>
+<li><span class="math inline">\(k=c-s\)</span>，又称<span
+class="math inline">\(2^k\)</span>路组关联映射。</li>
+</ul></li>
+<li><p>替换算法：随机 RAND，先进先出 FIFO，近期最少使用
+LRU，最不经常使用 LFU。</p>
+<ul>
+<li><p>LRU：假设最近使用过的内存块更可能被再次使用，替换掉最长时间未被访问的内存块。</p>
+<ul>
+<li>实现：2路组关联映射。
+<ol type="1">
+<li>每行包含一个USE位。</li>
+<li>在同一组中的行被访问时，将其USE值设为1，将另一行的USE位设为0。</li>
+<li>新数据块读入时，替换USE值为0的数据块。</li>
+</ol></li>
+<li>实现：4路组关联映射
+<ol type="1">
+<li>每行包含两个USE位。</li>
+<li>在同一组中的行被访问时，将其USE值清0，其余非空行的USE值+1。</li>
+<li>新数据块读入时，替换USE值最大的数据块。</li>
+</ol></li>
+</ul></li>
+<li><p>LFU：假设访问越频繁的数据块越有可能被再次使用，替换掉被访问次数最少的数据块。</p>
+<ul>
+<li>实现：为每一行设置计数器。</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>Cache写策略</p>
+<ul>
+<li><p>写直达：所有写操作同时对Cache和主存进行。</p>
+<ul>
+<li>优点：确保主存中数据总是和Cache中一致。</li>
+<li>缺点：产生大量主存访问，减慢写的操作。</li>
+</ul></li>
+<li><p>写回法：先更新Cache，被替换时，若修改则写回主存。</p>
+<ul>
+<li><p>利用一个使用位表示块是否被修改。</p></li>
+<li><p>优点：减少了访问主存的次数。</p></li>
+<li><p>缺点：部分主存数据可能不是最新的。</p></li>
+</ul></li>
+</ul></li>
+</ol>
+<h3 id="主存储器">主存储器</h3>
+<ol type="1">
+<li><p>CPU访问主存过程：存储地址寄存器MAR、存储数据寄存器MDR。</p>
+<ul>
+<li>CPU将待访问单元地址传输到MAR中。</li>
+<li>MAR通过地址线将地址传输到主存中的地址寄存器。
+<ul>
+<li>DRAM地址引脚复用：行地址与列地址通过相同的引脚两次输入。</li>
+<li>DRAM芯片行列数优化：
+<ul>
+<li>减少地址线数：行数和列数差最小。</li>
+<li>减少刷新开销：行数小于等于列数。</li>
+</ul></li>
+</ul></li>
+<li>地址译码器进行译码，选中主存单元。</li>
+<li>CPU通过控制线将读写信号传输到主存的控制电路。
+<ul>
+<li>读操作，主存将选中单元的数据通过数据线传输到MDR；</li>
+<li>写操作，主存将MDR的数据通过数据线传输到选中单元。</li>
+</ul></li>
+</ul></li>
+<li><p>多模块存储器：空间并行技术，利用多个结构相同的存储模块的并行工作来提高吞吐率。</p>
+<ul>
+<li><p>单体多字存储器：每个存储单元存储多个字，从而一次能读取多个字，取出多条指令。</p>
+<ul>
+<li>仅当指令和数据在主存中连续存放时能有效提高存取速度。</li>
+</ul></li>
+<li><p>多体并行存储器：由多个存储器模块组成。</p>
+<ul>
+<li><p>高位交叉编址：高位地址为模块号，低位地址为内地址。</p>
+<ul>
+<li>内地址在对应模块中译码，实际上为顺序存储。</li>
+</ul></li>
+<li><p>低位交叉编址：低位地址为模块号，高位地址为内地址。</p>
+<ul>
+<li><p>高地址在对应模块中译码，程序往往连续存放在不同模块中。因此称为<strong>交叉存储器</strong>。</p></li>
+<li><p>启动方式：</p>
+<ul>
+<li>轮流启动：每隔一定时间启动各个存储模块，模块数应大于存取周期/总线周期。</li>
+<li>同时启动</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>主存容量扩展：</p>
+<ul>
+<li>位扩展：地址线不变，数据线增加
+<ul>
+<li>使用8块4K * 1bit的芯片组成4K * 8bit的存储器</li>
+</ul></li>
+<li>字扩展：地址线增加，数据线不变
+<ul>
+<li>使用4个16K * 8bit的芯片组成64K * 8bit的存储器</li>
+</ul></li>
+<li>字、位同时扩展：地址线和数据线都增加
+<ul>
+<li>使用8个16K * 4bit的芯片组成64K * 8bit的存储器</li>
+</ul></li>
+</ul></li>
+<li><p>虚拟存储器：将主存和辅存的地址空间统一编址。</p>
+<ul>
+<li>用户编程使用的地址称为逻辑地址，实际的主存单元地址称为物理地址。</li>
+<li>使用逻辑地址时，首先判断该地址对应的内容是否装入主存，若在则直接访问，否则进行装入。
+<ul>
+<li>虚拟存储器只能使用写回法。</li>
+</ul></li>
+</ul></li>
+</ol>
+<h2 id="处理器">4. 处理器</h2>
+<h3 id="组成">组成</h3>
+<ol type="1">
+<li><p>中央处理器，Central Processing
+Unit，CPU，包含运算器和控制器。</p>
+<ul>
+<li>运算器主要包含算术逻辑单元、通用寄存器、程序状态字寄存器等，负责运算和条件测试。</li>
+<li>控制器主要包含PC、IR、指令译码器ID、MAR、MDR、时序电路等。负责取指、译码和执行。</li>
+</ul></li>
+<li><p>控制器可根据产生微操作控制信号的方式，分为硬布线控制器和微程序控制器。</p>
+<ul>
+<li>硬布线控制器由组合逻辑门电路和触发器构成，也称组合逻辑控制器。运行快，但是复杂难修改。</li>
+<li>微程序控制器将机器指令转化为微程序存入控制存储器，产生微操作控制信号。运行慢，但灵活。</li>
+</ul></li>
+<li><p><strong>微命令</strong>是控制部件向执行部件发出的控制命令，执行部件收到微命令后执行的操作称为<strong>微操作</strong>。</p>
+<ul>
+<li>微命令有相容性和互斥性之分。</li>
+<li>微指令是若干微命令的集合，微指令包含微操作码和微地址码（下一条微指令地址）。</li>
+<li>微指令格式：
+<ul>
+<li>水平型：程序短，并行强，缺点是指令长，难编写。
+<ul>
+<li>直接编码：控制字段的每一位都代表一个微指令</li>
+<li>字段直接编码：控制字段分为多个段，每个段独立编码。
+<ul>
+<li>互斥的指令在不同段中编码，每个段还需要保留一个值表示该段不执行。</li>
+</ul></li>
+<li>字段间接编码：一个字段的某些微指令需要由另一个字段的某些微指令来解释。</li>
+</ul></li>
+<li>垂直型：类似机器指令，指令短，易编写，缺点是程序长，执行慢。</li>
+</ul></li>
+<li>微周期是从控制存储器中取出并执行一条微指令所需的时间，通常为一个时钟周期。</li>
+</ul></li>
+<li><p>微程序控制器的结构：起始和转移地址形成部件、微指令地址寄存器、微指令寄存器、控制存储器。</p>
+<ul>
+<li>后继微指令地址：
+<ul>
+<li>微指令的下地址字段，这种方式也称为断定方式。</li>
+<li>机器指令操作码。</li>
+<li>计数器自增。</li>
+<li>硬件产生入口地址。</li>
+</ul></li>
+</ul></li>
+<li><p>CPU数据通路包含组合逻辑部件、时序逻辑部件，一般有单总线、多总线、专用数据通路等结构。</p>
+<ul>
+<li>组合逻辑部件：输出仅取决于输入的部件，如译码器、多路选择器、加法器、三态门</li>
+<li>时序逻辑部件：各类寄存器和存储器</li>
+</ul></li>
+<li><p>多处理器</p>
+<ul>
+<li>单指令流单数据流：SISD</li>
+<li>单指令流多数据流：SIMD</li>
+<li>多指令流单数据流：MISD</li>
+<li>多指令流多数据流：MIMD</li>
+</ul></li>
+<li><p>硬件多线程：</p>
+<ul>
+<li>细粒度：多个线程轮流执行指令。</li>
+<li>粗粒度：连续几个时钟周期执行同一线程。</li>
+<li>同时：同时发射多个不同线程的指令。</li>
+</ul></li>
+<li><p>多核处理器：多个处理单元集成在单个CPU，每个处理单元称为一个核。</p></li>
+<li><p>共享内存多处理器：SMP</p>
+<ul>
+<li>统一存储访问</li>
+<li>非统一存储访问：主存被分配</li>
+</ul></li>
+</ol>
+<h3 id="指令">指令</h3>
+<h4 id="基础">基础</h4>
+<ol type="1">
+<li><p>机器指令：计算机执行某种操作的命令。</p>
+<ul>
+<li><p>指令集：一台计算机所有指令的集合，也称指令系统。</p></li>
+<li><p>指令集架构，Instruction Set Architecture，ISA：</p>
+<ul>
+<li><p>指令格式，指令寻址方式，操作类型。</p></li>
+<li><p>操作数类型，操作数寻址方式和存储方式。</p></li>
+<li><p>可访问的寄存器，存储空间的大小和编址。</p></li>
+<li><p>指令执行的控制方式。</p></li>
+</ul></li>
+<li><p>指令操作类型：</p>
+<ul>
+<li><p>数据传送</p></li>
+<li><p>算术和逻辑运算</p></li>
+<li><p>跳转、调用指令</p></li>
+<li><p>输入/输出指令</p></li>
+</ul></li>
+<li><p>指令寻址方式：</p>
+<ul>
+<li>顺序寻址：PC加1</li>
+<li>跳跃寻址：转移类指令，修改PC值</li>
+</ul></li>
+<li><p>操作数寻址方式：</p>
+<ul>
+<li>隐含寻址：操作数地址为固定的寄存器</li>
+<li>立即寻址：指令中给出操作数本身</li>
+<li>直接寻址：指令给出操作数真实地址</li>
+<li>间接寻址：指令给出地址的主存单元存储了操作数地址</li>
+<li>寄存器寻址：指令给出操作数所在寄存器</li>
+<li>寄存器间接寻址：指令给出寄存器，寄存器中为操作数所在主存单元地址</li>
+<li>相对寻址：常用于转移指令，指令给出的形式地址值加上PC值形成有效地址</li>
+<li>基址寻址：基址寄存器中内容加上指令给出的形式地址形成有效地址，面向OS</li>
+<li>变址寻址：变址寄存器中内容加上指令给出的形式地址形成有效地址，面向用户</li>
+<li>堆栈寻址：隐含使用堆栈中值作为地址</li>
+</ul></li>
+</ul></li>
+<li><p>x86汇编：</p>
+<ul>
+<li><p>寄存器：x86处理器中有8个32位的通用寄存器，除了EBP、ESP，其他寄存器可灵活使用。</p>
+<ul>
+<li>EAX：累加器，低16位为AX</li>
+<li>EBX：基地址寄存器，低16位为BX</li>
+<li>ECX：计数寄存器，低16位为CX</li>
+<li>EDX：数据寄存器，低16位为DX</li>
+<li>ESI、EDI：变址寄存器</li>
+<li>EBP：堆栈基指针</li>
+<li>ESP：堆栈顶指针</li>
+</ul></li>
+<li><p>Intel格式汇编指令：</p>
+<ul>
+<li>mov eax, 100：将100存于eax中</li>
+<li>mov ebx, eax：将eax中的内容复制到ebx中</li>
+<li>mov [ebx-8],
+eax：将eax中的内容复制到以ebx中内容减8为地址的主存单元</li>
+</ul></li>
+</ul></li>
+<li><p>CISC和RISC：</p>
+<ul>
+<li>复杂指令系统计算机，CISC：
+<ul>
+<li>指令系统复杂，指令200条以上，指令长度不固定、格式多，使用频度差距大</li>
+<li>指令执行时间差距大，多数指令需多个时钟周期完成</li>
+<li>多采用微程序控制</li>
+</ul></li>
+<li>精简指令系统计算机，RISC：
+<ul>
+<li>选取高频度简单指令，组合实现复杂功能</li>
+<li>指令长度固定，格式少</li>
+<li>硬布线控制，少用微程序控制</li>
+</ul></li>
+</ul></li>
+</ol>
+<h4 id="执行">执行</h4>
+<ol type="1">
+<li><p>指令周期：CPU取出并执行一条指令的全部时间</p>
+<ul>
+<li>取指周期：根据PC内容读取指令代码到IR中。</li>
+<li>间址周期：取操作数的有效地址</li>
+<li>执行周期：取操作数，执行指令</li>
+<li>中断周期：处理中断请求</li>
+</ul></li>
+<li><p>指令流水线：</p>
+<ul>
+<li><p>假设指令的执行过程为取指、译码、寻址、访存、写回，指令流水线就是在前一条指令的某个阶段（如取指）完成后，下一条指令的对应阶段（取指）与前一条指令的下一阶段（译码）同时进行。</p></li>
+<li><p>对指令集的要求：</p>
+<p>指令长度尽量一致，格式尽量规整；使用load/store指令访存；数据和指令存储边界对齐。</p></li>
+<li><p>流水线的实现：</p>
+<ul>
+<li>流水段个数取决于指令的执行过程段数。</li>
+<li>流水段的长度取决于最长的执行阶段长度。</li>
+</ul></li>
+<li><p>流水线冒险：</p>
+<ul>
+<li>结构冒险：不同指令同时争用统一功能部件。
+<ul>
+<li>可以使后一条指令暂停或用多个功能部件。</li>
+</ul></li>
+<li>数据冒险：后面指令使用前面指令的结果。，也称RAW冲突。
+<ul>
+<li>延迟后一条指令；转发（旁路）：生成的计算结果直接转发到ALU。</li>
+</ul></li>
+<li>控制冒险：转移指令和返回指令造成控制冲突。
+<ul>
+<li>插入nop指令；分支预测。</li>
+</ul></li>
+</ul></li>
+<li><p>流水线性能指标：</p>
+<ul>
+<li>吞吐率：<span class="math inline">\(TP=\frac n{T_k}\)</span>，<span
+class="math inline">\(n\)</span>为任务数，<span
+class="math inline">\(T_k\)</span>是花费的时间。</li>
+<li>加速比：<span
+class="math inline">\(S=\frac{T_0}{T_k}\)</span>，<span
+class="math inline">\(T_0\)</span>是原本花费的时间，<span
+class="math inline">\(T_k\)</span>是使用流水线后花费的时间。</li>
+</ul></li>
+<li><p>高级指令流水线技术：</p>
+<ul>
+<li>多发射：同时执行多条指令。
+<ul>
+<li>超标量流水线：也称动态多发射，同时执行多条指令。使用分支预测可以实现乱序执行。</li>
+<li>超长指令字：编译时挖掘指令并行性，形成超长指令。</li>
+</ul></li>
+<li>超流水线：增加流水线级数使更多指令在流水线中。</li>
+</ul></li>
+</ul></li>
+</ol>
+<h2 id="总线与io">5. 总线与I/O</h2>
+<h3 id="总线">总线</h3>
+<ol type="1">
+<li><p>总线：为多个组件使用的公共信息传输线路。</p>
+<ul>
+<li><p>特点：</p>
+<ul>
+<li>分时：同一时刻只有一个部件使用总线发送信息</li>
+<li>共享：总线上可以挂接多个部件。</li>
+</ul></li>
+<li><p>设备：</p>
+<ul>
+<li>主设备：发出总线请求，具有总线控制权的设备</li>
+<li>从设备：只能响应总线命令的设备</li>
+</ul></li>
+<li><p>分类：</p>
+<ul>
+<li>片内总线、系统总线、I/O总线、通信总线</li>
+<li>同步总线（按时钟进行同步）、异步总线</li>
+<li>串行总线、并行总线（有多条双向传输的数据线）</li>
+</ul></li>
+<li><p>结构：</p>
+<ul>
+<li><p>单总线：CPU、主存、I/O设备都在一组总线上</p></li>
+<li><p>双总线：主存总线和I/O总线</p></li>
+<li><p>三总线：主存总线、I/O总线、DMA总线</p></li>
+<li><p>南桥和北桥：</p>
+<pre><code class=" mermaid">graph LR
+	CPU--处理器总线---北桥--存储总线---主存
+	北桥--桥间接口---南桥
+	南桥---PCI总线---E总线
+</code></pre></li>
+</ul></li>
+<li><p>性能标准：</p>
+<ul>
+<li>总线时钟周期、总线时钟频率</li>
+<li>总线传输周期、总线工作频率</li>
+<li>总线位宽：能够同时传输的数据位数</li>
+<li>总线带宽：单位时间传输的数据位数</li>
+</ul></li>
+<li><p>地址总线：CPU指定主存或I/O端口地址</p></li>
+<li><p>数据总线：CPU从中读取信息</p></li>
+<li><p>控制总线：传递信号、命令</p></li>
+</ul></li>
+<li><p>总线事务：</p>
+<ul>
+<li>请求：主设备（CPU或DMA）发出总线传输请求，获得控制权。</li>
+<li>仲裁：决定将下一个传输周期的控制权给予某个申请者。</li>
+<li>寻址：根据主设备提供的地址和命令启动从设备。</li>
+<li>传输：主设备和从设备进行数据交换。</li>
+<li>释放：主设备撤出，让出总线。</li>
+</ul>
+<p>总线定时：</p>
+<ul>
+<li>同步定时：使用统一时钟信号来协调发送和接收者。</li>
+<li>异步定时：不使用统一时钟，而是使用请求和回答信号进行协调。
+<ul>
+<li>全互锁：主设备请求后一定要收到回答后，才撤销请求；主设备撤销请求后，从设备才能撤销回答。</li>
+<li>半互锁：主设备请求后一定要收到回答后，才撤销请求；从设备发出回答后一段时间撤销回答</li>
+<li>不互锁：主设备请求后一段时间，撤销请求；从设备发出回答后一段时间撤销回答</li>
+</ul></li>
+<li>半同步定时：既使用统一时钟，又检测响应信号</li>
+<li>分离定时：请求过程和回答过程分离，两个过程中主从设备互换。</li>
+</ul></li>
+</ol>
+<h3 id="io">I/O</h3>
+<ol type="1">
+<li><p>I/O接口：主机和外设的借口。</p>
+<ul>
+<li>主要功能：
+<ul>
+<li>设备选择：地址译码</li>
+<li>通信控制：状态/控制寄存器</li>
+<li>数据缓冲：数据缓冲寄存器</li>
+</ul></li>
+<li>数据线：传送读/写数据、状态/控制信息和中断类型号。</li>
+<li>地址线：传送要访问I/O接口中的寄存器地址。</li>
+<li>控制线：传送读/写控制信号、中断与响应信号、握手信号。</li>
+</ul>
+<p>I/O端口：可直接被CPU访问的寄存器，主要包含数据、状态和控制端口。</p>
+<ul>
+<li>每个端口对应一个端口地址，编址方式分为独立和统一：
+<ul>
+<li>独立编址：I/O端口的地址空间独立于主存地址空间。</li>
+<li>统一编址：将I/O端口的地址映射到主存地址空间中。</li>
+</ul></li>
+</ul></li>
+<li><p>I/O方式：</p>
+<ul>
+<li>程序查询方式：设置设备状态寄存器，持续或周期查询状态。</li>
+<li>程序中断方式</li>
+<li>DMA方式</li>
+</ul></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%93%E4%B8%9A%E5%9F%BA%E7%A1%80/" class="category-chain-item">计算机专业基础</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/12/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/0_%E7%BB%AA%E8%AE%BA/" title="数据结构与算法-0_绪论">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据结构与算法-0_绪论</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%93%E4%B8%9A%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0/" title="计算机网络概述">
+                        <span class="hidden-mobile">计算机网络概述</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>长风破浪会有时，直挂云帆济沧海</p> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
