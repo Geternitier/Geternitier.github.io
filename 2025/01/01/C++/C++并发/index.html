@@ -1,0 +1,766 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/yuanshen.jpeg">
+  <link rel="icon" href="/image/icon/yuanshen.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#5a9367">
+  <meta name="author" content="Geternitier">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="路就在你的脚下，只要你想走。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++并发">
+<meta property="og:url" content="http://example.com/2025/01/01/C++/C++%E5%B9%B6%E5%8F%91/index.html">
+<meta property="og:site_name" content="Geternitier的博客">
+<meta property="og:description" content="路就在你的脚下，只要你想走。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-01-01T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-26T05:54:36.020Z">
+<meta property="article:author" content="Geternitier">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>C++并发 - Geternitier的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Geternitier的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Geternitier的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/background/TheSpirits.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C++并发"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-01-01 12:00" pubdate>
+          2025年1月1日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.3k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C++并发</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>路就在你的脚下，只要你想走。</p>
+<span id="more"></span>
+<h1 id="c并发">C++并发</h1>
+<p>C++11首次引入了并发支持，并在后续得到扩展。同时我们也可以使用pthreads、openMP等库进行实现。</p>
+<h3 id="硬件线程和软件线程">硬件线程和软件线程</h3>
+<p>通常，CPU的一个核可以运行一个硬件线程，使用超线程技术，可以使一个核同时运行多个硬件线程。</p>
+<ul>
+<li>单核单线程处理器使用时间片机制来进行多线程支持，在多核处理器中，这项机制依旧有效。</li>
+<li>使用<code>std::thread::hardware_concurrency()</code>获取硬件线程数。</li>
+</ul>
+<p>操作系统则提供软件线程，由操作系统来管理软件线程在硬件线程上时间片的分配。</p>
+<ul>
+<li>硬件线程数是固定的，由硬件决定，而软件线程是程序创建的，由操作系统调度到硬件线程上执行。</li>
+</ul>
+<h2 id="thread库">thread库</h2>
+<h3 id="thread">thread</h3>
+<p>C++程序至少包含一个线程，在main函数中，它会在主线程上执行。</p>
+<ul>
+<li>获取线程标识符：<code>std::this_thread::get_id()</code>。</li>
+<li>使当前线程休眠：<code>std::this_thread::sleep_for()</code>。</li>
+</ul>
+<p>使用<code>std::thread</code>类创建线程，传递一个可调用对象（函数、lambda或函数对象）及其参数。</p>
+<ul>
+<li>函数对象是实现了operator()的对象。</li>
+</ul>
+<p>线程属于当前局部块，也会随之块的结束被销毁，如果它既没有被<code>join</code>也没有被<code>detach</code>，那么它会被<code>terminate</code>。因此需要使用<code>join</code>等待线程结束，或<code>detach</code>分离该线程。</p>
+<p>可以使用<code>thread::joinable</code>属性来查看<code>thread</code>的状态。</p>
+<ul>
+<li>返回<code>false</code>的情况：默认构造、已经<code>detach</code>或<code>join</code>、被移动（运行线程被移动到另一个<code>thread</code>）</li>
+</ul>
+<h3 id="jthread">jthread</h3>
+<p>C++20引入了<code>jthread</code>，它和<code>thread</code>非常相似。但当在非可连接状态销毁时，它的析构函数会自动调用<code>request_stop</code>并在销毁时<code>join</code>。</p>
+<p><code>request_stop</code>对应停止令牌<code>stop_token</code>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print</span><span class="hljs-params">(std::stop_token stoken)</span> </span>&#123;<br>  <span class="hljs-keyword">while</span> (!stoken.<span class="hljs-built_in">stop_requested</span>()) &#123; <br>    std::cout &lt;&lt; std::this_thread::<span class="hljs-built_in">get_id</span>() &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::seconds&#123;<span class="hljs-number">1</span>&#125;);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="线程安全">线程安全</h3>
+<p>多线程访问某个类、方法、对象时，该类、方法、对象始终能表现出正确的行为，那么称其是线程安全的。例如，多线程买票中，把同一个位置的票卖给了两个人，或者票数卖到负数，这就是线程不安全。</p>
+<p>线程安全，不代表行为符合预期。例如cout是线程安全的，但是在多线程输出的时候，可能出现交错输出的情况，这并不是我们想要的。</p>
+<p>其中关键在于，线程安全，意味着原子性（操作不会被中断）、可见性（操作的修改对其他线程立即可见）、有序性（操作执行有特定顺序）。在cout的例子中，&lt;&lt;的操作是原子的，但是多线程不同&lt;&lt;的调用顺序可能不符合预期。</p>
+<h3 id="互斥量和锁">互斥量和锁</h3>
+<p><code>mutex</code>是用来表征对象独占的原语和C++对象。</p>
+<ol type="1">
+<li><p>基本用法（不推荐）：访问前调用<code>mutex::lock</code>，访问结束后，调用<code>mutex::unlock</code>。</p>
+<ul>
+<li><p>调用<code>lock</code>时，线程尝试获取<code>mutex</code>的锁，如果当时<code>mutex</code>无锁就对其上锁并执行后续访问操作，如果有锁就等待<code>mutex</code>被解锁。</p></li>
+<li><p>问题：同一线程对<code>mutex</code>反复加锁会导致死锁。</p></li>
+<li><p><code>try_lock</code>尝试加锁，失败返回<code>false</code>，成功则加锁并返回<code>true</code>。</p></li>
+</ul></li>
+<li><p><code>lock_guard</code>：构造时加锁，析构时解锁，适用于简单作用域内锁管理。</p></li>
+<li><p><code>unique_lock</code>：构造时加锁，析构时解锁，除此外还封装了手动控制锁的功能。</p>
+<ul>
+<li>在构造时可以选择是否立即锁定互斥量（第二个参数传入<code>defer_lock</code>）。</li>
+<li>支持<code>lock</code>、<code>unlock</code>和<code>try_lock</code>。</li>
+<li>可以使用移动赋值/构造转移所有权。</li>
+<li>可以搭配<code>condition_variable</code>实现条件变量，后文详述。</li>
+</ul></li>
+<li><p><code>scoped_lock</code>，C++17，构造时加锁，析构时解锁，可以同时锁定多个互斥量，避免死锁。</p></li>
+</ol>
+<p><code>mutex</code> Plus</p>
+<ol type="1">
+<li><code>recursive_mutex</code>，允许同一线程对互斥量多次加锁，但必须保证加锁和解锁次数相等。</li>
+<li><code>timed_mutex</code>
+<ul>
+<li><code>try_lock_for</code>在指定时间内尝试加锁，超时放弃。</li>
+<li><code>try_lock_until</code>在指定的时间点前尝试加锁，超时放弃。</li>
+</ul></li>
+<li><code>recursive_timed_mutex</code>，懂得都懂。</li>
+<li><code>shared_mutex</code>，适用于读多写少的场景。
+<ul>
+<li>使用<code>share_lock</code>加共享锁，允许读但不允许写。</li>
+<li>使用<code>unique_lock</code>加独占锁，其他线程既不允许读也不允许写。</li>
+</ul></li>
+</ol>
+<h3 id="死锁">死锁</h3>
+<p>多个线程同时持有锁，并互相请求所持有的锁，形成循环等待，这就是死锁问题。</p>
+<ul>
+<li>教科书级的四个死锁条件：资源互斥使用、进程占有资源且等待、资源不被剥夺、循环等待链。</li>
+<li>对应的死锁防止方法：资源共享、静态分配资源、剥夺式调度资源、层次化资源分配。</li>
+<li>死锁避免：银行家算法，计算整体资源分配是否会产生死锁。</li>
+</ul>
+<p>C++可以使用<code>lock</code>函数和<code>scoped_lock</code>类同时获取多个锁，来应付这个问题。</p>
+<h3 id="条件变量">条件变量</h3>
+<p><code>condition_variable</code>通常与<code>unique_mutex</code>搭配。</p>
+<p>用法：<code>wait</code>或<code>wait_for</code>阻塞调用线程，同时释放锁，直到另一个线程在该条件变量上执行<code>notify_one</code>或<code>notify_all</code>。如果<code>notify</code>时没有线程在等待，消息会直接丢失。</p>
+<p>代码示例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp">mutex m;<br>condition_variable cv;<br><span class="hljs-type">bool</span> flag = <span class="hljs-literal">false</span>;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-function">unique_lock <span class="hljs-title">l</span><span class="hljs-params">(m)</span></span>;<br>	cv.<span class="hljs-built_in">wait</span>(l, []()&#123; <span class="hljs-keyword">return</span> flag; &#125;);<br>	cout &lt;&lt; this_thread::<span class="hljs-built_in">get_id</span>() &lt;&lt; endl;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">turnFlag</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-function">unique_lock <span class="hljs-title">l</span><span class="hljs-params">(m)</span></span>;<br>	flag = <span class="hljs-literal">true</span>;<br>	cv.<span class="hljs-built_in">notify_all</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="future库">future库</h2>
+<p>为了在线程间传递数据的同时避免使用全局变量和锁，C++引入了<code>future</code>库。</p>
+<ol type="1">
+<li><p><code>promise&lt;T&gt;</code>用于存储一个类型为<code>T</code>的值，通过<code>get_future</code>关联到<code>future</code>，并通过<code>set_value</code>或<code>set_exception</code>设置结果。一个<code>promise</code>只能关联一个<code>future</code>。</p>
+<ul>
+<li><code>set_value_at_thread_exit</code>和<code>set_exception_at_thread_exit</code>设置值，并在线程退出时设置值为ready。</li>
+<li><code>future f = p.get_future();</code></li>
+</ul></li>
+<li><p><code>future&lt;T&gt;</code>用于获取<code>promise</code>设置的值，调用<code>get</code>会阻塞到结果可用，只能调用一次。</p>
+<ul>
+<li><code>wait</code>等待结果。</li>
+<li><code>wait_for</code>、<code>wait_until</code>等待，并在计时结束后返回<code>future_status</code>
+<ul>
+<li>包含ready（可用）、timeout（不可用）、deferred（被延迟）三种状态</li>
+</ul></li>
+<li><code>share</code>返回一个<code>shared_future</code>，可以多次获取其中值。</li>
+</ul></li>
+<li><p>当我们只需要获取函数的返回值，可以使用<code>packaged_task</code>或<code>async</code>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">auto</span> task = std::packaged_task&lt;<span class="hljs-keyword">decltype</span>(g)&gt;&#123;g&#125;; <br><span class="hljs-keyword">auto</span> f = task.<span class="hljs-built_in">get_future</span>(); <br>std::thread&#123;std::<span class="hljs-built_in">move</span>(task)&#125;.<span class="hljs-built_in">detach</span>();<br></code></pre></td></tr></table></figure>
+<p>然而，<code>packaged_task</code>仍然需要我们对线程进行管理。</p>
+<p><code>future f = async(g);</code>会自动执行函数g的线程并返回结果，无需手动控制。</p></li>
+</ol>
+<h2 id="atomic库">atomic库</h2>
+<p>使用<code>atomic&lt;T&gt;</code>模板封装对象，可以在不显式使用互斥量和锁的情况下解决数据竞争问题。</p>
+<ul>
+<li>原子变量可能会使用锁，这取决于变量的类型和平台，如果不使用，称为无锁（lock
+free）。
+<ul>
+<li>运行时，调用该原子变量的<code>is_lock_free</code>函数可以查看是否无锁。</li>
+<li>编译时，调用该原子变量的<code>is_always_lock_free</code>可以检查是否无锁。</li>
+<li>现代平台上，<code>T</code>符合本机的字长，通常都是无锁的。</li>
+<li>无锁比有锁具有更高的性能。</li>
+</ul></li>
+<li>自定义类型要想封装在模板中，就必须是平凡可复制的，也就是不包含虚函数和指向动态内存的指针。</li>
+</ul>
+<p><code>atomic_flag</code>始终是无锁的，可以用作保护临界区。</p>
+<p>C++20引入了原子变量和原子标志的等待和通知功能，类似条件变量。</p>
+<p><code>shared_ptr</code>的引用计数是原子的，但指向的共享对象并不是线程安全的。可以使用<code>atomic&lt;T&gt;</code>保护<code>shared_ptr</code>，这是一个违反了平凡可复制规则的例外，但无疑是有意义的。</p>
+<p><code>atomic</code>的一个缺点是无法封装引用，这在函数调用中不太方便。C++20引入了<code>atomic_ref</code>用来封装引用。</p>
+<h2 id="其他同步量">其他同步量</h2>
+<ol type="1">
+<li><code>latch</code>，可以视为递减计数器，传递一个int进行初始化。
+<ul>
+<li>线程调用<code>latch.count_down</code>递减计数器，但不等待。</li>
+<li>线程调用<code>latch.wait</code>等待<code>latch</code>归零。</li>
+<li>合并上述两个操作便是<code>latch.arrive_and_wait</code>。</li>
+</ul></li>
+<li><code>barrier</code>，类似<code>latch</code>，但可以额外传入一个函数作为参数，归零后执行该函数。</li>
+<li><code>counting_semaphore</code>，信号量。<code>acquire</code>对应P操作，<code>release</code>对应V操作。</li>
+</ol>
+<h2 id="指令顺序">指令顺序</h2>
+<p>编译器在优化的过程中会在不影响执行结果的前提下重新排序指令，以达到更好的性能，然而，编译器的优化在面临多线程和共享数据时，会带来难以理解的错误。</p>
+<p>C++内存栅栏：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">std::atomic<span class="hljs-constructor">_thread_fence(<span class="hljs-params">std</span>::<span class="hljs-params">memory_order_release</span>)</span>;<span class="hljs-comment">//写入栅栏</span><br>std::atomic<span class="hljs-constructor">_thread_fence(<span class="hljs-params">std</span>::<span class="hljs-params">memory_order_acquire</span>)</span>;<span class="hljs-comment">//读取栅栏</span><br></code></pre></td></tr></table></figure>
+<p>x86架构采用较强的内存一致性模型，较少需要手动使用内存栅栏。
+ARM架构采用较弱的内存一致性模型，允许广泛的指令重排，因此需要频繁使用内存栅栏：</p>
+<ul>
+<li>StoreStore重排：后续的写操作可能在之前的写操作完成前就执行。</li>
+<li>LoadLoad重排：后续的读操作可能在之前的读操作完成前就执行。</li>
+</ul>
+<p>事实上，使用互斥锁和原子变量的时候，就会隐式地在临界区创建内存栅栏，不允许重新排序指令。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">C++学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/02/01/C++/C++%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="C++数据结构">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++数据结构</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/04/%E4%B9%A0%E6%A6%82/%E5%86%85%E5%A4%96%E6%9D%A1%E4%BB%B6/" title="习概_内外条件">
+                        <span class="hidden-mobile">习概_内外条件</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>长风破浪会有时，直挂云帆济沧海</p> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

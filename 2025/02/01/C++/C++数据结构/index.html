@@ -1,0 +1,758 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/yuanshen.jpeg">
+  <link rel="icon" href="/image/icon/yuanshen.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#5a9367">
+  <meta name="author" content="Geternitier">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="路就在你的脚下，只要你想走。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++数据结构">
+<meta property="og:url" content="http://example.com/2025/02/01/C++/C++%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="Geternitier的博客">
+<meta property="og:description" content="路就在你的脚下，只要你想走。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-02-01T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-26T05:48:13.920Z">
+<meta property="article:author" content="Geternitier">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>C++数据结构 - Geternitier的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Geternitier的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Geternitier的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/background/TheSpirits.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C++数据结构"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-01 12:00" pubdate>
+          2025年2月1日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.5k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C++数据结构</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>路就在你的脚下，只要你想走。</p>
+<span id="more"></span>
+<h1 id="c数据结构">C++数据结构</h1>
+<p>以下内容自动<code>using namespace std;</code></p>
+<h2 id="内存">1. 内存</h2>
+<p>C++将内存视为一段连续单元，每个单元的大小为1字节且都有一个地址。通过其地址访问内存中的一个字节是一个<span
+class="math inline">\(\Omicron(1)\)</span>常量时间操作。</p>
+<p>然而，具体的计算机并非这样简单，现代CPU往往有多个核心，每个核心既有独属于自己的缓存，也有公用的缓存。</p>
+<ul>
+<li><p>以我当前使用的Macbook Pro 2021为例：可以用sysctl -a
+hw查看（下述KB均指1024B）</p>
+<p>M1芯片包含4个Firestrom高性能核心和4个Icestrom低性能核心</p>
+<ul>
+<li>每个Firestrom核心都有自己的192KB指令L1缓存和128KB数据L1缓存</li>
+<li>4个Firestrom核心共用12MB的L2缓存</li>
+<li>每个Icestrom核心都有自己的128KB指令L1缓存和64KB数据L1缓存</li>
+<li>4个Icestrom核心共用4MB的L2缓存</li>
+<li>每个缓存行的大小为128B，页大小16KB</li>
+<li>内存16GB</li>
+</ul></li>
+<li><p>一些数据：</p>
+<ul>
+<li>L1缓存：1ns</li>
+<li>L2缓存：5ns</li>
+<li>内存：100ns</li>
+<li>硬盘：15ms</li>
+</ul></li>
+<li><p>举个例子，下述代码的运行时间为0.66s，但是把循环中赋值处的i和j互换，时间就为2.1s。这是因为访问顺序改变使得缓存miss的次数增加了。这就是计算机中的空间局部性。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">auto</span> cacheSize = <span class="hljs-number">65536</span>;<br>    <span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">auto</span> k = cacheSize / <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>);<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">array</span>(k, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(k));<br>    <span class="hljs-keyword">auto</span> start = chrono::high_resolution_clock::<span class="hljs-built_in">now</span>();<br>    <span class="hljs-keyword">auto</span> counter = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; k; ++i) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; k; ++j) &#123;<br>            array[i][j] = counter++;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">auto</span> end = chrono::high_resolution_clock::<span class="hljs-built_in">now</span>();<br>    chrono::duration&lt;<span class="hljs-type">double</span>&gt; t = end - start;<br>    cout &lt;&lt; t &lt;&lt; endl;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="标准库容器">2. 标准库容器</h2>
+<p>C++容器是一系列数据结构，封装了元素内存管理的细节，分为3类：序列容器、关联容器和容器适配器。</p>
+<h3 id="序列容器">序列容器</h3>
+<p>标准库序列容器包含<code>array</code>、<code>vector</code>、<code>deque</code>、<code>list</code>、<code>forward_list</code>。此外也有处理字符的<code>basic_string</code>。</p>
+<p>选择容器的思考：元素数量、使用方式（增删改查）、数据处理位置、元素排列顺序。</p>
+<h4 id="array">array</h4>
+<p><code>array</code>使用栈而不是堆来管理元素，实际上是原本C数组的一个替代。</p>
+<ul>
+<li><code>auto a = array&lt;int, k&gt;&#123;&#125;;</code></li>
+<li>它使用类型和大小作为模板参数，这避免了C数组的数组衰变现象。
+<ul>
+<li>数组衰变：当C数组作为参数传递给函数时，由于传递的是首地址指针，会丢失其大小信息。</li>
+<li>也可以用视图来解决数组衰变的问题。</li>
+</ul></li>
+</ul>
+<h4 id="vector">vector</h4>
+<p><code>vector</code>中的元素在堆内存中连续排列，因此可以用常数时间访问其中的任何元素。</p>
+<p><code>vector</code>具有大小和容量两个属性，大小指其中元素的个数，容量指实际具有的空间可以容纳的元素个数。<code>vector</code>有三种改变容量的方式：</p>
+<ol type="1">
+<li>使用<code>push_back</code>向<code>vector</code>中添加元素时，若不超出容量，就会直接添加；否则会申请一个新的空间，然后把所有元素移动到新空间。
+<ul>
+<li>当我们用指针指向<code>vector</code>中的元素时，如果<code>vector</code>申请新的空间，那么原指针指向的位置就会无效，这种情况称为野指针，因此不要用指针指向<code>vector</code>中的元素。</li>
+<li><code>vector</code>在移动其中的元素时，如果该元素对象具有<code>noexcept</code>的移动构造函数，那么会使用移动构造，否则会使用复制构造。实际上，它使用<code>move_if_noexcept</code>。</li>
+<li>使用<code>emplace_back</code>可以直接在<code>vector</code>中创建对象，而不是先创建再复制或移动到<code>vector</code>中。</li>
+</ul></li>
+<li>调用<code>reserve</code>，设定容量。</li>
+<li>调用<code>resize</code>，且设定的大小大于当前容量。</li>
+<li>调用<code>shrink_to_fit</code>，将容量削减为当前大小。</li>
+</ol>
+<p>换言之，容量也就意味着<code>vector</code>的内存空间，不改变容量，也不会改变<code>vector</code>的内存空间地址。</p>
+<ul>
+<li><code>clear</code>清空<code>vector</code>，但不改变容量。</li>
+<li><code>erase</code>和<code>erase_if</code>删除指定元素和元素集合，但不改变容量，也就是说，删除后<code>vector</code>进行了元素的移动。</li>
+</ul>
+<h4 id="deque">deque</h4>
+<p>在<code>vector</code>的开头添加或删除元素的时间复杂度为<span
+class="math inline">\(\Omicron(n)\)</span>，在结尾有时候也不是<span
+class="math inline">\(\Omicron(1)\)</span>，<code>deque</code>，也就是双端队列就是用于解决开头和结尾添加或删除的问题。</p>
+<p><code>deque</code>表现为一组固定大小的数组，因而可以以常数时间进行随机访问。然而它的所有元素并不是连续存储的。因而可以实现在开头和结尾以常数时间添加和删除元素。</p>
+<p>随机位置插入和删除的复杂度为<span
+class="math inline">\(\Omicron(n)\)</span>。</p>
+<h4 id="list">list</h4>
+<p><code>list</code>是一个双向链表，而<code>forward_list</code>是一个单向链表。<code>list</code>因为具有后指针，会占用更多内存。</p>
+<h4 id="basic_string">basic_string</h4>
+<p><code>string</code>是<code>basic_string&lt;char&gt;</code>的一个<code>typedef</code>。</p>
+<p><code>basic_string</code>使用<strong>小对象优化</strong>，如果字符串的大小很小，就不会分配动态内存。</p>
+<h3 id="关联容器">关联容器</h3>
+<p>关联容器根据元素本身特性放置元素。分为有序关联容器和无序关联容器：</p>
+<ul>
+<li>有序关联容器使用自平衡二叉搜索树来存储元素，要求元素按小于进行排序。
+<ul>
+<li>增删改查的复杂度为<span class="math inline">\(\Omicron(\log
+n)\)</span>。</li>
+<li><code>set</code>、<code>map</code>、<code>multiset</code>、<code>multimap</code></li>
+</ul></li>
+<li>无序关联容器使用哈希表来存储元素，要求元素按==进行比较，并且可以计算哈希值。
+<ul>
+<li>增删改查的复杂度为<span
+class="math inline">\(\Omicron(1)\)</span>。</li>
+<li><code>unordered_set</code>、<code>unordered_map</code>、<code>unordered_multiset</code>、<code>unordered_multimap</code></li>
+</ul></li>
+</ul>
+<p>C++20后，可以使用<code>contains</code>函数来确认关联容器是否包含特定元素，不用使用<code>count</code>或<code>find</code>来确定。</p>
+<h3 id="容器适配器">容器适配器</h3>
+<p><code>stack</code>、<code>queue</code>和<code>priority_queue</code>是标准库中的三种容器适配器，它们代表可以由底层序列容器实现的抽象数据类型。</p>
+<h3 id="视图">视图</h3>
+<p>C++17引入了<code>string_view</code>和<code>span</code>，它们不是容器，而是连续元素的视图。</p>
+<p><code>string_view</code>使用指针和大小避免了复制，它的<code>substr</code>操作是常数复杂度，而<code>string</code>则需要申请空间并逐个赋值，是线性复杂度。</p>
+<p><code>span</code>是对于数组的视图，同样使用指针和大小避免复制。将函数参数设置为<code>span</code>而传入C数组，可以避免数组衰减。</p>
+<h2 id="标准库算法">3. 标准库算法</h2>
+<p>C++20引入了<code>&lt;ranges&gt;</code>，同时也改变了<code>&lt;algorithm&gt;</code>。过去我们使用算法都基于迭代器，例如<code>sort(a.begin(),a.end())</code>，现在可以直接使用<code>ranges::sort(a)</code>（并且这个函数在algorithm库中），对于其他算法也是如此。</p>
+<h3 id="算法概览">算法概览</h3>
+<ol type="1">
+<li><p>遍历：</p>
+<ul>
+<li><p><code>for_each</code>，对序列的每个元素调用一次参数中的函数，并且忽略函数返回值。</p></li>
+<li><p><code>transform</code>，对序列的每个元素调用一次参数中的函数，将函数返回值保存在第二个参数序列中。</p></li>
+<li><p><code>generate</code>，对序列的每个元素调用一次参数中的函数，将函数返回值保存在该当前元素中。</p></li>
+</ul></li>
+<li><p>排序：<code>sort</code></p>
+<ul>
+<li>使用<code>is_sorted</code>确定集合是排序的。</li>
+</ul></li>
+<li><p>查找：</p>
+<ul>
+<li>线性：<code>find</code></li>
+<li>二分：
+<ul>
+<li><code>binary_search</code></li>
+<li><code>equal_range</code>：参数的范围，返回一个<code>pair</code></li>
+<li><code>upper_bound</code>：参数最后一个位置的迭代器</li>
+<li><code>lower_bound</code>：参数第一个位置的迭代器</li>
+</ul></li>
+</ul></li>
+<li><p>条件测试：接受一个范围和一个判断函数</p>
+<ul>
+<li><code>all_of</code></li>
+<li><code>any_of</code></li>
+<li><code>none_of</code></li>
+</ul></li>
+<li><p>计算元素数量：<code>count</code>。</p></li>
+<li><p>最小、最大：<code>min</code>、<code>max</code>；<code>min_element</code>、<code>max_element</code>。</p></li>
+<li><p>夹逼：<code>clamp</code>，保证一个值在某个范围中。</p></li>
+<li><p>交换：<code>swap</code></p></li>
+<li><p>反转序列：<code>reverse</code></p></li>
+<li><p>旋转序列：<code>rotate</code>，<code>rotate(vec.begin(), vec.begin() + n, vec.end());</code></p></li>
+</ol>
+<h3 id="算法特性">算法特性</h3>
+<ol type="1">
+<li>不会改变容器大小</li>
+<li>默认使用==和&lt;运算符</li>
+<li>复杂性保证：既不分配内存，也不具有高于<span
+class="math inline">\(\Omicron(n\log n)\)</span>的时间复杂度。</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">C++学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/01/01/C++/C++%E5%B9%B6%E5%8F%91/" title="C++并发">
+                        <span class="hidden-mobile">C++并发</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>长风破浪会有时，直挂云帆济沧海</p> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
