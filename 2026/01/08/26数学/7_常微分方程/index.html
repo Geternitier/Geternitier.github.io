@@ -1,0 +1,851 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/1055.jpeg">
+  <link rel="icon" href="/image/icon/1055.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#0082AD">
+  <meta name="author" content="Geternitier">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="雄关漫道真如铁，而今迈步从头越。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="7_常微分方程">
+<meta property="og:url" content="http://example.com/2026/01/08/26%E6%95%B0%E5%AD%A6/7_%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Geternitier的博客">
+<meta property="og:description" content="雄关漫道真如铁，而今迈步从头越。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-08T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-08T08:26:33.639Z">
+<meta property="article:author" content="Geternitier">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>7_常微分方程 - Geternitier的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Geternitier的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>四维法线的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/background/ameath.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="7_常微分方程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-08 12:00" pubdate>
+          2026年1月8日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">7_常微分方程</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>雄关漫道真如铁，而今迈步从头越。</p>
+<span id="more"></span>
+<h1 id="常微分方程">7_常微分方程</h1>
+<h2 id="微分方程的定义">1. 微分方程的定义</h2>
+<p>表示未知函数、未知函数的导数以及自变量之间的关系的方程称为<strong>微分方程</strong>。</p>
+<ol type="1">
+<li><p>未知函数的最高阶导数的阶数称为微分方程的<strong>阶</strong>。</p></li>
+<li><p>未知函数为一元函数，称为<strong>常微分方程</strong>；未知函数为多元函数，称为<strong>偏微分方程</strong>。</p></li>
+<li><p>由未知函数及其导数线性表示的微分方程称为<strong>线性微分方程</strong>。</p>
+<ul>
+<li>形如<span
+class="math inline">\(y^{(n)}+p_1(x)y^{(n-1)}+……+p_n(x)y=f(x)\)</span>。</li>
+<li>若<span class="math inline">\(p_i(x)\)</span>为常数，称为<span
+class="math inline">\(n\)</span>阶常系数线性微分方程。</li>
+<li>若<span class="math inline">\(f(x)=0\)</span>，称为<span
+class="math inline">\(n\)</span>阶齐次线性微分方程。</li>
+</ul></li>
+<li><p>代入未知函数，使得微分方程恒成立的函数称为<strong>微分方程的解</strong>。</p>
+<ul>
+<li><p>若<span class="math inline">\(n\)</span>阶微分方程有解<span
+class="math inline">\(y=\varphi(x,C_1,...,C_n)\)</span>，其中<span
+class="math inline">\(C_1,...,C_n\)</span>为<span
+class="math inline">\(\varphi\)</span>中<span
+class="math inline">\(n\)</span>个独立的任意常数，称<span
+class="math inline">\(y=\varphi(x,C_1,...,C_n)\)</span>为微分方程的通解。</p></li>
+<li><p>用隐函数的形式<span
+class="math inline">\(\Phi(x,y;C_1,...,C_n)=0\)</span>给出的通解称为隐式通解，或通积分。</p></li>
+<li><p><span
+class="math inline">\(n\)</span>阶微分方程的初始条件：给定<span
+class="math inline">\(x_0\)</span>，<span
+class="math inline">\(f(x_0)=a_0,f&#39;(x_0)=
+a_1,...,f^{(n)}(x_0)=a_{n}\)</span>。</p></li>
+</ul></li>
+</ol>
+<h2 id="一般微分方程的解">2. 一般微分方程的解</h2>
+<h3 id="变量分离方程">2.1 变量分离方程</h3>
+<p>形如<span
+class="math inline">\(\frac{dy}{dx}=f(x)g(y)\)</span>的微分方程称为<strong>变量分离方程</strong>，其中<span
+class="math inline">\(f(x),g(y)\)</span>为连续函数。</p>
+<ol type="1">
+<li>若<span
+class="math inline">\(g(y)\neq0\)</span>，原方程的隐式通解为<span
+class="math inline">\(\int\frac{dy}{g(y)}=\int f(x)dx+C\)</span>。</li>
+<li>若存在<span class="math inline">\(g(y_0)=0\)</span>，则<span
+class="math inline">\(y_0\)</span>为方程的奇解，需要额外补充。</li>
+</ol>
+<p>常用换元：</p>
+<ul>
+<li><span
+class="math inline">\(\frac{dy}{dx}=f(ax+by+c)\)</span>，令<span
+class="math inline">\(u=ax+by+c\)</span>，代入得<span
+class="math inline">\(\frac{du}{dx}=a+bf(u)\)</span>。</li>
+<li><span class="math inline">\(\frac{dy}{dx}=\varphi(\frac
+yx)\)</span>，令<span class="math inline">\(u=\frac
+yx\)</span>，代入得<span
+class="math inline">\(\frac{du}{dx}=\frac{\varphi(u)-u}x\)</span>。</li>
+<li><span
+class="math inline">\(\frac{dy}{dx}=f(\frac{a_1x+b_1y+c_1}{a_2x+b_2y+c_2}),a_1b_2-a_2b_1\neq0\)</span>，令<span
+class="math inline">\(u=a_1x+b_1y+c_1,v=a_2x+b_2y+c_2\)</span>。</li>
+</ul>
+<h3 id="全微分方程">2.2 全微分方程</h3>
+<p>若存在可微函数<span
+class="math inline">\(\lambda(x,y)\)</span>，使得<span
+class="math inline">\(\mathrm d\lambda=P\mathrm dx+Q\mathrm
+dy\)</span>，则称<span class="math inline">\(P\mathrm dx+Q\mathrm
+dy=0\)</span>为<strong>全微分方程</strong>，<span
+class="math inline">\(\lambda(x,y)=C\)</span>即其隐式通解。</p>
+<ol type="1">
+<li>若微分方程两边同乘可微函数后转化为全微分方程，该可微函数称为<strong>积分因子</strong>。</li>
+<li>对方程<span class="math inline">\(P\mathrm dx+Q\mathrm
+dy=0\)</span>，若
+<ol type="1">
+<li><span class="math inline">\(\frac{\frac{\partial Q}{\partial
+x}-\frac{\partial P}{\partial
+y}}Q=\phi(x)\)</span>，则方程具有积分因子<span
+class="math inline">\(\mathrm e^{-\int\phi(x)\mathrm dx}\)</span>。</li>
+<li><span class="math inline">\(\frac{\frac{\partial Q}{\partial
+x}-\frac{\partial P}{\partial
+y}}P=\varphi(y)\)</span>，则方程具有积分因子<span
+class="math inline">\(\mathrm e^{\int\varphi(y)\mathrm
+dy}\)</span>。</li>
+</ol></li>
+</ol>
+<h3 id="降阶">2.3 降阶</h3>
+<ol type="1">
+<li>形如<span
+class="math inline">\(y^{(n)}=f(x)\)</span>的微分方程：设<span
+class="math inline">\(y_1=y^{(n-1)}\)</span>，<span
+class="math inline">\(\frac{dy_1}dx=f(x)\)</span>，反复积分<span
+class="math inline">\(n\)</span>次。</li>
+<li>形如<span
+class="math inline">\(f(x,y’,y’’)=0\)</span>的微分方程：设<span
+class="math inline">\(y’=p(x),y’’=\frac{dp}{dx}\)</span>，求解后积分。</li>
+<li>形如<span
+class="math inline">\(f(y,y’,y’’)=0\)</span>的微分方程：设<span
+class="math inline">\(y’=p\)</span>，<span
+class="math inline">\(y&#39;&#39;=\frac{dp}{dy}\frac{dy}{dx}\)</span>，解得<span
+class="math inline">\(p\)</span>，以<span
+class="math inline">\(\frac{dy}{dx}=p\)</span>进而求解。</li>
+</ol>
+<h2 id="线性微分方程的解">3. 线性微分方程的解</h2>
+<h3 id="解的结构">3.1 解的结构</h3>
+<ol type="1">
+<li><span
+class="math inline">\(n\)</span>阶齐次线性微分方程的解空间构成<span
+class="math inline">\(n\)</span>维线性空间。
+<ol type="1">
+<li>即当<span
+class="math inline">\(y_1(x),...,y_n(x)\)</span>是方程的<span
+class="math inline">\(n\)</span>个线性无关解，它是解空间的一个基。</li>
+<li>称<span
+class="math inline">\(y=\sum_{i=1}^nC_iy_i(x)\)</span>为方程的通解，其中<span
+class="math inline">\(C_1,...,C_n\)</span>是任意常数。</li>
+</ol></li>
+<li><span class="math inline">\(n\)</span>阶非齐次线性微分方程：<span
+class="math inline">\(F(x,y,...,y^{(n)})=y^{(n)}+\sum_{k=1}^np_k(x)y^{(n-k)}=f(x)\)</span>
+<ol type="1">
+<li><span class="math inline">\(y^*\)</span>是方程的一个特解，<span
+class="math inline">\(Y=\sum_{i=1}^nC_iy_i(x)\)</span>为齐次通解，则方程的通解为<span
+class="math inline">\(y^*+Y\)</span>。</li>
+<li><span
+class="math inline">\(y_1^*,y_2^*\)</span>是方程的两个特解，则<span
+class="math inline">\(y_1^*-y_2^*\)</span>是齐次特解。</li>
+<li>若<span
+class="math inline">\(F(x,y,...,y^{(n)})=f_1(x)\)</span>有特解<span
+class="math inline">\(y_1^*\)</span>，<span
+class="math inline">\(F(x,y,...,y^{(n)})=f_2(x)\)</span>有特解<span
+class="math inline">\(y_2^*\)</span>，则<span
+class="math inline">\(F(x,y,...,y^{(n)})=f_1(x)+f_x(x)\)</span>有特解<span
+class="math inline">\(y_1^*+y_2^*\)</span>。</li>
+</ol></li>
+</ol>
+<h3 id="一阶方程">3.2 一阶方程</h3>
+<p><span class="math inline">\(\frac{\mathrm dy}{\mathrm
+dx}+P(x)y=Q(x)\)</span>，其中<span
+class="math inline">\(P,Q\)</span>为连续函数。</p>
+<ol type="1">
+<li>齐次：当<span
+class="math inline">\(Q(x)\equiv0\)</span>，变量分离得通解为<span
+class="math inline">\(y=Ce^{-\int P\mathrm dx}\)</span>。</li>
+<li>非齐次：<span class="math inline">\(y=\mathrm e^{-\int P\mathrm
+dx}(\int\mathrm e^{\int P\mathrm dx}Q\mathrm dx+C)\)</span>。
+<ol type="1">
+<li>两边乘以<span class="math inline">\(\mathrm e^{\int P\mathrm
+dx}\)</span>，即<span class="math inline">\(\mathrm e^{\int P\mathrm
+dx}(y&#39;+Py)=\mathrm e^{\int P\mathrm dx}Q\)</span>；</li>
+<li>左边有<span class="math inline">\(\mathrm e^{\int P\mathrm
+dx}(y&#39;+Py)=(\mathrm e^{\int P\mathrm dx}y)&#39;\)</span>；</li>
+<li>两边积分，得<span class="math inline">\(y=\mathrm e^{-\int P\mathrm
+dx}(\int e^{\int P\mathrm dx}Q\mathrm dx+C)\)</span>。</li>
+</ol></li>
+</ol>
+<p>常用换元：</p>
+<p><span class="math inline">\(\frac{\mathrm dy}{\mathrm
+dx}+P(x)y=Q(x)y^a\)</span>，其中<span
+class="math inline">\(P,Q\)</span>为连续函数，<span
+class="math inline">\(a\neq0,1\)</span>（伯努利方程）。</p>
+<ol type="1">
+<li>当<span class="math inline">\(y\neq0\)</span>，取<span
+class="math inline">\(u=y^{1-a}\)</span>，化为<span
+class="math inline">\(\frac{\mathrm du}{\mathrm
+dx}+(1-a)P(x)u=(1-a)Q(x)\)</span>。</li>
+<li>当<span class="math inline">\(a\gt0\)</span>，<span
+class="math inline">\(y=0\)</span>也是满足方程的解。</li>
+</ol>
+<h3 id="常系数方程">3.3 常系数方程</h3>
+<h4 id="齐次通解">齐次通解</h4>
+<p>常系数齐次线性微分方程：<span
+class="math inline">\(y^{(n)}+\sum_{i=1}^np_iy^{n-i}=0\)</span>，<span
+class="math inline">\(p_i\)</span>为常数。</p>
+<ol type="1">
+<li>设<span class="math inline">\(y=\mathrm e^{rx}\)</span>代入得<span
+class="math inline">\(r^n+\sum_{i=1}^np_ir^{n-i}=0\)</span>，称为常系数齐次线性微分方程的<strong>特征方程</strong>。</li>
+<li>特征方程有<span class="math inline">\(n\)</span>个根：
+<ol type="1">
+<li>单实根<span class="math inline">\(r\)</span>，对应解<span
+class="math inline">\(y=\mathrm e^{rx}\)</span>。</li>
+<li><span class="math inline">\(k\)</span>重实根<span
+class="math inline">\(r\)</span>，对应<span
+class="math inline">\(k\)</span>个解<span class="math inline">\(\mathrm
+e^{rx},x\mathrm e^{rx},...,x^{k-1}\mathrm e^{rx}\)</span>。</li>
+<li>单复根<span class="math inline">\(r=a+b\mathrm
+i\)</span>，对应解<span class="math inline">\(\mathrm e^{rx}=\mathrm
+e^{ax}(\cos bx+\mathrm i\sin bx)\)</span>，取实部和虚部得2个解<span
+class="math inline">\(\mathrm e^{ax}\cos bx,\mathrm e^{ax}\sin
+bx\)</span>。</li>
+<li><span class="math inline">\(k\)</span>重复根<span
+class="math inline">\(r=a+b\mathrm i\)</span>，对应解<span
+class="math inline">\(\mathrm e^{rx},x\mathrm e^{rx},...,x^{k-1}\mathrm
+e^{rx}\)</span>，取实部和虚部得<span
+class="math inline">\(2k\)</span>个解<span class="math inline">\(\mathrm
+e^{ax}\cos bx,...,x^{k-1}\mathrm e^{ax}\cos bx\)</span>和<span
+class="math inline">\(\mathrm e^{ax}\sin bx,...,x^{k-1}\mathrm
+e^{ax}\sin bx\)</span>。</li>
+</ol></li>
+<li>特征根对应解的线性组合就是方程的齐次通解。</li>
+</ol>
+<h4 id="非齐次特解">非齐次特解</h4>
+<p>二阶常系数非齐次线性微分方程：<span
+class="math inline">\(y^{(n)}+\sum_{i=1}^np_iy^{n-i}=f(x)\)</span>。</p>
+<p>待定系数法：</p>
+<ol type="1">
+<li><p><span class="math inline">\(f(x)=P_m(x)e^{\mu
+x}\)</span>，其中<span class="math inline">\(\mu\)</span>为实常数，<span
+class="math inline">\(P_m(x)=\sum_{i=0}^ma_ix^{m-i}\)</span>为实系数多项式。</p>
+<p>方程有形如<span class="math inline">\(y^*=x^k(A_0x^m+……+A_m)\mathrm
+e^{\mu x}\)</span>的特解，其中<span
+class="math inline">\(k\)</span>为<span
+class="math inline">\(\mu\)</span>是特征方程根的重数(当<span
+class="math inline">\(\mu\)</span>不是特征根时，规定<span
+class="math inline">\(k=0\)</span>)，而<span
+class="math inline">\(A_0,...,A_m\)</span>为待定常数。</p></li>
+<li><p><span class="math inline">\(f(x)=[A_s(x)\cos bx+B_t(x)\sin
+bx]\mathrm e^{ax}\)</span>，其中<span
+class="math inline">\(a,b\)</span>为实常数，而<span
+class="math inline">\(A_s(x),B_t(x)\)</span>为<span
+class="math inline">\(x\)</span>的<span
+class="math inline">\(s\)</span>次，<span
+class="math inline">\(t\)</span>次实多项式，</p>
+<p>令<span
+class="math inline">\(m=\max\{s,t\}\)</span>，则方程有形如<span
+class="math inline">\(y^*=x^ke^{ax}[P_m(x)\cos bx+Q_m(x)\sin
+bx]\)</span>的特解，</p>
+<p>其中<span class="math inline">\(k\)</span>为<span
+class="math inline">\(a+b\mathrm i\)</span>是特征方程<span
+class="math inline">\(F(\lambda)=\lambda^2+p\lambda+q=0\)</span>根的重数，<span
+class="math inline">\(P_m(x),Q_m(x)\)</span>是关于<span
+class="math inline">\(x\)</span>的<span
+class="math inline">\(m\)</span>次多项式。</p></li>
+</ol>
+<p>微分算子法：待补充</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E5%AD%A6/" class="category-chain-item">数学</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/28/26%E6%95%B0%E5%AD%A6/6_%E7%BA%BF%E6%80%A7%E6%98%A0%E5%B0%84/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/01/06/26%E6%95%B0%E5%AD%A6/5_%E8%A7%A3%E6%9E%90%E5%87%A0%E4%BD%95%E5%88%9D%E6%AD%A5/" title="5_解析几何初步">
+                        <span class="hidden-mobile">5_解析几何初步</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>长风破浪会有时，直挂云帆济沧海</p> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

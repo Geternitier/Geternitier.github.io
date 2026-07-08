@@ -1,0 +1,872 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/1055.jpeg">
+  <link rel="icon" href="/image/icon/1055.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#0082AD">
+  <meta name="author" content="Geternitier">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="雄关漫道真如铁，而今迈步从头越。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4_线性空间">
+<meta property="og:url" content="http://example.com/2026/01/01/26%E6%95%B0%E5%AD%A6/4_%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4/index.html">
+<meta property="og:site_name" content="Geternitier的博客">
+<meta property="og:description" content="雄关漫道真如铁，而今迈步从头越。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-01T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-08T08:25:34.815Z">
+<meta property="article:author" content="Geternitier">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>4_线性空间 - Geternitier的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Geternitier的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>四维法线的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/background/ameath.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="4_线性空间"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-01 12:00" pubdate>
+          2026年1月1日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">4_线性空间</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>雄关漫道真如铁，而今迈步从头越。</p>
+<span id="more"></span>
+<h1 id="线性空间">4_线性空间</h1>
+<h2 id="代数结构">1.代数结构</h2>
+<p>代数学的内容和任务是研究代数结构的性质。</p>
+<ol type="1">
+<li>代数运算，指作用在集合两元素之间得到的元素仍在集合中的运算。</li>
+<li>当集合上的代数运算符合某些规则，称该集合及其代数运算是一个代数结构。</li>
+</ol>
+<h3 id="群">群</h3>
+<p>群<span class="math inline">\((G,+)\)</span>是一个集合<span
+class="math inline">\(G\)</span>与定义在该集合上的代数运算<span
+class="math inline">\(+\)</span>，满足</p>
+<ol type="1">
+<li>结合律：<span class="math inline">\(\forall f,g,h\in
+G,(f+g)+h=f+(g+h)\)</span>。</li>
+<li>单位元：<span class="math inline">\(\exists e\in G,\forall f\in
+G,e+f=f\)</span>。</li>
+<li>逆元：<span class="math inline">\(\forall f\in G,\exists g\in
+G,f+g=g+f=e\)</span>。</li>
+</ol>
+<p>如果群<span class="math inline">\((G,+)\)</span>还满足交换律，即<span
+class="math inline">\(\forall f,g\in
+G,f+g=g+f\)</span>，则称该群为交换群。</p>
+<p>群的运算可逆。</p>
+<ol type="1">
+<li>在群，可以通过移项的方式来求解方程，但只能同时在等式两边的一侧进行移项。</li>
+<li>在交换群，可以进行任意的移项。</li>
+</ol>
+<h3 id="环">环</h3>
+<p>环<span class="math inline">\((R,+,\times)\)</span>是一个集合<span
+class="math inline">\(R\)</span>与定义在该集合的代数运算<span
+class="math inline">\(+,\times\)</span>，满足</p>
+<ol type="1">
+<li><span class="math inline">\(R\)</span>对<span
+class="math inline">\(+\)</span>构成交换群。</li>
+<li><span class="math inline">\(\times\)</span>结合律：<span
+class="math inline">\(\forall f,g,h\in R,(f\times g)\times
+h=f\times(g\times h)\)</span>。</li>
+<li><span class="math inline">\(\times\)</span>对<span
+class="math inline">\(+\)</span>有分配律：<span
+class="math inline">\(\forall f,g,h\in R,f\times(g+h)=f\times g+f\times
+h\)</span>。</li>
+</ol>
+<p>如果环有<span class="math inline">\(\times\)</span>单位元，即<span
+class="math inline">\(\exists e\in R,\forall f\in R,f\times
+e=f\)</span>，则称其为有单位元的环。</p>
+<p>如果环满足<span
+class="math inline">\(\times\)</span>的交换律，即<span
+class="math inline">\(\forall f,g\in R,f\times g=g\times
+f\)</span>，称其为交换环。</p>
+<p>如果环既有<span
+class="math inline">\(\times\)</span>单位元也满足<span
+class="math inline">\(\times\)</span>的交换律，称其为有单位元的交换环。</p>
+<p>环可以进行加减乘，但不能除。</p>
+<p>环的示例：整数、多项式</p>
+<h3 id="域">域</h3>
+<p>域<span class="math inline">\((F,+,\times)\)</span>是一个集合<span
+class="math inline">\(F\)</span>和定义在该集合的代数运算<span
+class="math inline">\(+,\times\)</span>，满足</p>
+<ol type="1">
+<li><span
+class="math inline">\((F,+,\times)\)</span>构成有单位元的交换环。</li>
+<li>记加法单位元为0，<span
+class="math inline">\(\times\)</span>单位元为1，<span
+class="math inline">\((F,+,\times)\)</span>对非0元有<span
+class="math inline">\(\times\)</span>逆元，即<span
+class="math inline">\(\forall f\in F-\{0\},\exists f^{-1}\in F,f\times
+f^{-1}=1\)</span>。</li>
+</ol>
+<p>域可以进行四则运算。</p>
+<p>域的示例：有理数、实数、复数</p>
+<h2 id="线性空间-1">2. 线性空间</h2>
+<h3 id="线性空间-2">线性空间</h3>
+<p>集合<span class="math inline">\(V\)</span>、域<span
+class="math inline">\(R\)</span>和定义在其上的加法<span
+class="math inline">\(+\)</span>和标量乘法<span
+class="math inline">\(\cdot\)</span>，若满足</p>
+<ol type="1">
+<li><span class="math inline">\(V\)</span>的元素称为向量，<span
+class="math inline">\(R\)</span>的元素称为标量。</li>
+<li><span class="math inline">\((V,+)\)</span>构成交换群，即：
+<ol type="1">
+<li>加法交换律：<span class="math inline">\(\forall \boldsymbol
+a,\boldsymbol b\in V,\boldsymbol a+\boldsymbol b=\boldsymbol
+b+\boldsymbol a\)</span>。</li>
+<li>加法结合律：<span class="math inline">\(\forall \boldsymbol
+a,\boldsymbol b,\boldsymbol c\in V,(\boldsymbol a+\boldsymbol
+b)+\boldsymbol c=\boldsymbol a+(\boldsymbol b+\boldsymbol
+c)\)</span>。</li>
+<li>加法单位元：<span class="math inline">\(\exists\boldsymbol 0\in
+V,\forall\boldsymbol a\in V,\boldsymbol 0+\boldsymbol a=\boldsymbol
+a\)</span>。</li>
+<li>加法逆元：<span class="math inline">\(\forall\boldsymbol a\in
+V,\exists(-\boldsymbol a)\in V,\boldsymbol a+(-\boldsymbol
+a)=\boldsymbol 0\)</span>。</li>
+</ol></li>
+<li>向量和标量构成标量乘法：
+<ol type="1">
+<li>单位元：<span class="math inline">\(\forall\boldsymbol a\in
+V,1\cdot\boldsymbol a=\boldsymbol a\)</span>。</li>
+<li>结合律：<span class="math inline">\(\forall\boldsymbol a\in
+V,\forall k,l\in R,k\cdot(l\boldsymbol a)=kl\cdot\boldsymbol
+a\)</span>。</li>
+</ol></li>
+<li>标量乘法和向量加法满足分配律：
+<ol type="1">
+<li>向量分配律：<span class="math inline">\(\forall \boldsymbol
+a,\boldsymbol b\in V,\forall k\in R,k\cdot(\boldsymbol a+\boldsymbol
+b)=k\boldsymbol a+k\boldsymbol b\)</span>。</li>
+<li>标量分配律：<span class="math inline">\(\forall\boldsymbol a\in
+V,\forall k,l\in R,(k+l)\boldsymbol a=k\boldsymbol a+l\boldsymbol
+a\)</span>。</li>
+</ol></li>
+</ol>
+<p>则称<span class="math inline">\(V\)</span>是<span
+class="math inline">\(R\)</span>上的线性空间，简称<span
+class="math inline">\(V\)</span>为<span
+class="math inline">\(R\)</span>-线性空间或线性空间。</p>
+<p>线性空间示例：</p>
+<ol type="1">
+<li>陪域为线性空间的函数集合，也称函数空间。</li>
+<li>多项式函数的集合。</li>
+<li>线性微分方程解集的集合。</li>
+<li>样条函数的集合。</li>
+<li>几何空间。</li>
+</ol>
+<h3 id="基和维数">基和维数</h3>
+<h4 id="基和坐标化">基和坐标化</h4>
+<p>在线性空间<span class="math inline">\(V\)</span>中选出<span
+class="math inline">\(n\)</span>个向量形成向量组<span
+class="math inline">\(B=(\boldsymbol e_1,...\boldsymbol
+e_n)\)</span>，如果<span class="math inline">\(B\)</span>满足<span
+class="math inline">\(\forall\boldsymbol v\in
+V\)</span>。存在唯一的<span class="math inline">\(v_1,...,v_n\in
+R\)</span>使得<span class="math inline">\(\boldsymbol v=v_1\boldsymbol
+e_1+...+v_n\boldsymbol e_n\)</span>，则称<span
+class="math inline">\(B\)</span>是<span
+class="math inline">\(V\)</span>的一个基向量组，称<span
+class="math inline">\((v_1,...,v_n)\)</span>为<span
+class="math inline">\(\boldsymbol v\)</span>在<span
+class="math inline">\(B\)</span>下的坐标。</p>
+<ol type="1">
+<li>向量组表征了坐标和向量之间的映射关系，记<span
+class="math inline">\(\mathrm{vec}_B:\mathbb R^n\rightarrow
+V\)</span>是坐标到向量的映射。</li>
+<li>记<span class="math inline">\(\mathrm{vec}_B\)</span>的值域为<span
+class="math inline">\(\mathrm{span}(B)\)</span>，称为<span
+class="math inline">\(B\)</span>张成的子空间。</li>
+<li>当<span
+class="math inline">\(\mathrm{vec}_B\)</span>是满射，它的值域是<span
+class="math inline">\(V\)</span>，称<span
+class="math inline">\(B\)</span>张成<span
+class="math inline">\(V\)</span>。</li>
+<li>当<span
+class="math inline">\(\mathrm{vec}_B\)</span>为单射，则用<span
+class="math inline">\(B\)</span>表示任意向量的方式唯一，称<span
+class="math inline">\(B\)</span><strong>线性无关</strong>。
+<ul>
+<li>表示任意向量的方式唯一，等价于表示0向量的方式唯一。</li>
+</ul></li>
+<li><span class="math inline">\(B\)</span>是基当且仅当<span
+class="math inline">\(\mathrm{vec}_B\)</span>是双射。</li>
+</ol>
+<h4 id="基的生成和维数">基的生成和维数</h4>
+<p>线性空间<span
+class="math inline">\(V\)</span>的基的判定条件是，基能张成<span
+class="math inline">\(V\)</span>且表示<span
+class="math inline">\(V\)</span>的任意方式唯一，即<span
+class="math inline">\(\mathrm{vec}_B\)</span>是双射。</p>
+<p>给定任意向量组<span
+class="math inline">\(S\)</span>，可以通过扩充和缩减的方式生成基。</p>
+<ol type="1">
+<li>若<span class="math inline">\(S\)</span>张成<span
+class="math inline">\(V\)</span>，但表出向量的方式不唯一。
+<ol type="1">
+<li>则<span class="math inline">\(S\)</span>线性相关，存在<span
+class="math inline">\(S\)</span>中的向量，设为<span
+class="math inline">\(\boldsymbol s_1\)</span>，可由<span
+class="math inline">\(S\)</span>中的其余向量线性表示。</li>
+<li>移除<span class="math inline">\(\boldsymbol
+s_1\)</span>所得的向量组仍然张成<span
+class="math inline">\(V\)</span>。</li>
+<li>从<span
+class="math inline">\(S\)</span>中移除向量的过程将在有限步停止，最终得到线性无关且张成<span
+class="math inline">\(V\)</span>的向量组。</li>
+<li>规定空向量组线性无关且张成<span class="math inline">\(\{\boldsymbol
+0\}\)</span>。</li>
+</ol></li>
+<li>若<span class="math inline">\(S\)</span>线性无关，但不能张成<span
+class="math inline">\(V\)</span>。
+<ol type="1">
+<li><span class="math inline">\(\boldsymbol s\)</span>能被<span
+class="math inline">\(S\)</span>线性表出，等价于<span
+class="math inline">\(\boldsymbol s\in\mathrm{span}(S)\)</span>。</li>
+<li>可以加入与<span
+class="math inline">\(S\)</span>线性无关的向量扩充<span
+class="math inline">\(\mathrm{span}(S)\)</span>。</li>
+<li>向<span
+class="math inline">\(S\)</span>中加入向量的过程可能是有限步的，也可能是无限步的。</li>
+</ol></li>
+</ol>
+<p>称能张成<span
+class="math inline">\(V\)</span>的向量组为张成组，线性无关的向量组为无关组，向量组的向量个数为长度。</p>
+<ol type="1">
+<li><p><span class="math inline">\(V\)</span>的张成组长度<span
+class="math inline">\(\geq\)</span>基的长度<span
+class="math inline">\(\geq\)</span>无关组长度。</p>
+<ol type="1">
+<li>可以向张成组中加入一个无关组的向量，并在原有向量中删去一个可以被线性表示的向量，结果仍然张成<span
+class="math inline">\(V\)</span>。重复此过程。</li>
+<li>若张成组长度大于无关组长度，可以无矛盾地将无关组嵌入张成组。</li>
+<li>若张成组长度小于无关组长度，则张成组会被无关组的真子集替换，该真子集不能张成<span
+class="math inline">\(V\)</span>，矛盾。</li>
+</ol></li>
+<li><p>基的长度是唯一的。</p>
+<ul>
+<li>若有两个长度不同的基，那么它们都是无关组且张成整个空间，可以得到短的组长度<span
+class="math inline">\(\geq\)</span>长的组长度，矛盾。</li>
+</ul></li>
+<li><p>考虑无关组可以通过有限步扩充为基的情况。</p>
+<p>由扩充/缩减的方式可以得到最小张成组和最大无关组，它们的长度一定相等于基的长度。</p></li>
+<li><p>定义线性空间的维数是基的长度，记为<span
+class="math inline">\(\mathrm{dim}V\)</span>。</p></li>
+</ol>
+<h4 id="无限维线性空间">无限维线性空间</h4>
+<p>在无限维线性空间中，需要对基、张成和线性无关的概念进行扩展。</p>
+<ol type="1">
+<li>Hamel基：<span class="math inline">\(V\)</span>是<span
+class="math inline">\(F\)</span>上的一个线性空间，若<span
+class="math inline">\(V\)</span>的子集<span
+class="math inline">\(B\)</span>满足<span
+class="math inline">\(\forall\boldsymbol v\in
+V\)</span>，存在唯一的<span class="math inline">\(B&#39;=\{\boldsymbol
+e_1,...,\boldsymbol e_m\}\subseteq B\)</span>与非0系数<span
+class="math inline">\(v_1,...,v_m\in F\)</span>，使得<span
+class="math inline">\(\boldsymbol v=v_1\boldsymbol
+e_1+...+v_m\boldsymbol e_m\)</span>，称<span
+class="math inline">\(B\)</span>为<span
+class="math inline">\(V\)</span>的一个Hamel基。
+<ul>
+<li>即，<span
+class="math inline">\(V\)</span>中的向量都能用基的有限子集进行线性表示。</li>
+</ul></li>
+<li>张成：<span class="math inline">\(S\)</span>是<span
+class="math inline">\(V\)</span>的一个子集，<span
+class="math inline">\(\mathrm{span}(S)=\{\sum_{i=1}^na_i\boldsymbol
+s_i:a_i\in F,\boldsymbol s_i\in S,n\in\mathbb N\}\)</span>。</li>
+<li>线性无关：<span class="math inline">\(S\)</span>是<span
+class="math inline">\(V\)</span>的一个子集，<span
+class="math inline">\(S\)</span>线性无关当且仅当<span
+class="math inline">\(S\)</span>中任选有限个向量线性无关。</li>
+</ol>
+<p>无限维线性空间示例：多项式空间、数列空间</p>
+<p>任意线性空间一定有Hamel基，该结论是由选择公理证明的。</p>
+<ul>
+<li>以包含为偏序关系，线性空间中的每条链都有上界，于是有极大元，也就是一个Hamel基。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E5%AD%A6/" class="category-chain-item">数学</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/01/01/26%E6%95%B0%E5%AD%A6/0_%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E5%88%9D%E6%AD%A5/" title="0_数理逻辑">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">0_数理逻辑</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>长风破浪会有时，直挂云帆济沧海</p> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
